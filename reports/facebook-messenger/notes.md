@@ -23,11 +23,11 @@
 
 ## Initial Sampling
 
-- IPAs downloaded: 20
-- Unique builds analyzed: 20
+- IPAs downloaded: 26
+- Unique builds analyzed: 26
 - Oldest analyzed build: app version blank, build `1000`, external ID `4003333`, build timestamp `2011-08-02T21:45:38`
 - Newest analyzed build: `562.0.0 (975021560)`, external ID `885556428`, build timestamp `2026-05-19T17:01:04`
-- RN markers detected: yes, from sampled `93.0 (41774394)` through `145.0 (82143310)`
+- RN markers detected: yes, from exact-boundary `92.0 (41023043)` through `147.0 (84235609)`
 
 | External ID | App version | Build | Build timestamp | JS bundle | RN guess | Confidence |
 |---|---|---:|---|---|---|---|
@@ -36,10 +36,16 @@
 | `816903024` | 65.0 | 27013135 | 2016-04-04T17:23:02 | no | unknown | low |
 | `818196039` | 81.0 | 34694251 | 2016-07-25T14:07:34 | no | unknown | low |
 | `818893675` | 89.0 | 39433806 | 2016-09-19T14:44:26 | no | unknown | low |
+| `818999426` | 90.0 | 39954546 | 2016-09-26T15:07:46 | no | unknown | low |
+| `819099576` | 91.0 | 40546824 | 2016-10-02T15:12:24 | no | unknown | low |
+| `819183439` | 92.0 | 41023043 | 2016-10-08T09:13:24 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
 | `819274182` | 93.0 | 41774394 | 2016-10-17T13:46:22 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
 | `819781397` | 98.0 | 44186053 | 2016-11-18T11:12:28 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
 | `823243677` | 131.0 | 68165081 | 2017-08-14T08:58:26 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
 | `824651339` | 145.0 | 82143310 | 2017-11-28T17:09:26 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
+| `825195544` | 146.0 | 83068889 | 2017-12-04T18:28:34 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
+| `825227473` | 147.0 | 84235609 | 2017-12-12T09:16:54 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
+| `825310109` | 148.0 | 86952252 | 2018-01-08T17:01:12 | no | unknown | low |
 | `825599677` | 149.0 | 87964402 | 2018-01-16T14:39:26 | no | unknown | low |
 | `825927199` | 153.0 | 91923955 | 2018-02-12T20:12:40 | no | unknown | low |
 | `826787358` | 163.0 | 104735954 | 2018-04-24T07:01:24 | no | unknown | low |
@@ -56,16 +62,16 @@
 
 | RN guess | Renderer | Confidence | Start | End | Builds |
 |---|---:|---|---|---|---:|
-| unknown |  | low | build 1000, `4003333`, `2011-08-02T21:45:38` | 89.0 (39433806), `818893675`, `2016-09-19T14:44:26` | 5 |
-| <=0.59.x |  | medium | 93.0 (41774394), `819274182`, `2016-10-17T13:46:22` | 145.0 (82143310), `824651339`, `2017-11-28T17:09:26` | 4 |
-| unknown |  | low | 149.0 (87964402), `825599677`, `2018-01-16T14:39:26` | 562.0.0 (975021560), `885556428`, `2026-05-19T17:01:04` | 11 |
+| unknown |  | low | build 1000, `4003333`, `2011-08-02T21:45:38` | 91.0 (40546824), `819099576`, `2016-10-02T15:12:24` | 7 |
+| <=0.59.x |  | medium | 92.0 (41023043), `819183439`, `2016-10-08T09:13:24` | 147.0 (84235609), `825227473`, `2017-12-12T09:16:54` | 7 |
+| unknown |  | low | 148.0 (86952252), `825310109`, `2018-01-08T17:01:12` | 562.0.0 (975021560), `885556428`, `2026-05-19T17:01:04` | 12 |
 
 ## Unresolved Gaps
 
-- The RN-introduction window is between sampled external IDs `818893675` and `819274182`.
-- The RN-removal or marker-disappearance window is between sampled external IDs `824651339` and `825599677`.
+- RN introduction boundary is exact: `91.0 (40546824)`, external ID `819099576`, build timestamp `2016-10-02T15:12:24`, unknown -> `92.0 (41023043)`, external ID `819183439`, build timestamp `2016-10-08T09:13:24`, RN <=0.59.x. Gap size: 0.
+- RN disappearance boundary is exact: `147.0 (84235609)`, external ID `825227473`, build timestamp `2017-12-12T09:16:54`, RN <=0.59.x -> `148.0 (86952252)`, external ID `825310109`, build timestamp `2018-01-08T17:01:12`, unknown. Gap size: 0.
 - Exact RN patch versions are not recoverable from encrypted native binaries; the detected build is a JS-marker band estimate.
 
 ## Next Step
 
-Refine the two Messenger boundary windows by downloading midpoint or adjacent versions between `818893675` -> `819274182` and `824651339` -> `825599677`.
+Run disk cleanup review and then mark the app done if no additional Messenger-specific marker checks are needed.

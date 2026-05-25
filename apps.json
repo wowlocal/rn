@@ -45,14 +45,14 @@
       "bundle_id": "com.facebook.Messenger",
       "status": "sampled",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/messenger/id454638411; ipatool search resolved bundle ID com.facebook.Messenger.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "boundary_refinement",
       "reports_path": "reports/facebook-messenger",
       "version_list_path": "reports/facebook-messenger/version-list.json",
       "external_version_count": 735,
       "oldest_external_version_id": "4003333",
       "newest_external_version_id": "885556428",
-      "sampled_ipa_count": 20,
-      "unique_builds_analyzed": 20,
+      "sampled_ipa_count": 26,
+      "unique_builds_analyzed": 26,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-25.",
@@ -62,6 +62,7 @@
         "Second midpoint refinement found 81.0 unknown and 145.0 RN-marked, narrowing both windows.",
         "Third midpoint refinement found 89.0 unknown and 153.0 unknown, narrowing both windows again.",
         "Fourth midpoint refinement found 93.0 RN-marked and 149.0 unknown.",
+        "Boundary refinement reached exact adjacency: 91.0 unknown -> 92.0 RN, and 147.0 RN -> 148.0 unknown.",
         "Other sampled Messenger builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
     }
