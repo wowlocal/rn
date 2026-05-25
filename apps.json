@@ -75,19 +75,20 @@
       "bundle_id": "com.burbn.instagram",
       "status": "sampled",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/instagram/id389801252; ipatool search resolved bundle ID com.burbn.instagram.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "boundary_refinement",
       "reports_path": "reports/instagram",
       "version_list_path": "reports/instagram/version-list.json",
       "external_version_count": 795,
       "oldest_external_version_id": "2948163",
       "newest_external_version_id": "885526725",
-      "sampled_ipa_count": 12,
-      "unique_builds_analyzed": 12,
+      "sampled_ipa_count": 14,
+      "unique_builds_analyzed": 14,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-25.",
         "Version list fetched on 2026-05-25 using bundle identifier after app-id lookup returned Apple's generic unknown error.",
         "Initial 12-point sample found RN-marked builds from 10.10.0 (50667367), external version ID 821056195, through 58.0 (120248682), external version ID 828138988.",
+        "Boundary midpoint refinement found 7.19.1 unknown and 89.0 RN-marked, narrowing both transition windows.",
         "Other sampled Instagram builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
     }
