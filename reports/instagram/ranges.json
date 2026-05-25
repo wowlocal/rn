@@ -7,11 +7,11 @@
     "start_app_build": "1.8.7",
     "start_external_version_id": "2948163",
     "start_build_timestamp": "2010-09-27T16:39:00",
-    "end_app_version": "9.3.0",
-    "end_app_build": "38579444",
-    "end_external_version_id": "818795448",
-    "end_build_timestamp": "2016-09-09T08:29:54",
-    "build_count": 5
+    "end_app_version": "9.5.1",
+    "end_app_build": "41331892",
+    "end_external_version_id": "819242040",
+    "end_build_timestamp": "2016-10-11T20:08:34",
+    "build_count": 6
   },
   {
     "rn_guess": "<=0.59.x",
@@ -31,42 +31,42 @@
     "rn_guess": "0.60.x",
     "react_renderer": "",
     "confidence": "medium",
-    "start_app_version": "96.1",
-    "start_app_build": "157574695",
-    "start_external_version_id": "831543078",
-    "start_build_timestamp": "2019-06-04T22:54:00",
+    "start_app_version": "92.0",
+    "start_app_build": "152826666",
+    "start_external_version_id": "831147993",
+    "start_build_timestamp": "2019-05-02T18:57:38",
     "end_app_version": "104.0",
     "end_app_build": "164599121",
     "end_external_version_id": "832101581",
     "end_build_timestamp": "2019-07-26T13:33:40",
-    "build_count": 2
+    "build_count": 3
   },
   {
     "rn_guess": "0.61.x",
     "react_renderer": "",
     "confidence": "medium",
-    "start_app_version": "111.0",
-    "start_app_build": "172467877",
-    "start_external_version_id": "832777026",
-    "start_build_timestamp": "2019-09-14T05:14:24",
+    "start_app_version": "107.0",
+    "start_app_build": "167752007",
+    "start_external_version_id": "832351713",
+    "start_build_timestamp": "2019-08-16T03:36:00",
     "end_app_version": "111.0",
     "end_app_build": "172467877",
     "end_external_version_id": "832777026",
     "end_build_timestamp": "2019-09-14T05:14:24",
-    "build_count": 1
+    "build_count": 2
   },
   {
     "rn_guess": "unknown",
     "react_renderer": "",
     "confidence": "low",
-    "start_app_version": "118.0",
-    "start_app_build": "180988914",
-    "start_external_version_id": "833368709",
-    "start_build_timestamp": "2019-11-01T17:18:24",
+    "start_app_version": "115.0",
+    "start_app_build": "177195845",
+    "start_external_version_id": "833069245",
+    "start_build_timestamp": "2019-10-10T19:46:46",
     "end_app_version": "430.0.0",
     "end_app_build": "972915403",
     "end_external_version_id": "885526725",
     "end_build_timestamp": "2026-05-16T18:55:26",
-    "build_count": 7
+    "build_count": 8
   }
 ]

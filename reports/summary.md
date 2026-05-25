@@ -38,11 +38,11 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 | Facebook Messenger | unknown |  | low |  (1000) | 91.0 (40546824) | 7 |
 | Facebook Messenger | <=0.59.x |  | medium | 92.0 (41023043) | 147.0 (84235609) | 7 |
 | Facebook Messenger | unknown |  | low | 148.0 (86952252) | 562.0.0 (975021560) | 12 |
-| Instagram | unknown |  | low |  (1.8.7) | 9.3.0 (38579444) | 5 |
+| Instagram | unknown |  | low |  (1.8.7) | 9.5.1 (41331892) | 6 |
 | Instagram | <=0.59.x |  | medium | 10.0.1 (44338396) | 89.0 (149781277) | 4 |
-| Instagram | 0.60.x |  | medium | 96.1 (157574695) | 104.0 (164599121) | 2 |
-| Instagram | 0.61.x |  | medium | 111.0 (172467877) | 111.0 (172467877) | 1 |
-| Instagram | unknown |  | low | 118.0 (180988914) | 430.0.0 (972915403) | 7 |
+| Instagram | 0.60.x |  | medium | 92.0 (152826666) | 104.0 (164599121) | 3 |
+| Instagram | 0.61.x |  | medium | 107.0 (167752007) | 111.0 (172467877) | 2 |
+| Instagram | unknown |  | low | 115.0 (177195845) | 430.0.0 (972915403) | 8 |
 
 ## RN Transitions
 
@@ -60,10 +60,10 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 | Discord | 0.78.x | 0.81.x | 306.1 (89123) | 307.0 (89215) | 0 |
 | Facebook Messenger | unknown | <=0.59.x | 91.0 (40546824) | 92.0 (41023043) | 0 |
 | Facebook Messenger | <=0.59.x | unknown | 147.0 (84235609) | 148.0 (86952252) | 0 |
-| Instagram | unknown | <=0.59.x | 9.3.0 (38579444) | 10.0.1 (44338396) | 8 |
-| Instagram | <=0.59.x | 0.60.x | 89.0 (149781277) | 96.1 (157574695) | 8 |
-| Instagram | 0.60.x | 0.61.x | 104.0 (164599121) | 111.0 (172467877) | 8 |
-| Instagram | 0.61.x | unknown | 111.0 (172467877) | 118.0 (180988914) | 8 |
+| Instagram | unknown | <=0.59.x | 9.5.1 (41331892) | 10.0.1 (44338396) | 4 |
+| Instagram | <=0.59.x | 0.60.x | 89.0 (149781277) | 92.0 (152826666) | 3 |
+| Instagram | 0.60.x | 0.61.x | 104.0 (164599121) | 107.0 (167752007) | 3 |
+| Instagram | 0.61.x | unknown | 111.0 (172467877) | 115.0 (177195845) | 3 |
 
 ## Boundary Confidence
 
