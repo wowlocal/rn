@@ -7,7 +7,7 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 ## App Status
 
 - Analyzed successfully: 2
-- Queued: 0
+- Queued: 1
 - Needs manual review: 0
 - Skipped: 1
 
@@ -15,6 +15,10 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 
 - Discord: 475 external versions; reports in `reports/discord`
 - Facebook Messenger: 735 external versions; reports in `reports/facebook-messenger`
+
+## Queued Apps
+
+- Instagram: App Store ID 389801252; bundle ID com.burbn.instagram
 
 ## Skipped Apps
 

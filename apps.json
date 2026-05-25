@@ -67,6 +67,21 @@
         "Final validation passed: scripts compile, CSV/JSON reports parse, transition rows are backed by versions.csv, and exact boundaries are adjacent in version-list.json.",
         "Other sampled Messenger builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
+    },
+    {
+      "app_slug": "instagram",
+      "app_name": "Instagram",
+      "app_id": "389801252",
+      "bundle_id": "com.burbn.instagram",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/instagram/id389801252; ipatool search resolved bundle ID com.burbn.instagram.",
+      "last_completed_step": "app_registration",
+      "reports_path": "reports/instagram",
+      "version_list_path": "reports/instagram/version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-25.",
+        "RN usage is not assumed; it must be verified from IPA markers during sampling."
+      ]
     }
   ]
 }
