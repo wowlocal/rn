@@ -137,6 +137,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
     queued = [app for app in apps if app.get("status") == "queued"]
     skipped = [app for app in apps if app.get("status") == "skipped"]
     review = [app for app in apps if app.get("status") == "needs_manual_review"]
+    in_progress = [
+        app
+        for app in apps
+        if app.get("status") not in {"done", "queued", "skipped", "needs_manual_review"}
+    ]
     exact = [row for row in transitions if row.get("version_list_boundary_exact") == "true"]
     approximate = [
         row
@@ -155,6 +160,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         "",
         f"- Analyzed successfully: {len(analyzed)}",
         f"- Queued: {len(queued)}",
+        f"- In progress: {len(in_progress)}",
         f"- Needs manual review: {len(review)}",
         f"- Skipped: {len(skipped)}",
         "",
@@ -173,6 +179,14 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         for app in queued:
             lines.append(
                 f"- {app.get('app_name', app.get('app_slug'))}: App Store ID {app.get('app_id', '')}; bundle ID {app.get('bundle_id', '')}"
+            )
+        lines.append("")
+
+    if in_progress:
+        lines.extend(["## In Progress Apps", ""])
+        for app in in_progress:
+            lines.append(
+                f"- {app.get('app_name', app.get('app_slug'))}: status `{app.get('status', '')}`; last completed `{app.get('last_completed_step', '')}`; reports in `{app.get('reports_path', '')}`"
             )
         lines.append("")
 

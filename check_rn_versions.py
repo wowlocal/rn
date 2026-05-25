@@ -767,6 +767,7 @@ def parse_args(
     parser.add_argument("--offset", type=int, default=0, help="Skip this many older versions after the latest version is skipped.")
     parser.add_argument("--include-latest", action="store_true", help="Do not skip the first version returned by ipatool.")
     parser.add_argument("--print-version-ids", action="store_true", help="Print external version IDs from --versions-json, --seed-ipa, or fallback IPA paths and exit.")
+    parser.add_argument("--list-versions-only", action="store_true", help="Save ipatool list-versions output and exit without downloading.")
     parser.add_argument("--purchase", action="store_true", help="Pass --purchase to ipatool download.")
     parser.add_argument("--force", action="store_true", help="Redownload IPAs that already exist.")
     parser.add_argument("--retries", type=int, default=2)
@@ -824,6 +825,11 @@ def main(
     downloaded: list[Path] = []
     attempted_downloads = 0
     failed_downloads = 0
+    if args.list_versions_only:
+        entries = list_versions(args)
+        print(f"saved {len(entries)} external version IDs to {args.version_list_out}")
+        return 0
+
     if args.print_version_ids:
         if args.version_id:
             entries = [VersionEntry(external_version_id=value) for value in args.version_id]

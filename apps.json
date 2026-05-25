@@ -107,16 +107,24 @@
       "bundle_id": "com.burbn.barcelona",
       "android_package": "com.instagram.barcelona",
       "android_history_source": "APKMirror and APKPure history pages for package com.instagram.barcelona",
-      "status": "queued",
+      "status": "version_lists_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Threads resolved App Store ID 6446901002 and bundle ID com.burbn.barcelona; APKMirror/APKPure pages identify Android package com.instagram.barcelona.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_lists_fetched",
       "reports_path": "reports/threads",
       "version_list_path": "reports/threads/version-list.json",
       "android_version_list_path": "reports/threads/android-version-list.json",
+      "external_version_count": 182,
+      "oldest_external_version_id": "855897532",
+      "newest_external_version_id": "885819877",
+      "android_version_count": 10,
+      "oldest_android_version_code": "504412928",
+      "newest_android_version_code": "510007506",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Threads --format json returned ID 6446901002, bundle ID com.burbn.barcelona, current listed version 431.0.",
-        "Android package source: APKMirror/APKPure history pages for Threads list package com.instagram.barcelona."
+        "Android package source: APKMirror/APKPure history pages for Threads list package com.instagram.barcelona.",
+        "iOS version list fetched on 2026-05-26: 182 external version IDs from 855897532 through 885819877.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 504412928 through 510007506; source page appears to expose a limited history."
       ]
     }
   ]
