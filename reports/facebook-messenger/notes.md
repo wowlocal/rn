@@ -74,4 +74,12 @@
 
 ## Next Step
 
-Run disk cleanup review and then mark the app done if no additional Messenger-specific marker checks are needed.
+Mark the app done if validation passes.
+
+## Disk Cleanup
+
+- Checked free space with `df -h .` on 2026-05-25.
+- Available space: 240 GiB.
+- Deleted IPAs: none.
+- Reason: retained sampled and boundary IPAs for reproducibility because disk pressure does not require cleanup.
+- Deletion log: `logs/deleted-ipas.log` unchanged for Messenger.
