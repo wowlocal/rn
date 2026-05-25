@@ -174,16 +174,24 @@
       "bundle_id": "com.jadedpixel.shopify",
       "android_package": "com.shopify.mobile",
       "android_history_source": "APKPure history page for package com.shopify.mobile",
-      "status": "queued",
+      "status": "version_lists_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Shopify resolved App Store ID 371294472 and bundle ID com.jadedpixel.shopify; APKPure and Google Play identify Android package com.shopify.mobile.",
-      "last_completed_step": "registered",
+      "last_completed_step": "version_lists_fetched",
       "reports_path": "reports/shopify",
       "version_list_path": "reports/shopify/version-list.json",
       "android_version_list_path": "reports/shopify/android-version-list.json",
+      "external_version_count": 508,
+      "oldest_external_version_id": "821337490",
+      "newest_external_version_id": "886020173",
+      "android_version_count": 10,
+      "oldest_android_version_code": "237419",
+      "newest_android_version_code": "281050",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Shopify --format json returned ID 371294472, bundle ID com.jadedpixel.shopify, current listed version 10.2621.0.",
-        "Android package source: APKPure search and Google Play search identify package com.shopify.mobile."
+        "Android package source: APKPure search and Google Play search identify package com.shopify.mobile.",
+        "iOS version list fetched on 2026-05-26: 508 external version IDs from 821337490 through 886020173.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 237419 through 281050; source page appears to expose a limited history."
       ]
     }
   ]
