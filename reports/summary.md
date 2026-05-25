@@ -20,7 +20,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Shop: status `version_lists_fetched`; last completed `version_lists_fetched`; reports in `reports/shop`
+- Shop: status `sampled`; last completed `initial_sampling`; reports in `reports/shop`
 
 ## Manual Review Apps
 
@@ -63,6 +63,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Meta Horizon | android | <=0.59.x |  | medium | 360.0.0.23.322 (892081967) | 372.0.1.34.252 (975394013) | 18 |
 | Shopify | android | 0.79.x | 19.0.0 | medium | 10.2543.0 (193814) | 10.2605.0 (220449) | 8 |
 | Shopify | android | 0.60.x |  | medium | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
+| Shop | android | 0.81.x | 19.1.0 | high | 2.246.0 (3409799) | 2.253.0 (3451748) | 10 |
 
 ## RN Transitions
 

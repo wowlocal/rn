@@ -206,9 +206,9 @@
       "bundle_id": "com.jadedlabs.arrive",
       "android_package": "com.shopify.arrive",
       "android_history_source": "APKPure history page for package com.shopify.arrive",
-      "status": "version_lists_fetched",
+      "status": "sampled",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1223471316 and bundle ID com.jadedlabs.arrive; APKPure and Google Play identify Android package com.shopify.arrive.",
-      "last_completed_step": "version_lists_fetched",
+      "last_completed_step": "initial_sampling",
       "reports_path": "reports/shop",
       "version_list_path": "reports/shop/version-list.json",
       "version_list_error_path": "reports/shop/version-list-error.json",
@@ -216,12 +216,15 @@
       "android_version_count": 10,
       "oldest_android_version_code": "3409799",
       "newest_android_version_code": "3451748",
+      "sampled_android_package_count": 10,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: Apple iTunes lookup for App Store ID 1223471316 returned bundle ID com.jadedlabs.arrive, app name Shop: All your favorite brands, and current listed version 2.253.0.",
         "Android package source: APKPure search and Google Play search identify package com.shopify.arrive.",
         "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID requires an App Store license; bundle-ID list and purchase attempts for com.jadedlabs.arrive returned app not found.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 3409799 through 3451748; source page appears to expose a limited history."
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 3409799 through 3451748; source page appears to expose a limited history.",
+        "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Every sampled XAPK exposes assets/index.android.bundle, react-native-renderer 19.1.0, and React Native native-library metadata including libreactnative.so; all samples classify as 0.81.x with high confidence."
       ]
     }
   ]

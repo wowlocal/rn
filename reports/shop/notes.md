@@ -6,7 +6,7 @@
 - App Store ID: 1223471316
 - iOS bundle ID: com.jadedlabs.arrive
 - Android package: com.shopify.arrive
-- Status: version_lists_fetched
+- Status: sampled
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -30,6 +30,30 @@
 - Raw Android version catalog: `reports/shop/android-version-list.json`
 - APKPure currently exposes a limited visible history on the fetched page.
 
+## Initial Sampling
+
+- Android sampling date: 2026-05-26
+- Android packages downloaded and analyzed: 10
+- Android package source: APKPure visible version catalog
+- Android RN markers detected: yes, in every sampled XAPK.
+- Exposed Android JS bundle path: `assets/index.android.bundle`
+- Exposed renderer marker: `react-native-renderer 19.1.0`
+- Exposed React Native native-library metadata includes `libreactnative.so`, `libhermes.so`, `libhermestooling.so`, and `libjsi.so`.
+- Android reports: `reports/shop/android-versions.csv`, `reports/shop/android-ranges.csv`, and empty `reports/shop/android-transitions.json`.
+- iOS sampling was not performed because iOS version-list access is blocked and Android packages exposed high-confidence RN markers.
+
+## Provisional Ranges
+
+| Platform | RN guess | Confidence | Start | End | Builds |
+|---|---|---|---|---|---:|
+| Android | 0.81.x | high | 2.246.0 (`3409799`), APKPure date `2026-03-31` | 2.253.0 (`3451748`), APKPure date `2026-05-20` | 10 |
+
+## Open Gaps
+
+- APKPure currently exposes only recent 2026 builds from `2.246.0` through `2.253.0`.
+- iOS version-list access remains blocked by App Store license/app-not-found failures, so no iOS cross-check is available.
+- Disk cleanup was not performed after Android sampling because `apks/shop` used about 1.3 GiB and the filesystem still had 226 GiB available.
+
 ## Next Step
 
-Run initial Android sampling because APKs may expose clearer React Native evidence and iOS version-list access is currently blocked.
+Refine Android history if older APKPure direct pages or another signature-verified source can be accessed, then sample targeted iOS builds only if iOS access becomes available.

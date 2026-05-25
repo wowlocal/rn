@@ -1,0 +1,16 @@
+[
+  {
+    "build_count": 10,
+    "confidence": "high",
+    "end_app_build": "3451748",
+    "end_app_version": "2.253.0",
+    "end_build_timestamp": "2026-05-20",
+    "end_external_version_id": "3451748",
+    "react_renderer": "19.1.0",
+    "rn_guess": "0.81.x",
+    "start_app_build": "3409799",
+    "start_app_version": "2.246.0",
+    "start_build_timestamp": "2026-03-31",
+    "start_external_version_id": "3409799"
+  }
+]
