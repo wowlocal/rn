@@ -6,7 +6,7 @@
 - App Store ID: 371294472
 - iOS bundle ID: com.jadedpixel.shopify
 - Android package: com.shopify.mobile
-- Status: version_lists_fetched
+- Status: sampled
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -31,6 +31,29 @@
 - Raw Android version catalog: `reports/shopify/android-version-list.json`
 - APKPure currently exposes a limited visible history on the fetched page.
 
+## Initial Sampling
+
+- Android sampling date: 2026-05-26
+- Android packages downloaded and analyzed: 10
+- Android package source: APKPure visible version catalog
+- Android RN markers detected: yes, in every sampled XAPK.
+- Exposed Android JS bundle path: `assets/index.android.bundle`
+- Exposed React Native native-library metadata includes `libreactnative.so`, `libhermesvm.so`, `libhermestooling.so`, and `libjsi.so`.
+- Android reports: `reports/shopify/android-versions.csv`, `reports/shopify/android-ranges.csv`, and empty `reports/shopify/android-transitions.json`.
+- iOS sampling was not performed because Android confirmed React Native markers and the Android source limitation should be resolved first.
+
+## Provisional Ranges
+
+| Platform | RN guess | Confidence | Start | End | Builds |
+|---|---|---|---|---|---:|
+| Android | 0.60.x | medium | 10.2611.0 (`237419`), APKPure date `2026-03-18` | 10.2620.0 (`281050`), APKPure date `2026-05-21` | 10 |
+
+## Open Gaps
+
+- APKPure currently exposes only recent 2026 builds from `10.2611.0` through `10.2620.0`.
+- Exact RN patch versions are not recovered from the visible Android package markers; report the `0.60.x` band with medium confidence.
+- Disk cleanup was not performed after initial sampling because `apks/shopify` used about 1.5 GiB and the filesystem still had 229 GiB available.
+
 ## Next Step
 
-Run initial sampling, starting with Android packages because APKs may expose clearer React Native evidence than encrypted iOS binaries.
+Refine Android history if older APKPure direct pages or another signature-verified source can be accessed, then sample targeted iOS builds only if Android evidence suggests an iOS boundary worth checking.

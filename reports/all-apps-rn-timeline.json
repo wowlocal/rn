@@ -448,5 +448,23 @@
     "start_app_version": "360.0.0.23.322",
     "start_build_timestamp": "2026-03-04",
     "start_external_version_id": "892081967"
+  },
+  {
+    "app_name": "Shopify",
+    "app_slug": "shopify",
+    "app_status": "sampled",
+    "build_count": 10,
+    "confidence": "medium",
+    "end_app_build": "281050",
+    "end_app_version": "10.2620.0",
+    "end_build_timestamp": "2026-05-21",
+    "end_external_version_id": "281050",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "0.60.x",
+    "start_app_build": "237419",
+    "start_app_version": "10.2611.0",
+    "start_build_timestamp": "2026-03-18",
+    "start_external_version_id": "237419"
   }
 ]
