@@ -1,0 +1,17 @@
+# Large downloaded app packages
+*.ipa
+*.ipa.tmp
+discord-ipas/*.ipa
+discord-ipas/*.ipa.tmp
+ipas/**/*.ipa
+ipas/**/*.ipa.tmp
+
+# Python/runtime noise
+__pycache__/
+*.py[cod]
+
+# Local transient logs/caches
+.DS_Store
+*.tmp
+tmp/
+cache/
