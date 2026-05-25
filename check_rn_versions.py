@@ -148,13 +148,11 @@ def list_versions(args: argparse.Namespace) -> list[VersionEntry]:
     if args.versions_json:
         data = load_json_text(Path(args.versions_json).read_text())
     else:
-        if args.app_id is None:
-            raise RuntimeError("--app-id is required when calling ipatool list-versions")
+        target_args = ipatool_target_args(args, "list-versions")
         argv = [
             args.ipatool,
             "list-versions",
-            "--app-id",
-            str(args.app_id),
+            *target_args,
             "--format",
             "json",
         ]
@@ -202,6 +200,16 @@ def sanitize(value: str) -> str:
     return value.strip("_") or "unknown"
 
 
+def ipatool_target_args(args: argparse.Namespace, command: str) -> list[str]:
+    if args.use_bundle_identifier:
+        if not args.bundle_id:
+            raise RuntimeError(f"--bundle-id is required when calling ipatool {command} by bundle identifier")
+        return ["--bundle-identifier", args.bundle_id]
+    if args.app_id is None:
+        raise RuntimeError(f"--app-id is required when calling ipatool {command}")
+    return ["--app-id", str(args.app_id)]
+
+
 def download_ipa(args: argparse.Namespace, entry: VersionEntry, index: int) -> Path:
     label = sanitize(entry.version or entry.build or entry.external_version_id)
     out = args.download_dir / f"{args.app_slug}_{index:03d}_{label}_{entry.external_version_id}.ipa"
@@ -209,13 +217,11 @@ def download_ipa(args: argparse.Namespace, entry: VersionEntry, index: int) -> P
         print(f"already exists: {out}")
         return out
 
-    if args.app_id is None:
-        raise RuntimeError("--app-id is required when downloading IPAs")
+    target_args = ipatool_target_args(args, "download")
     argv = [
         args.ipatool,
         "download",
-        "--app-id",
-        str(args.app_id),
+        *target_args,
         "--external-version-id",
         entry.external_version_id,
         "--output",
@@ -734,6 +740,11 @@ def parse_args(
     parser.add_argument("--app-name", default=default_app_name)
     parser.add_argument("--app-id", type=int, default=default_app_id)
     parser.add_argument("--bundle-id", default=default_bundle_id)
+    parser.add_argument(
+        "--use-bundle-identifier",
+        action="store_true",
+        help="Use --bundle-identifier instead of --app-id for ipatool list/download.",
+    )
     parser.add_argument("--ipatool", default=shutil.which("ipatool") or "ipatool")
     parser.add_argument("--download-dir", type=Path, default=default_download_dir)
     parser.add_argument("--report", type=Path, default=default_report)
