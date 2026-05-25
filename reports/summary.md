@@ -7,7 +7,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 3
-- Queued: 0
+- Queued: 1
 - Needs manual review: 0
 - Skipped: 1
 
@@ -16,6 +16,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Discord: 475 iOS external versions; reports in `reports/discord`
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
+
+## Queued Apps
+
+- Threads: App Store ID 6446901002; bundle ID com.burbn.barcelona
 
 ## Skipped Apps
 

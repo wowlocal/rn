@@ -99,6 +99,25 @@
         "Final validation passed: scripts compile, CSV/JSON reports parse, and all four transition rows are adjacent in version-list.json.",
         "Other sampled Instagram builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
+    },
+    {
+      "app_slug": "threads",
+      "app_name": "Threads",
+      "app_id": "6446901002",
+      "bundle_id": "com.burbn.barcelona",
+      "android_package": "com.instagram.barcelona",
+      "android_history_source": "APKMirror and APKPure history pages for package com.instagram.barcelona",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Threads resolved App Store ID 6446901002 and bundle ID com.burbn.barcelona; APKMirror/APKPure pages identify Android package com.instagram.barcelona.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/threads",
+      "version_list_path": "reports/threads/version-list.json",
+      "android_version_list_path": "reports/threads/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: ipatool search Threads --format json returned ID 6446901002, bundle ID com.burbn.barcelona, current listed version 431.0.",
+        "Android package source: APKMirror/APKPure history pages for Threads list package com.instagram.barcelona."
+      ]
     }
   ]
 }
