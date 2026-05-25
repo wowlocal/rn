@@ -166,6 +166,25 @@
         "Every sampled APK exposes assets/TwilightBundle.js.hbc and React Native native-library metadata. The current analyzer reports Android source-limited bands: 287.3.0.33.109 as 0.78.x high-confidence, 341.0.0.17.107 through 349.2.0.46.104 as 0.60.x medium-confidence, and 360.0.0.23.322 through 372.0.1.34.252 as <=0.59.x medium-confidence.",
         "Marked needs_manual_review because APKPure gaps are large, APKMirror is blocked by Cloudflare, iOS sampling is blocked by the App Store license failure, and the apparent 0.60.x -> <=0.59.x Android transition is not trustworthy enough to treat as a definitive app-wide RN downgrade without stronger package evidence."
       ]
+    },
+    {
+      "app_slug": "shopify",
+      "app_name": "Shopify",
+      "app_id": "371294472",
+      "bundle_id": "com.jadedpixel.shopify",
+      "android_package": "com.shopify.mobile",
+      "android_history_source": "APKPure history page for package com.shopify.mobile",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Shopify resolved App Store ID 371294472 and bundle ID com.jadedpixel.shopify; APKPure and Google Play identify Android package com.shopify.mobile.",
+      "last_completed_step": "registered",
+      "reports_path": "reports/shopify",
+      "version_list_path": "reports/shopify/version-list.json",
+      "android_version_list_path": "reports/shopify/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: ipatool search Shopify --format json returned ID 371294472, bundle ID com.jadedpixel.shopify, current listed version 10.2621.0.",
+        "Android package source: APKPure search and Google Play search identify package com.shopify.mobile."
+      ]
     }
   ]
 }
