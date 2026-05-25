@@ -1,0 +1,20 @@
+{
+  "build_count": 12,
+  "ranges": [
+    {
+      "rn_guess": "unknown",
+      "react_renderer": "",
+      "confidence": "low",
+      "start_app_version": "289.0",
+      "start_app_build": "489338310",
+      "start_external_version_id": "855897532",
+      "start_build_timestamp": "2023-06-27T23:32:54",
+      "end_app_version": "431.0.0",
+      "end_app_build": "979167741",
+      "end_external_version_id": "885819877",
+      "end_build_timestamp": "2026-05-25T02:25:36",
+      "build_count": 12
+    }
+  ],
+  "transitions": []
+}

@@ -20,7 +20,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Threads: status `version_lists_fetched`; last completed `version_lists_fetched`; reports in `reports/threads`
+- Threads: status `sampled`; last completed `initial_sampling`; reports in `reports/threads`
 
 ## Skipped Apps
 
@@ -49,6 +49,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Instagram | ios | 0.60.x |  | medium | 91.0 (151989260) | 105.0 (165586599) | 5 |
 | Instagram | ios | 0.61.x |  | medium | 106.0 (166752244) | 113.0 (174653610) | 5 |
 | Instagram | ios | unknown |  | low | 114.0 (176133011) | 430.0.0 (972915403) | 9 |
+| Threads | ios | unknown |  | low | 289.0 (489338310) | 431.0.0 (979167741) | 12 |
+| Threads | android | unknown |  | low | 374.0.0.43.110 (504412928) | 374.0.0.43.110 (504412928) | 1 |
+| Threads | android | unknown |  | unknown | 423.3.0.54.66 (509307092) | 430.0.0.46.79 (510007506) | 9 |
 
 ## RN Transitions
 
@@ -70,9 +73,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Instagram | ios | <=0.59.x | 0.60.x | 90.0 (150975176) | 91.0 (151989260) | 0 |
 | Instagram | ios | 0.60.x | 0.61.x | 105.0 (165586599) | 106.0 (166752244) | 0 |
 | Instagram | ios | 0.61.x | unknown | 113.0 (174653610) | 114.0 (176133011) | 0 |
+| Threads | android | unknown | unknown | 374.0.0.43.110 (504412928) | 423.3.0.54.66 (509307092) | 0 |
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 15
+- Exact by transition IDs: 16
 - Approximate by transition IDs: 1
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

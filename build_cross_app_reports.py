@@ -74,7 +74,25 @@ def app_entries(apps_data: Any) -> list[dict[str, Any]]:
     return [app for app in apps if isinstance(app, dict)]
 
 
-def version_positions(report_dir: Path) -> dict[str, int]:
+def version_positions(report_dir: Path, platform: str) -> dict[str, int]:
+    if platform == "android":
+        version_list_path = report_dir / "android-version-list.json"
+        if not version_list_path.exists():
+            return {}
+        data = load_json(version_list_path)
+        versions = data.get("versions", [])
+        if not isinstance(versions, list):
+            return {}
+        codes = sorted(
+            {
+                str(row.get("version_code", ""))
+                for row in versions
+                if isinstance(row, dict) and str(row.get("version_code", "")).isdigit()
+            },
+            key=int,
+        )
+        return {version_code: index for index, version_code in enumerate(codes)}
+
     version_list_path = report_dir / "version-list.json"
     if not version_list_path.exists():
         return {}
@@ -103,31 +121,34 @@ def collect_reports(apps: list[dict[str, Any]], reports_dir: Path) -> tuple[list
         if not slug:
             continue
         report_dir = Path(str(app.get("reports_path") or reports_dir / slug))
-        app_prefix = {
-            "app_slug": slug,
-            "app_name": app.get("app_name", ""),
-            "app_status": app.get("status", ""),
-            "platform": app.get("platform", "ios"),
-        }
+        platform_reports = [
+            ("ios", report_dir / "ranges.json", report_dir / "transitions.json"),
+            ("android", report_dir / "android-ranges.json", report_dir / "android-transitions.json"),
+        ]
+        for platform, ranges_path, transitions_path in platform_reports:
+            app_prefix = {
+                "app_slug": slug,
+                "app_name": app.get("app_name", ""),
+                "app_status": app.get("status", ""),
+                "platform": platform,
+            }
 
-        ranges_path = report_dir / "ranges.json"
-        if ranges_path.exists():
-            for row in load_json(ranges_path):
-                timeline.append({**app_prefix, **row})
+            if ranges_path.exists():
+                for row in load_json(ranges_path):
+                    timeline.append({**app_prefix, **row})
 
-        positions = version_positions(report_dir)
-        transitions_path = report_dir / "transitions.json"
-        if transitions_path.exists():
-            for row in load_json(transitions_path):
-                gap_size, exact = transition_gap(row, positions)
-                transitions.append(
-                    {
-                        **app_prefix,
-                        **row,
-                        "version_list_gap_size": gap_size,
-                        "version_list_boundary_exact": exact,
-                    }
-                )
+            positions = version_positions(report_dir, platform)
+            if transitions_path.exists():
+                for row in load_json(transitions_path):
+                    gap_size, exact = transition_gap(row, positions)
+                    transitions.append(
+                        {
+                            **app_prefix,
+                            **row,
+                            "version_list_gap_size": gap_size,
+                            "version_list_boundary_exact": exact,
+                        }
+                    )
 
     return timeline, transitions
 
