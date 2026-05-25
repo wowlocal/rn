@@ -2,13 +2,25 @@
 *.ipa
 *.ipa.tmp
 *.apk
+*.apk.tmp
 *.apks
+*.apks.tmp
+*.xapk
+*.xapk.tmp
+*.apkm
+*.apkm.tmp
 discord-ipas/*.ipa
 discord-ipas/*.ipa.tmp
 ipas/**/*.ipa
 ipas/**/*.ipa.tmp
 apks/**/*.apk
+apks/**/*.apk.tmp
 apks/**/*.apks
+apks/**/*.apks.tmp
+apks/**/*.xapk
+apks/**/*.xapk.tmp
+apks/**/*.apkm
+apks/**/*.apkm.tmp
 
 # Python/runtime noise
 __pycache__/
@@ -24,3 +36,4 @@ cache/
 !logs/
 !logs/run.log
 !logs/deleted-ipas.log
+!logs/deleted-packages.log

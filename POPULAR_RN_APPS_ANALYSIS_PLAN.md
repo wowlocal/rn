@@ -1,6 +1,6 @@
-# Popular React Native iOS Apps Timeline Plan
+# Popular React Native Mobile Apps Timeline Plan
 
-Purpose: guide a long-running agent through collecting React Native upgrade timelines for popular iOS apps one app at a time. Treat this as a live checklist: update statuses as each app moves through discovery, sampling, boundary refinement, reporting, and cleanup.
+Purpose: guide a long-running agent through collecting React Native upgrade timelines for popular mobile apps one app at a time. Prefer the platform that exposes the clearest React Native evidence, then reconcile iOS and Android timelines where both package histories are available. Treat this as a live checklist: update statuses as each app moves through discovery, sampling, boundary refinement, reporting, and cleanup.
 
 ## Ground Rules
 
@@ -8,12 +8,16 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Reuse and generalize the existing Discord scripts instead of starting from scratch.
 - Process one app at a time unless a step is pure local reporting.
 - Do not run concurrent `ipatool` commands; the cookie lock can collide.
-- Keep all durable outputs before deleting any IPA.
-- Delete only generated IPA/cache files inside this project when disk pressure requires it.
+- APK analysis is first-class. Android packages often expose clearer RN evidence through `assets/index.android.bundle`, Hermes bytecode, `libreactnativejni.so`, `libhermes.so`, SoLoader libraries, native symbols, and unencrypted resources.
+- Use Android-first sampling when APK/APKS/XAPK/APKM history is easier to obtain or inspect. Use iOS IPAs to validate and anchor iOS-specific timelines when needed.
+- Keep iOS and Android package timelines separate in the raw outputs. Merge them only in cross-app summary files with platform labels.
+- Keep all durable outputs before deleting any IPA, APK, APKS, XAPK, APKM, or extracted package directory.
+- Delete only generated app package/cache files inside this project when disk pressure requires it.
 - Never delete scripts, manifests, reports, CSV/JSON outputs, or notes.
 - Use IPA internal zip timestamps for build timestamps unless App Store metadata is independently verified.
+- For Android, prefer version ordering by `versionCode`; use APK source publish dates only when the source clearly provides them. ZIP entry timestamps inside APKs can be build artifacts and should be labeled as package timestamps, not store release dates.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
-- Android APKs may be used as supplementary evidence for React Native detection and RN version inference when iOS binaries are encrypted or iOS JS markers are too sparse. Keep iOS timelines anchored to iOS App Store external version IDs and IPA internal zip timestamps.
+- Android APKs may provide primary evidence for RN version inference. Keep platform-specific timestamps and version identifiers labeled clearly.
 - Do not expose account credentials in logs or reports.
 - Commit after every completed checklist step so the task is resumable and each app's progress has a clear checkpoint.
 
@@ -22,8 +26,9 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Commit after creating or updating task infrastructure, such as scripts, manifests, ignore rules, and report generators.
 - Commit after each per-app checklist section is completed:
   - app registration
-  - version list fetch
+  - iOS or Android version list fetch
   - initial sampling
+  - APK analyzer implementation or refinement
   - boundary refinement
   - disk cleanup
   - per-app notes
@@ -47,13 +52,22 @@ reports/
   all-apps-rn-transitions.csv
   all-apps-rn-transitions.json
   <app-slug>/
-    version-list.json
-    versions.csv
-    versions.json
-    ranges.csv
-    ranges.json
-    transitions.csv
-    transitions.json
+    ios-version-list.json
+    android-version-list.json
+    ios-versions.csv
+    ios-versions.json
+    android-versions.csv
+    android-versions.json
+    ios-ranges.csv
+    ios-ranges.json
+    android-ranges.csv
+    android-ranges.json
+    ios-transitions.csv
+    ios-transitions.json
+    android-transitions.csv
+    android-transitions.json
+    combined-ranges.csv
+    combined-transitions.csv
     notes.md
 ipas/
   <app-slug>/
@@ -63,12 +77,12 @@ apks/
     retained-android-evidence-apks...
 logs/
   run.log
-  deleted-ipas.log
+  deleted-packages.log
 ```
 
 ## Candidate App Queue
 
-Start with these candidates. Verify RN usage from each IPA; do not assume.
+Start with these candidates. Verify RN usage from each IPA or Android package; do not assume.
 
 - [ ] Discord
 - [ ] Facebook
@@ -106,12 +120,14 @@ Repeat this checklist for each app before moving to the next.
 ### 1. Register App
 
 - [ ] Pick the next candidate from the queue.
-- [ ] Resolve App Store app ID and bundle ID if possible.
+- [ ] Resolve App Store app ID and iOS bundle ID if possible.
+- [ ] Resolve Android package name if possible.
+- [ ] Identify Android package history source, if available.
 - [ ] Add or update the app in `apps.json`.
 - [ ] Set status to `queued`.
 - [ ] Record source/evidence for why the app is being checked.
 - [ ] Create `reports/<app-slug>/`.
-- [ ] Create `ipas/<app-slug>/` only when downloads are needed.
+- [ ] Create `ipas/<app-slug>/` or `apks/<app-slug>/` only when downloads are needed.
 
 Required `apps.json` fields:
 
@@ -119,8 +135,10 @@ Required `apps.json` fields:
 {
   "app_slug": "discord",
   "app_name": "Discord",
-  "app_id": "985746746",
-  "bundle_id": "com.hammerandchisel.discord",
+  "ios_app_id": "985746746",
+  "ios_bundle_id": "com.hammerandchisel.discord",
+  "android_package": "com.discord",
+  "android_history_source": null,
   "status": "queued",
   "evidence": "Known public RN usage; verified by IPA markers",
   "last_completed_step": null,
@@ -128,29 +146,37 @@ Required `apps.json` fields:
 }
 ```
 
-### 2. Fetch Version List
+### 2. Fetch Version Lists
 
-- [ ] Run `ipatool list-versions --app-id <app_id> --format json`.
-- [ ] Save raw output to `reports/<app-slug>/version-list.json`.
-- [ ] Count available external version IDs.
-- [ ] Record newest and oldest external version IDs in `apps.json`.
-- [ ] Mark app status as `version_list_fetched`.
-- [ ] If `ipatool` cannot list versions, mark status `skipped` and document the error.
+- [ ] If doing iOS, run `ipatool list-versions --app-id <ios_app_id> --format json`.
+- [ ] Save raw iOS output to `reports/<app-slug>/ios-version-list.json`.
+- [ ] Count available iOS external version IDs.
+- [ ] Record newest and oldest iOS external version IDs in `apps.json`.
+- [ ] If doing Android, fetch or build a version catalog from the chosen APK source.
+- [ ] Save raw Android version catalog to `reports/<app-slug>/android-version-list.json`.
+- [ ] For Android entries, capture package source, version name, version code, architecture/split info, publish date if available, and download URL or stable source identifier.
+- [ ] Mark app status as `version_lists_fetched`.
+- [ ] If neither iOS nor Android history can be listed, mark status `skipped` and document the error.
 
 ### 3. Initial Sampling
 
-Do not download all versions first. Sample enough to determine whether the app actually exposes RN markers.
+Do not download all versions first. Sample enough to determine whether the app actually exposes RN markers. Prefer Android sampling first when Android historical packages are available; it is usually easier to inspect and often exposes richer RN and Hermes evidence than encrypted iOS binaries.
 
-- [ ] Download latest available version.
-- [ ] Download oldest available version.
-- [ ] Download 6 to 12 evenly spaced historical versions.
+- [ ] Download latest available Android package if available.
+- [ ] Download oldest available Android package if available.
+- [ ] Download 6 to 12 evenly spaced Android historical versions if available.
+- [ ] Analyze each downloaded Android package.
+- [ ] If Android confirms RN and yields usable RN version markers, use Android ranges to guide any iOS downloads.
+- [ ] Download latest available iOS version if iOS timeline is in scope.
+- [ ] Download oldest available iOS version if iOS timeline is in scope.
+- [ ] Download 6 to 12 evenly spaced iOS historical versions if iOS timeline is in scope.
 - [ ] Analyze each downloaded IPA.
-- [ ] Write provisional `versions.csv` and `versions.json`.
+- [ ] Write provisional platform-specific `*-versions.csv` and `*-versions.json`.
 - [ ] Decide whether RN is detected.
 - [ ] If no RN markers are detected in any sample, mark `not_react_native_detected` unless the app deserves deeper sampling.
 - [ ] If RN markers are detected, continue to timeline refinement.
 
-### 4. Per-IPA Analysis
+### 4. Per-Package Analysis
 
 For every IPA, capture at least:
 
@@ -172,28 +198,53 @@ For every IPA, capture at least:
 - [ ] RN guess or band.
 - [ ] Confidence: `high`, `medium`, `low`, or `unknown`.
 - [ ] Evidence notes explaining the inference.
-- [ ] Android APK evidence used for RN inference, if any, clearly labeled as supplementary and not as an iOS timeline timestamp source.
+
+For every Android package, capture at least:
+
+- [ ] Android package name.
+- [ ] Version name.
+- [ ] Version code.
+- [ ] Source and source publish date, if available.
+- [ ] Package file path.
+- [ ] Package file type: APK, APKS, XAPK, APKM, or extracted split set.
+- [ ] Package size.
+- [ ] Supported ABIs and split metadata.
+- [ ] Manifest app metadata.
+- [ ] `assets/index.android.bundle` or other JS bundle paths.
+- [ ] Hermes bytecode markers and Hermes version markers, if visible.
+- [ ] React Native native libraries such as `libreactnativejni.so`, `libreact_nativemodule_core.so`, `libfabricjni.so`, `libhermes.so`, and SoLoader libraries.
+- [ ] Native symbols or strings mentioning `ReactNativeVersion`, `ReactAndroid`, `TurboModule`, `Fabric`, `JSI`, `Hermes`, or `Bridgeless`.
+- [ ] `react-native-renderer` marker, if present.
+- [ ] React version marker, if present.
+- [ ] RN JS API markers used for inference.
+- [ ] RN guess or band.
+- [ ] Confidence: `high`, `medium`, `low`, or `unknown`.
+- [ ] Evidence notes explaining the inference.
+
+Android analysis tools may include `unzip`, `aapt`/`aapt2`, `apkanalyzer`, `jadx`, `apktool`, `readelf`, `nm`, `strings`, Hermes bytecode tooling, and structured ZIP/APK parsers. Prefer structured metadata extraction over ad hoc string scraping when available.
 
 ### 5. Build Initial Ranges
 
-- [ ] Sort analyzed rows by App Store external version order.
-- [ ] Deduplicate repeated app version/build rows where needed.
+- [ ] Sort iOS rows by App Store external version order.
+- [ ] Sort Android rows by version code, then source publish date if available.
+- [ ] Deduplicate repeated app version/build or versionCode rows where needed.
 - [ ] Group contiguous rows by RN guess and renderer version.
-- [ ] Write provisional `ranges.csv` and `ranges.json`.
-- [ ] Write provisional `transitions.csv` and `transitions.json`.
+- [ ] Write provisional platform-specific `*-ranges.csv` and `*-ranges.json`.
+- [ ] Write provisional platform-specific `*-transitions.csv` and `*-transitions.json`.
 - [ ] Mark status `sampled`.
 
 ### 6. Refine Upgrade Boundaries
 
-For each detected RN transition:
+For each detected RN transition on each platform:
 
 - [ ] Identify the last known old RN row.
 - [ ] Identify the first known new RN row.
-- [ ] Use the external version list to find all IDs between them.
+- [ ] For iOS, use the external version list to find all IDs between them.
+- [ ] For Android, use the versionCode/source catalog to find all versions between them.
 - [ ] Download the midpoint or adjacent missing versions.
 - [ ] Analyze new downloads.
 - [ ] Regenerate `versions`, `ranges`, and `transitions`.
-- [ ] Repeat until the old and new rows are adjacent in the external version list.
+- [ ] Repeat until the old and new rows are adjacent in the platform version catalog.
 - [ ] If a version cannot be fetched, record the missing ID and reason.
 - [ ] If exact adjacency cannot be reached, report the smallest remaining window.
 
@@ -210,6 +261,14 @@ Boundary output must include:
 - [ ] Confidence.
 - [ ] Whether boundary is exact.
 - [ ] Gap size in external version IDs.
+- [ ] Platform: `ios` or `android`.
+- [ ] Android package source and versionCode gap size, when platform is Android.
+
+Cross-platform refinement:
+
+- [ ] Use Android transitions to prioritize iOS sampling near the same calendar window or release train when iOS analysis is expensive.
+- [ ] Do not copy an Android RN version onto iOS without evidence. Mark it as Android evidence that increases confidence only when iOS markers are compatible.
+- [ ] If Android and iOS upgrade on different app versions or dates, report separate timelines.
 
 ### 7. Disk Cleanup Per App
 
@@ -217,16 +276,18 @@ After durable CSV/JSON files are written:
 
 - [ ] Check free space with `df -h .`.
 - [ ] Keep latest IPA if useful.
+- [ ] Keep latest APK if useful.
 - [ ] Keep first and last IPA for each detected RN range if space allows.
+- [ ] Keep first and last Android package for each detected RN range if space allows.
 - [ ] Keep both sides of exact or approximate upgrade boundaries if space allows.
-- [ ] Delete intermediate sampled IPAs only when they are no longer needed.
-- [ ] Log every deletion in `logs/deleted-ipas.log`.
-- [ ] Confirm per-app reports can be regenerated from saved CSV/JSON without IPAs.
+- [ ] Delete intermediate sampled IPAs/APKs only when they are no longer needed.
+- [ ] Log every deletion in `logs/deleted-packages.log`.
+- [ ] Confirm per-app reports can be regenerated from saved CSV/JSON without app package files.
 
 Deletion log format:
 
 ```text
-timestamp=<iso8601> app=<slug> external_version_id=<id> app_version=<version> app_build=<build> path=<path> reason=<reason>
+timestamp=<iso8601> app=<slug> platform=<ios|android> version_id=<id> app_version=<version> app_build_or_version_code=<build_or_code> path=<path> reason=<reason>
 ```
 
 ### 8. Per-App Notes
@@ -234,24 +295,28 @@ timestamp=<iso8601> app=<slug> external_version_id=<id> app_version=<version> ap
 Write `reports/<app-slug>/notes.md` with:
 
 - [ ] App identity and App Store ID.
-- [ ] Coverage: oldest and newest analyzed builds.
-- [ ] Number of external versions available.
+- [ ] Android package identity and APK source, if used.
+- [ ] Coverage: oldest and newest analyzed builds per platform.
+- [ ] Number of external versions available per platform.
 - [ ] Number of IPAs downloaded.
+- [ ] Number of Android packages downloaded.
 - [ ] Number of unique builds analyzed.
 - [ ] RN detection evidence.
-- [ ] RN range table.
-- [ ] RN transition table.
+- [ ] RN range table per platform.
+- [ ] RN transition table per platform.
+- [ ] Cross-platform comparison table if both platforms were analyzed.
 - [ ] Unresolved gaps or missing versions.
 - [ ] Encryption limitations.
 - [ ] Any app-specific marker quirks.
-- [ ] Android APK corroboration, if used, including package version/build, APK source, extracted RN markers, and how it affects confidence.
+- [ ] Android APK evidence, if used, including package version/code, APK source, extracted RN markers, and how it affects confidence.
 
 ### 9. Mark App Done
 
 - [ ] Verify scripts compile.
 - [ ] Verify per-app CSV/JSON is valid.
-- [ ] Verify transitions are backed by rows in `versions.csv`.
-- [ ] Verify exact boundaries are adjacent in `version-list.json`.
+- [ ] Verify transitions are backed by rows in platform-specific `*-versions.csv`.
+- [ ] Verify exact iOS boundaries are adjacent in `ios-version-list.json`.
+- [ ] Verify exact Android boundaries are adjacent in `android-version-list.json` or clearly document source catalog gaps.
 - [ ] Update `apps.json` status to `done`, `skipped`, or `needs_manual_review`.
 - [ ] Append key findings to `reports/summary.md`.
 - [ ] Move to the next app.
@@ -267,17 +332,31 @@ Run this after every few apps and at the end.
 - [ ] Update `reports/summary.md`.
 - [ ] List apps analyzed successfully.
 - [ ] List apps skipped and reasons.
-- [ ] List exact upgrade boundaries by app.
-- [ ] List approximate upgrade windows by app.
+- [ ] List exact upgrade boundaries by app and platform.
+- [ ] List approximate upgrade windows by app and platform.
 - [ ] Compare upgrade timing across apps.
+- [ ] Compare Android and iOS timing within the same app when both are available.
 - [ ] Highlight high-confidence transitions separately from marker-band estimates.
+
+Cross-app CSV/JSON rows should include:
+
+- [ ] App slug and app name.
+- [ ] Platform.
+- [ ] Package identifier: iOS bundle ID or Android package name.
+- [ ] Store/source identifier: iOS app ID, iOS external version ID, or Android source/versionCode.
+- [ ] App version and build/versionCode.
+- [ ] Timestamp type: IPA zip timestamp, Android source publish date, Android package timestamp, or unknown.
+- [ ] RN guess or band.
+- [ ] Renderer version if known.
+- [ ] Confidence.
+- [ ] Evidence summary.
 
 ## Completion Criteria
 
 The full run is complete when:
 
 - [ ] Every queued candidate has status `done`, `skipped`, or `needs_manual_review`.
-- [ ] Every app with RN markers has per-app versions, ranges, transitions, and notes files.
+- [ ] Every app with RN markers has per-platform versions, ranges, transitions, and notes files for the platforms analyzed.
 - [ ] Cross-app timeline and transition reports exist.
 - [ ] Exact boundaries have adjacency checks recorded.
 - [ ] Approximate boundaries clearly state gap size and missing IDs.
@@ -286,7 +365,7 @@ The full run is complete when:
 
 ## Existing Discord Baseline
 
-Use Discord as the reference implementation and sanity check:
+Use Discord iOS as the reference implementation and sanity check:
 
 - Existing analyzed app: Discord iOS.
 - Current coverage: app `1.0 (4)` through `329.0 (100971)`.
@@ -300,4 +379,4 @@ Use Discord as the reference implementation and sanity check:
   - `check_discord_rn_versions.py`
   - `summarize_discord_rn_timeline.py`
 
-First engineering task for the long-running agent: generalize these scripts into app-agnostic tools while preserving the Discord output as a regression check.
+First engineering task for the long-running agent: generalize these scripts into app-agnostic, platform-aware tools while preserving the Discord iOS output as a regression check. Then add Android package analysis support and use Discord Android, if fetchable, as the first APK/APKS analyzer validation target.

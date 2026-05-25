@@ -6,10 +6,10 @@
     "from_external_version_id": "818795448",
     "from_build_timestamp": "2016-09-09T08:29:54",
     "to_rn_guess": "<=0.59.x",
-    "to_app_version": "10.10.0",
-    "to_app_build": "50667367",
-    "to_external_version_id": "821056195",
-    "to_build_timestamp": "2017-02-23T14:15:16"
+    "to_app_version": "10.0.1",
+    "to_app_build": "44338396",
+    "to_external_version_id": "819837266",
+    "to_build_timestamp": "2016-11-21T09:39:06"
   },
   {
     "from_rn_guess": "<=0.59.x",
@@ -18,10 +18,10 @@
     "from_external_version_id": "830905744",
     "from_build_timestamp": "2019-04-11T15:07:06",
     "to_rn_guess": "0.60.x",
-    "to_app_version": "104.0",
-    "to_app_build": "164599121",
-    "to_external_version_id": "832101581",
-    "to_build_timestamp": "2019-07-26T13:33:40"
+    "to_app_version": "96.1",
+    "to_app_build": "157574695",
+    "to_external_version_id": "831543078",
+    "to_build_timestamp": "2019-06-04T22:54:00"
   },
   {
     "from_rn_guess": "0.60.x",
@@ -29,6 +29,18 @@
     "from_app_build": "164599121",
     "from_external_version_id": "832101581",
     "from_build_timestamp": "2019-07-26T13:33:40",
+    "to_rn_guess": "0.61.x",
+    "to_app_version": "111.0",
+    "to_app_build": "172467877",
+    "to_external_version_id": "832777026",
+    "to_build_timestamp": "2019-09-14T05:14:24"
+  },
+  {
+    "from_rn_guess": "0.61.x",
+    "from_app_version": "111.0",
+    "from_app_build": "172467877",
+    "from_external_version_id": "832777026",
+    "from_build_timestamp": "2019-09-14T05:14:24",
     "to_rn_guess": "unknown",
     "to_app_version": "118.0",
     "to_app_build": "180988914",
