@@ -38,8 +38,9 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 | Facebook Messenger | unknown |  | low |  (1000) | 91.0 (40546824) | 7 |
 | Facebook Messenger | <=0.59.x |  | medium | 92.0 (41023043) | 147.0 (84235609) | 7 |
 | Facebook Messenger | unknown |  | low | 148.0 (86952252) | 562.0.0 (975021560) | 12 |
-| Instagram | unknown |  | low |  (1.8.7) | 7.19.1 (26398067) | 4 |
+| Instagram | unknown |  | low |  (1.8.7) | 9.3.0 (38579444) | 5 |
 | Instagram | <=0.59.x |  | medium | 10.10.0 (50667367) | 89.0 (149781277) | 3 |
+| Instagram | 0.60.x |  | medium | 104.0 (164599121) | 104.0 (164599121) | 1 |
 | Instagram | unknown |  | low | 118.0 (180988914) | 430.0.0 (972915403) | 7 |
 
 ## RN Transitions
@@ -58,11 +59,12 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 | Discord | 0.78.x | 0.81.x | 306.1 (89123) | 307.0 (89215) | 0 |
 | Facebook Messenger | unknown | <=0.59.x | 91.0 (40546824) | 92.0 (41023043) | 0 |
 | Facebook Messenger | <=0.59.x | unknown | 147.0 (84235609) | 148.0 (86952252) | 0 |
-| Instagram | unknown | <=0.59.x | 7.19.1 (26398067) | 10.10.0 (50667367) | 36 |
-| Instagram | <=0.59.x | unknown | 89.0 (149781277) | 118.0 (180988914) | 35 |
+| Instagram | unknown | <=0.59.x | 9.3.0 (38579444) | 10.10.0 (50667367) | 18 |
+| Instagram | <=0.59.x | 0.60.x | 89.0 (149781277) | 104.0 (164599121) | 17 |
+| Instagram | 0.60.x | unknown | 104.0 (164599121) | 118.0 (180988914) | 17 |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 11
-- Approximate by transition IDs: 3
+- Approximate by transition IDs: 4
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

@@ -1,10 +1,10 @@
 [
   {
     "from_rn_guess": "unknown",
-    "from_app_version": "7.19.1",
-    "from_app_build": "26398067",
-    "from_external_version_id": "816877594",
-    "from_build_timestamp": "2016-03-28T12:45:08",
+    "from_app_version": "9.3.0",
+    "from_app_build": "38579444",
+    "from_external_version_id": "818795448",
+    "from_build_timestamp": "2016-09-09T08:29:54",
     "to_rn_guess": "<=0.59.x",
     "to_app_version": "10.10.0",
     "to_app_build": "50667367",
@@ -17,6 +17,18 @@
     "from_app_build": "149781277",
     "from_external_version_id": "830905744",
     "from_build_timestamp": "2019-04-11T15:07:06",
+    "to_rn_guess": "0.60.x",
+    "to_app_version": "104.0",
+    "to_app_build": "164599121",
+    "to_external_version_id": "832101581",
+    "to_build_timestamp": "2019-07-26T13:33:40"
+  },
+  {
+    "from_rn_guess": "0.60.x",
+    "from_app_version": "104.0",
+    "from_app_build": "164599121",
+    "from_external_version_id": "832101581",
+    "from_build_timestamp": "2019-07-26T13:33:40",
     "to_rn_guess": "unknown",
     "to_app_version": "118.0",
     "to_app_build": "180988914",
