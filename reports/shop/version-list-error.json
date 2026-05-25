@@ -1,0 +1,23 @@
+{
+  "app_id": "1223471316",
+  "bundle_id": "com.jadedlabs.arrive",
+  "errors": [
+    {
+      "command": "python3 check_rn_versions.py --app-slug shop --app-name \"Shop\" --app-id 1223471316 --download-dir ipas/shop --report reports/shop/versions.csv --version-list-out reports/shop/version-list.json --list-versions-only",
+      "stderr": "",
+      "stdout": "{\"level\":\"error\",\"error\":\"license is required\",\"success\":false,\"time\":\"2026-05-26T02:16:55+03:00\"}"
+    },
+    {
+      "command": "ipatool purchase --bundle-identifier com.jadedlabs.arrive --format json",
+      "stderr": "",
+      "stdout": "{\"level\":\"error\",\"error\":\"app not found\",\"success\":false,\"time\":\"2026-05-26T02:17:02+03:00\"}"
+    },
+    {
+      "command": "python3 check_rn_versions.py --app-slug shop --app-name \"Shop\" --bundle-id com.jadedlabs.arrive --use-bundle-identifier --download-dir ipas/shop --report reports/shop/versions.csv --version-list-out reports/shop/version-list.json --list-versions-only",
+      "stderr": "",
+      "stdout": "{\"level\":\"error\",\"error\":\"app not found\",\"success\":false,\"time\":\"2026-05-26T02:17:18+03:00\"}"
+    }
+  ],
+  "fetched_at": "2026-05-26T02:17:18+03:00",
+  "status": "failed"
+}

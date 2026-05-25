@@ -206,16 +206,22 @@
       "bundle_id": "com.jadedlabs.arrive",
       "android_package": "com.shopify.arrive",
       "android_history_source": "APKPure history page for package com.shopify.arrive",
-      "status": "queued",
+      "status": "version_lists_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1223471316 and bundle ID com.jadedlabs.arrive; APKPure and Google Play identify Android package com.shopify.arrive.",
-      "last_completed_step": "registered",
+      "last_completed_step": "version_lists_fetched",
       "reports_path": "reports/shop",
       "version_list_path": "reports/shop/version-list.json",
+      "version_list_error_path": "reports/shop/version-list-error.json",
       "android_version_list_path": "reports/shop/android-version-list.json",
+      "android_version_count": 10,
+      "oldest_android_version_code": "3409799",
+      "newest_android_version_code": "3451748",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: Apple iTunes lookup for App Store ID 1223471316 returned bundle ID com.jadedlabs.arrive, app name Shop: All your favorite brands, and current listed version 2.253.0.",
-        "Android package source: APKPure search and Google Play search identify package com.shopify.arrive."
+        "Android package source: APKPure search and Google Play search identify package com.shopify.arrive.",
+        "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID requires an App Store license; bundle-ID list and purchase attempts for com.jadedlabs.arrive returned app not found.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 3409799 through 3451748; source page appears to expose a limited history."
       ]
     }
   ]

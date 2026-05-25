@@ -7,8 +7,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 3
-- Queued: 1
-- In progress: 0
+- Queued: 0
+- In progress: 1
 - Needs manual review: 3
 - Skipped: 1
 
@@ -18,9 +18,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 
-## Queued Apps
+## In Progress Apps
 
-- Shop: App Store ID 1223471316; bundle ID com.jadedlabs.arrive
+- Shop: status `version_lists_fetched`; last completed `version_lists_fetched`; reports in `reports/shop`
 
 ## Manual Review Apps
 
