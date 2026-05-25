@@ -25,14 +25,17 @@
       "app_name": "Facebook",
       "app_id": "284882215",
       "bundle_id": "com.facebook.Facebook",
-      "status": "queued",
+      "status": "skipped",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/facebook/id284882215; ipatool search resolved bundle ID com.facebook.Facebook.",
-      "last_completed_step": "app_registration",
+      "last_completed_step": "version_list_failed",
       "reports_path": "reports/facebook",
       "version_list_path": "reports/facebook/version-list.json",
+      "version_list_error_path": "reports/facebook/version-list-error.json",
       "notes": [
         "Registered for analysis on 2026-05-25.",
-        "RN usage is not assumed; it must be verified from IPA markers during sampling."
+        "RN usage was not verified because ipatool list-versions failed before sampling.",
+        "ipatool list-versions failed for both app ID 284882215 and bundle ID com.facebook.Facebook with Apple's generic unknown error.",
+        "ipatool purchase also failed with unsupported protocol scheme before a license could be obtained."
       ]
     }
   ]

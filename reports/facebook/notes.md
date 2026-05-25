@@ -5,7 +5,7 @@
 - App name: Facebook
 - App Store ID: 284882215
 - Bundle ID: com.facebook.Facebook
-- Status: queued
+- Status: skipped
 - Registration date: 2026-05-25
 
 ## Evidence
@@ -16,4 +16,11 @@
 
 ## Next Step
 
-Fetch the version list with `ipatool list-versions --app-id 284882215 --format json` and save it to `reports/facebook/version-list.json`.
+No IPA sampling was performed because `ipatool list-versions` failed before any external version IDs were available.
+
+## Blocker
+
+- `ipatool list-versions --app-id 284882215 --format json` failed with `received error: An unknown error has occurred`.
+- `ipatool list-versions --bundle-identifier com.facebook.Facebook --format json` failed with the same error.
+- `ipatool purchase --bundle-identifier com.facebook.Facebook --format json` failed with `unsupported protocol scheme ""`.
+- Latest raw failed list response is preserved at `reports/facebook/version-list-error.json`.
