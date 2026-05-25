@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 3
 - Queued: 0
-- In progress: 1
-- Needs manual review: 2
+- In progress: 0
+- Needs manual review: 3
 - Skipped: 1
 
 ## Analyzed Apps
@@ -18,14 +18,11 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 
-## In Progress Apps
-
-- Shopify: status `sampled`; last completed `initial_sampling`; reports in `reports/shopify`
-
 ## Manual Review Apps
 
 - Threads: last completed `source_limited_boundary_refinement`; reports in `reports/threads`
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
+- Shopify: last completed `source_limited_boundary_refinement`; reports in `reports/shopify`
 
 ## Skipped Apps
 
@@ -60,7 +57,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Meta Horizon | android | 0.78.x | 19.0.0 | high | 287.3.0.33.109 (651148422) | 287.3.0.33.109 (651148422) | 1 |
 | Meta Horizon | android | 0.60.x |  | medium | 341.0.0.17.107 (806319963) | 349.2.0.46.104 (844730700) | 11 |
 | Meta Horizon | android | <=0.59.x |  | medium | 360.0.0.23.322 (892081967) | 372.0.1.34.252 (975394013) | 18 |
-| Shopify | android | 0.60.x |  | medium | 10.2611.0 (237419) | 10.2620.0 (281050) | 10 |
+| Shopify | android | 0.79.x | 19.0.0 | medium | 10.2543.0 (193814) | 10.2605.0 (220449) | 8 |
+| Shopify | android | 0.60.x |  | medium | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
 
 ## RN Transitions
 
@@ -85,9 +83,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Threads | android | unknown | unknown | 382.0.0.51.85 (505205644) | 400.0.0.38.68 (507007017) | 0 | false |
 | Meta Horizon | android | 0.78.x | 0.60.x | 287.3.0.33.109 (651148422) | 341.0.0.17.107 (806319963) | 0 | false |
 | Meta Horizon | android | 0.60.x | <=0.59.x | 349.2.0.46.104 (844730700) | 360.0.0.23.322 (892081967) | 0 | false |
+| Shopify | android | 0.79.x | 0.60.x | 10.2605.0 (220449) | 10.2606.1 (223088) | 0 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 15
-- Approximate by transition IDs: 4
+- Approximate by transition IDs: 5
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

@@ -1,6 +1,20 @@
 [
   {
-    "build_count": 10,
+    "build_count": 8,
+    "confidence": "medium",
+    "end_app_build": "220449",
+    "end_app_version": "10.2605.0",
+    "end_build_timestamp": "2026-02-04",
+    "end_external_version_id": "220449",
+    "react_renderer": "19.0.0",
+    "rn_guess": "0.79.x",
+    "start_app_build": "193814",
+    "start_app_version": "10.2543.0",
+    "start_build_timestamp": "2025-10-27",
+    "start_external_version_id": "193814"
+  },
+  {
+    "build_count": 16,
     "confidence": "medium",
     "end_app_build": "281050",
     "end_app_version": "10.2620.0",
@@ -8,9 +22,9 @@
     "end_external_version_id": "281050",
     "react_renderer": "",
     "rn_guess": "0.60.x",
-    "start_app_build": "237419",
-    "start_app_version": "10.2611.0",
-    "start_build_timestamp": "2026-03-18",
-    "start_external_version_id": "237419"
+    "start_app_build": "223088",
+    "start_app_version": "10.2606.1",
+    "start_build_timestamp": "2026-02-11",
+    "start_external_version_id": "223088"
   }
 ]

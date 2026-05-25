@@ -174,27 +174,29 @@
       "bundle_id": "com.jadedpixel.shopify",
       "android_package": "com.shopify.mobile",
       "android_history_source": "APKPure history page for package com.shopify.mobile",
-      "status": "sampled",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Shopify resolved App Store ID 371294472 and bundle ID com.jadedpixel.shopify; APKPure and Google Play identify Android package com.shopify.mobile.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "source_limited_boundary_refinement",
       "reports_path": "reports/shopify",
       "version_list_path": "reports/shopify/version-list.json",
       "android_version_list_path": "reports/shopify/android-version-list.json",
       "external_version_count": 508,
       "oldest_external_version_id": "821337490",
       "newest_external_version_id": "886020173",
-      "android_version_count": 10,
-      "oldest_android_version_code": "237419",
+      "android_version_count": 24,
+      "oldest_android_version_code": "193814",
       "newest_android_version_code": "281050",
-      "sampled_android_package_count": 10,
+      "sampled_android_package_count": 24,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Shopify --format json returned ID 371294472, bundle ID com.jadedpixel.shopify, current listed version 10.2621.0.",
         "Android package source: APKPure search and Google Play search identify package com.shopify.mobile.",
         "iOS version list fetched on 2026-05-26: 508 external version IDs from 821337490 through 886020173.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 237419 through 281050; source page appears to expose a limited history.",
-        "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so; all samples classify as 0.60.x with medium confidence."
+        "Android APKPure catalog fetched on 2026-05-26 and expanded with parseable direct pages: 24 entries from versionCode 193814 through 281050; source page appears to expose a limited history.",
+        "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Boundary refinement expanded that to 24 APKPure entries, including older parseable direct pages.",
+        "Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so. The current analyzer reports Android source-limited bands: 10.2543.0 through 10.2605.0 as 0.79.x medium-confidence, and 10.2606.1 through 10.2620.0 as 0.60.x medium-confidence.",
+        "Marked needs_manual_review because APKPure is sparse/source-limited, iOS has not been sampled, and the apparent 0.79.x -> 0.60.x Android transition is not trustworthy enough to treat as a definitive app-wide RN downgrade without stronger package evidence."
       ]
     }
   ]
