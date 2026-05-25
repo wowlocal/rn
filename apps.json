@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "apps": [
+    {
+      "app_slug": "discord",
+      "app_name": "Discord",
+      "app_id": "985746746",
+      "bundle_id": "com.hammerandchisel.discord",
+      "status": "done",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; verified by React Native JS bundle markers in retained Discord IPAs.",
+      "last_completed_step": "reports_regenerated",
+      "reports_path": "reports/discord",
+      "version_list_path": "reports/discord/version-list.json",
+      "external_version_count": 475,
+      "oldest_external_version_id": "812213284",
+      "newest_external_version_id": "885730983",
+      "notes": [
+        "Discord baseline was regenerated under reports/discord with the app-agnostic tools.",
+        "Existing root-level Discord CSV/JSON outputs remain the regression baseline.",
+        "Native executables are FairPlay encrypted in analyzed IPAs, so exact native RN constants are not inspectable."
+      ]
+    }
+  ]
+}
