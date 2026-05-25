@@ -7,11 +7,11 @@
     "start_app_build": "1000",
     "start_external_version_id": "4003333",
     "start_build_timestamp": "2011-08-02T21:45:38",
-    "end_app_version": "81.0",
-    "end_app_build": "34694251",
-    "end_external_version_id": "818196039",
-    "end_build_timestamp": "2016-07-25T14:07:34",
-    "build_count": 4
+    "end_app_version": "89.0",
+    "end_app_build": "39433806",
+    "end_external_version_id": "818893675",
+    "end_build_timestamp": "2016-09-19T14:44:26",
+    "build_count": 5
   },
   {
     "rn_guess": "<=0.59.x",
@@ -31,14 +31,14 @@
     "rn_guess": "unknown",
     "react_renderer": "",
     "confidence": "low",
-    "start_app_version": "163.0",
-    "start_app_build": "104735954",
-    "start_external_version_id": "826787358",
-    "start_build_timestamp": "2018-04-24T07:01:24",
+    "start_app_version": "153.0",
+    "start_app_build": "91923955",
+    "start_external_version_id": "825927199",
+    "start_build_timestamp": "2018-02-12T20:12:40",
     "end_app_version": "562.0.0",
     "end_app_build": "975021560",
     "end_external_version_id": "885556428",
     "end_build_timestamp": "2026-05-19T17:01:04",
-    "build_count": 9
+    "build_count": 10
   }
 ]

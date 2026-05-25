@@ -173,10 +173,10 @@
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
     "app_status": "sampled",
-    "from_app_build": "34694251",
-    "from_app_version": "81.0",
-    "from_build_timestamp": "2016-07-25T14:07:34",
-    "from_external_version_id": "818196039",
+    "from_app_build": "39433806",
+    "from_app_version": "89.0",
+    "from_build_timestamp": "2016-09-19T14:44:26",
+    "from_external_version_id": "818893675",
     "from_rn_guess": "unknown",
     "to_app_build": "44186053",
     "to_app_version": "98.0",
@@ -184,7 +184,7 @@
     "to_external_version_id": "819781397",
     "to_rn_guess": "<=0.59.x",
     "version_list_boundary_exact": "false",
-    "version_list_gap_size": "16"
+    "version_list_gap_size": "8"
   },
   {
     "app_name": "Facebook Messenger",
@@ -195,12 +195,12 @@
     "from_build_timestamp": "2017-11-28T17:09:26",
     "from_external_version_id": "824651339",
     "from_rn_guess": "<=0.59.x",
-    "to_app_build": "104735954",
-    "to_app_version": "163.0",
-    "to_build_timestamp": "2018-04-24T07:01:24",
-    "to_external_version_id": "826787358",
+    "to_app_build": "91923955",
+    "to_app_version": "153.0",
+    "to_build_timestamp": "2018-02-12T20:12:40",
+    "to_external_version_id": "825927199",
     "to_rn_guess": "unknown",
     "version_list_boundary_exact": "false",
-    "version_list_gap_size": "16"
+    "version_list_gap_size": "7"
   }
 ]
