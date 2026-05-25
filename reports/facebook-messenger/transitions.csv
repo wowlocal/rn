@@ -1,0 +1,3 @@
+from_rn_guess,from_app_version,from_app_build,from_external_version_id,from_build_timestamp,to_rn_guess,to_app_version,to_app_build,to_external_version_id,to_build_timestamp
+unknown,65.0,27013135,816903024,2016-04-04T17:23:02,<=0.59.x,131.0,68165081,823243677,2017-08-14T08:58:26
+<=0.59.x,131.0,68165081,823243677,2017-08-14T08:58:26,unknown,183.0,123940704,828538485,2018-09-11T23:41:04
