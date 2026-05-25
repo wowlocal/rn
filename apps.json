@@ -51,13 +51,14 @@
       "external_version_count": 735,
       "oldest_external_version_id": "4003333",
       "newest_external_version_id": "885556428",
-      "sampled_ipa_count": 12,
-      "unique_builds_analyzed": 12,
+      "sampled_ipa_count": 14,
+      "unique_builds_analyzed": 14,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-25.",
         "Version list fetched on 2026-05-25.",
         "Initial 12-point sample found one RN-marked build: 131.0 (68165081), external version ID 823243677.",
+        "Boundary midpoint refinement found another RN-marked build: 98.0 (44186053), external version ID 819781397.",
         "Other sampled Messenger builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
     }

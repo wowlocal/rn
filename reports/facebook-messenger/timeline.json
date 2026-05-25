@@ -1,5 +1,5 @@
 {
-  "build_count": 12,
+  "build_count": 14,
   "ranges": [
     {
       "rn_guess": "unknown",
@@ -19,29 +19,29 @@
       "rn_guess": "<=0.59.x",
       "react_renderer": "",
       "confidence": "medium",
-      "start_app_version": "131.0",
-      "start_app_build": "68165081",
-      "start_external_version_id": "823243677",
-      "start_build_timestamp": "2017-08-14T08:58:26",
+      "start_app_version": "98.0",
+      "start_app_build": "44186053",
+      "start_external_version_id": "819781397",
+      "start_build_timestamp": "2016-11-18T11:12:28",
       "end_app_version": "131.0",
       "end_app_build": "68165081",
       "end_external_version_id": "823243677",
       "end_build_timestamp": "2017-08-14T08:58:26",
-      "build_count": 1
+      "build_count": 2
     },
     {
       "rn_guess": "unknown",
       "react_renderer": "",
       "confidence": "low",
-      "start_app_version": "183.0",
-      "start_app_build": "123940704",
-      "start_external_version_id": "828538485",
-      "start_build_timestamp": "2018-09-11T23:41:04",
+      "start_app_version": "163.0",
+      "start_app_build": "104735954",
+      "start_external_version_id": "826787358",
+      "start_build_timestamp": "2018-04-24T07:01:24",
       "end_app_version": "562.0.0",
       "end_app_build": "975021560",
       "end_external_version_id": "885556428",
       "end_build_timestamp": "2026-05-19T17:01:04",
-      "build_count": 8
+      "build_count": 9
     }
   ],
   "transitions": [
@@ -52,10 +52,10 @@
       "from_external_version_id": "816903024",
       "from_build_timestamp": "2016-04-04T17:23:02",
       "to_rn_guess": "<=0.59.x",
-      "to_app_version": "131.0",
-      "to_app_build": "68165081",
-      "to_external_version_id": "823243677",
-      "to_build_timestamp": "2017-08-14T08:58:26"
+      "to_app_version": "98.0",
+      "to_app_build": "44186053",
+      "to_external_version_id": "819781397",
+      "to_build_timestamp": "2016-11-18T11:12:28"
     },
     {
       "from_rn_guess": "<=0.59.x",
@@ -64,10 +64,10 @@
       "from_external_version_id": "823243677",
       "from_build_timestamp": "2017-08-14T08:58:26",
       "to_rn_guess": "unknown",
-      "to_app_version": "183.0",
-      "to_app_build": "123940704",
-      "to_external_version_id": "828538485",
-      "to_build_timestamp": "2018-09-11T23:41:04"
+      "to_app_version": "163.0",
+      "to_app_build": "104735954",
+      "to_external_version_id": "826787358",
+      "to_build_timestamp": "2018-04-24T07:01:24"
     }
   ]
 }

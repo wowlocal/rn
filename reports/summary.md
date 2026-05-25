@@ -35,8 +35,8 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 | Discord | 0.78.x | 19.0.0 | high | 280.0 (77565) | 306.1 (89123) | 31 |
 | Discord | 0.81.x | 19.1.0 | high | 307.0 (89215) | 329.0 (100971) | 33 |
 | Facebook Messenger | unknown |  | low |  (1000) | 65.0 (27013135) | 3 |
-| Facebook Messenger | <=0.59.x |  | medium | 131.0 (68165081) | 131.0 (68165081) | 1 |
-| Facebook Messenger | unknown |  | low | 183.0 (123940704) | 562.0.0 (975021560) | 8 |
+| Facebook Messenger | <=0.59.x |  | medium | 98.0 (44186053) | 131.0 (68165081) | 2 |
+| Facebook Messenger | unknown |  | low | 163.0 (104735954) | 562.0.0 (975021560) | 9 |
 
 ## RN Transitions
 
@@ -52,8 +52,8 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 | Discord | 0.71.x | 0.74.x-0.76.x | 245.0 (63641) | 246.0 (63933) | 0 |
 | Discord | 0.74.x-0.76.x | 0.78.x | 279.0 (77189) | 280.0 (77565) | 0 |
 | Discord | 0.78.x | 0.81.x | 306.1 (89123) | 307.0 (89215) | 0 |
-| Facebook Messenger | unknown | <=0.59.x | 65.0 (27013135) | 131.0 (68165081) | 66 |
-| Facebook Messenger | <=0.59.x | unknown | 131.0 (68165081) | 183.0 (123940704) | 66 |
+| Facebook Messenger | unknown | <=0.59.x | 65.0 (27013135) | 98.0 (44186053) | 32 |
+| Facebook Messenger | <=0.59.x | unknown | 131.0 (68165081) | 163.0 (104735954) | 32 |
 
 ## Boundary Confidence
 

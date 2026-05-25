@@ -207,7 +207,7 @@
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
     "app_status": "sampled",
-    "build_count": 1,
+    "build_count": 2,
     "confidence": "medium",
     "end_app_build": "68165081",
     "end_app_version": "131.0",
@@ -215,16 +215,16 @@
     "end_external_version_id": "823243677",
     "react_renderer": "",
     "rn_guess": "<=0.59.x",
-    "start_app_build": "68165081",
-    "start_app_version": "131.0",
-    "start_build_timestamp": "2017-08-14T08:58:26",
-    "start_external_version_id": "823243677"
+    "start_app_build": "44186053",
+    "start_app_version": "98.0",
+    "start_build_timestamp": "2016-11-18T11:12:28",
+    "start_external_version_id": "819781397"
   },
   {
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
     "app_status": "sampled",
-    "build_count": 8,
+    "build_count": 9,
     "confidence": "low",
     "end_app_build": "975021560",
     "end_app_version": "562.0.0",
@@ -232,9 +232,9 @@
     "end_external_version_id": "885556428",
     "react_renderer": "",
     "rn_guess": "unknown",
-    "start_app_build": "123940704",
-    "start_app_version": "183.0",
-    "start_build_timestamp": "2018-09-11T23:41:04",
-    "start_external_version_id": "828538485"
+    "start_app_build": "104735954",
+    "start_app_version": "163.0",
+    "start_build_timestamp": "2018-04-24T07:01:24",
+    "start_external_version_id": "826787358"
   }
 ]
