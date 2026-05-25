@@ -58,12 +58,24 @@ def dedupe_builds(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             continue
         current = deduped.get(build)
         if current is None:
-            deduped[build] = row
+            deduped[build] = {**row, "range_end_external_version_id": row.get("external_version_id", "")}
             continue
         current_id = current.get("external_version_id", "")
+        current_end_id = current.get("range_end_external_version_id", current_id)
         new_id = row.get("external_version_id", "")
-        if new_id.isdigit() and (not current_id.isdigit() or int(new_id) > int(current_id)):
-            deduped[build] = row
+        if not new_id:
+            continue
+        if new_id.isdigit() and current_id.isdigit():
+            if int(new_id) < int(current_id):
+                current.update(row)
+                current["range_end_external_version_id"] = current_end_id
+            if int(new_id) > int(current_end_id):
+                current["range_end_external_version_id"] = new_id
+        elif new_id < current_id:
+            current.update(row)
+            current["range_end_external_version_id"] = current_end_id
+        elif new_id > current_end_id:
+            current["range_end_external_version_id"] = new_id
     return sorted(deduped.values(), key=build_sort_key)
 
 
@@ -95,7 +107,9 @@ def make_ranges(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
                 "start_build_timestamp": start.get("build_timestamp", ""),
                 "end_app_version": end.get("app_version", ""),
                 "end_app_build": end.get("app_build", ""),
-                "end_external_version_id": end.get("external_version_id", ""),
+                "end_external_version_id": end.get(
+                    "range_end_external_version_id", end.get("external_version_id", "")
+                ),
                 "end_build_timestamp": end.get("build_timestamp", ""),
                 "build_count": item["build_count"],
             }

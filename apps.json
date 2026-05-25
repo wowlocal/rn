@@ -73,16 +73,16 @@
       "app_name": "Instagram",
       "app_id": "389801252",
       "bundle_id": "com.burbn.instagram",
-      "status": "sampled",
+      "status": "done",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/instagram/id389801252; ipatool search resolved bundle ID com.burbn.instagram.",
-      "last_completed_step": "boundary_refinement",
+      "last_completed_step": "done",
       "reports_path": "reports/instagram",
       "version_list_path": "reports/instagram/version-list.json",
       "external_version_count": 795,
       "oldest_external_version_id": "2948163",
       "newest_external_version_id": "885526725",
-      "sampled_ipa_count": 23,
-      "unique_builds_analyzed": 23,
+      "sampled_ipa_count": 36,
+      "unique_builds_analyzed": 34,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-25.",
@@ -92,6 +92,11 @@
         "Second midpoint refinement found 9.3.0 unknown and 104.0 with RN 0.60.x markers, adding an internal RN upgrade window.",
         "Third midpoint refinement found 10.0.1 RN <=0.59.x, 96.1 RN 0.60.x, and 111.0 RN 0.61.x, adding a 0.60.x -> 0.61.x window.",
         "Fourth midpoint refinement narrowed all four windows; latest known range endpoints are 9.5.1, 10.0.1, 89.0, 92.0, 104.0, 107.0, 111.0, and 115.0.",
+        "Final boundary refinement downloaded the 13 remaining external version IDs across the four windows.",
+        "Boundary refinement reached exact App Store adjacency: 9.7.0 unknown -> 10.0.0 RN, 90.0 RN <=0.59.x -> 91.0 RN 0.60.x, 105.0 RN 0.60.x -> 106.0 RN 0.61.x, and 113.0 RN 0.61.x -> 114.0 unknown.",
+        "Duplicate external IDs for 91.0 and 106.0 map to the same app builds; range starts use the earliest duplicate external ID for exact App Store adjacency.",
+        "Disk cleanup reviewed on 2026-05-26; no Instagram IPAs deleted because ipas/instagram used 3.7 GiB and 236 GiB remained free.",
+        "Final validation passed: scripts compile, CSV/JSON reports parse, and all four transition rows are adjacent in version-list.json.",
         "Other sampled Instagram builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
     }

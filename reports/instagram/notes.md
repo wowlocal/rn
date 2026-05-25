@@ -5,7 +5,7 @@
 - App name: Instagram
 - App Store ID: 389801252
 - Bundle ID: com.burbn.instagram
-- Status: sampled
+- Status: done
 - Registration date: 2026-05-25
 
 ## Evidence
@@ -22,59 +22,38 @@
 - Raw version list: `reports/instagram/version-list.json`
 - Fetch note: `ipatool list-versions --app-id 389801252 --format json` returned Apple's generic unknown error, but `ipatool list-versions --bundle-identifier com.burbn.instagram --format json` succeeded.
 
-## Initial Sampling
+## Sampling and Boundary Refinement
 
 - Sampling date: 2026-05-26
-- IPAs downloaded: 23
-- Unique builds analyzed: 23
+- IPAs downloaded and analyzed: 36
+- Unique builds analyzed: 34
 - Oldest analyzed build: app version blank, build `1.8.7`, external ID `2948163`, build timestamp `2010-09-27T16:39:00`
 - Newest analyzed build: `430.0.0 (972915403)`, external ID `885526725`, build timestamp `2026-05-16T18:55:26`
-- RN markers detected: yes, from sampled `10.0.1 (44338396)` through `111.0 (172467877)`, with observed marker-band changes from `<=0.59.x` to `0.60.x` to `0.61.x`
+- RN markers detected: yes, from `10.0.0 (44114773)` through `113.0 (174653610)`, with observed marker-band changes from `<=0.59.x` to `0.60.x` to `0.61.x`
+- Full row-level evidence is in `reports/instagram/versions.csv` and `reports/instagram/versions.json`.
+- Duplicate external IDs `831095391` and `831129706` both map to `91.0 (151989260)`; duplicate external IDs `832266212` and `832333184` both map to `106.0 (166752244)`. Range starts use the earliest duplicate external ID so transition gaps match App Store ordering.
 
-| External ID | App version | Build | Build timestamp | JS bundle | RN guess | Confidence |
-|---|---|---:|---|---|---|---|
-| `2948163` |  | 1.8.7 | 2010-09-27T16:39:00 | no | unknown | low |
-| `584942731` | 5.0.11 | 2447659 | 2013-10-04T02:08:30 | no | unknown | low |
-| `813610568` | 7.7.2 | 15484445 | 2015-09-30T21:36:32 | no | unknown | low |
-| `816877594` | 7.19.1 | 26398067 | 2016-03-28T12:45:08 | no | unknown | low |
-| `818795448` | 9.3.0 | 38579444 | 2016-09-09T08:29:54 | no | unknown | low |
-| `819242040` | 9.5.1 | 41331892 | 2016-10-11T20:08:34 | no | unknown | low |
-| `819837266` | 10.0.1 | 44338396 | 2016-11-21T09:39:06 | `Payload/Instagram.app/main.jsbundle` | <=0.59.x | medium |
-| `821056195` | 10.10.0 | 50667367 | 2017-02-23T14:15:16 | `Payload/Instagram.app/main.jsbundle` | <=0.59.x | medium |
-| `828138988` | 58.0 | 120248682 | 2018-08-09T18:31:38 | `Payload/Instagram.app/main.jsbundle` | <=0.59.x | medium |
-| `830905744` | 89.0 | 149781277 | 2019-04-11T15:07:06 | `Payload/Instagram.app/main.jsbundle` | <=0.59.x | medium |
-| `831147993` | 92.0 | 152826666 | 2019-05-02T18:57:38 | `Payload/Instagram.app/main.jsbundle` | 0.60.x | medium |
-| `831543078` | 96.1 | 157574695 | 2019-06-04T22:54:00 | `Payload/Instagram.app/main.jsbundle` | 0.60.x | medium |
-| `832101581` | 104.0 | 164599121 | 2019-07-26T13:33:40 | `Payload/Instagram.app/main.jsbundle` | 0.60.x | medium |
-| `832351713` | 107.0 | 167752007 | 2019-08-16T03:36:00 | `Payload/Instagram.app/main.jsbundle` | 0.61.x | medium |
-| `832777026` | 111.0 | 172467877 | 2019-09-14T05:14:24 | `Payload/Instagram.app/main.jsbundle` | 0.61.x | medium |
-| `833069245` | 115.0 | 177195845 | 2019-10-10T19:46:46 | no | unknown | low |
-| `833368709` | 118.0 | 180988914 | 2019-11-01T17:18:24 | no | unknown | low |
-| `840589643` | 177.0 | 275424340 | 2020-12-02T23:43:04 | no | unknown | low |
-| `849384047` | 236.1 | 372089098 | 2022-05-12T00:11:44 | no | unknown | low |
-| `858142473` | 290.1 | 491279855 | 2023-07-21T02:02:50 | no | unknown | low |
-| `867327376` | 340.0.10 | 622957927 | 2024-07-09T00:44:42 | no | unknown | low |
-| `875444719` | 385.0.0 | 748614773 | 2025-06-11T02:04:38 | no | unknown | low |
-| `885526725` | 430.0.0 | 972915403 | 2026-05-16T18:55:26 | no | unknown | low |
+## Exact RN Transitions
+
+| From | To | Version-list gap |
+|---|---|---:|
+| unknown at `9.7.0 (43028597)`, external ID `819447240` | `<=0.59.x` at `10.0.0 (44114773)`, external ID `819646349` | 0 |
+| `<=0.59.x` at `90.0 (150975176)`, external ID `830989899` | `0.60.x` at `91.0 (151989260)`, external ID `831095391` | 0 |
+| `0.60.x` at `105.0 (165586599)`, external ID `832184604` | `0.61.x` at `106.0 (166752244)`, external ID `832266212` | 0 |
+| `0.61.x` at `113.0 (174653610)`, external ID `832888376` | unknown at `114.0 (176133011)`, external ID `832986604` | 0 |
 
 ## RN Ranges
 
 | RN guess | Renderer | Confidence | Start | End | Builds |
 |---|---:|---|---|---|---:|
-| unknown |  | low | build 1.8.7, `2948163`, `2010-09-27T16:39:00` | 9.5.1 (41331892), `819242040`, `2016-10-11T20:08:34` | 6 |
-| <=0.59.x |  | medium | 10.0.1 (44338396), `819837266`, `2016-11-21T09:39:06` | 89.0 (149781277), `830905744`, `2019-04-11T15:07:06` | 4 |
-| 0.60.x |  | medium | 92.0 (152826666), `831147993`, `2019-05-02T18:57:38` | 104.0 (164599121), `832101581`, `2019-07-26T13:33:40` | 3 |
-| 0.61.x |  | medium | 107.0 (167752007), `832351713`, `2019-08-16T03:36:00` | 111.0 (172467877), `832777026`, `2019-09-14T05:14:24` | 2 |
-| unknown |  | low | 115.0 (177195845), `833069245`, `2019-10-10T19:46:46` | 430.0.0 (972915403), `885526725`, `2026-05-16T18:55:26` | 8 |
+| unknown |  | low | build 1.8.7, `2948163`, `2010-09-27T16:39:00` | 9.7.0 (43028597), `819447240`, `2016-11-03T10:43:20` | 9 |
+| <=0.59.x |  | medium | 10.0.0 (44114773), `819646349`, `2016-11-17T12:37:44` | 90.0 (150975176), `830989899`, `2019-04-19T17:03:30` | 6 |
+| 0.60.x |  | medium | 91.0 (151989260), `831095391`, `2019-04-27T03:34:08` | 105.0 (165586599), `832184604`, `2019-08-01T19:22:40` | 5 |
+| 0.61.x |  | medium | 106.0 (166752244), `832266212`, `2019-08-09T18:53:36` | 113.0 (174653610), `832888376`, `2019-09-26T18:11:26` | 5 |
+| unknown |  | low | 114.0 (176133011), `832986604`, `2019-10-04T17:27:40` | 430.0.0 (972915403), `885526725`, `2026-05-16T18:55:26` | 9 |
 
-## Unresolved Gaps
+## Cleanup and Validation
 
-- The RN-introduction window is between sampled external IDs `819242040` and `819837266`.
-- The RN `<=0.59.x` -> `0.60.x` marker-band upgrade window is between sampled external IDs `830905744` and `831147993`.
-- The RN `0.60.x` -> `0.61.x` marker-band upgrade window is between sampled external IDs `832101581` and `832351713`.
-- The RN-removal or marker-disappearance window is between sampled external IDs `832777026` and `833069245`.
+- Disk cleanup reviewed on 2026-05-26; no Instagram IPAs were deleted because `ipas/instagram` used 3.7 GiB and the filesystem still had 236 GiB available.
+- Validation passed on 2026-05-26: scripts compile, Instagram CSV/JSON reports parse, and all four transition rows are adjacent in `version-list.json`.
 - Exact RN patch versions are not recoverable from encrypted native binaries; the detected builds are JS-marker band estimates.
-
-## Next Step
-
-Refine the four Instagram boundary windows by downloading midpoint or adjacent versions between `819242040` -> `819837266`, `830905744` -> `831147993`, `832101581` -> `832351713`, and `832777026` -> `833069245`.

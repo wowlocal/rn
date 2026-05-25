@@ -12,6 +12,7 @@ TIMELINE_FIELDS = [
     "app_slug",
     "app_name",
     "app_status",
+    "platform",
     "rn_guess",
     "react_renderer",
     "confidence",
@@ -30,6 +31,7 @@ TRANSITION_FIELDS = [
     "app_slug",
     "app_name",
     "app_status",
+    "platform",
     "from_rn_guess",
     "from_app_version",
     "from_app_build",
@@ -105,6 +107,7 @@ def collect_reports(apps: list[dict[str, Any]], reports_dir: Path) -> tuple[list
             "app_slug": slug,
             "app_name": app.get("app_name", ""),
             "app_status": app.get("status", ""),
+            "platform": app.get("platform", "ios"),
         }
 
         ranges_path = report_dir / "ranges.json"
@@ -142,11 +145,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
     ]
 
     lines = [
-        "# Popular React Native iOS Apps Timeline Summary",
+        "# Popular React Native Mobile Apps Timeline Summary",
         "",
         "## Methodology",
         "",
-        "Reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers. Android APKs may be used as supplementary evidence for React Native detection and RN version inference because they are usually more inspectable than FairPlay-encrypted iOS binaries; Android evidence does not replace iOS App Store external version IDs or IPA timestamps for the iOS timeline.",
+        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
         "",
         "## App Status",
         "",
@@ -161,7 +164,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         lines.extend(["## Analyzed Apps", ""])
         for app in analyzed:
             lines.append(
-                f"- {app.get('app_name', app.get('app_slug'))}: {app.get('external_version_count', '')} external versions; reports in `{app.get('reports_path', '')}`"
+                f"- {app.get('app_name', app.get('app_slug'))}: {app.get('external_version_count', '')} iOS external versions; reports in `{app.get('reports_path', '')}`"
             )
         lines.append("")
 
@@ -182,11 +185,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
 
     if timeline:
         lines.extend(["## RN Ranges", ""])
-        lines.append("| App | RN guess | Renderer | Confidence | Start | End | Builds |")
-        lines.append("|---|---|---:|---|---|---|---:|")
+        lines.append("| App | Platform | RN guess | Renderer | Confidence | Start | End | Builds |")
+        lines.append("|---|---|---|---:|---|---|---|---:|")
         for row in timeline:
             lines.append(
-                "| {app_name} | {rn_guess} | {react_renderer} | {confidence} | {start_app_version} ({start_app_build}) | {end_app_version} ({end_app_build}) | {build_count} |".format(
+                "| {app_name} | {platform} | {rn_guess} | {react_renderer} | {confidence} | {start_app_version} ({start_app_build}) | {end_app_version} ({end_app_build}) | {build_count} |".format(
                     **{key: row.get(key, "") for key in TIMELINE_FIELDS}
                 )
             )
@@ -194,11 +197,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
 
     if transitions:
         lines.extend(["## RN Transitions", ""])
-        lines.append("| App | From | To | Last old | First new | Version-list gap |")
-        lines.append("|---|---|---|---|---|---:|")
+        lines.append("| App | Platform | From | To | Last old | First new | Version-list gap |")
+        lines.append("|---|---|---|---|---|---|---:|")
         for row in transitions:
             lines.append(
-                "| {app_name} | {from_rn_guess} | {to_rn_guess} | {from_app_version} ({from_app_build}) | {to_app_version} ({to_app_build}) | {version_list_gap_size} |".format(
+                "| {app_name} | {platform} | {from_rn_guess} | {to_rn_guess} | {from_app_version} ({from_app_build}) | {to_app_version} ({to_app_build}) | {version_list_gap_size} |".format(
                     **{key: row.get(key, "") for key in TRANSITION_FIELDS}
                 )
             )
