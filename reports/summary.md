@@ -20,7 +20,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Meta Horizon: status `version_lists_fetched`; last completed `version_lists_fetched`; reports in `reports/meta-horizon`
+- Meta Horizon: status `sampled`; last completed `initial_sampling`; reports in `reports/meta-horizon`
 
 ## Skipped Apps
 
@@ -52,6 +52,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Threads | ios | unknown |  | low | 289.0 (489338310) | 431.0.0 (979167741) | 12 |
 | Threads | android | unknown |  | low | 374.0.0.43.110 (504412928) | 382.0.0.51.85 (505205644) | 2 |
 | Threads | android | unknown |  | unknown | 400.0.0.38.68 (507007017) | 430.0.0.46.79 (510007506) | 10 |
+| Meta Horizon | android | <=0.59.x |  | medium | 366.0.0.24.290 (930594021) | 372.0.1.34.252 (975394013) | 10 |
 
 ## RN Transitions
 
