@@ -198,6 +198,25 @@
         "Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so. The current analyzer reports Android source-limited bands: 10.2543.0 through 10.2605.0 as 0.79.x medium-confidence, and 10.2606.1 through 10.2620.0 as 0.60.x medium-confidence.",
         "Marked needs_manual_review because APKPure is sparse/source-limited, iOS has not been sampled, and the apparent 0.79.x -> 0.60.x Android transition is not trustworthy enough to treat as a definitive app-wide RN downgrade without stronger package evidence."
       ]
+    },
+    {
+      "app_slug": "shop",
+      "app_name": "Shop",
+      "app_id": "1223471316",
+      "bundle_id": "com.jadedlabs.arrive",
+      "android_package": "com.shopify.arrive",
+      "android_history_source": "APKPure history page for package com.shopify.arrive",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1223471316 and bundle ID com.jadedlabs.arrive; APKPure and Google Play identify Android package com.shopify.arrive.",
+      "last_completed_step": "registered",
+      "reports_path": "reports/shop",
+      "version_list_path": "reports/shop/version-list.json",
+      "android_version_list_path": "reports/shop/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 1223471316 returned bundle ID com.jadedlabs.arrive, app name Shop: All your favorite brands, and current listed version 2.253.0.",
+        "Android package source: APKPure search and Google Play search identify package com.shopify.arrive."
+      ]
     }
   ]
 }

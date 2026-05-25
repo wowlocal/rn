@@ -7,7 +7,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 3
-- Queued: 0
+- Queued: 1
 - In progress: 0
 - Needs manual review: 3
 - Skipped: 1
@@ -17,6 +17,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Discord: 475 iOS external versions; reports in `reports/discord`
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
+
+## Queued Apps
+
+- Shop: App Store ID 1223471316; bundle ID com.jadedlabs.arrive
 
 ## Manual Review Apps
 
