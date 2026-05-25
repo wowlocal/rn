@@ -290,7 +290,7 @@
   {
     "app_name": "Threads",
     "app_slug": "threads",
-    "app_status": "sampled",
+    "app_status": "needs_manual_review",
     "from_app_build": "505205644",
     "from_app_version": "382.0.0.51.85",
     "from_build_timestamp": "2025-05-28",

@@ -6,7 +6,7 @@
 - App Store ID: 6446901002
 - iOS bundle ID: com.burbn.barcelona
 - Android package: com.instagram.barcelona
-- Status: sampled
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -60,10 +60,11 @@
 - `382.0.0.51.85 (505205644)` still exposes RN native metadata; `400.0.0.38.68 (507007017)` does not expose RN markers.
 - Android has a source-limited marker-disappearance window between `382.0.0.51.85 (505205644)` and `400.0.0.38.68 (507007017)`.
 - APKMirror may have more historical Android packages, but automated fetches returned a Cloudflare challenge.
+- Other mirrors surfaced possible intermediate builds, but their exposed signature metadata did not match the APKPure/Instagram signature, so they were not used as evidence.
 - Exact RN patch versions are not recoverable from the Android native metadata or encrypted iOS samples currently available.
 - Initial sampling validation passed on 2026-05-26: Android/iOS CSV and JSON reports parse, Android reports include RN native-library evidence for versionCode `504412928`, and cross-app reports include platform-labeled Threads rows.
 - Disk cleanup was not performed after initial sampling because `apks/threads` and `ipas/threads` each used about 1.2 GiB and the filesystem still had 233 GiB available.
 
 ## Next Step
 
-Refine the Android marker-disappearance window if a richer Android source can be accessed, and sample targeted iOS versions only if Android evidence suggests an iOS boundary worth checking.
+Manual review is needed to access trusted APKMirror or another signature-verified source for Android builds between `382.0.0.51.85` and `400.0.0.38.68`. Until then, move to the next candidate app.

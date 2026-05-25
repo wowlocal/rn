@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 3
 - Queued: 0
-- In progress: 1
-- Needs manual review: 0
+- In progress: 0
+- Needs manual review: 1
 - Skipped: 1
 
 ## Analyzed Apps
@@ -17,10 +17,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Discord: 475 iOS external versions; reports in `reports/discord`
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
-
-## In Progress Apps
-
-- Threads: status `sampled`; last completed `boundary_refinement`; reports in `reports/threads`
 
 ## Skipped Apps
 

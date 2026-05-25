@@ -344,7 +344,7 @@
   {
     "app_name": "Threads",
     "app_slug": "threads",
-    "app_status": "sampled",
+    "app_status": "needs_manual_review",
     "build_count": 12,
     "confidence": "low",
     "end_app_build": "979167741",
@@ -362,7 +362,7 @@
   {
     "app_name": "Threads",
     "app_slug": "threads",
-    "app_status": "sampled",
+    "app_status": "needs_manual_review",
     "build_count": 2,
     "confidence": "low",
     "end_app_build": "505205644",
@@ -380,7 +380,7 @@
   {
     "app_name": "Threads",
     "app_slug": "threads",
-    "app_status": "sampled",
+    "app_status": "needs_manual_review",
     "build_count": 10,
     "confidence": "unknown",
     "end_app_build": "510007506",
