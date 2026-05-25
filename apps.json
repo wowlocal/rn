@@ -228,6 +228,26 @@
         "Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so. The current analyzer reports Android source-limited bands: 2.231.0 through 2.239.0 as 0.79.x medium-confidence, and 2.240.0 through 2.253.0 as 0.81.x high-confidence.",
         "Marked needs_manual_review because APKPure is sparse/source-limited before 2.231.0, iOS version-list access remains blocked, and the 2.239.0 -> 2.240.0 Android transition should be treated as source-limited until a complete or signature-verified Android source can confirm adjacency."
       ]
+    },
+    {
+      "app_slug": "coinbase",
+      "app_name": "Coinbase",
+      "app_id": "886427730",
+      "bundle_id": "com.vilcsak.bitcoin2",
+      "android_package": "com.coinbase.android",
+      "android_history_source": "APKPure history page for package com.coinbase.android",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 886427730 and bundle ID com.vilcsak.bitcoin2; Google Play and APKPure identify Android package com.coinbase.android.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/coinbase",
+      "version_list_path": "reports/coinbase/version-list.json",
+      "android_version_list_path": "reports/coinbase/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: ipatool search Coinbase --format json and Apple iTunes lookup for App Store ID 886427730 returned bundle ID com.vilcsak.bitcoin2, app name Coinbase: Buy Crypto & Stocks, seller Coinbase, Inc., and current listed version 14.19.22.",
+        "Android package source: Google Play and APKPure identify package com.coinbase.android.",
+        "APKPure Android history URL identified: https://apkpure.net/coinbase-buy-bitcoin-ether/com.coinbase.android/versions."
+      ]
     }
   ]
 }
