@@ -23,19 +23,21 @@
 
 ## Initial Sampling
 
-- IPAs downloaded: 14
-- Unique builds analyzed: 14
+- IPAs downloaded: 16
+- Unique builds analyzed: 16
 - Oldest analyzed build: app version blank, build `1000`, external ID `4003333`, build timestamp `2011-08-02T21:45:38`
 - Newest analyzed build: `562.0.0 (975021560)`, external ID `885556428`, build timestamp `2026-05-19T17:01:04`
-- RN markers detected: yes, in `98.0 (44186053)`, external ID `819781397`, and `131.0 (68165081)`, external ID `823243677`
+- RN markers detected: yes, from sampled `98.0 (44186053)` through `145.0 (82143310)`
 
 | External ID | App version | Build | Build timestamp | JS bundle | RN guess | Confidence |
 |---|---|---:|---|---|---|---|
 | `4003333` |  | 1000 | 2011-08-02T21:45:38 | no | unknown | low |
 | `812231857` | 26.0 | 9347487 | 2014-07-28T20:42:06 | no | unknown | low |
 | `816903024` | 65.0 | 27013135 | 2016-04-04T17:23:02 | no | unknown | low |
+| `818196039` | 81.0 | 34694251 | 2016-07-25T14:07:34 | no | unknown | low |
 | `819781397` | 98.0 | 44186053 | 2016-11-18T11:12:28 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
 | `823243677` | 131.0 | 68165081 | 2017-08-14T08:58:26 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
+| `824651339` | 145.0 | 82143310 | 2017-11-28T17:09:26 | `Payload/Messenger.app/main.jsbundle` | <=0.59.x | medium |
 | `826787358` | 163.0 | 104735954 | 2018-04-24T07:01:24 | no | unknown | low |
 | `828538485` | 183.0 | 123940704 | 2018-09-11T23:41:04 | no | unknown | low |
 | `833799330` | 243.1 | 185914695 | 2019-11-27T12:24:04 | no | unknown | low |
@@ -50,16 +52,16 @@
 
 | RN guess | Renderer | Confidence | Start | End | Builds |
 |---|---:|---|---|---|---:|
-| unknown |  | low | build 1000, `4003333`, `2011-08-02T21:45:38` | 65.0 (27013135), `816903024`, `2016-04-04T17:23:02` | 3 |
-| <=0.59.x |  | medium | 98.0 (44186053), `819781397`, `2016-11-18T11:12:28` | 131.0 (68165081), `823243677`, `2017-08-14T08:58:26` | 2 |
+| unknown |  | low | build 1000, `4003333`, `2011-08-02T21:45:38` | 81.0 (34694251), `818196039`, `2016-07-25T14:07:34` | 4 |
+| <=0.59.x |  | medium | 98.0 (44186053), `819781397`, `2016-11-18T11:12:28` | 145.0 (82143310), `824651339`, `2017-11-28T17:09:26` | 3 |
 | unknown |  | low | 163.0 (104735954), `826787358`, `2018-04-24T07:01:24` | 562.0.0 (975021560), `885556428`, `2026-05-19T17:01:04` | 9 |
 
 ## Unresolved Gaps
 
-- The RN-introduction window is between sampled external IDs `816903024` and `819781397`.
-- The RN-removal or marker-disappearance window is between sampled external IDs `823243677` and `826787358`.
+- The RN-introduction window is between sampled external IDs `818196039` and `819781397`.
+- The RN-removal or marker-disappearance window is between sampled external IDs `824651339` and `826787358`.
 - Exact RN patch versions are not recoverable from encrypted native binaries; the detected build is a JS-marker band estimate.
 
 ## Next Step
 
-Refine the two Messenger boundary windows by downloading midpoint or adjacent versions between `816903024` -> `819781397` and `823243677` -> `826787358`.
+Refine the two Messenger boundary windows by downloading midpoint or adjacent versions between `818196039` -> `819781397` and `824651339` -> `826787358`.

@@ -1,5 +1,5 @@
 {
-  "build_count": 14,
+  "build_count": 16,
   "ranges": [
     {
       "rn_guess": "unknown",
@@ -9,11 +9,11 @@
       "start_app_build": "1000",
       "start_external_version_id": "4003333",
       "start_build_timestamp": "2011-08-02T21:45:38",
-      "end_app_version": "65.0",
-      "end_app_build": "27013135",
-      "end_external_version_id": "816903024",
-      "end_build_timestamp": "2016-04-04T17:23:02",
-      "build_count": 3
+      "end_app_version": "81.0",
+      "end_app_build": "34694251",
+      "end_external_version_id": "818196039",
+      "end_build_timestamp": "2016-07-25T14:07:34",
+      "build_count": 4
     },
     {
       "rn_guess": "<=0.59.x",
@@ -23,11 +23,11 @@
       "start_app_build": "44186053",
       "start_external_version_id": "819781397",
       "start_build_timestamp": "2016-11-18T11:12:28",
-      "end_app_version": "131.0",
-      "end_app_build": "68165081",
-      "end_external_version_id": "823243677",
-      "end_build_timestamp": "2017-08-14T08:58:26",
-      "build_count": 2
+      "end_app_version": "145.0",
+      "end_app_build": "82143310",
+      "end_external_version_id": "824651339",
+      "end_build_timestamp": "2017-11-28T17:09:26",
+      "build_count": 3
     },
     {
       "rn_guess": "unknown",
@@ -47,10 +47,10 @@
   "transitions": [
     {
       "from_rn_guess": "unknown",
-      "from_app_version": "65.0",
-      "from_app_build": "27013135",
-      "from_external_version_id": "816903024",
-      "from_build_timestamp": "2016-04-04T17:23:02",
+      "from_app_version": "81.0",
+      "from_app_build": "34694251",
+      "from_external_version_id": "818196039",
+      "from_build_timestamp": "2016-07-25T14:07:34",
       "to_rn_guess": "<=0.59.x",
       "to_app_version": "98.0",
       "to_app_build": "44186053",
@@ -59,10 +59,10 @@
     },
     {
       "from_rn_guess": "<=0.59.x",
-      "from_app_version": "131.0",
-      "from_app_build": "68165081",
-      "from_external_version_id": "823243677",
-      "from_build_timestamp": "2017-08-14T08:58:26",
+      "from_app_version": "145.0",
+      "from_app_build": "82143310",
+      "from_external_version_id": "824651339",
+      "from_build_timestamp": "2017-11-28T17:09:26",
       "to_rn_guess": "unknown",
       "to_app_version": "163.0",
       "to_app_build": "104735954",
