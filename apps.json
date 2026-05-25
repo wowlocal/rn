@@ -43,13 +43,17 @@
       "app_name": "Facebook Messenger",
       "app_id": "454638411",
       "bundle_id": "com.facebook.Messenger",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/messenger/id454638411; ipatool search resolved bundle ID com.facebook.Messenger.",
-      "last_completed_step": "app_registration",
+      "last_completed_step": "version_list_fetched",
       "reports_path": "reports/facebook-messenger",
       "version_list_path": "reports/facebook-messenger/version-list.json",
+      "external_version_count": 735,
+      "oldest_external_version_id": "4003333",
+      "newest_external_version_id": "885556428",
       "notes": [
         "Registered for analysis on 2026-05-25.",
+        "Version list fetched on 2026-05-25.",
         "RN usage is not assumed; it must be verified from IPA markers during sampling."
       ]
     }

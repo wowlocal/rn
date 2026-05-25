@@ -5,7 +5,7 @@
 - App name: Facebook Messenger
 - App Store ID: 454638411
 - Bundle ID: com.facebook.Messenger
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-25
 
 ## Evidence
@@ -16,4 +16,11 @@
 
 ## Next Step
 
-Fetch the version list with `ipatool list-versions --app-id 454638411 --format json` and save it to `reports/facebook-messenger/version-list.json`.
+Sample latest, oldest, and evenly spaced historical IPAs from `reports/facebook-messenger/version-list.json`.
+
+## Version List
+
+- External version IDs available: 735
+- Oldest external version ID: `4003333`
+- Newest external version ID: `885556428`
+- Raw version list: `reports/facebook-messenger/version-list.json`
