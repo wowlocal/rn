@@ -206,25 +206,27 @@
       "bundle_id": "com.jadedlabs.arrive",
       "android_package": "com.shopify.arrive",
       "android_history_source": "APKPure history page for package com.shopify.arrive",
-      "status": "sampled",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1223471316 and bundle ID com.jadedlabs.arrive; APKPure and Google Play identify Android package com.shopify.arrive.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "source_limited_boundary_refinement",
       "reports_path": "reports/shop",
       "version_list_path": "reports/shop/version-list.json",
       "version_list_error_path": "reports/shop/version-list-error.json",
       "android_version_list_path": "reports/shop/android-version-list.json",
-      "android_version_count": 10,
-      "oldest_android_version_code": "3409799",
+      "android_version_count": 27,
+      "oldest_android_version_code": "3319531",
       "newest_android_version_code": "3451748",
-      "sampled_android_package_count": 10,
+      "sampled_android_package_count": 27,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: Apple iTunes lookup for App Store ID 1223471316 returned bundle ID com.jadedlabs.arrive, app name Shop: All your favorite brands, and current listed version 2.253.0.",
         "Android package source: APKPure search and Google Play search identify package com.shopify.arrive.",
         "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID requires an App Store license; bundle-ID list and purchase attempts for com.jadedlabs.arrive returned app not found.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 3409799 through 3451748; source page appears to expose a limited history.",
-        "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Every sampled XAPK exposes assets/index.android.bundle, react-native-renderer 19.1.0, and React Native native-library metadata including libreactnative.so; all samples classify as 0.81.x with high confidence."
+        "Android APKPure catalog fetched on 2026-05-26 and expanded with parseable direct pages: 27 entries from versionCode 3319531 through 3451748; source page appears to expose a limited history.",
+        "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Boundary refinement expanded that to 27 APKPure entries, including older parseable direct pages.",
+        "Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so. The current analyzer reports Android source-limited bands: 2.231.0 through 2.239.0 as 0.79.x medium-confidence, and 2.240.0 through 2.253.0 as 0.81.x high-confidence.",
+        "Marked needs_manual_review because APKPure is sparse/source-limited before 2.231.0, iOS version-list access remains blocked, and the 2.239.0 -> 2.240.0 Android transition should be treated as source-limited until a complete or signature-verified Android source can confirm adjacency."
       ]
     }
   ]

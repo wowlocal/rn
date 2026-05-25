@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "from_app_build": "3372633",
+    "from_app_version": "2.239.0",
+    "from_build_timestamp": "2026-02-11",
+    "from_external_version_id": "3372633",
+    "from_rn_guess": "0.79.x",
+    "to_app_build": "3376891",
+    "to_app_version": "2.240.0",
+    "to_build_timestamp": "2026-02-19",
+    "to_external_version_id": "3376891",
+    "to_rn_guess": "0.81.x"
+  }
+]
