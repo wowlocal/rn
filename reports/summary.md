@@ -7,13 +7,17 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 ## App Status
 
 - Analyzed successfully: 1
-- Queued: 0
+- Queued: 1
 - Needs manual review: 0
 - Skipped: 1
 
 ## Analyzed Apps
 
 - Discord: 475 external versions; reports in `reports/discord`
+
+## Queued Apps
+
+- Facebook Messenger: App Store ID 454638411; bundle ID com.facebook.Messenger
 
 ## Skipped Apps
 
