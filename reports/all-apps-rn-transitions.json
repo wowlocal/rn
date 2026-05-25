@@ -202,5 +202,39 @@
     "to_rn_guess": "unknown",
     "version_list_boundary_exact": "true",
     "version_list_gap_size": "0"
+  },
+  {
+    "app_name": "Instagram",
+    "app_slug": "instagram",
+    "app_status": "sampled",
+    "from_app_build": "15484445",
+    "from_app_version": "7.7.2",
+    "from_build_timestamp": "2015-09-30T21:36:32",
+    "from_external_version_id": "813610568",
+    "from_rn_guess": "unknown",
+    "to_app_build": "50667367",
+    "to_app_version": "10.10.0",
+    "to_build_timestamp": "2017-02-23T14:15:16",
+    "to_external_version_id": "821056195",
+    "to_rn_guess": "<=0.59.x",
+    "version_list_boundary_exact": "false",
+    "version_list_gap_size": "72"
+  },
+  {
+    "app_name": "Instagram",
+    "app_slug": "instagram",
+    "app_status": "sampled",
+    "from_app_build": "120248682",
+    "from_app_version": "58.0",
+    "from_build_timestamp": "2018-08-09T18:31:38",
+    "from_external_version_id": "828138988",
+    "from_rn_guess": "<=0.59.x",
+    "to_app_build": "180988914",
+    "to_app_version": "118.0",
+    "to_build_timestamp": "2019-11-01T17:18:24",
+    "to_external_version_id": "833368709",
+    "to_rn_guess": "unknown",
+    "version_list_boundary_exact": "false",
+    "version_list_gap_size": "71"
   }
 ]

@@ -73,18 +73,22 @@
       "app_name": "Instagram",
       "app_id": "389801252",
       "bundle_id": "com.burbn.instagram",
-      "status": "version_list_fetched",
+      "status": "sampled",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/instagram/id389801252; ipatool search resolved bundle ID com.burbn.instagram.",
-      "last_completed_step": "version_list_fetched",
+      "last_completed_step": "initial_sampling",
       "reports_path": "reports/instagram",
       "version_list_path": "reports/instagram/version-list.json",
       "external_version_count": 795,
       "oldest_external_version_id": "2948163",
       "newest_external_version_id": "885526725",
+      "sampled_ipa_count": 12,
+      "unique_builds_analyzed": 12,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-25.",
         "Version list fetched on 2026-05-25 using bundle identifier after app-id lookup returned Apple's generic unknown error.",
-        "RN usage is not assumed; it must be verified from IPA markers during sampling."
+        "Initial 12-point sample found RN-marked builds from 10.10.0 (50667367), external version ID 821056195, through 58.0 (120248682), external version ID 828138988.",
+        "Other sampled Instagram builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
     }
   ]
