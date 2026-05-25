@@ -135,6 +135,25 @@
         "Android boundary refinement added APKPure page versions 382.0.0.51.85 (versionCode 505205644) and 400.0.0.38.68 (versionCode 507007017); 382.0.0 still exposes RN native metadata, while 400.0.0 does not. The source-limited Android marker-disappearance window is now 382.0.0.51.85 -> 400.0.0.38.68.",
         "Marked needs_manual_review because APKMirror appears to have more boundary versions but automated fetches return Cloudflare challenges, APKPure exposes only sparse historical pages, and iOS samples remain unknown due encrypted IPA inspection."
       ]
+    },
+    {
+      "app_slug": "meta-horizon",
+      "app_name": "Meta Horizon",
+      "app_id": "1366478176",
+      "bundle_id": "com.oculus.twilight",
+      "android_package": "com.oculus.twilight",
+      "android_history_source": "APKMirror and APKPure history pages for package com.oculus.twilight",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Meta Horizon resolved App Store ID 1366478176 and bundle ID com.oculus.twilight; Google Play/APKPure/APKMirror pages identify Android package com.oculus.twilight.",
+      "last_completed_step": "registered",
+      "reports_path": "reports/meta-horizon",
+      "version_list_path": "reports/meta-horizon/version-list.json",
+      "android_version_list_path": "reports/meta-horizon/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: ipatool search Meta Horizon --format json returned ID 1366478176, bundle ID com.oculus.twilight, current listed version 372.1.",
+        "Android package source: Google Play, APKPure, and APKMirror pages list package com.oculus.twilight."
+      ]
     }
   ]
 }
