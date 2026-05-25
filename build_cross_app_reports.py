@@ -131,6 +131,7 @@ def collect_reports(apps: list[dict[str, Any]], reports_dir: Path) -> tuple[list
 
 def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]], transitions: list[dict[str, Any]]) -> str:
     analyzed = [app for app in apps if app.get("status") == "done"]
+    queued = [app for app in apps if app.get("status") == "queued"]
     skipped = [app for app in apps if app.get("status") == "skipped"]
     review = [app for app in apps if app.get("status") == "needs_manual_review"]
     exact = [row for row in transitions if row.get("version_list_boundary_exact") == "true"]
@@ -150,6 +151,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         "## App Status",
         "",
         f"- Analyzed successfully: {len(analyzed)}",
+        f"- Queued: {len(queued)}",
         f"- Needs manual review: {len(review)}",
         f"- Skipped: {len(skipped)}",
         "",
@@ -160,6 +162,14 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         for app in analyzed:
             lines.append(
                 f"- {app.get('app_name', app.get('app_slug'))}: {app.get('external_version_count', '')} external versions; reports in `{app.get('reports_path', '')}`"
+            )
+        lines.append("")
+
+    if queued:
+        lines.extend(["## Queued Apps", ""])
+        for app in queued:
+            lines.append(
+                f"- {app.get('app_name', app.get('app_slug'))}: App Store ID {app.get('app_id', '')}; bundle ID {app.get('bundle_id', '')}"
             )
         lines.append("")
 

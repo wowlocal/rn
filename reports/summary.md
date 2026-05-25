@@ -7,12 +7,17 @@ Reports use IPA internal zip timestamps from app bundle `Info.plist` members unl
 ## App Status
 
 - Analyzed successfully: 1
+- Queued: 1
 - Needs manual review: 0
 - Skipped: 0
 
 ## Analyzed Apps
 
 - Discord: 475 external versions; reports in `reports/discord`
+
+## Queued Apps
+
+- Facebook: App Store ID 284882215; bundle ID com.facebook.Facebook
 
 ## RN Ranges
 

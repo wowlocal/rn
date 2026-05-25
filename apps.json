@@ -19,6 +19,21 @@
         "Existing root-level Discord CSV/JSON outputs remain the regression baseline.",
         "Native executables are FairPlay encrypted in analyzed IPAs, so exact native RN constants are not inspectable."
       ]
+    },
+    {
+      "app_slug": "facebook",
+      "app_name": "Facebook",
+      "app_id": "284882215",
+      "bundle_id": "com.facebook.Facebook",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/facebook/id284882215; ipatool search resolved bundle ID com.facebook.Facebook.",
+      "last_completed_step": "app_registration",
+      "reports_path": "reports/facebook",
+      "version_list_path": "reports/facebook/version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-25.",
+        "RN usage is not assumed; it must be verified from IPA markers during sampling."
+      ]
     }
   ]
 }
