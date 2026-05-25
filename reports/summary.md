@@ -2,7 +2,7 @@
 
 ## Methodology
 
-Reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
+Reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers. Android APKs may be used as supplementary evidence for React Native detection and RN version inference because they are usually more inspectable than FairPlay-encrypted iOS binaries; Android evidence does not replace iOS App Store external version IDs or IPA timestamps for the iOS timeline.
 
 ## App Status
 

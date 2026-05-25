@@ -1,10 +1,14 @@
 # Large downloaded app packages
 *.ipa
 *.ipa.tmp
+*.apk
+*.apks
 discord-ipas/*.ipa
 discord-ipas/*.ipa.tmp
 ipas/**/*.ipa
 ipas/**/*.ipa.tmp
+apks/**/*.apk
+apks/**/*.apks
 
 # Python/runtime noise
 __pycache__/

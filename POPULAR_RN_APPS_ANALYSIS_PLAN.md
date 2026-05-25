@@ -13,6 +13,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Never delete scripts, manifests, reports, CSV/JSON outputs, or notes.
 - Use IPA internal zip timestamps for build timestamps unless App Store metadata is independently verified.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
+- Android APKs may be used as supplementary evidence for React Native detection and RN version inference when iOS binaries are encrypted or iOS JS markers are too sparse. Keep iOS timelines anchored to iOS App Store external version IDs and IPA internal zip timestamps.
 - Do not expose account credentials in logs or reports.
 - Commit after every completed checklist step so the task is resumable and each app's progress has a clear checkpoint.
 
@@ -29,7 +30,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
   - final per-app status update
 - Commit after cross-app reports are regenerated.
 - Keep commits small and descriptive, for example `Add Discord version list`, `Analyze Discord initial RN samples`, or `Refine Discord RN transition boundaries`.
-- Do not commit downloaded IPAs, temporary IPA files, Python bytecode, cache directories, or credentials.
+- Do not commit downloaded IPAs, APKs, temporary app package files, Python bytecode, cache directories, or credentials.
 - Before each commit, run `git status --short` and verify only intended files are staged.
 - If a step produces a large generated report, commit the compact CSV/JSON/Markdown outputs, not the raw IPA.
 
@@ -57,6 +58,9 @@ reports/
 ipas/
   <app-slug>/
     retained-boundary-ipas...
+apks/
+  <app-slug>/
+    retained-android-evidence-apks...
 logs/
   run.log
   deleted-ipas.log
@@ -168,6 +172,7 @@ For every IPA, capture at least:
 - [ ] RN guess or band.
 - [ ] Confidence: `high`, `medium`, `low`, or `unknown`.
 - [ ] Evidence notes explaining the inference.
+- [ ] Android APK evidence used for RN inference, if any, clearly labeled as supplementary and not as an iOS timeline timestamp source.
 
 ### 5. Build Initial Ranges
 
@@ -239,6 +244,7 @@ Write `reports/<app-slug>/notes.md` with:
 - [ ] Unresolved gaps or missing versions.
 - [ ] Encryption limitations.
 - [ ] Any app-specific marker quirks.
+- [ ] Android APK corroboration, if used, including package version/build, APK source, extracted RN markers, and how it affects confidence.
 
 ### 9. Mark App Done
 
