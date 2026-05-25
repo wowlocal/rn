@@ -16,6 +16,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Never delete scripts, manifests, reports, CSV/JSON outputs, or notes.
 - Use IPA internal zip timestamps for build timestamps unless App Store metadata is independently verified.
 - For Android, prefer version ordering by `versionCode`; use APK source publish dates only when the source clearly provides them. ZIP entry timestamps inside APKs can be build artifacts and should be labeled as package timestamps, not store release dates.
+- Treat Android source catalogs as source-limited unless the source demonstrably provides a complete history for the package. Adjacent rows in a sparse APKPure/APKMirror-derived catalog are not exact transition boundaries by themselves.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
 - Android APKs may provide primary evidence for RN version inference. Keep platform-specific timestamps and version identifiers labeled clearly.
 - Do not expose account credentials in logs or reports.
@@ -316,7 +317,7 @@ Write `reports/<app-slug>/notes.md` with:
 - [ ] Verify per-app CSV/JSON is valid.
 - [ ] Verify transitions are backed by rows in platform-specific `*-versions.csv`.
 - [ ] Verify exact iOS boundaries are adjacent in `ios-version-list.json`.
-- [ ] Verify exact Android boundaries are adjacent in `android-version-list.json` or clearly document source catalog gaps.
+- [ ] Verify exact Android boundaries are adjacent in a complete `android-version-list.json`; if the source catalog is sparse or source-limited, mark the boundary as source-limited even when fetched rows are adjacent.
 - [ ] Update `apps.json` status to `done`, `skipped`, or `needs_manual_review`.
 - [ ] Append key findings to `reports/summary.md`.
 - [ ] Move to the next app.

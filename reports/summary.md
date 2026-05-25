@@ -2,14 +2,14 @@
 
 ## Methodology
 
-Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
+Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
 
 ## App Status
 
 - Analyzed successfully: 3
 - Queued: 0
-- In progress: 1
-- Needs manual review: 1
+- In progress: 0
+- Needs manual review: 2
 - Skipped: 1
 
 ## Analyzed Apps
@@ -18,9 +18,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 
-## In Progress Apps
+## Manual Review Apps
 
-- Meta Horizon: status `sampled`; last completed `initial_sampling`; reports in `reports/meta-horizon`
+- Threads: last completed `source_limited_boundary_refinement`; reports in `reports/threads`
+- Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
 
 ## Skipped Apps
 
@@ -52,32 +53,36 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Threads | ios | unknown |  | low | 289.0 (489338310) | 431.0.0 (979167741) | 12 |
 | Threads | android | unknown |  | low | 374.0.0.43.110 (504412928) | 382.0.0.51.85 (505205644) | 2 |
 | Threads | android | unknown |  | unknown | 400.0.0.38.68 (507007017) | 430.0.0.46.79 (510007506) | 10 |
-| Meta Horizon | android | <=0.59.x |  | medium | 366.0.0.24.290 (930594021) | 372.0.1.34.252 (975394013) | 10 |
+| Meta Horizon | android | 0.78.x | 19.0.0 | high | 287.3.0.33.109 (651148422) | 287.3.0.33.109 (651148422) | 1 |
+| Meta Horizon | android | 0.60.x |  | medium | 341.0.0.17.107 (806319963) | 349.2.0.46.104 (844730700) | 11 |
+| Meta Horizon | android | <=0.59.x |  | medium | 360.0.0.23.322 (892081967) | 372.0.1.34.252 (975394013) | 18 |
 
 ## RN Transitions
 
-| App | Platform | From | To | Last old | First new | Version-list gap |
-|---|---|---|---|---|---|---:|
-| Discord | ios | <=0.59.x | 0.61.x | 3.1.10 (18953) | 3.2.0 (19099) | 0 |
-| Discord | ios | 0.61.x | 0.62.x | 20.0 (19811) | 21.0 (19965) | 0 |
-| Discord | ios | 0.62.x | 0.64.x | 87.0 (27320) | 88.2 (27527) | 2 |
-| Discord | ios | 0.64.x | 0.66.x | 106.0 (29538) | 109.0 (29659) | 0 |
-| Discord | ios | 0.66.x | 0.67.x-0.68.x | 132.0 (33253) | 133.0 (33358) | 0 |
-| Discord | ios | 0.67.x-0.68.x | 0.69.x-0.70.x | 162.0 (39121) | 163.0 (39243) | 0 |
-| Discord | ios | 0.69.x-0.70.x | 0.71.x | 190.0 (47418) | 191.0 (47806) | 0 |
-| Discord | ios | 0.71.x | 0.74.x-0.76.x | 245.0 (63641) | 246.0 (63933) | 0 |
-| Discord | ios | 0.74.x-0.76.x | 0.78.x | 279.0 (77189) | 280.0 (77565) | 0 |
-| Discord | ios | 0.78.x | 0.81.x | 306.1 (89123) | 307.0 (89215) | 0 |
-| Facebook Messenger | ios | unknown | <=0.59.x | 91.0 (40546824) | 92.0 (41023043) | 0 |
-| Facebook Messenger | ios | <=0.59.x | unknown | 147.0 (84235609) | 148.0 (86952252) | 0 |
-| Instagram | ios | unknown | <=0.59.x | 9.7.0 (43028597) | 10.0.0 (44114773) | 0 |
-| Instagram | ios | <=0.59.x | 0.60.x | 90.0 (150975176) | 91.0 (151989260) | 0 |
-| Instagram | ios | 0.60.x | 0.61.x | 105.0 (165586599) | 106.0 (166752244) | 0 |
-| Instagram | ios | 0.61.x | unknown | 113.0 (174653610) | 114.0 (176133011) | 0 |
-| Threads | android | unknown | unknown | 382.0.0.51.85 (505205644) | 400.0.0.38.68 (507007017) | 0 |
+| App | Platform | From | To | Last old | First new | Known-list gap | Exact? |
+|---|---|---|---|---|---|---:|---|
+| Discord | ios | <=0.59.x | 0.61.x | 3.1.10 (18953) | 3.2.0 (19099) | 0 | true |
+| Discord | ios | 0.61.x | 0.62.x | 20.0 (19811) | 21.0 (19965) | 0 | true |
+| Discord | ios | 0.62.x | 0.64.x | 87.0 (27320) | 88.2 (27527) | 2 | false |
+| Discord | ios | 0.64.x | 0.66.x | 106.0 (29538) | 109.0 (29659) | 0 | true |
+| Discord | ios | 0.66.x | 0.67.x-0.68.x | 132.0 (33253) | 133.0 (33358) | 0 | true |
+| Discord | ios | 0.67.x-0.68.x | 0.69.x-0.70.x | 162.0 (39121) | 163.0 (39243) | 0 | true |
+| Discord | ios | 0.69.x-0.70.x | 0.71.x | 190.0 (47418) | 191.0 (47806) | 0 | true |
+| Discord | ios | 0.71.x | 0.74.x-0.76.x | 245.0 (63641) | 246.0 (63933) | 0 | true |
+| Discord | ios | 0.74.x-0.76.x | 0.78.x | 279.0 (77189) | 280.0 (77565) | 0 | true |
+| Discord | ios | 0.78.x | 0.81.x | 306.1 (89123) | 307.0 (89215) | 0 | true |
+| Facebook Messenger | ios | unknown | <=0.59.x | 91.0 (40546824) | 92.0 (41023043) | 0 | true |
+| Facebook Messenger | ios | <=0.59.x | unknown | 147.0 (84235609) | 148.0 (86952252) | 0 | true |
+| Instagram | ios | unknown | <=0.59.x | 9.7.0 (43028597) | 10.0.0 (44114773) | 0 | true |
+| Instagram | ios | <=0.59.x | 0.60.x | 90.0 (150975176) | 91.0 (151989260) | 0 | true |
+| Instagram | ios | 0.60.x | 0.61.x | 105.0 (165586599) | 106.0 (166752244) | 0 | true |
+| Instagram | ios | 0.61.x | unknown | 113.0 (174653610) | 114.0 (176133011) | 0 | true |
+| Threads | android | unknown | unknown | 382.0.0.51.85 (505205644) | 400.0.0.38.68 (507007017) | 0 | false |
+| Meta Horizon | android | 0.78.x | 0.60.x | 287.3.0.33.109 (651148422) | 341.0.0.17.107 (806319963) | 0 | false |
+| Meta Horizon | android | 0.60.x | <=0.59.x | 349.2.0.46.104 (844730700) | 360.0.0.23.322 (892081967) | 0 | false |
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 16
-- Approximate by transition IDs: 1
+- Exact by transition IDs: 15
+- Approximate by transition IDs: 4
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

@@ -74,15 +74,15 @@ def app_entries(apps_data: Any) -> list[dict[str, Any]]:
     return [app for app in apps if isinstance(app, dict)]
 
 
-def version_positions(report_dir: Path, platform: str) -> dict[str, int]:
+def version_position_info(report_dir: Path, platform: str) -> tuple[dict[str, int], bool]:
     if platform == "android":
         version_list_path = report_dir / "android-version-list.json"
         if not version_list_path.exists():
-            return {}
+            return {}, False
         data = load_json(version_list_path)
         versions = data.get("versions", [])
         if not isinstance(versions, list):
-            return {}
+            return {}, False
         codes = sorted(
             {
                 str(row.get("version_code", ""))
@@ -91,25 +91,28 @@ def version_positions(report_dir: Path, platform: str) -> dict[str, int]:
             },
             key=int,
         )
-        return {version_code: index for index, version_code in enumerate(codes)}
+        notes = " ".join(str(note).lower() for note in data.get("notes", []))
+        source_limited = "limited" in notes or bool(data.get("extra_source_urls"))
+        return {version_code: index for index, version_code in enumerate(codes)}, source_limited
 
     version_list_path = report_dir / "version-list.json"
     if not version_list_path.exists():
-        return {}
+        return {}, False
     data = load_json(version_list_path)
     ids = data.get("externalVersionIdentifiers", [])
     if not isinstance(ids, list):
-        return {}
-    return {str(external_id): index for index, external_id in enumerate(ids)}
+        return {}, False
+    return {str(external_id): index for index, external_id in enumerate(ids)}, False
 
 
-def transition_gap(row: dict[str, Any], positions: dict[str, int]) -> tuple[str, str]:
+def transition_gap(row: dict[str, Any], positions: dict[str, int], source_limited: bool) -> tuple[str, str]:
     from_id = str(row.get("from_external_version_id", ""))
     to_id = str(row.get("to_external_version_id", ""))
     if not from_id or not to_id or from_id not in positions or to_id not in positions:
         return "", ""
     gap = abs(positions[to_id] - positions[from_id]) - 1
-    return str(gap), str(gap == 0).lower()
+    exact = gap == 0 and not source_limited
+    return str(gap), str(exact).lower()
 
 
 def collect_reports(apps: list[dict[str, Any]], reports_dir: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -137,10 +140,10 @@ def collect_reports(apps: list[dict[str, Any]], reports_dir: Path) -> tuple[list
                 for row in load_json(ranges_path):
                     timeline.append({**app_prefix, **row})
 
-            positions = version_positions(report_dir, platform)
+            positions, source_limited = version_position_info(report_dir, platform)
             if transitions_path.exists():
                 for row in load_json(transitions_path):
-                    gap_size, exact = transition_gap(row, positions)
+                    gap_size, exact = transition_gap(row, positions, source_limited)
                     transitions.append(
                         {
                             **app_prefix,
@@ -175,7 +178,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         "",
         "## Methodology",
         "",
-        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
+        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
         "",
         "## App Status",
         "",
@@ -211,6 +214,14 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
             )
         lines.append("")
 
+    if review:
+        lines.extend(["## Manual Review Apps", ""])
+        for app in review:
+            lines.append(
+                f"- {app.get('app_name', app.get('app_slug'))}: last completed `{app.get('last_completed_step', '')}`; reports in `{app.get('reports_path', '')}`"
+            )
+        lines.append("")
+
     if skipped:
         lines.extend(["## Skipped Apps", ""])
         for app in skipped:
@@ -232,11 +243,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
 
     if transitions:
         lines.extend(["## RN Transitions", ""])
-        lines.append("| App | Platform | From | To | Last old | First new | Version-list gap |")
-        lines.append("|---|---|---|---|---|---|---:|")
+        lines.append("| App | Platform | From | To | Last old | First new | Known-list gap | Exact? |")
+        lines.append("|---|---|---|---|---|---|---:|---|")
         for row in transitions:
             lines.append(
-                "| {app_name} | {platform} | {from_rn_guess} | {to_rn_guess} | {from_app_version} ({from_app_build}) | {to_app_version} ({to_app_build}) | {version_list_gap_size} |".format(
+                "| {app_name} | {platform} | {from_rn_guess} | {to_rn_guess} | {from_app_version} ({from_app_build}) | {to_app_version} ({to_app_build}) | {version_list_gap_size} | {version_list_boundary_exact} |".format(
                     **{key: row.get(key, "") for key in TRANSITION_FIELDS}
                 )
             )

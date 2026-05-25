@@ -143,27 +143,28 @@
       "bundle_id": "com.oculus.twilight",
       "android_package": "com.oculus.twilight",
       "android_history_source": "APKMirror and APKPure history pages for package com.oculus.twilight",
-      "status": "sampled",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Meta Horizon resolved App Store ID 1366478176 and bundle ID com.oculus.twilight; Google Play/APKPure/APKMirror pages identify Android package com.oculus.twilight.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "source_limited_boundary_refinement",
       "reports_path": "reports/meta-horizon",
       "version_list_path": "reports/meta-horizon/version-list.json",
       "version_list_error_path": "reports/meta-horizon/version-list-error.json",
       "android_version_list_path": "reports/meta-horizon/android-version-list.json",
-      "android_version_count": 10,
-      "oldest_android_version_code": "930594021",
+      "android_version_count": 30,
+      "oldest_android_version_code": "651148422",
       "newest_android_version_code": "975394013",
-      "sampled_android_package_count": 10,
+      "sampled_android_package_count": 30,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Meta Horizon --format json returned ID 1366478176, bundle ID com.oculus.twilight, current listed version 372.1.",
         "Android package source: Google Play, APKPure, and APKMirror pages list package com.oculus.twilight.",
         "iOS version list fetch failed on 2026-05-26 because ipatool list-versions requires an App Store license for com.oculus.twilight; ipatool purchase failed with unsupported protocol scheme.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 930594021 through 975394013; source page appears to expose a limited history.",
+        "Android APKPure catalog fetched on 2026-05-26 and expanded with parseable APKPure direct pages: 30 entries from versionCode 651148422 through 975394013; the source remains sparse and non-adjacent.",
         "APKMirror appears to have older Meta Horizon/Meta Quest packages but automated fetches returned a Cloudflare challenge.",
-        "Initial Android sampling downloaded and analyzed all 10 APKPure catalog entries. Every sampled APK exposes assets/TwilightBundle.js.hbc and React Native native-library metadata including libreactnative.so; all samples are classified as <=0.59.x with medium confidence.",
-        "Initial sampling validation passed for generated Android CSV/JSON/range reports. No iOS sampling was possible because iOS version-list access is blocked by the license failure."
+        "Initial Android sampling downloaded and analyzed all 10 visible APKPure catalog entries. Boundary refinement expanded that to 30 APKPure entries, including older parseable direct pages.",
+        "Every sampled APK exposes assets/TwilightBundle.js.hbc and React Native native-library metadata. The current analyzer reports Android source-limited bands: 287.3.0.33.109 as 0.78.x high-confidence, 341.0.0.17.107 through 349.2.0.46.104 as 0.60.x medium-confidence, and 360.0.0.23.322 through 372.0.1.34.252 as <=0.59.x medium-confidence.",
+        "Marked needs_manual_review because APKPure gaps are large, APKMirror is blocked by Cloudflare, iOS sampling is blocked by the App Store license failure, and the apparent 0.60.x -> <=0.59.x Android transition is not trustworthy enough to treat as a definitive app-wide RN downgrade without stronger package evidence."
       ]
     }
   ]
