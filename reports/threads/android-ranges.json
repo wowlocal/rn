@@ -1,11 +1,11 @@
 [
   {
-    "build_count": 1,
+    "build_count": 2,
     "confidence": "low",
-    "end_app_build": "504412928",
-    "end_app_version": "374.0.0.43.110",
-    "end_build_timestamp": "2025-04-01",
-    "end_external_version_id": "504412928",
+    "end_app_build": "505205644",
+    "end_app_version": "382.0.0.51.85",
+    "end_build_timestamp": "2025-05-28",
+    "end_external_version_id": "505205644",
     "react_renderer": "",
     "rn_guess": "unknown",
     "start_app_build": "504412928",

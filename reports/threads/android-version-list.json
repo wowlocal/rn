@@ -1,9 +1,11 @@
 {
-  "entry_count": 11,
+  "entry_count": 12,
   "extra_source_urls": [
+    "https://apkpure.net/threads/com.instagram.barcelona/download/382.0.0.51.85",
+    "https://m.apkpure.com/threads/com.instagram.barcelona/download/390.0.0.1.81",
     "https://apkpure.net/threads/com.instagram.barcelona/download/400.0.0.38.68"
   ],
-  "fetched_at": "2026-05-25T22:23:19.887260Z",
+  "fetched_at": "2026-05-25T22:26:13.030827Z",
   "notes": [
     "APKPure currently exposes a limited visible version catalog on this page; treat missing historical Android versions as source limitations, not absence of releases."
   ],
@@ -173,13 +175,29 @@
       "version_name": "400.0.0.38.68"
     },
     {
+      "android_requirement": "",
+      "download_url": "https://apkpure.net/threads/com.instagram.barcelona/download/382.0.0.51.85",
+      "file_size": "61.5 MB",
+      "package_file_type": "XAPK",
+      "package_name": "com.instagram.barcelona",
+      "source": "APKPure",
+      "source_order": "10",
+      "source_publish_date": "2025-05-28",
+      "source_publish_date_raw": "May 28, 2025",
+      "split_metadata": "XAPK",
+      "stable_source_identifier": "/threads/com.instagram.barcelona/download/382.0.0.51.85",
+      "supported_abis": "",
+      "version_code": "505205644",
+      "version_name": "382.0.0.51.85"
+    },
+    {
       "android_requirement": "Android 9.0+",
       "download_url": "https://apkpure.net/threads-app/com.instagram.barcelona/download/374.0.0.43.110",
       "file_size": "61.1 MB",
       "package_file_type": "APK",
       "package_name": "com.instagram.barcelona",
       "source": "APKPure",
-      "source_order": "10",
+      "source_order": "11",
       "source_publish_date": "2025-04-01",
       "source_publish_date_raw": "Apr 1, 2025",
       "split_metadata": "APK",
