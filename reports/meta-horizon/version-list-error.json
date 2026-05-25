@@ -1,0 +1,23 @@
+{
+  "app_id": "1366478176",
+  "bundle_id": "com.oculus.twilight",
+  "errors": [
+    {
+      "command": "python3 check_rn_versions.py --app-slug meta-horizon --app-name \"Meta Horizon\" --app-id 1366478176 --download-dir ipas/meta-horizon --report reports/meta-horizon/versions.csv --version-list-out reports/meta-horizon/version-list.json --list-versions-only",
+      "stderr": "",
+      "stdout": "{\"level\":\"error\",\"error\":\"license is required\",\"success\":false,\"time\":\"2026-05-26T01:32:26+03:00\"}"
+    },
+    {
+      "command": "ipatool purchase --bundle-identifier com.oculus.twilight --format json",
+      "stderr": "",
+      "stdout": "{\"level\":\"error\",\"error\":\"request failed: request failed: Post \\\"\\\": failed to make round trip: unsupported protocol scheme \\\"\\\"\",\"success\":false,\"time\":\"2026-05-26T01:32:47+03:00\"}"
+    },
+    {
+      "command": "python3 check_rn_versions.py --app-slug meta-horizon --app-name \"Meta Horizon\" --bundle-id com.oculus.twilight --use-bundle-identifier --download-dir ipas/meta-horizon --report reports/meta-horizon/versions.csv --version-list-out reports/meta-horizon/version-list.json --list-versions-only",
+      "stderr": "",
+      "stdout": "{\"level\":\"error\",\"error\":\"license is required\",\"success\":false,\"time\":\"2026-05-26T01:33:09+03:00\"}"
+    }
+  ],
+  "fetched_at": "2026-05-26T01:33:09+03:00",
+  "status": "failed"
+}
