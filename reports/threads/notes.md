@@ -25,7 +25,7 @@
 - Newest iOS external version ID: `885819877`
 - Raw iOS version list: `reports/threads/version-list.json`
 - Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
-- Android entries available from the visible APKPure source page: 10
+- Android entries available from APKPure sources: 11
 - Oldest Android versionCode in the APKPure catalog: `504412928`
 - Newest Android versionCode in the APKPure catalog: `510007506`
 - Raw Android version catalog: `reports/threads/android-version-list.json`
@@ -34,10 +34,10 @@
 ## Initial Sampling
 
 - Android sampling date: 2026-05-26
-- Android packages downloaded and analyzed: 10
-- Android package source: APKPure visible version catalog
+- Android packages downloaded and analyzed: 11
+- Android package source: APKPure visible version catalog plus one APKPure direct historical download page
 - Android RN markers detected: yes, in `374.0.0.43.110 (504412928)` via native/package metadata listing `reactnativejni`, `react_featureflagsjni`, and `yoga`.
-- Android 2026 XAPK samples from `423.3.0.54.66 (509307092)` through `430.0.0.46.79 (510007506)` did not expose React Native JS bundles or RN native-library metadata with the current split-package analyzer.
+- Android samples from `400.0.0.38.68 (507007017)` through `430.0.0.46.79 (510007506)` did not expose React Native JS bundles or RN native-library metadata with the current analyzer.
 - Android reports: `reports/threads/android-versions.csv`, `reports/threads/android-ranges.csv`, and `reports/threads/android-transitions.csv`.
 - iOS sampling date: 2026-05-26
 - iOS IPAs downloaded and analyzed: 12
@@ -51,12 +51,13 @@
 | Platform | RN guess | Confidence | Start | End | Builds |
 |---|---|---|---|---|---:|
 | Android | unknown, RN native metadata present | low | 374.0.0.43.110 (`504412928`), APKPure date `2025-04-01` | 374.0.0.43.110 (`504412928`), APKPure date `2025-04-01` | 1 |
-| Android | unknown, no RN markers exposed | unknown | 423.3.0.54.66 (`509307092`), APKPure date `2026-04-02` | 430.0.0.46.79 (`510007506`), APKPure date `2026-05-19` | 9 |
+| Android | unknown, no RN markers exposed | unknown | 400.0.0.38.68 (`507007017`), APKPure date `2025-09-28` | 430.0.0.46.79 (`510007506`), APKPure date `2026-05-19` | 10 |
 | iOS | unknown | low | 289.0 (489338310), external ID `855897532`, IPA timestamp `2023-06-27T23:32:54` | 431.0.0 (979167741), external ID `885819877`, IPA timestamp `2026-05-25T02:25:36` | 12 |
 
 ## Open Gaps
 
-- Android has a source-limited marker-disappearance window between `374.0.0.43.110 (504412928)` and `423.3.0.54.66 (509307092)`.
+- Android boundary refinement added APKPure page version `400.0.0.38.68 (507007017)`, which does not expose RN markers.
+- Android has a source-limited marker-disappearance window between `374.0.0.43.110 (504412928)` and `400.0.0.38.68 (507007017)`.
 - APKMirror may have more historical Android packages, but automated fetches returned a Cloudflare challenge.
 - Exact RN patch versions are not recoverable from the Android native metadata or encrypted iOS samples currently available.
 - Initial sampling validation passed on 2026-05-26: Android/iOS CSV and JSON reports parse, Android reports include RN native-library evidence for versionCode `504412928`, and cross-app reports include platform-labeled Threads rows.

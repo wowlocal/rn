@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -105,11 +106,48 @@ def parse_versions(source_url: str, source_html: str, package_name: str) -> list
     return versions
 
 
+def parse_download_entry(source_url: str, source_html: str, package_name: str) -> dict[str, str]:
+    document = html.fromstring(source_html)
+    page_data_match = re.search(r"window\.apkpure\s*=\s*\{pageData:\s*(\{.*?\})\}\s*</script>", source_html)
+    page_data = json.loads(page_data_match.group(1)) if page_data_match else {}
+    direct_links = [
+        href
+        for href in document.xpath("//a[@href]/@href")
+        if "d.apkpure.net/b/" in href and "versionCode=" in href
+    ]
+    direct_url = direct_links[0] if direct_links else ""
+    version_code_match = re.search(r"versionCode=([0-9]+)", direct_url)
+    version_code = str(page_data.get("versionCode") or (version_code_match.group(1) if version_code_match else ""))
+    version_name = str(page_data.get("versionName") or document.xpath("string(//*[contains(concat(' ', normalize-space(@class), ' '), ' version-name ')][1])")).strip()
+    package_type = "XAPK" if "/b/XAPK/" in direct_url else "APK"
+    publish_date_raw = document.xpath("string(//*[contains(concat(' ', normalize-space(@class), ' '), ' date ')][1])").strip()
+    file_size = document.xpath("string(//*[contains(concat(' ', normalize-space(@class), ' '), ' version-file-size ')][1])").strip()
+    android_requirement = document.xpath("string(//*[contains(concat(' ', normalize-space(@class), ' '), ' version-require ')][1])").strip()
+
+    return {
+        "source": "APKPure",
+        "source_order": "",
+        "package_name": package_name,
+        "version_name": version_name,
+        "version_code": version_code,
+        "package_file_type": package_type,
+        "supported_abis": "",
+        "split_metadata": package_type,
+        "source_publish_date": parse_date(publish_date_raw),
+        "source_publish_date_raw": publish_date_raw,
+        "file_size": file_size,
+        "android_requirement": android_requirement,
+        "download_url": source_url,
+        "stable_source_identifier": urlparse(source_url).path,
+    }
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Fetch an APKPure Android version catalog.")
     parser.add_argument("--url", required=True, help="APKPure /versions URL.")
     parser.add_argument("--package-name", required=True)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--extra-download-url", action="append", default=[])
     parser.add_argument("--timeout", type=int, default=30)
     return parser.parse_args()
 
@@ -118,13 +156,22 @@ def main() -> int:
     args = parse_args()
     source_html = fetch_html(args.url, args.timeout)
     versions = parse_versions(args.url, source_html, args.package_name)
+    for extra_url in args.extra_download_url:
+        versions.append(
+            parse_download_entry(extra_url, fetch_html(extra_url, args.timeout), args.package_name)
+        )
     if not versions:
         raise RuntimeError(f"no APKPure version entries found for {args.package_name}")
+    deduped = {str(row.get("version_code", "")): row for row in versions if row.get("version_code")}
+    versions = sorted(deduped.values(), key=lambda row: int(str(row.get("version_code", "0"))), reverse=True)
+    for index, row in enumerate(versions):
+        row["source_order"] = str(index)
 
     output = {
         "schema_version": 1,
         "source": "APKPure",
         "source_url": args.url,
+        "extra_source_urls": args.extra_download_url,
         "fetched_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "package_name": args.package_name,
         "entry_count": len(versions),

@@ -109,19 +109,19 @@
       "android_history_source": "APKMirror and APKPure history pages for package com.instagram.barcelona",
       "status": "sampled",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Threads resolved App Store ID 6446901002 and bundle ID com.burbn.barcelona; APKMirror/APKPure pages identify Android package com.instagram.barcelona.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "boundary_refinement",
       "reports_path": "reports/threads",
       "version_list_path": "reports/threads/version-list.json",
       "android_version_list_path": "reports/threads/android-version-list.json",
       "external_version_count": 182,
       "oldest_external_version_id": "855897532",
       "newest_external_version_id": "885819877",
-      "android_version_count": 10,
+      "android_version_count": 11,
       "oldest_android_version_code": "504412928",
       "newest_android_version_code": "510007506",
       "sampled_ipa_count": 12,
       "unique_builds_analyzed": 12,
-      "sampled_android_package_count": 10,
+      "sampled_android_package_count": 11,
       "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
@@ -131,7 +131,8 @@
         "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 504412928 through 510007506; source page appears to expose a limited history.",
         "Initial Android sampling downloaded and analyzed all 10 APKPure catalog entries. Version 374.0.0.43.110 exposes React Native native-library metadata (reactnativejni, react_featureflagsjni, yoga); 2026 XAPK samples do not expose RN markers with the current split-package analyzer.",
         "Initial iOS sampling downloaded and analyzed 12 evenly spaced App Store external version IDs from 855897532 through 885819877. No iOS sample exposed JS bundle markers, so iOS rows remain unknown from encrypted IPA inspection.",
-        "Initial sampling validation passed: Android/iOS CSV and JSON reports parse, Android reports include RN native-library evidence for versionCode 504412928, and cross-app reports include platform-labeled Threads rows."
+        "Initial sampling validation passed: Android/iOS CSV and JSON reports parse, Android reports include RN native-library evidence for versionCode 504412928, and cross-app reports include platform-labeled Threads rows.",
+        "Android boundary refinement added APKPure page version 400.0.0.38.68 (versionCode 507007017), which does not expose RN markers; the source-limited Android marker-disappearance window is now 374.0.0.43.110 -> 400.0.0.38.68."
       ]
     }
   ]
