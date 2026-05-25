@@ -189,7 +189,7 @@
   {
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
-    "app_status": "sampled",
+    "app_status": "done",
     "build_count": 7,
     "confidence": "low",
     "end_app_build": "40546824",
@@ -206,7 +206,7 @@
   {
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
-    "app_status": "sampled",
+    "app_status": "done",
     "build_count": 7,
     "confidence": "medium",
     "end_app_build": "84235609",
@@ -223,7 +223,7 @@
   {
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
-    "app_status": "sampled",
+    "app_status": "done",
     "build_count": 12,
     "confidence": "low",
     "end_app_build": "975021560",

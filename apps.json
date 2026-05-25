@@ -43,9 +43,9 @@
       "app_name": "Facebook Messenger",
       "app_id": "454638411",
       "bundle_id": "com.facebook.Messenger",
-      "status": "sampled",
+      "status": "done",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/messenger/id454638411; ipatool search resolved bundle ID com.facebook.Messenger.",
-      "last_completed_step": "disk_cleanup",
+      "last_completed_step": "done",
       "reports_path": "reports/facebook-messenger",
       "version_list_path": "reports/facebook-messenger/version-list.json",
       "external_version_count": 735,
@@ -64,6 +64,7 @@
         "Fourth midpoint refinement found 93.0 RN-marked and 149.0 unknown.",
         "Boundary refinement reached exact adjacency: 91.0 unknown -> 92.0 RN, and 147.0 RN -> 148.0 unknown.",
         "Disk cleanup reviewed on 2026-05-25; no Messenger IPAs deleted because 240 GiB remained free.",
+        "Final validation passed: scripts compile, CSV/JSON reports parse, transition rows are backed by versions.csv, and exact boundaries are adjacent in version-list.json.",
         "Other sampled Messenger builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
       ]
     }

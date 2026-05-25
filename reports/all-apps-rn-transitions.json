@@ -172,7 +172,7 @@
   {
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
-    "app_status": "sampled",
+    "app_status": "done",
     "from_app_build": "40546824",
     "from_app_version": "91.0",
     "from_build_timestamp": "2016-10-02T15:12:24",
@@ -189,7 +189,7 @@
   {
     "app_name": "Facebook Messenger",
     "app_slug": "facebook-messenger",
-    "app_status": "sampled",
+    "app_status": "done",
     "from_app_build": "84235609",
     "from_app_version": "147.0",
     "from_build_timestamp": "2017-12-12T09:16:54",

@@ -5,7 +5,7 @@
 - App name: Facebook Messenger
 - App Store ID: 454638411
 - Bundle ID: com.facebook.Messenger
-- Status: sampled
+- Status: done
 - Registration date: 2026-05-25
 
 ## Evidence
@@ -72,9 +72,13 @@
 - RN disappearance boundary is exact: `147.0 (84235609)`, external ID `825227473`, build timestamp `2017-12-12T09:16:54`, RN <=0.59.x -> `148.0 (86952252)`, external ID `825310109`, build timestamp `2018-01-08T17:01:12`, unknown. Gap size: 0.
 - Exact RN patch versions are not recoverable from encrypted native binaries; the detected build is a JS-marker band estimate.
 
-## Next Step
+## Final Validation
 
-Mark the app done if validation passes.
+- Scripts compile with `python3 -m py_compile`.
+- `versions`, `ranges`, `transitions`, and `timeline` CSV/JSON reports parse successfully.
+- Transition external IDs are backed by rows in `reports/facebook-messenger/versions.csv`.
+- Exact boundaries are adjacent in `reports/facebook-messenger/version-list.json`.
+- Final status: done.
 
 ## Disk Cleanup
 
