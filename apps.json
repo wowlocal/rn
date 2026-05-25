@@ -236,17 +236,25 @@
       "bundle_id": "com.vilcsak.bitcoin2",
       "android_package": "com.coinbase.android",
       "android_history_source": "APKPure history page for package com.coinbase.android",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 886427730 and bundle ID com.vilcsak.bitcoin2; Google Play and APKPure identify Android package com.coinbase.android.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_lists_fetched",
       "reports_path": "reports/coinbase",
       "version_list_path": "reports/coinbase/version-list.json",
       "android_version_list_path": "reports/coinbase/android-version-list.json",
+      "external_version_count": 555,
+      "oldest_external_version_id": "596373720",
+      "newest_external_version_id": "885921388",
+      "android_version_count": 10,
+      "oldest_android_version_code": "141000440",
+      "newest_android_version_code": "141900220",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Coinbase --format json and Apple iTunes lookup for App Store ID 886427730 returned bundle ID com.vilcsak.bitcoin2, app name Coinbase: Buy Crypto & Stocks, seller Coinbase, Inc., and current listed version 14.19.22.",
         "Android package source: Google Play and APKPure identify package com.coinbase.android.",
-        "APKPure Android history URL identified: https://apkpure.net/coinbase-buy-bitcoin-ether/com.coinbase.android/versions."
+        "APKPure Android history URL identified: https://apkpure.net/coinbase-buy-bitcoin-ether/com.coinbase.android/versions.",
+        "iOS version list fetched on 2026-05-26: 555 external version IDs from 596373720 through 885921388.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 141000440 through 141900220; source page appears to expose a limited history."
       ]
     }
   ]
