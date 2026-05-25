@@ -5,7 +5,7 @@
 - App name: Instagram
 - App Store ID: 389801252
 - Bundle ID: com.burbn.instagram
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-25
 
 ## Evidence
@@ -16,4 +16,12 @@
 
 ## Next Step
 
-Fetch the version list with `ipatool list-versions --app-id 389801252 --format json` and save it to `reports/instagram/version-list.json`.
+Sample latest, oldest, and evenly spaced historical IPAs from `reports/instagram/version-list.json`.
+
+## Version List
+
+- External version IDs available: 795
+- Oldest external version ID: `2948163`
+- Newest external version ID: `885526725`
+- Raw version list: `reports/instagram/version-list.json`
+- Fetch note: `ipatool list-versions --app-id 389801252 --format json` returned Apple's generic unknown error, but `ipatool list-versions --bundle-identifier com.burbn.instagram --format json` succeeded.
