@@ -555,6 +555,30 @@
         "All sampled IPA main executables are FairPlay encrypted, so native constants are not inspectable.",
         "Marked not_react_native_detected because no React Native markers were found in the 12-point iOS sample and no automated Android package history is available."
       ]
+    },
+    {
+      "app_slug": "soundcloud",
+      "app_name": "SoundCloud: The Music You Love",
+      "app_id": "336353151",
+      "bundle_id": "com.soundcloud.TouchApp",
+      "android_package": "com.soundcloud.android",
+      "android_history_source": "APKPure versions page for package com.soundcloud.android",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search resolved App Store ID 336353151 and bundle ID com.soundcloud.TouchApp; Apple iTunes lookup confirmed current US listing; Google Play and APKPure identify Android package com.soundcloud.android.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/soundcloud",
+      "version_list_path": "reports/soundcloud/version-list.json",
+      "android_version_list_path": "reports/soundcloud/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search SoundCloud --format json returned App Store ID 336353151, bundle ID com.soundcloud.TouchApp, localized app name SoundCloud - музыка и звук, and current listed version 8.61.0.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 336353151 returned bundle ID com.soundcloud.TouchApp, app name SoundCloud: The Music You Love, seller SoundCloud Global Limited & Co KG, and current US listed version 8.61.0.",
+        "App Store URL: https://apps.apple.com/us/app/soundcloud-the-music-you-love/id336353151.",
+        "Android package source: Google Play and APKPure identify package com.soundcloud.android.",
+        "APKPure Android history URL identified: https://apkpure.net/sound-cloud-android-app/com.soundcloud.android/versions.",
+        "APKPure .com versions URL returned HTTP 403, but the APKPure .net versions URL returned HTTP 200.",
+        "AndroidAPKsFree guessed old versions URL for package com.soundcloud.android returned HTTP 404."
+      ]
     }
   ]
 }
