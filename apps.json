@@ -482,6 +482,28 @@
         "React Native markers were detected only in Android 21.5.5 (21055104), inferred as 0.74.x-0.76.x with medium confidence. Sampled Android packages from 21.22 through 26.18.1 exposed no RN markers.",
         "Marked needs_manual_review because both Android sources are sparse/source-limited and iOS version-list access is blocked."
       ]
+    },
+    {
+      "app_slug": "tesla",
+      "app_name": "Tesla",
+      "app_id": "582007913",
+      "bundle_id": "com.teslamotors.TeslaApp",
+      "android_package": "com.teslamotors.tesla",
+      "android_history_source": "APKPure history page for package com.teslamotors.tesla",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 582007913 and bundle ID com.teslamotors.TeslaApp; Google Play and APKPure identify Android package com.teslamotors.tesla.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/tesla",
+      "version_list_path": "reports/tesla/version-list.json",
+      "android_version_list_path": "reports/tesla/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Tesla --format json did not return the official Tesla app in the current localized results.",
+        "iOS identifier source: public App Store URL and Apple iTunes lookup for App Store ID 582007913 returned bundle ID com.teslamotors.TeslaApp, app name Tesla, seller Tesla, Inc., and current listed version 4.57.0.",
+        "Android package source: Google Play and APKPure identify package com.teslamotors.tesla.",
+        "APKPure Android history URL identified: https://apkpure.net/tesla/com.teslamotors.tesla/versions.",
+        "The guessed AndroidAPKsFree old versions URL for package com.teslamotors.tesla returned HTTP 404."
+      ]
     }
   ]
 }
