@@ -41,9 +41,19 @@
 - Sampled external version IDs: `814482031`, `819763331`, `825734304`, `830475334`, `834678875`, `839453042`, `844340326`, `851791131`, `859897772`, `869096326`, `876620596`, `885646390`.
 - Sampled app versions: `1.9.2`, `1.61.1`, `1.121.10002`, `1.178.10002`, `1.228.10001`, `1.270.10007`, `6.79.10004`, `6.127.10003`, `6.182.10003`, `6.235.10002`, `6.281.10000`, `6.323.10001`.
 - No sampled IPA contained a JS bundle, Hermes bytecode, or React Native-related filenames such as `ReactNative`, `react-native`, `Hermes`, `JSI`, `Yoga`, `.jsbundle`, or `.hbc`.
-- All sampled IPA main executables are FairPlay encrypted, so native constants are not inspectable.
+- Source IPA main executables are FairPlay encrypted, so native constants are not inspectable without install-and-dump evidence.
 - iOS reports: `reports/uber-eats/versions.csv`, `reports/uber-eats/versions.json`, `reports/uber-eats/ranges.csv`, and `reports/uber-eats/timeline.json`.
+
+## Decrypted iOS Evidence
+
+- Decrypted iOS dump date: 2026-05-26.
+- Dump tooling: `./dump_ios_ipa.py <ipa> --method frida-ipa-extract --all-binaries`; the wrapper installed through `ideviceinstaller` and recorded device context from `ideviceinfo`.
+- Device context for accepted dump: iOS `16.7.7` (`20H330`), hardware model `D201AP`.
+- Latest sampled `6.323.10001` build `6.323.10001`, external ID `885646390`, requires iOS `17.0`, so it was not installable on the iOS `16.7.7` device.
+- Newest sampled installable build `6.281.10000`, external ID `876620596`: source IPA SHA-256 `1cb1789e609ad0b5a765a8546a04efc9b980f3b785fe2b1aed8bc7ef0b338579`, dumped IPA SHA-256 `649964924ece2f29ace54f2a49aaed0ea7fc147fb1cbfe44cc35abbf909457c9`, dumped size `168420488`, metadata matched source bundle/version/build, main executable `cryptid 0`, coverage `main_only_decrypted`.
+- `6.281.10000` decrypted analysis finds no JS bundle, Hermes bytecode, renderer marker, native ReactNative marker, or native Hermes marker in the decrypted main executable. JSI/Yoga strings are present but treated as insufficient by themselves. The row remains RN `unknown` with reason `no_js_or_native_rn_markers`.
+- Remaining encrypted non-extension code in `6.281.10000`: `Payload/UberEats.app/Frameworks/GoogleMobileAds.framework/GoogleMobileAds`. Four app extensions also remain encrypted.
 
 ## Result
 
-Marked `not_react_native_detected` because no React Native markers were found in the 12-point iOS sample and no automated Android package history is available.
+Marked `not_react_native_detected` because no React Native markers were found in the 12-point iOS source sample or in the decrypted main app for the newest sampled installable build. Latest sampled `6.323.10001` remains encrypted-only because it requires iOS 17.0.

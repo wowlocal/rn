@@ -534,7 +534,7 @@
       "android_history_source": "APKPure current page for package com.ubercab.eats; APKMirror history page exists but automated access returns HTTP 403",
       "status": "not_react_native_detected",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search resolved App Store ID 1058959277 and bundle ID com.ubercab.UberEats; Apple iTunes lookup confirmed current US listing; APKPure and APKMirror pages identify Android package com.ubercab.eats.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "ios_decrypted_latest_installable_sampling",
       "reports_path": "reports/uber-eats",
       "version_list_path": "reports/uber-eats/version-list.json",
       "android_version_list_path": "reports/uber-eats/android-version-list.json",
@@ -558,8 +558,9 @@
         "Android APKPure version-list fetch failed on 2026-05-26 with HTTP 410 Gone, matching the registration-time URL check.",
         "Initial iOS sampling downloaded and analyzed 12 evenly spaced App Store versions from external version ID 814482031 through 885646390.",
         "No sampled IPA contained a JS bundle, Hermes bytecode, or React Native-related filenames such as ReactNative, react-native, Hermes, JSI, Yoga, .jsbundle, or .hbc.",
-        "All sampled IPA main executables are FairPlay encrypted, so native constants are not inspectable.",
-        "Marked not_react_native_detected because no React Native markers were found in the 12-point iOS sample and no automated Android package history is available."
+        "Accepted iOS decrypted dump for 6.281.10000 (external ID 876620596), the newest sampled build installable on the iOS 16.7.7 device. The dump has main executable cryptid 0 and main_only_decrypted coverage; analysis finds no JS bundle, Hermes bytecode, renderer marker, native ReactNative marker, or native Hermes marker.",
+        "Latest sampled 6.323.10001 (external ID 885646390) requires iOS 17.0, so it remains encrypted-only on the available iOS 16.7.7 device.",
+        "Marked not_react_native_detected because no React Native markers were found in the 12-point iOS source sample or in the decrypted main app for the newest sampled installable build; no automated Android package history is available."
       ]
     },
     {
