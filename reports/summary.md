@@ -9,8 +9,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Analyzed successfully: 5
 - Queued: 0
 - In progress: 0
-- Needs manual review: 18
-- No RN detected: 1
+- Needs manual review: 17
+- No RN detected: 2
 - Skipped: 3
 
 ## Analyzed Apps
@@ -33,7 +33,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Skype: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
-- SoundCloud: The Music You Love: last completed `ios_decrypted_native_marker_sampling`; reports in `reports/soundcloud`
 - Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`
 - Salesforce: last completed `source_limited_android_sampling`; reports in `reports/salesforce`
 - Wix - Website Builder: last completed `source_limited_android_sampling`; reports in `reports/wix`
@@ -45,6 +44,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## No RN Detected Apps
 
 - Uber Eats: Food & Groceries: sampled 12 iOS IPAs; reports in `reports/uber-eats`
+- SoundCloud: The Music You Love: sampled 12 iOS IPAs; reports in `reports/soundcloud`
 
 ## Skipped Apps
 

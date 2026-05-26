@@ -581,9 +581,9 @@
       "bundle_id": "com.soundcloud.TouchApp",
       "android_package": "com.soundcloud.android",
       "android_history_source": "APKPure versions page for package com.soundcloud.android",
-      "status": "needs_manual_review",
+      "status": "not_react_native_detected",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search resolved App Store ID 336353151 and bundle ID com.soundcloud.TouchApp; Apple iTunes lookup confirmed current US listing; Google Play and APKPure identify Android package com.soundcloud.android.",
-      "last_completed_step": "ios_decrypted_native_marker_sampling",
+      "last_completed_step": "ios_decrypted_false_positive_audit",
       "reports_path": "reports/soundcloud",
       "version_list_path": "reports/soundcloud/version-list.json",
       "android_version_list_path": "reports/soundcloud/android-version-list.json",
@@ -596,7 +596,7 @@
       "sampled_ipa_count": 12,
       "unique_builds_analyzed": 12,
       "sampled_android_package_count": 10,
-      "rn_detected": true,
+      "rn_detected": false,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search SoundCloud --format json returned App Store ID 336353151, bundle ID com.soundcloud.TouchApp, localized app name SoundCloud - музыка и звук, and current listed version 8.61.0.",
@@ -612,8 +612,9 @@
         "Android package hash validation found one unique payload hash across all 10 downloaded XAPK rows, so APKPure appears to be returning duplicated current-package payloads for historical rows.",
         "iOS sampling downloaded and analyzed 12 evenly spaced App Store versions from external version ID 2053200 through 885918024.",
         "No sampled iOS source IPA contained a JS bundle, Hermes bytecode, or React Native-related filenames such as ReactNative, react-native, Hermes, JSI, Yoga, .jsbundle, or .hbc.",
-        "Accepted iOS decrypted dumps for sampled 7.44.0 (1248257, external ID 867031169), 8.5.0 (1251600, external ID 873297043), 8.32.0 (1254310, external ID 878206270), and latest sampled 8.62.0 (1259079, external ID 885918024). All four dumps have main executable cryptid 0 and main_only_decrypted coverage; analysis finds native React Native markers but no JS bundle, renderer marker, Hermes marker, Yoga marker, or version-specific RN marker. The 7.44.0, 8.5.0, and 8.32.0 dumps also expose native JSI markers.",
-        "Marked needs_manual_review because decrypted iOS evidence confirms native React Native markers from 7.44.0 through 8.62.0 without a recoverable RN version, while visible Android samples remain duplicated current-package payloads with no RN markers. If more iOS work is needed, the next targeted older probe is 7.16.0 (external ID 860769428)."
+        "Accepted iOS decrypted dumps for sampled 7.16.0 (1243764, external ID 860769428), 7.44.0 (1248257, external ID 867031169), 8.5.0 (1251600, external ID 873297043), 8.32.0 (1254310, external ID 878206270), and latest sampled 8.62.0 (1259079, external ID 885918024). The 7.16.0 dump has loaded_app_decrypted coverage; the later four dumps have main_only_decrypted coverage; all have main executable cryptid 0 and matching source metadata.",
+        "Follow-up decrypted audit found the previous native React Native/JSI marker result was a false positive from weak strings such as ios_react_native/ios_reactnative, isolated RCTView, and incidental JSi text. Reanalysis finds no RN JS bundle, Hermes bytecode, react-native-renderer, version-specific RN marker, strong native RN symbol, or strong native Hermes/JSI/Yoga marker in the five decrypted iOS samples.",
+        "Marked not_react_native_detected because no React Native markers were found in the 12-point iOS source sample, five accepted decrypted iOS main-app samples from 7.16.0 through 8.62.0, or the duplicated current Android payloads."
       ]
     },
     {

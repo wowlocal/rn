@@ -1263,7 +1263,7 @@
   {
     "app_name": "SoundCloud: The Music You Love",
     "app_slug": "soundcloud",
-    "app_status": "needs_manual_review",
+    "app_status": "not_react_native_detected",
     "build_count": 12,
     "confidence": "low",
     "end_app_build": "1259079",
@@ -1281,7 +1281,7 @@
   {
     "app_name": "SoundCloud: The Music You Love",
     "app_slug": "soundcloud",
-    "app_status": "needs_manual_review",
+    "app_status": "not_react_native_detected",
     "build_count": 10,
     "confidence": "unknown",
     "end_app_build": "355060",
