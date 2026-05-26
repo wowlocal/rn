@@ -319,14 +319,17 @@
       "android_history_source": "APKPure history page for package com.microsoft.office.outlook",
       "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 951937596 and bundle ID com.microsoft.Office.Outlook; Google Play and APKPure identify Android package com.microsoft.office.outlook.",
-      "last_completed_step": "version_lists_fetched",
+      "last_completed_step": "source_limited_android_sampling",
       "reports_path": "reports/microsoft-outlook",
       "version_list_path": "reports/microsoft-outlook/version-list.json",
       "version_list_error_path": "reports/microsoft-outlook/version-list-error.json",
       "android_version_list_path": "reports/microsoft-outlook/android-version-list.json",
+      "status": "needs_manual_review",
       "android_version_count": 10,
       "oldest_android_version_code": "82504829",
       "newest_android_version_code": "72619117",
+      "sampled_android_package_count": 10,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Microsoft Outlook --format json and Apple iTunes lookup for App Store ID 951937596 returned bundle ID com.microsoft.Office.Outlook, app name Microsoft Outlook, seller Microsoft Corporation, and current listed version 5.2619.0.",
@@ -334,7 +337,10 @@
         "APKPure Android history URL identified: https://apkpure.net/microsoft-outlook/com.microsoft.office.outlook/versions.",
         "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID and bundle ID returned Apple's generic unknown error; ipatool purchase failed with unsupported protocol scheme.",
         "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from source dates 2025-02-24 through 2026-05-23; source page appears to expose a limited history.",
-        "Android versionCode values are not monotonic with APKPure source dates in the fetched Outlook catalog, so date ordering must be reviewed when summarizing Android ranges."
+        "Android versionCode values are not monotonic with APKPure source dates in the fetched Outlook catalog, so date ordering must be reviewed when summarizing Android ranges.",
+        "Android sampling downloaded and analyzed all 10 visible APKPure entries. Every sampled package exposes React Native-related native-library metadata, including Hermes/JSI and either libreactnative.so or libreactnativejni.so.",
+        "The current analyzer reports the accessible Android window from 4.2504.2 through 5.2619.0 as RN-present but unknown version, because bundle-like assets did not expose usable React Native version markers.",
+        "Marked needs_manual_review because APKPure is sparse/source-limited, iOS version-list access is blocked, Android versionCode ordering is non-monotonic, and no RN version boundary can be inferred from the accessible packages."
       ]
     }
   ]

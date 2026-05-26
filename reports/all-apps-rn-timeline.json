@@ -538,5 +538,23 @@
     "start_app_version": "14.1.27",
     "start_build_timestamp": "2026-01-14",
     "start_external_version_id": "140100270"
+  },
+  {
+    "app_name": "Microsoft Outlook",
+    "app_slug": "microsoft-outlook",
+    "app_status": "needs_manual_review",
+    "build_count": 10,
+    "confidence": "low",
+    "end_app_build": "72619117",
+    "end_app_version": "5.2619.0",
+    "end_build_timestamp": "2026-05-23",
+    "end_external_version_id": "72619117",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "82504829",
+    "start_app_version": "4.2504.2",
+    "start_build_timestamp": "2025-02-24",
+    "start_external_version_id": "82504829"
   }
 ]

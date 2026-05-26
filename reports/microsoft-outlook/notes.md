@@ -6,7 +6,7 @@
 - App Store ID: 951937596
 - iOS bundle ID: com.microsoft.Office.Outlook
 - Android package: com.microsoft.office.outlook
-- Status: version_list_fetched
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -32,6 +32,32 @@
 - APKPure currently exposes a limited visible history on the fetched page.
 - Android versionCode values are not monotonic with APKPure source dates in the fetched Outlook catalog, so date ordering must be reviewed when summarizing Android ranges.
 
+## Android Sampling
+
+- Android sampling date: 2026-05-26
+- Android packages downloaded and analyzed: 10
+- Android package source: APKPure visible catalog
+- Android RN markers detected: yes, through native-library metadata in every sampled package.
+- Exposed React Native native-library metadata includes Hermes/JSI and either `libreactnative.so` or `libreactnativejni.so`.
+- Bundle-like assets were present but did not expose usable React Native version markers such as `react-native-renderer` or `ReactNativeVersion`.
+- Current Android RN inference: unknown version, low confidence.
+- Android reports: `reports/microsoft-outlook/android-versions.csv`, `reports/microsoft-outlook/android-ranges.csv`, and empty `reports/microsoft-outlook/android-transitions.json`.
+- iOS sampling was not performed because iOS version-list access is blocked.
+
+## Provisional Ranges
+
+| Platform | RN guess | Confidence | Start | End | Builds |
+|---|---|---|---|---|---:|
+| Android | unknown | low | 4.2504.2 (`82504829`), APKPure date `2025-02-24` | 5.2619.0 (`72619117`), APKPure date `2026-05-23` | 10 |
+
+## Open Gaps
+
+- APKPure remains sparse/source-limited and exposes only 10 visible rows across the sampled window.
+- iOS version-list access remains blocked by App Store errors, so no iOS cross-check is available.
+- Android versionCode values are non-monotonic with source dates in this catalog, so source publish dates must be used when reviewing the Android timeline.
+- No RN version boundary was observed because the sampled Android packages expose RN native libraries but no usable RN version markers.
+- Disk cleanup was not performed after Android sampling because `apks/microsoft-outlook` used about 1.6 GiB and the filesystem still had 218 GiB available.
+
 ## Next Step
 
-Download and analyze the visible Android packages first; use iOS IPAs only if iOS version-list access becomes available.
+Manual review should use a more complete Android package history or targeted iOS IPAs, if iOS version-list access becomes available, to identify a RN version band or upgrade boundary.
