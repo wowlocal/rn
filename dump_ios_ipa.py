@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install an authorized IPA on a jailbroken iPhone and dump it with iDump.
+"""Install an authorized IPA on a jailbroken iPhone and dump a decrypted IPA.
 
 The script is intentionally conservative: a dumped IPA is accepted as decrypted
 evidence only when the dumped bundle metadata matches the source IPA and the
@@ -32,6 +32,8 @@ DEFAULT_IDUMP = REPO_ROOT / "tmp" / "idump" / "idump"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "tmp" / "ios-dumps"
 DEFAULT_IDUMP_VERSION = "v1.1.1"
 DEFAULT_IDUMP_FRIDA = "17.9.11"
+DEFAULT_EXTRACTOR_SCRIPT = REPO_ROOT / "tmp" / "tools" / "frida-ipa-extract" / "extract.py"
+DEFAULT_EXTRACTOR_PYTHON = REPO_ROOT / "tmp" / "frida-venv" / "bin" / "python"
 REMOTE_PATH = "/var/jb/usr/local/bin:/var/jb/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 
@@ -208,6 +210,41 @@ def idump_path(args: argparse.Namespace) -> Path:
     return DEFAULT_IDUMP
 
 
+def frida_ipa_extract_python(args: argparse.Namespace) -> Path:
+    if args.extractor_python:
+        return Path(args.extractor_python)
+    if DEFAULT_EXTRACTOR_PYTHON.exists():
+        return DEFAULT_EXTRACTOR_PYTHON
+    return Path(sys.executable)
+
+
+def frida_ipa_extract_command(args: argparse.Namespace) -> list[str]:
+    if args.extractor:
+        extractor = Path(args.extractor)
+        if extractor.name.endswith(".py"):
+            return [str(frida_ipa_extract_python(args)), str(extractor)]
+        return [str(extractor)]
+    found = shutil.which("frida-ipa-extract")
+    if found:
+        return [found]
+    if DEFAULT_EXTRACTOR_SCRIPT.exists():
+        return [str(frida_ipa_extract_python(args)), str(DEFAULT_EXTRACTOR_SCRIPT)]
+    raise RuntimeError(
+        "frida-ipa-extract not found. Install it or pass --extractor /path/to/extract.py."
+    )
+
+
+def resolve_dump_method(args: argparse.Namespace) -> str:
+    if args.method != "auto":
+        return args.method
+    has_frida_ipa_extract = (
+        args.extractor
+        or DEFAULT_EXTRACTOR_SCRIPT.exists()
+        or shutil.which("frida-ipa-extract")
+    )
+    return "frida-ipa-extract" if has_frida_ipa_extract else "idump"
+
+
 def download_idump(destination: Path) -> None:
     system = platform.system().lower()
     machine = platform.machine().lower()
@@ -249,6 +286,12 @@ def maybe_prepare_app(args: argparse.Namespace, password: str | None, metadata: 
 
 
 def dump_with_idump(args: argparse.Namespace, metadata: dict[str, Any], idump: Path, output_ipa: Path) -> subprocess.CompletedProcess[str]:
+    command = idump_dump_command(args, metadata, idump, output_ipa)
+    output_ipa.parent.mkdir(parents=True, exist_ok=True)
+    return run(command)
+
+
+def idump_dump_command(args: argparse.Namespace, metadata: dict[str, Any], idump: Path, output_ipa: Path) -> list[str]:
     bundle_id = args.bundle_id or metadata.get("bundle_id")
     if not bundle_id:
         raise RuntimeError("cannot determine bundle id; pass --bundle-id")
@@ -258,8 +301,30 @@ def dump_with_idump(args: argparse.Namespace, metadata: dict[str, Any], idump: P
     for extra in args.idump_arg:
         command.append(extra)
     command.append(str(bundle_id))
+    return command
+
+
+def dump_with_frida_ipa_extract(
+    args: argparse.Namespace,
+    metadata: dict[str, Any],
+    output_ipa: Path,
+) -> subprocess.CompletedProcess[str]:
+    command = frida_ipa_extract_dump_command(args, metadata, output_ipa)
     output_ipa.parent.mkdir(parents=True, exist_ok=True)
     return run(command)
+
+
+def frida_ipa_extract_dump_command(args: argparse.Namespace, metadata: dict[str, Any], output_ipa: Path) -> list[str]:
+    bundle_id = args.bundle_id or metadata.get("bundle_id")
+    if not bundle_id:
+        raise RuntimeError("cannot determine bundle id; pass --bundle-id")
+    command = frida_ipa_extract_command(args)
+    command.extend(["-U", "-f", str(bundle_id), "-o", str(output_ipa)])
+    if args.no_resume:
+        command.append("--no-resume")
+    for extra in args.extractor_arg:
+        command.append(extra)
+    return command
 
 
 def main_executable_cryptid(ipa: Path, metadata: dict[str, Any]) -> dict[str, Any]:
@@ -307,38 +372,73 @@ def metadata_matches(source: dict[str, Any], dumped: dict[str, Any]) -> dict[str
     return {key: bool(source.get(key) and source.get(key) == dumped.get(key)) for key in keys}
 
 
-def default_output_path(args: argparse.Namespace, metadata: dict[str, Any]) -> Path:
+def default_output_path(args: argparse.Namespace, metadata: dict[str, Any], method: str) -> Path:
     if args.output:
         return Path(args.output)
     name = "_".join(
         safe_part(str(metadata.get(key) or "unknown"))
         for key in ("bundle_id", "version", "build")
     )
-    return Path(args.output_dir) / f"{name}_idump.ipa"
+    return Path(args.output_dir) / f"{name}_{safe_part(method)}.ipa"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Install an IPA on a jailbroken iPhone and dump it with iDump.",
+        description="Install an IPA on a jailbroken iPhone and dump a decrypted IPA.",
     )
     parser.add_argument("ipa", type=Path, help="Authorized source IPA to install and dump")
+    parser.add_argument(
+        "--method",
+        choices=("auto", "frida-ipa-extract", "idump"),
+        default="auto",
+        help="Dump implementation to use",
+    )
     parser.add_argument("--host", default="127.0.0.1", help="SSH host for the phone")
     parser.add_argument("--port", type=int, default=2222, help="SSH port for the phone")
     parser.add_argument("--user", default="mobile", help="SSH user")
     parser.add_argument("--password-env", default="IOS_SSH_PASSWORD", help="Environment variable containing SSH password")
     parser.add_argument("--ask-pass", action="store_true", help="Prompt for SSH password")
     parser.add_argument("--idump", help="Path to idump binary; defaults to tmp/idump/idump or PATH")
-    parser.add_argument("--download-idump", action="store_true", help="Download iDump into tmp/idump/idump if missing")
+    parser.add_argument(
+        "--download-idump",
+        action="store_true",
+        help="Download iDump into tmp/idump/idump if using iDump and missing",
+    )
+    parser.add_argument("--extractor", help="Path to frida-ipa-extract command or extract.py")
+    parser.add_argument("--extractor-python", help="Python interpreter for --extractor extract.py")
+    parser.add_argument(
+        "--extractor-arg",
+        action="append",
+        default=[],
+        help="Extra argument passed to frida-ipa-extract; repeatable",
+    )
+    parser.add_argument(
+        "--resume-after-spawn",
+        dest="no_resume",
+        action="store_false",
+        help="Do not pass --no-resume to frida-ipa-extract",
+    )
+    parser.set_defaults(no_resume=True)
     parser.add_argument("--bundle-id", help="Override bundle identifier")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Directory for dumped IPA")
     parser.add_argument("--output", type=Path, help="Exact dumped IPA output path")
     parser.add_argument("--report", type=Path, help="JSON verification report path; defaults next to output IPA")
     parser.add_argument("--skip-install", action="store_true", help="Dump currently installed app without installing IPA")
-    parser.add_argument("--no-kill-before-dump", dest="kill_before_dump", action="store_false", help="Do not kill the app before iDump")
+    parser.add_argument(
+        "--no-kill-before-dump",
+        dest="kill_before_dump",
+        action="store_false",
+        help="Do not kill the app before dumping",
+    )
     parser.set_defaults(kill_before_dump=True)
     parser.add_argument("--prelaunch", action="store_true", help="Launch app with uiopen before iDump")
     parser.add_argument("--launch-wait", type=int, default=3, help="Seconds to wait after --prelaunch")
-    parser.add_argument("--dodge", choices=("none", "basic", "advanced"), default="none", help="Pass iDump anti-Frida bypass mode")
+    parser.add_argument(
+        "--dodge",
+        choices=("none", "basic", "advanced"),
+        default="none",
+        help="Pass iDump anti-Frida bypass mode; iDump only",
+    )
     parser.add_argument("--idump-arg", action="append", default=[], help="Extra argument passed to iDump; repeatable")
     parser.add_argument("--keep-remote-temp", action="store_true", help="Do not delete remote temp dir after install")
     parser.add_argument("--allow-encrypted-output", action="store_true", help="Exit 0 even if cryptid is not 0")
@@ -360,34 +460,27 @@ def main() -> int:
     source_metadata = ipa_metadata(ipa)
     if args.bundle_id:
         source_metadata["bundle_id"] = args.bundle_id
+    method = resolve_dump_method(args)
     source = {
         **source_metadata,
         "path": str(ipa),
         "size": ipa.stat().st_size,
         "sha256": sha256(ipa),
     }
-    output_ipa = default_output_path(args, source_metadata).resolve()
+    output_ipa = default_output_path(args, source_metadata, method).resolve()
     report_path = (args.report or output_ipa.with_suffix(output_ipa.suffix + ".json")).resolve()
-    idump = idump_path(args).resolve()
+    idump = idump_path(args).resolve() if method == "idump" else None
 
-    print(json.dumps({"source": source, "output_ipa": str(output_ipa), "report": str(report_path)}, indent=2), flush=True)
+    print(json.dumps({"source": source, "method": method, "output_ipa": str(output_ipa), "report": str(report_path)}, indent=2), flush=True)
     if args.dry_run:
         return 0
 
-    if args.download_idump and not idump.exists():
-        download_idump(idump)
-    if not idump.exists():
-        print(f"iDump not found: {idump}. Pass --idump or use --download-idump.", file=sys.stderr)
-        return 2
-    if not os.access(idump, os.X_OK):
-        idump.chmod(idump.stat().st_mode | 0o111)
-
     remote_dir: str | None = None
-    idump_result: subprocess.CompletedProcess[str] | None = None
+    dump_result: subprocess.CompletedProcess[str] | None = None
     report: dict[str, Any] = {
         "source": source,
         "device": {"host": args.host, "port": args.port, "user": args.user},
-        "idump": {"path": str(idump)},
+        "dumper": {"method": method},
         "output": {"path": str(output_ipa)},
         "verification": {},
     }
@@ -396,12 +489,26 @@ def main() -> int:
             ensure_tools(args, password)
             remote_dir = install_ipa(args, password, ipa)
             maybe_prepare_app(args, password, source_metadata)
-            idump_result = dump_with_idump(args, source_metadata, idump, output_ipa)
+            if method == "frida-ipa-extract":
+                report["dumper"]["command"] = frida_ipa_extract_dump_command(args, source_metadata, output_ipa)
+                dump_result = dump_with_frida_ipa_extract(args, source_metadata, output_ipa)
+            else:
+                if idump is None:
+                    raise RuntimeError("internal error: iDump path was not initialized")
+                if args.download_idump and not idump.exists():
+                    download_idump(idump)
+                if not idump.exists():
+                    raise RuntimeError(f"iDump not found: {idump}. Pass --idump or use --download-idump.")
+                if not os.access(idump, os.X_OK):
+                    idump.chmod(idump.stat().st_mode | 0o111)
+                report["dumper"]["path"] = str(idump)
+                report["dumper"]["command"] = idump_dump_command(args, source_metadata, idump, output_ipa)
+                dump_result = dump_with_idump(args, source_metadata, idump, output_ipa)
         except CommandError as exc:
             if exc.result:
-                report["idump"]["stdout"] = exc.result.stdout
-                report["idump"]["stderr"] = exc.result.stderr
-                report["idump"]["returncode"] = exc.result.returncode
+                report["dumper"]["stdout"] = exc.result.stdout
+                report["dumper"]["stderr"] = exc.result.stderr
+                report["dumper"]["returncode"] = exc.result.returncode
             report["verification"]["accepted_decrypted_evidence"] = False
             report["verification"]["error"] = str(exc)
             report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -412,14 +519,14 @@ def main() -> int:
         if remote_dir and not args.keep_remote_temp:
             ssh(args, password, f"rm -rf {shlex.quote(remote_dir)}", check=False)
 
-    if idump_result:
-        report["idump"]["stdout"] = idump_result.stdout
-        report["idump"]["stderr"] = idump_result.stderr
-        report["idump"]["returncode"] = idump_result.returncode
+    if dump_result:
+        report["dumper"]["stdout"] = dump_result.stdout
+        report["dumper"]["stderr"] = dump_result.stderr
+        report["dumper"]["returncode"] = dump_result.returncode
 
     if not output_ipa.exists():
         report["verification"]["accepted_decrypted_evidence"] = False
-        report["verification"]["error"] = "iDump did not create output IPA"
+        report["verification"]["error"] = "dumper did not create output IPA"
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(json.dumps(report, indent=2) + "\n")
         print(f"Report: {report_path}", file=sys.stderr)
