@@ -7,20 +7,16 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 3
-- Queued: 1
+- Queued: 0
 - In progress: 0
 - Needs manual review: 5
-- Skipped: 2
+- Skipped: 3
 
 ## Analyzed Apps
 
 - Discord: 475 iOS external versions; reports in `reports/discord`
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
-
-## Queued Apps
-
-- Kraken: App Store ID 1481947260; bundle ID com.kraken.invest.app
 
 ## Manual Review Apps
 
@@ -34,6 +30,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Facebook: Registered for analysis on 2026-05-25.; RN usage was not verified because ipatool list-versions failed before sampling.; ipatool list-versions failed for both app ID 284882215 and bundle ID com.facebook.Facebook with Apple's generic unknown error.; ipatool purchase also failed with unsupported protocol scheme before a license could be obtained.
 - Base: Formerly Coinbase Wallet: Registered for analysis on 2026-05-26.; Current iOS/App Store branding source: Apple iTunes lookup for App Store ID 1278383455 returned app name Base: Built to Trade & Earn, seller Coinbase Wallet, bundle ID org.toshi.distribution, and current listed version 29.96.; ipatool search Coinbase Wallet --format json returned App Store ID 1278383455, bundle ID org.toshi.distribution, and localized app name Base: Formerly Coinbase Wallet.; Android package source: Google Play, AppBrain, and WalletScrutiny identify package org.toshi for Base/formerly Coinbase Wallet.; APKPure history URLs for org.toshi returned HTTP 410 Gone, so no APKPure version catalog is available at registration time.; iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID and bundle ID requires an App Store license; ipatool purchase failed with unsupported protocol scheme.; Skipped because neither iOS version history nor a usable Android package-history source is available through the current automated tools.
+- Kraken: Registered for analysis on 2026-05-26.; iOS identifier source: Apple iTunes lookup for App Store ID 1481947260 returned bundle ID com.kraken.invest.app, app name Kraken: Buy Crypto & Stocks, seller Payward, Inc., and current listed version 3.65.0.; Android package source: Google Play, AppBrain, and AppRecs identify package com.kraken.invest.app.; APKPure history URLs for com.kraken.invest.app returned HTTP 410 Gone, so no APKPure Android version catalog is available at registration time.; ipatool search Kraken did not surface the finance app in the current localized search results; App Store ID was resolved from the public App Store URL and Apple iTunes lookup.; iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID requires an App Store license; bundle-ID purchase and list attempts for com.kraken.invest.app returned app not found.; Skipped because neither iOS version history nor a usable Android package-history source is available through the current automated tools.
 
 ## RN Ranges
 

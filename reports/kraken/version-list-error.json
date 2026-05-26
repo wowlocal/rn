@@ -1,0 +1,21 @@
+{
+  "attempted_at": "2026-05-26T03:08:31+03:00",
+  "attempts": [
+    {
+      "command": "ipatool list-versions --app-id 1481947260 --format json",
+      "error": "license is required",
+      "success": false
+    },
+    {
+      "command": "ipatool purchase --bundle-identifier com.kraken.invest.app --format json",
+      "error": "app not found",
+      "success": false
+    },
+    {
+      "command": "ipatool list-versions --bundle-identifier com.kraken.invest.app --format json",
+      "error": "app not found",
+      "success": false
+    }
+  ],
+  "schema_version": 1
+}
