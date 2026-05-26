@@ -1,0 +1,14 @@
+[
+  {
+    "from_rn_guess": "0.79.x",
+    "from_app_version": "10.2605.0",
+    "from_app_build": "220442",
+    "from_external_version_id": "882018171",
+    "from_build_timestamp": "2026-01-30T00:12:14",
+    "to_rn_guess": "0.82.x or newer",
+    "to_app_version": "10.2606.0",
+    "to_app_build": "222553",
+    "to_external_version_id": "882242969",
+    "to_build_timestamp": "2026-02-06T21:22:24"
+  }
+]

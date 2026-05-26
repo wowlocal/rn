@@ -182,13 +182,14 @@
       "android_history_source": "APKPure history page for package com.shopify.mobile",
       "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search Shopify resolved App Store ID 371294472 and bundle ID com.jadedpixel.shopify; APKPure and Google Play identify Android package com.shopify.mobile.",
-      "last_completed_step": "source_limited_boundary_refinement",
+      "last_completed_step": "ios_boundary_and_latest_decrypted_sampling",
       "reports_path": "reports/shopify",
       "version_list_path": "reports/shopify/version-list.json",
       "android_version_list_path": "reports/shopify/android-version-list.json",
       "external_version_count": 508,
       "oldest_external_version_id": "821337490",
       "newest_external_version_id": "886020173",
+      "sampled_ios_package_count": 12,
       "android_version_count": 24,
       "oldest_android_version_code": "193814",
       "newest_android_version_code": "281050",
@@ -202,7 +203,9 @@
         "Android APKPure catalog fetched on 2026-05-26 and expanded with parseable direct pages: 24 entries from versionCode 193814 through 281050; source page appears to expose a limited history.",
         "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Boundary refinement expanded that to 24 APKPure entries, including older parseable direct pages.",
         "Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so. The current analyzer reports Android source-limited bands: 10.2543.0 through 10.2605.0 as 0.79.x medium-confidence, and 10.2606.1 through 10.2620.0 as 0.60.x medium-confidence.",
-        "Marked needs_manual_review because APKPure is sparse/source-limited, iOS has not been sampled, and the apparent 0.79.x -> 0.60.x Android transition is not trustworthy enough to treat as a definitive app-wide RN downgrade without stronger package evidence."
+        "Targeted iOS sampling downloaded and analyzed 12 IPAs. iOS reports 9.2523.0 through 10.2605.0 as RN 0.79.x with renderer 19.0.0, then 10.2606.0 through 10.2621.0 as RN 0.82.x or newer with low confidence because ReactNativeVersion is present but no renderer marker is exposed.",
+        "Accepted iOS decrypted dump for 10.2621.0 (282789, external ID 886020173). The dump has main executable cryptid 0 and main_only_decrypted coverage; analysis preserves the 0.82.x-or-newer JS inference and exposes native React Native/Hermes/JSI/Yoga markers.",
+        "Marked needs_manual_review because APKPure is sparse/source-limited and its apparent 0.79.x -> 0.60.x Android transition conflicts with the exact iOS 10.2605.0 -> 10.2606.0 transition to 0.82.x-or-newer evidence."
       ]
     },
     {

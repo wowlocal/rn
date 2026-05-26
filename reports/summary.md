@@ -25,7 +25,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Threads: last completed `ios_decrypted_boundary_sampling`; reports in `reports/threads`
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
-- Shopify: last completed `source_limited_boundary_refinement`; reports in `reports/shopify`
+- Shopify: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/shopify`
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
 - Coinbase: last completed `source_limited_android_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
@@ -92,6 +92,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Meta Horizon | android | 0.78.x | 19.0.0 | high |  | 287.3.0.33.109 (651148422) | 287.3.0.33.109 (651148422) | 1 |
 | Meta Horizon | android | 0.60.x |  | medium |  | 341.0.0.17.107 (806319963) | 349.2.0.46.104 (844730700) | 11 |
 | Meta Horizon | android | <=0.59.x |  | medium |  | 360.0.0.23.322 (892081967) | 372.0.1.34.252 (975394013) | 18 |
+| Shopify | ios | 0.79.x | 19.0.0 | medium |  | 9.2523.0 (138977) | 10.2605.0 (220442) | 8 |
+| Shopify | ios | 0.82.x or newer |  | low |  | 10.2606.0 (222553) | 10.2621.0 (282789) | 4 |
 | Shopify | android | 0.79.x | 19.0.0 | medium |  | 10.2543.0 (193814) | 10.2605.0 (220449) | 8 |
 | Shopify | android | 0.60.x |  | medium |  | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
 | Shop | android | 0.79.x | 19.0.0 | medium |  | 2.231.0 (3319531) | 2.239.0 (3372633) | 11 |
@@ -181,6 +183,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Threads | android | unknown | unknown | 382.0.0.51.85 (505205644) | 400.0.0.38.68 (507007017) | 0 | false |
 | Meta Horizon | android | 0.78.x | 0.60.x | 287.3.0.33.109 (651148422) | 341.0.0.17.107 (806319963) | 0 | false |
 | Meta Horizon | android | 0.60.x | <=0.59.x | 349.2.0.46.104 (844730700) | 360.0.0.23.322 (892081967) | 0 | false |
+| Shopify | ios | 0.79.x | 0.82.x or newer | 10.2605.0 (220442) | 10.2606.0 (222553) | 0 | true |
 | Shopify | android | 0.79.x | 0.60.x | 10.2605.0 (220449) | 10.2606.1 (223088) | 0 | false |
 | Shop | android | 0.79.x | 0.81.x | 2.239.0 (3372633) | 2.240.0 (3376891) | 0 | false |
 | Pinterest | ios | unknown | <=0.59.x | 6.36.1 (1) | 6.37 (4) | 0 | true |
@@ -215,6 +218,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 41
+- Exact by transition IDs: 42
 - Approximate by transition IDs: 21
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.
