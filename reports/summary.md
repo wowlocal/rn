@@ -7,8 +7,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 6
-- Queued: 1
-- In progress: 0
+- Queued: 0
+- In progress: 1
 - Needs manual review: 14
 - No RN detected: 2
 - Skipped: 3
@@ -22,9 +22,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
 - Mattermost: 175 iOS external versions; reports in `reports/mattermost`
 
-## Queued Apps
+## In Progress Apps
 
-- Bluesky Social: App Store ID 6444370199; bundle ID xyz.blueskyweb.app
+- Bluesky Social: status `version_lists_fetched`; last completed `version_list_fetch`; reports in `reports/bluesky`
 
 ## Manual Review Apps
 

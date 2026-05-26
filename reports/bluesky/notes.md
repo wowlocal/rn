@@ -6,7 +6,7 @@
 - App Store ID: 6444370199
 - iOS bundle ID: xyz.blueskyweb.app
 - Android package: xyz.blueskyweb.app
-- Status: queued
+- Status: version_lists_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -20,4 +20,21 @@
 
 ## Next Step
 
-Fetch iOS and Android version lists.
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 6444370199 --format json`.
+- iOS app-ID version list result: failed because App Store license is required.
+- Bundle-ID iOS version list fetch for `xyz.blueskyweb.app` also failed because App Store license is required.
+- `ipatool purchase --bundle-identifier xyz.blueskyweb.app --format json` failed with `unsupported protocol scheme`.
+- Raw iOS version-list errors: `reports/bluesky/version-list-error.json`, `reports/bluesky/version-list-bundle-error.json`, and `reports/bluesky/purchase-error.json`.
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the catalog: `795` (`1.114.0`)
+- Newest Android versionCode in the catalog: `980` (`1.121.0`)
+- Raw Android version catalog: `reports/bluesky/android-version-list.json`
+- Source-specific APKPure catalog: `reports/bluesky/android-version-list-apkpure.json`
+- APKPure exposes a source-limited visible version catalog; missing Android versions should be treated as source limitations, not absence of releases.
+
+## Next Step
+
+Sample Android packages first because iOS version history is license-blocked.

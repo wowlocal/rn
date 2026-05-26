@@ -847,17 +847,27 @@
       "bundle_id": "xyz.blueskyweb.app",
       "android_package": "xyz.blueskyweb.app",
       "android_history_source": "APKPure versions page for package xyz.blueskyweb.app",
-      "status": "queued",
+      "status": "version_lists_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 6444370199 and bundle ID xyz.blueskyweb.app; Google Play and APKPure identify Android package xyz.blueskyweb.app.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/bluesky",
+      "version_list_error_path": "reports/bluesky/version-list-error.json",
+      "version_list_bundle_error_path": "reports/bluesky/version-list-bundle-error.json",
+      "purchase_error_path": "reports/bluesky/purchase-error.json",
+      "android_version_list_path": "reports/bluesky/android-version-list.json",
+      "android_version_list_apkpure_path": "reports/bluesky/android-version-list-apkpure.json",
+      "android_version_count": 10,
+      "oldest_android_version_code": "795",
+      "newest_android_version_code": "980",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Bluesky --format json returned App Store ID 6444370199, bundle ID xyz.blueskyweb.app, app name Bluesky Social, and current listed version 1.121.0.",
         "iOS identifier source: Apple iTunes lookup for App Store ID 6444370199 returned bundle ID xyz.blueskyweb.app, app name Bluesky Social, seller Bluesky PBLLC, current US listed version 1.121.0, and release date 2026-04-22T22:32:35Z.",
         "App Store URL: https://apps.apple.com/us/app/bluesky-social/id6444370199.",
         "Android package source: Google Play identifies package xyz.blueskyweb.app and returned HTTP 200.",
-        "APKPure Android history URL identified: https://apkpure.net/bluesky/xyz.blueskyweb.app/versions returned HTTP 200."
+        "APKPure Android history URL identified: https://apkpure.net/bluesky/xyz.blueskyweb.app/versions returned HTTP 200.",
+        "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID and bundle ID requires an App Store license; ipatool purchase by bundle ID failed with unsupported protocol scheme.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 795 through 980; source page appears to expose a limited history."
       ]
     }
   ]
