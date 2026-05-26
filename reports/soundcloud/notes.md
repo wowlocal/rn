@@ -6,7 +6,7 @@
 - App Store ID: 336353151
 - iOS bundle ID: com.soundcloud.TouchApp
 - Android package: com.soundcloud.android
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -22,4 +22,20 @@
 
 ## Next Step
 
-Fetch iOS and Android version catalogs. Prefer Android sampling first if APKPure exposes downloadable historical packages.
+## Version Lists
+
+- iOS version list fetched on 2026-05-26 with `ipatool list-versions --app-id 336353151`.
+- iOS external version IDs available: 645
+- Oldest iOS external version ID: `2053200`
+- Newest iOS external version ID: `885918024`
+- Raw iOS version list: `reports/soundcloud/version-list.json`
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the APKPure catalog: `348060` (`2026.03.27-release`)
+- Newest Android versionCode in the APKPure catalog: `355060` (`2026.05.15-release`)
+- Raw Android version catalog: `reports/soundcloud/android-version-list.json`
+- APKPure currently exposes a limited visible history on the fetched page.
+
+## Next Step
+
+Sample the visible Android APKPure catalog first because Android packages should expose RN markers more directly if present.

@@ -563,12 +563,18 @@
       "bundle_id": "com.soundcloud.TouchApp",
       "android_package": "com.soundcloud.android",
       "android_history_source": "APKPure versions page for package com.soundcloud.android",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search resolved App Store ID 336353151 and bundle ID com.soundcloud.TouchApp; Apple iTunes lookup confirmed current US listing; Google Play and APKPure identify Android package com.soundcloud.android.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/soundcloud",
       "version_list_path": "reports/soundcloud/version-list.json",
       "android_version_list_path": "reports/soundcloud/android-version-list.json",
+      "external_version_count": 645,
+      "oldest_external_version_id": "2053200",
+      "newest_external_version_id": "885918024",
+      "android_version_count": 10,
+      "oldest_android_version_code": "348060",
+      "newest_android_version_code": "355060",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search SoundCloud --format json returned App Store ID 336353151, bundle ID com.soundcloud.TouchApp, localized app name SoundCloud - музыка и звук, and current listed version 8.61.0.",
@@ -577,7 +583,9 @@
         "Android package source: Google Play and APKPure identify package com.soundcloud.android.",
         "APKPure Android history URL identified: https://apkpure.net/sound-cloud-android-app/com.soundcloud.android/versions.",
         "APKPure .com versions URL returned HTTP 403, but the APKPure .net versions URL returned HTTP 200.",
-        "AndroidAPKsFree guessed old versions URL for package com.soundcloud.android returned HTTP 404."
+        "AndroidAPKsFree guessed old versions URL for package com.soundcloud.android returned HTTP 404.",
+        "iOS version list fetched on 2026-05-26: 645 external version IDs from 2053200 through 885918024.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 348060 through 355060; source page appears to expose a limited history."
       ]
     }
   ]
