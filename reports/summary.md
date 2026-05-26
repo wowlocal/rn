@@ -70,10 +70,19 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Facebook Messenger | ios | <=0.59.x |  | medium |  | 92.0 (41023043) | 147.0 (84235609) | 7 |
 | Facebook Messenger | ios | unknown |  | low |  | 148.0 (86952252) | 562.0.0 (975021560) | 12 |
 | Instagram | ios | unknown |  | low |  |  (1.8.7) | 9.7.0 (43028597) | 9 |
-| Instagram | ios | <=0.59.x |  | medium |  | 10.0.0 (44114773) | 90.0 (150975176) | 6 |
-| Instagram | ios | 0.60.x |  | medium |  | 91.0 (151989260) | 105.0 (165586599) | 5 |
-| Instagram | ios | 0.61.x |  | medium |  | 106.0 (166752244) | 113.0 (174653610) | 5 |
-| Instagram | ios | unknown |  | low |  | 114.0 (176133011) | 430.0.0 (972915403) | 9 |
+| Instagram | ios | <=0.59.x |  | medium |  | 10.0.0 (44114773) | 10.10.0 (50667367) | 3 |
+| Instagram | ios | <=0.59.x | 16.4.1 | medium |  | 58.0 (120248682) | 58.0 (120248682) | 1 |
+| Instagram | ios | <=0.59.x | 16.8.3 | medium |  | 89.0 (149781277) | 90.0 (150975176) | 2 |
+| Instagram | ios | 0.60.x | 16.8.3 | medium |  | 91.0 (151989260) | 92.0 (152826666) | 2 |
+| Instagram | ios | 0.60.x | 16.8.6 | medium |  | 96.1 (157574695) | 105.0 (165586599) | 3 |
+| Instagram | ios | 0.61.x | 16.8.6 | medium |  | 106.0 (166752244) | 115.0 (177195845) | 7 |
+| Instagram | ios | 0.61.x | 16.10.2 | medium |  | 118.0 (180988914) | 118.0 (180988914) | 1 |
+| Instagram | ios | 0.64.x |  | medium |  | 177.0 (275424340) | 177.0 (275424340) | 1 |
+| Instagram | ios | 0.69.x-0.70.x |  | medium |  | 236.1 (372089098) | 236.1 (372089098) | 1 |
+| Instagram | ios | 0.71.x |  | medium |  | 290.1 (491279855) | 290.1 (491279855) | 1 |
+| Instagram | ios | 0.78.x | 19.0.0 | high |  | 340.0.10 (622957927) | 340.0.10 (622957927) | 1 |
+| Instagram | ios | 0.83.x | 19.2.0 | medium |  | 385.0.0 (748614773) | 385.0.0 (748614773) | 1 |
+| Instagram | ios | unknown |  | low |  | 430.0.0 (972915403) | 430.0.0 (972915403) | 1 |
 | Threads | ios | unknown |  | low |  | 289.0 (489338310) | 431.0.0 (979167741) | 12 |
 | Threads | android | unknown |  | low |  | 374.0.0.43.110 (504412928) | 382.0.0.51.85 (505205644) | 2 |
 | Threads | android | unknown |  | unknown |  | 400.0.0.38.68 (507007017) | 430.0.0.46.79 (510007506) | 10 |
@@ -151,9 +160,18 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Facebook Messenger | ios | unknown | <=0.59.x | 91.0 (40546824) | 92.0 (41023043) | 0 | true |
 | Facebook Messenger | ios | <=0.59.x | unknown | 147.0 (84235609) | 148.0 (86952252) | 0 | true |
 | Instagram | ios | unknown | <=0.59.x | 9.7.0 (43028597) | 10.0.0 (44114773) | 0 | true |
+| Instagram | ios | <=0.59.x | <=0.59.x | 10.10.0 (50667367) | 58.0 (120248682) | 71 | false |
+| Instagram | ios | <=0.59.x | <=0.59.x | 58.0 (120248682) | 89.0 (149781277) | 35 | false |
 | Instagram | ios | <=0.59.x | 0.60.x | 90.0 (150975176) | 91.0 (151989260) | 0 | true |
+| Instagram | ios | 0.60.x | 0.60.x | 92.0 (152826666) | 96.1 (157574695) | 4 | false |
 | Instagram | ios | 0.60.x | 0.61.x | 105.0 (165586599) | 106.0 (166752244) | 0 | true |
-| Instagram | ios | 0.61.x | unknown | 113.0 (174653610) | 114.0 (176133011) | 0 | true |
+| Instagram | ios | 0.61.x | 0.61.x | 115.0 (177195845) | 118.0 (180988914) | 4 | false |
+| Instagram | ios | 0.61.x | 0.64.x | 118.0 (180988914) | 177.0 (275424340) | 71 | false |
+| Instagram | ios | 0.64.x | 0.69.x-0.70.x | 177.0 (275424340) | 236.1 (372089098) | 71 | false |
+| Instagram | ios | 0.69.x-0.70.x | 0.71.x | 236.1 (372089098) | 290.1 (491279855) | 71 | false |
+| Instagram | ios | 0.71.x | 0.78.x | 290.1 (491279855) | 340.0.10 (622957927) | 72 | false |
+| Instagram | ios | 0.78.x | 0.83.x | 340.0.10 (622957927) | 385.0.0 (748614773) | 71 | false |
+| Instagram | ios | 0.83.x | unknown | 385.0.0 (748614773) | 430.0.0 (972915403) | 71 | false |
 | Threads | android | unknown | unknown | 382.0.0.51.85 (505205644) | 400.0.0.38.68 (507007017) | 0 | false |
 | Meta Horizon | android | 0.78.x | 0.60.x | 287.3.0.33.109 (651148422) | 341.0.0.17.107 (806319963) | 0 | false |
 | Meta Horizon | android | 0.60.x | <=0.59.x | 349.2.0.46.104 (844730700) | 360.0.0.23.322 (892081967) | 0 | false |
@@ -191,6 +209,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 39
-- Approximate by transition IDs: 11
+- Exact by transition IDs: 38
+- Approximate by transition IDs: 21
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

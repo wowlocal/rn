@@ -75,7 +75,7 @@
       "bundle_id": "com.burbn.instagram",
       "status": "done",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; App Store URL https://apps.apple.com/us/app/instagram/id389801252; ipatool search resolved bundle ID com.burbn.instagram.",
-      "last_completed_step": "done",
+      "last_completed_step": "ios_decrypted_boundary_and_latest_sampling",
       "reports_path": "reports/instagram",
       "version_list_path": "reports/instagram/version-list.json",
       "external_version_count": 795,
@@ -93,11 +93,13 @@
         "Third midpoint refinement found 10.0.1 RN <=0.59.x, 96.1 RN 0.60.x, and 111.0 RN 0.61.x, adding a 0.60.x -> 0.61.x window.",
         "Fourth midpoint refinement narrowed all four windows; latest known range endpoints are 9.5.1, 10.0.1, 89.0, 92.0, 104.0, 107.0, 111.0, and 115.0.",
         "Final boundary refinement downloaded the 13 remaining external version IDs across the four windows.",
-        "Boundary refinement reached exact App Store adjacency: 9.7.0 unknown -> 10.0.0 RN, 90.0 RN <=0.59.x -> 91.0 RN 0.60.x, 105.0 RN 0.60.x -> 106.0 RN 0.61.x, and 113.0 RN 0.61.x -> 114.0 unknown.",
+        "Boundary refinement reached exact App Store adjacency: 9.7.0 unknown -> 10.0.0 RN, 90.0 RN <=0.59.x -> 91.0 RN 0.60.x, and 105.0 RN 0.60.x -> 106.0 RN 0.61.x.",
+        "Analyzer support added on 2026-05-26 for zstd-compressed main.jsbundle.zst files, main.hbcbundle Hermes bytecode, and React renderer inspector markers.",
+        "Accepted iOS decrypted dumps for 114.0 (176133011, external ID 832986604) and 430.0.0 (972915403, external ID 885526725). The 114.0 dump confirms RN 0.61.x via main.jsbundle.zst with React renderer 16.8.6; the 430.0.0 dump exposes main.hbcbundle Hermes bytecode version 98 and native React Native/Hermes/JSI/Yoga markers but no version-specific RN marker.",
         "Duplicate external IDs for 91.0 and 106.0 map to the same app builds; range starts use the earliest duplicate external ID for exact App Store adjacency.",
         "Disk cleanup reviewed on 2026-05-26; no Instagram IPAs deleted because ipas/instagram used 3.7 GiB and 236 GiB remained free.",
-        "Final validation passed: scripts compile, CSV/JSON reports parse, and all four transition rows are adjacent in version-list.json.",
-        "Other sampled Instagram builds did not expose JS bundles and remain unknown from encrypted IPA inspection."
+        "Final validation passed: scripts compile, CSV/JSON reports parse, accepted dump metadata matches the intended catalog rows, and every remaining unknown row has an unknown_reason plus next_action.",
+        "Remaining unknown rows are from encrypted-native-only samples, ambiguous marker bands, or the latest decrypted build's native RN markers without a version-specific RN marker."
       ]
     },
     {
