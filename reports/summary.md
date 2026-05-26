@@ -27,7 +27,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
 - Shopify: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/shopify`
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
-- Coinbase: last completed `ios_decrypted_latest_sampling`; reports in `reports/coinbase`
+- Coinbase: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
 - Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
@@ -98,7 +98,12 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Shopify | android | 0.60.x |  | medium |  | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
 | Shop | android | 0.79.x | 19.0.0 | medium |  | 2.231.0 (3319531) | 2.239.0 (3372633) | 11 |
 | Shop | android | 0.81.x | 19.1.0 | high |  | 2.240.0 (3376891) | 2.253.0 (3451748) | 16 |
-| Coinbase | ios | 0.60.x |  | medium |  | 14.19.22 (14190022) | 14.19.22 (14190022) | 1 |
+| Coinbase | ios | 0.63.x | 16.13.0 | medium |  | 9.21.4 (92104) | 9.21.4 (92104) | 1 |
+| Coinbase | ios | 0.71.x |  | medium |  | 12.23.13 (12230013) | 12.23.13 (12230013) | 1 |
+| Coinbase | ios | 0.74.x-0.76.x |  | medium |  | 13.21.10 (13210010) | 13.21.10 (13210010) | 1 |
+| Coinbase | ios | 0.77.x |  | medium |  | 13.26.10 (13260010) | 13.31.19 (13310019) | 2 |
+| Coinbase | ios | 0.79.x | 19.0.0 | medium |  | 13.41.21 (13410021) | 13.44.24 (13440024) | 3 |
+| Coinbase | ios | 0.60.x |  | medium |  | 13.45.27 (13450027) | 14.19.22 (14190022) | 4 |
 | Coinbase | android | unknown |  | low |  | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
 | Microsoft Outlook | android | unknown |  | low |  | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
 | Microsoft Teams | android | 0.60.x |  | medium |  | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
@@ -187,6 +192,11 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Shopify | ios | 0.79.x | 0.82.x or newer | 10.2605.0 (220442) | 10.2606.0 (222553) | 0 | true |
 | Shopify | android | 0.79.x | 0.60.x | 10.2605.0 (220449) | 10.2606.1 (223088) | 0 | false |
 | Shop | android | 0.79.x | 0.81.x | 2.239.0 (3372633) | 2.240.0 (3376891) | 0 | false |
+| Coinbase | ios | 0.63.x | 0.71.x | 9.21.4 (92104) | 12.23.13 (12230013) | 176 | false |
+| Coinbase | ios | 0.71.x | 0.74.x-0.76.x | 12.23.13 (12230013) | 13.21.10 (13210010) | 49 | false |
+| Coinbase | ios | 0.74.x-0.76.x | 0.77.x | 13.21.10 (13210010) | 13.26.10 (13260010) | 4 | false |
+| Coinbase | ios | 0.77.x | 0.79.x | 13.31.19 (13310019) | 13.41.21 (13410021) | 9 | false |
+| Coinbase | ios | 0.79.x | 0.60.x | 13.44.24 (13440024) | 13.45.27 (13450027) | 0 | true |
 | Pinterest | ios | unknown | <=0.59.x | 6.36.1 (1) | 6.37 (4) | 0 | true |
 | Pinterest | ios | <=0.59.x | 0.60.x | 8.12.1 (4) | 8.13 (4) | 0 | true |
 | Pinterest | ios | 0.60.x | 0.61.x | 8.17 (3) | 8.18 (3) | 0 | true |
@@ -219,6 +229,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 42
-- Approximate by transition IDs: 21
+- Exact by transition IDs: 43
+- Approximate by transition IDs: 25
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

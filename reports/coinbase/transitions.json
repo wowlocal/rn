@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "from_rn_guess": "0.63.x",
+    "from_app_version": "9.21.4",
+    "from_app_build": "92104",
+    "from_external_version_id": "842088805",
+    "from_build_timestamp": "2021-05-05T21:46:38",
+    "to_rn_guess": "0.71.x",
+    "to_app_version": "12.23.13",
+    "to_app_build": "12230013",
+    "to_external_version_id": "866714202",
+    "to_build_timestamp": "2024-06-14T21:17:08"
+  },
+  {
+    "from_rn_guess": "0.71.x",
+    "from_app_version": "12.23.13",
+    "from_app_build": "12230013",
+    "from_external_version_id": "866714202",
+    "from_build_timestamp": "2024-06-14T21:17:08",
+    "to_rn_guess": "0.74.x-0.76.x",
+    "to_app_version": "13.21.10",
+    "to_app_build": "13210010",
+    "to_external_version_id": "875546596",
+    "to_build_timestamp": "2025-06-12T21:27:24"
+  },
+  {
+    "from_rn_guess": "0.74.x-0.76.x",
+    "from_app_version": "13.21.10",
+    "from_app_build": "13210010",
+    "from_external_version_id": "875546596",
+    "from_build_timestamp": "2025-06-12T21:27:24",
+    "to_rn_guess": "0.77.x",
+    "to_app_version": "13.26.10",
+    "to_app_build": "13260010",
+    "to_external_version_id": "876490192",
+    "to_build_timestamp": "2025-07-17T21:43:58"
+  },
+  {
+    "from_rn_guess": "0.77.x",
+    "from_app_version": "13.31.19",
+    "from_app_build": "13310019",
+    "from_external_version_id": "877462419",
+    "from_build_timestamp": "2025-08-21T21:30:28",
+    "to_rn_guess": "0.79.x",
+    "to_app_version": "13.41.21",
+    "to_app_build": "13410021",
+    "to_external_version_id": "879565881",
+    "to_build_timestamp": "2025-11-07T23:01:02"
+  },
+  {
+    "from_rn_guess": "0.79.x",
+    "from_app_version": "13.44.24",
+    "from_app_build": "13440024",
+    "from_external_version_id": "880184267",
+    "from_build_timestamp": "2025-11-28T17:28:02",
+    "to_rn_guess": "0.60.x",
+    "to_app_version": "13.45.27",
+    "to_app_build": "13450027",
+    "to_external_version_id": "880359975",
+    "to_build_timestamp": "2025-12-04T22:32:52"
+  }
+]
