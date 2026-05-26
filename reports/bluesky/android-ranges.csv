@@ -1,0 +1,2 @@
+rn_guess,react_renderer,confidence,source_quality,start_app_version,start_app_build,start_external_version_id,start_build_timestamp,end_app_version,end_app_build,end_external_version_id,end_build_timestamp,build_count
+0.82.x or newer,19.1.0,low,duplicate package hashes (1/10),1.121.0,980,795,2026-01-15,1.121.0,980,980,2026-04-23,10

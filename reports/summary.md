@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 6
 - Queued: 0
-- In progress: 1
-- Needs manual review: 14
+- In progress: 0
+- Needs manual review: 15
 - No RN detected: 2
 - Skipped: 3
 
@@ -21,10 +21,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
 - Mattermost: 175 iOS external versions; reports in `reports/mattermost`
-
-## In Progress Apps
-
-- Bluesky Social: status `version_lists_fetched`; last completed `version_list_fetch`; reports in `reports/bluesky`
 
 ## Manual Review Apps
 
@@ -42,6 +38,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Salesforce: last completed `source_limited_android_sampling`; reports in `reports/salesforce`
 - Wix - Website Builder: last completed `source_limited_android_sampling`; reports in `reports/wix`
 - NerdWallet: Smart Money App: last completed `source_limited_android_sampling`; reports in `reports/nerdwallet`
+- Bluesky Social: last completed `source_limited_android_sampling`; reports in `reports/bluesky`
 
 ## No RN Detected Apps
 
@@ -135,6 +132,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Mattermost | ios | 0.74.x-0.76.x |  | medium |  | 2.19.0 (544) | 2.36.4 (712) | 19 |
 | Mattermost | ios | 0.77.x |  | medium |  | 2.37.0 (717) | 2.40.0 (749) | 9 |
 | Mattermost | android | unknown |  | low | duplicate package hashes (1/10) | 2.39.0 (8000743) | 2.39.0 (8000743) | 10 |
+| Bluesky Social | android | 0.82.x or newer | 19.1.0 | low | duplicate package hashes (1/10) | 1.121.0 (980) | 1.121.0 (980) | 10 |
 
 ## RN Transitions
 

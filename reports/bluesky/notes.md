@@ -6,7 +6,7 @@
 - App Store ID: 6444370199
 - iOS bundle ID: xyz.blueskyweb.app
 - Android package: xyz.blueskyweb.app
-- Status: version_lists_fetched
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -37,4 +37,15 @@
 
 ## Next Step
 
-Sample Android packages first because iOS version history is license-blocked.
+## Android Sampling
+
+- Android sampling completed on 2026-05-26 from all 10 visible APKPure rows.
+- React Native markers were detected in every sampled XAPK through `assets/index.android.bundle`, Hermes bytecode, `react-native-renderer` `19.1.0`, and native libraries including `libreactnative.so`, `libhermes.so`, `libjsi.so`, and `libreactnativemmkv.so`.
+- Android source-quality finding: every APKPure catalog row resolved to the same embedded manifest versionName `1.121.0`, manifest versionCode `980`, and package hash.
+- The duplicated current payload infers RN `0.82.x or newer` with low confidence because `ReactNativeVersion` is present with renderer `19.1.0`.
+- Android reports: `reports/bluesky/android-versions.csv`, `reports/bluesky/android-versions.json`, `reports/bluesky/android-ranges.csv`, `reports/bluesky/android-ranges.json`, and `reports/bluesky/android-transitions.json`.
+- Final status: needs_manual_review.
+
+## Next Step
+
+Revisit if iOS license access becomes available or a complete Android package-history source can be found.
