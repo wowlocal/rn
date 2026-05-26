@@ -408,6 +408,29 @@
         "The current analyzer reports the accessible Android window from 8.132.0.201 through 8.150.0.125 as 0.74.x-0.76.x with medium confidence.",
         "Marked needs_manual_review because APKPure is sparse/source-limited, current public store lookups are retired, and no RN transition was observed in the accessible Android package window."
       ]
+    },
+    {
+      "app_slug": "pinterest",
+      "app_name": "Pinterest",
+      "app_id": "429047995",
+      "bundle_id": "pinterest",
+      "android_package": "com.pinterest",
+      "android_history_source": "AndroidAPKsFree old versions page for package com.pinterest; APKCombo/APKPure current pages; APKMirror blocked by Cloudflare",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 429047995 and bundle ID pinterest; Google Play, APKPure, APKCombo, AndroidAPKsFree, and APKMirror identify Android package com.pinterest.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/pinterest",
+      "version_list_path": "reports/pinterest/version-list.json",
+      "android_version_list_path": "reports/pinterest/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: ipatool search Pinterest --format json returned App Store ID 429047995, bundle ID pinterest, app name Pinterest, and current listed version 14.19.",
+        "Apple iTunes lookup for App Store ID 429047995 returned bundle ID pinterest, app name Pinterest, seller Pinterest, Inc., and current US listed version 14.19.",
+        "Android package source: Google Play, APKPure, APKCombo, AndroidAPKsFree, and APKMirror identify package com.pinterest.",
+        "APKPure current app page identified: https://apkpure.net/pinterest/com.pinterest, but https://apkpure.net/pinterest/com.pinterest/versions currently returns HTTP 410.",
+        "APKMirror history page identified: https://www.apkmirror.com/apk/pinterest/pinterest/, but automated fetches currently return a Cloudflare challenge.",
+        "AndroidAPKsFree old versions page identified: https://androidapks.com/pinterest/com-pinterest/old/ and exposes direct historical APK download rows."
+      ]
     }
   ]
 }
