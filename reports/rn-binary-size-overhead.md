@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Accepted decrypted dump rows analyzed: 26
+- Accepted decrypted dump rows analyzed: 27
 - Apps represented: 11
 - Dump IPAs are local evidence under `tmp/ios-dumps`; they are not committed.
 - `direct_rn_payload_bytes` is a conservative floor: JS/Hermes bundle files plus separately named React Native/Hermes/JSI/Yoga native artifacts in the primary app bundle.
@@ -15,8 +15,8 @@
   - Coinbase `14.19.22 (14190022)`: 104.7 MiB (41.25% of primary app uncompressed bytes).
   - Coinbase `13.45.27 (13450027)`: 93.7 MiB (35.76% of primary app uncompressed bytes).
   - Shopify `10.2621.0 (282789)`: 47.8 MiB (26.74% of primary app uncompressed bytes).
+  - Shopify `10.2606.0 (222553)`: 42.7 MiB (25.58% of primary app uncompressed bytes).
   - Skype `8.150.3125 (8.150.0.125)`: 34.5 MiB (20.61% of primary app uncompressed bytes).
-  - Mattermost `2.40.0 (749)`: 32.9 MiB (42.71% of primary app uncompressed bytes).
 - Static-linked RN rows can have a zero direct-artifact floor; the largest carrier context is 123.3 MiB in Threads `431.0.0 (979167741)`.
 - No RN overhead is attributed to current negative/control rows: Agoda: Cheap Flights & Hotels, SoundCloud: The Music You Love, Uber Eats: Food & Groceries.
 
@@ -32,6 +32,7 @@
 | Instagram | `114.0 (176133011)` | 0.61.x | 0.9 MiB | 0.86% | 19.1 MiB | main_only_decrypted | remaining encrypted non-extension Mach-O may hide additional bytes |
 | Instagram | `430.0.0 (972915403)` | native_rn_marker_without_version | 2.2 MiB | 0.52% | 329.8 MiB | loaded_app_decrypted | native_rn_marker_without_version |
 | Facebook Messenger | `562.0.0 (975021560)` | native_rn_marker_without_version | 1.6 MiB | 0.88% | 96.6 MiB | main_only_decrypted | native_rn_marker_without_version remaining encrypted non-extension Mach-O may hide additional bytes |
+| Shopify | `10.2606.0 (222553)` | 0.82.x or newer | 42.7 MiB | 25.58% | 36.7 MiB | main_only_decrypted | remaining encrypted non-extension Mach-O may hide additional bytes |
 | Shopify | `10.2621.0 (282789)` | 0.82.x or newer | 47.8 MiB | 26.74% | 39.0 MiB | main_only_decrypted | remaining encrypted non-extension Mach-O may hide additional bytes |
 | Mattermost | `2.40.0 (749)` | 0.77.x | 32.9 MiB | 42.71% | 4.5 MiB |  | accepted dump predates decrypted coverage classification |
 | Skype | `8.150.3125 (8.150.0.125)` | 0.71.x | 34.5 MiB | 20.61% | 64.9 MiB | loaded_app_decrypted |  |

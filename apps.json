@@ -204,7 +204,7 @@
         "Initial Android sampling downloaded and analyzed all 10 visible APKPure entries. Boundary refinement expanded that to 24 APKPure entries, including older parseable direct pages.",
         "Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so. The current analyzer reports Android source-limited bands: 10.2543.0 through 10.2605.0 as 0.79.x medium-confidence, and 10.2606.1 through 10.2620.0 as 0.60.x medium-confidence.",
         "Targeted iOS sampling downloaded and analyzed 12 IPAs. iOS reports 9.2523.0 through 10.2605.0 as RN 0.79.x with renderer 19.0.0, then 10.2606.0 through 10.2621.0 as RN 0.82.x or newer with low confidence because ReactNativeVersion is present but no renderer marker is exposed.",
-        "Accepted iOS decrypted dump for 10.2621.0 (282789, external ID 886020173). The dump has main executable cryptid 0 and main_only_decrypted coverage; analysis preserves the 0.82.x-or-newer JS inference and exposes native React Native/Hermes/JSI/Yoga markers.",
+        "Accepted iOS decrypted dumps for first post-boundary 10.2606.0 (222553, external ID 882242969) and latest sampled 10.2621.0 (282789, external ID 886020173). Both dumps have main executable cryptid 0 and main_only_decrypted coverage; analysis preserves the 0.82.x-or-newer JS inference and exposes native React Native/Hermes/JSI/Yoga markers.",
         "Marked needs_manual_review because APKPure is sparse/source-limited and its apparent 0.79.x -> 0.60.x Android transition conflicts with the exact iOS 10.2605.0 -> 10.2606.0 transition to 0.82.x-or-newer evidence."
       ]
     },

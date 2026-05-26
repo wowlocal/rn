@@ -56,8 +56,10 @@
 
 ## Decrypted iOS Evidence
 
+- First post-boundary iOS build `10.2606.0` build `222553`, external ID `882242969`: source IPA SHA-256 `e9bb3b9512bcce60dc3d9099c65917a1996eb4de5049b3db29d39ba8373cd503`, dumped IPA SHA-256 `0b20b8c6b32d0056969b5ffa6afff6ac9bc2807e6aa73b009e3e5afd3145d662`, dumped size `91476476`, metadata matched source bundle/version/build, main executable `cryptid 0`, coverage `main_only_decrypted`.
 - Latest sampled iOS build `10.2621.0` build `282789`, external ID `886020173`: source IPA SHA-256 `6c6d1900c8c3ff5e0a9fbfc557d9132ed42e9b1defd44772a2f8564eb580e72a`, dumped IPA SHA-256 `2551b069355a4e9168dfd959551ebc4fc31f99d904d1f0dbf2e4bd9083c62e07`, dumped size `97696350`, metadata matched source bundle/version/build, main executable `cryptid 0`, coverage `main_only_decrypted`.
-- `10.2621.0` decrypted analysis preserves the JS-bundle inference `0.82.x or newer`, Hermes bytecode version `98`, and native React Native/Hermes/JSI/Yoga markers in the decrypted main executable. No renderer or exact RN version marker was found.
+- Both decrypted analyses preserve the JS-bundle inference `0.82.x or newer`, Hermes bytecode version `98`, and native React Native/Hermes/JSI/Yoga markers in the decrypted main executable. No renderer or exact RN version marker was found.
+- Per-Mach-O inventory for `10.2606.0`: 24 Mach-Os total; main executable and 12 loaded app/framework binaries decrypted; 11 executables remain encrypted. Remaining encrypted non-extension executables are limited to the bundled watch app and watch frameworks.
 - Per-Mach-O inventory for `10.2621.0`: 26 Mach-Os total; main executable and 14 loaded app/framework binaries decrypted; 11 executables remain encrypted. Remaining encrypted non-extension executables are limited to the bundled watch app and watch frameworks. Extension/watch attach was not pursued because the main app already exposes RN evidence and the unresolved version marker is in the main `main.jsbundle` inference path.
 
 ## iOS Ranges
@@ -80,9 +82,9 @@
 - iOS sampling has not been extended before `9.2523.0`, so older Shopify RN adoption or earlier upgrade boundaries remain outside the current package window.
 - The apparent Android transition from `0.79.x` to `0.60.x` conflicts with iOS evidence and is not trustworthy enough to report as a definitive app-wide RN downgrade. Treat it as a marker-visibility or source-gap boundary until stronger Android evidence is available.
 - Exact RN patch versions are not recovered from the visible Android package markers; report Android bands with confidence.
-- Exact RN patch versions are also not recovered from the latest iOS rows because no `react-native-renderer` marker is exposed after `10.2606.0`.
+- Exact RN patch versions are also not recovered from the post-`10.2606.0` iOS rows, including decrypted `10.2606.0` and `10.2621.0`, because no `react-native-renderer` marker is exposed.
 - Disk cleanup was not performed after Android sampling because `apks/shopify` used about 3.3 GiB and the filesystem still had 227 GiB available.
 
 ## Next Step
 
-Manual review should use a complete, signature-verified Android source around `10.2605.0` -> `10.2606.1` to explain the Android/iOS marker conflict. If more Shopify depth is needed, sample older iOS rows before `9.2523.0` rather than broad-downloading the full 508-version history.
+Manual review should use a complete, signature-verified Android source around `10.2605.0` -> `10.2606.1` to explain the Android/iOS marker conflict. The first post-boundary iOS build is now verified through decrypted main-binary evidence; if more Shopify depth is needed, sample older iOS rows before `9.2523.0` rather than broad-downloading the full 508-version history.
