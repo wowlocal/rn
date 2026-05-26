@@ -757,6 +757,30 @@
         "iOS boundary refinement expanded analysis to 65 IPAs and resolved exact adjacent App Store list transitions: 7.3.9 -> 8.0.0, 8.9.0 -> 8.10.0, 8.12.4 -> 8.12.5, 8.27.0 -> 8.28.0, 8.56.0 -> 8.57.0, 8.79.0 -> 8.80.0, 8.83.0 -> 8.84.0, and 8.88.0 -> 8.89.0.",
         "Marked done because the iOS App Store version list yielded exact adjacent RN boundaries. Android APKPure downloads are retained only as current RN confirmation because they duplicated the latest payload for historical rows."
       ]
+    },
+    {
+      "app_slug": "nerdwallet",
+      "app_name": "NerdWallet: Smart Money App",
+      "app_id": "1174471607",
+      "bundle_id": "org.reactjs.native.example.MobileCreditCards",
+      "android_package": "com.mobilecreditcards",
+      "android_history_source": "Uptodown versions page for package com.mobilecreditcards; APKPure/APKCombo gone",
+      "status": "registered",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1174471607 and bundle ID org.reactjs.native.example.MobileCreditCards; Google Play and Uptodown identify Android package com.mobilecreditcards.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/nerdwallet",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search NerdWallet --format json did not return the official NerdWallet finance app in the current localized results.",
+        "iOS identifier source: public App Store URL and Apple iTunes lookup for App Store ID 1174471607 returned bundle ID org.reactjs.native.example.MobileCreditCards, app name NerdWallet: Smart Money App, seller Nerdwallet, Inc., current US listed version 14.19.0, and release date 2026-05-13T15:38:33Z.",
+        "App Store URL: https://apps.apple.com/us/app/nerdwallet-smart-money-app/id1174471607.",
+        "Android package source: Google Play and Uptodown identify package com.mobilecreditcards.",
+        "Google Play URL checked: https://play.google.com/store/apps/details?id=com.mobilecreditcards returned HTTP 200.",
+        "Uptodown versions URL identified: https://nerdwallet.en.uptodown.com/android/versions?utm_source=main returned HTTP 200.",
+        "APKPure Android history URL checked: https://apkpure.net/nerdwallet-personal-finance/com.mobilecreditcards/versions returned HTTP 410.",
+        "APKCombo old versions URL checked: https://apkcombo.com/nerdwallet/com.mobilecreditcards/old-versions/ returned HTTP 410.",
+        "AndroidAPKsFree guessed old versions URL for package com.mobilecreditcards returned HTTP 404."
+      ]
     }
   ]
 }

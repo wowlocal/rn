@@ -8,7 +8,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 5
 - Queued: 0
-- In progress: 0
+- In progress: 1
 - Needs manual review: 13
 - No RN detected: 2
 - Skipped: 3
@@ -20,6 +20,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
+
+## In Progress Apps
+
+- NerdWallet: Smart Money App: status `registered`; last completed `registration`; reports in `reports/nerdwallet`
 
 ## Manual Review Apps
 
