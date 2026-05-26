@@ -8,7 +8,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Reuse and generalize the existing Discord scripts instead of starting from scratch.
 - Process one app at a time unless a step is pure local reporting.
 - Do not run concurrent `ipatool` commands; the cookie lock can collide.
-- APK analysis is first-class. Android packages often expose clearer RN evidence through `assets/index.android.bundle`, Hermes bytecode, `libreactnativejni.so`, `libhermes.so`, SoLoader libraries, native symbols, and unencrypted resources.
+- APK analysis is first-class. Android packages are usually easier to inspect than App Store IPAs because they are not FairPlay-encrypted; they often expose clearer RN evidence through `assets/index.android.bundle`, Hermes bytecode, `libreactnativejni.so`, `libhermes.so`, SoLoader libraries, native symbols, and package resources.
 - Use Android-first sampling when APK/APKS/XAPK/APKM history is easier to obtain or inspect. Use iOS IPAs to validate and anchor iOS-specific timelines when needed.
 - Keep iOS and Android package timelines separate in the raw outputs. Merge them only in cross-app summary files with platform labels.
 - Keep all durable outputs before deleting any IPA, APK, APKS, XAPK, APKM, or extracted package directory.
@@ -17,7 +17,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Use IPA internal zip timestamps for build timestamps unless App Store metadata is independently verified.
 - For Android, prefer version ordering by `versionCode`; use APK source publish dates only when the source clearly provides them. ZIP entry timestamps inside APKs can be build artifacts and should be labeled as package timestamps, not store release dates.
 - Treat Android source catalogs as source-limited unless the source demonstrably provides a complete history for the package. Adjacent rows in a sparse APKPure/APKMirror-derived catalog are not exact transition boundaries by themselves.
-- Record Android package hashes and embedded manifest metadata when available. If a source returns duplicated package hashes or embedded version metadata that conflicts with the catalog row, treat the row as a source-quality finding, not an exact historical build.
+- Record Android package hashes, embedded manifest metadata, and package identity when available. If a source returns duplicated package hashes, installer/wrapper APKs, or embedded version metadata that conflicts with the catalog row, treat the row as a source-quality finding, not an exact historical build.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
 - Android APKs may provide primary evidence for RN version inference. Keep platform-specific timestamps and version identifiers labeled clearly.
 - Do not expose account credentials in logs or reports.
