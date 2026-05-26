@@ -6,7 +6,7 @@
 - App Store ID: 582007913
 - iOS bundle ID: com.teslamotors.TeslaApp
 - Android package: com.teslamotors.tesla
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -22,4 +22,20 @@
 
 ## Next Step
 
-Fetch iOS and Android version catalogs, using APKPure as the initial Android source.
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 582007913`.
+- iOS version list result: failed because App Store license is required.
+- iOS license attempt for bundle ID `com.teslamotors.TeslaApp` returned app not found.
+- Raw iOS version-list error: `reports/tesla/version-list-error.json`
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the APKPure catalog: `4107` (`4.54.3-4107`)
+- Newest Android versionCode in the APKPure catalog: `4306` (`4.57.0-4306`)
+- Raw Android version catalog: `reports/tesla/android-version-list.json`
+- APKPure currently exposes a limited visible history on the fetched page.
+- Android versionCode values are not fully monotonic with APKPure source dates in the fetched catalog, so date ordering must be reviewed when summarizing Android ranges.
+
+## Next Step
+
+Sample the visible Android APKPure catalog first because iOS version-list access is blocked.

@@ -7,8 +7,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 4
-- Queued: 1
-- In progress: 0
+- Queued: 0
+- In progress: 1
 - Needs manual review: 9
 - Skipped: 3
 
@@ -19,9 +19,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 
-## Queued Apps
+## In Progress Apps
 
-- Tesla: App Store ID 582007913; bundle ID com.teslamotors.TeslaApp
+- Tesla: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/tesla`
 
 ## Manual Review Apps
 
