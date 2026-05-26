@@ -10,6 +10,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Do not run concurrent `ipatool` commands; the cookie lock can collide.
 - APK analysis is first-class. Android packages are usually easier to inspect than App Store IPAs because they are not FairPlay-encrypted; they often expose clearer RN evidence through `assets/index.android.bundle`, Hermes bytecode, `libreactnativejni.so`, `libhermes.so`, SoLoader libraries, native symbols, and package resources.
 - Use Android-first sampling when APK/APKS/XAPK/APKM history is easier to obtain or inspect. Use iOS IPAs to validate and anchor iOS-specific timelines when needed.
+- Authorized jailbroken or Frida-capable iOS install-and-dump analysis is also first-class evidence when the dumped package is verified against the intended app identity and version. Encrypted App Store IPAs alone remain limited evidence, but an installed-and-dumped decrypted package can expose native RN constants, frameworks, symbols, JS bundles, Hermes bytecode, and resources directly.
 - Keep iOS and Android package timelines separate in the raw outputs. Merge them only in cross-app summary files with platform labels.
 - Keep all durable outputs before deleting any IPA, APK, APKS, XAPK, APKM, or extracted package directory.
 - Delete only generated app package/cache files inside this project when disk pressure requires it.
@@ -18,9 +19,10 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - For Android, prefer version ordering by `versionCode`; use APK source publish dates only when the source clearly provides them. ZIP entry timestamps inside APKs can be build artifacts and should be labeled as package timestamps, not store release dates.
 - Treat Android source catalogs as source-limited unless the source demonstrably provides a complete history for the package. Adjacent rows in a sparse APKPure/APKMirror-derived catalog are not exact transition boundaries by themselves.
 - Record Android package hashes, embedded manifest metadata, and package identity when available. If a source returns duplicated package hashes, installer/wrapper APKs, or embedded version metadata that conflicts with the catalog row, treat the row as a source-quality finding, not an exact historical build.
+- For iOS install-and-dump evidence, record the source IPA/external version ID when known, installed bundle ID, `CFBundleShortVersionString`, `CFBundleVersion`, dumped package hash, dump tool/version, device/iOS context, and visible encryption status such as `cryptid` where available. If the installed or dumped metadata does not match the intended catalog row, treat the dump as a source-quality finding rather than historical evidence.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
 - Android APKs may provide primary evidence for RN version inference. Keep platform-specific timestamps and version identifiers labeled clearly.
-- Do not expose account credentials in logs or reports.
+- Only install, run, dump, or analyze apps and accounts we are authorized to use for this research. Do not expose account credentials, device secrets, or personally identifying device data in logs or reports.
 - Commit after every completed checklist step so the task is resumable and each app's progress has a clear checkpoint.
 
 ## Git Checkpoints
@@ -37,7 +39,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
   - final per-app status update
 - Commit after cross-app reports are regenerated.
 - Keep commits small and descriptive, for example `Add Discord version list`, `Analyze Discord initial RN samples`, or `Refine Discord RN transition boundaries`.
-- Do not commit downloaded IPAs, APKs, temporary app package files, Python bytecode, cache directories, or credentials.
+- Do not commit downloaded IPAs, decrypted IPA dumps, APKs, temporary app package files, Python bytecode, cache directories, or credentials.
 - Before each commit, run `git status --short` and verify only intended files are staged.
 - If a step produces a large generated report, commit the compact CSV/JSON/Markdown outputs, not the raw IPA.
 
@@ -178,9 +180,23 @@ Do not download all versions first. Sample enough to determine whether the app a
 - [ ] If no RN markers are detected in any sample, mark `not_react_native_detected` unless the app deserves deeper sampling.
 - [ ] If RN markers are detected, continue to timeline refinement.
 
-### 4. Per-Package Analysis
+### 4. Optional iOS Install-And-Dump Track
 
-For every IPA, capture at least:
+Use this track when encrypted iOS IPAs block native inspection and a jailbroken or Frida-capable device is available. Process builds one at a time so each dump can be tied back to a specific catalog row.
+
+- [ ] Verify the target app/build is licensed and authorized for installation and analysis.
+- [ ] Install the selected IPA on the device and record the external version ID, app version, build number, and bundle ID expected from the catalog.
+- [ ] Launch the app once if the dump tool requires a running process.
+- [ ] Dump the installed app with the chosen Frida/iOS dumping tool, such as iDump, into a non-committed local package directory.
+- [ ] Verify the dumped `Info.plist` bundle ID, `CFBundleShortVersionString`, and `CFBundleVersion` match the intended row.
+- [ ] Record dump tool name/version, host timestamp, device model class if useful, iOS version, dumped IPA hash, dump output size, and visible encryption status such as `cryptid` where available.
+- [ ] Analyze the decrypted dump for RN markers in native frameworks, main executable strings/symbols, JS bundles, Hermes bytecode, resources, and package metadata.
+- [ ] If dump metadata does not match the intended catalog row, reject it as historical evidence and record the mismatch in notes.
+- [ ] Delete or retain the dump according to disk policy after compact CSV/JSON evidence is written.
+
+### 5. Per-Package Analysis
+
+For every encrypted/downloaded or decrypted/dumped iOS package, capture at least:
 
 - [ ] External version ID.
 - [ ] App version.
@@ -189,6 +205,9 @@ For every IPA, capture at least:
 - [ ] IPA internal build timestamp.
 - [ ] IPA path.
 - [ ] IPA size.
+- [ ] Package source: encrypted App Store IPA, decrypted installed dump, simulator/developer build, or other authorized source.
+- [ ] Package SHA-256 hash.
+- [ ] Dump tool/version and device/iOS context, if dumped from an installed app.
 - [ ] Main executable path.
 - [ ] Encryption status when visible.
 - [ ] Hermes markers.
@@ -225,7 +244,7 @@ For every Android package, capture at least:
 
 Android analysis tools may include `unzip`, `aapt`/`aapt2`, `apkanalyzer`, `jadx`, `apktool`, `readelf`, `nm`, `strings`, Hermes bytecode tooling, and structured ZIP/APK parsers. Prefer structured metadata extraction over ad hoc string scraping when available.
 
-### 5. Build Initial Ranges
+### 6. Build Initial Ranges
 
 - [ ] Sort iOS rows by App Store external version order.
 - [ ] Sort Android rows by version code, then source publish date if available.
@@ -235,7 +254,7 @@ Android analysis tools may include `unzip`, `aapt`/`aapt2`, `apkanalyzer`, `jadx
 - [ ] Write provisional platform-specific `*-transitions.csv` and `*-transitions.json`.
 - [ ] Mark status `sampled`.
 
-### 6. Refine Upgrade Boundaries
+### 7. Refine Upgrade Boundaries
 
 For each detected RN transition on each platform:
 
@@ -272,7 +291,7 @@ Cross-platform refinement:
 - [ ] Do not copy an Android RN version onto iOS without evidence. Mark it as Android evidence that increases confidence only when iOS markers are compatible.
 - [ ] If Android and iOS upgrade on different app versions or dates, report separate timelines.
 
-### 7. Disk Cleanup Per App
+### 8. Disk Cleanup Per App
 
 After durable CSV/JSON files are written:
 
@@ -292,7 +311,7 @@ Deletion log format:
 timestamp=<iso8601> app=<slug> platform=<ios|android> version_id=<id> app_version=<version> app_build_or_version_code=<build_or_code> path=<path> reason=<reason>
 ```
 
-### 8. Per-App Notes
+### 9. Per-App Notes
 
 Write `reports/<app-slug>/notes.md` with:
 
@@ -311,8 +330,9 @@ Write `reports/<app-slug>/notes.md` with:
 - [ ] Encryption limitations.
 - [ ] Any app-specific marker quirks.
 - [ ] Android APK evidence, if used, including package version/code, APK source, extracted RN markers, and how it affects confidence.
+- [ ] iOS dump evidence, if used, including dump tool/version, package hash, installed bundle metadata, decrypted native markers, and how it affects confidence.
 
-### 9. Mark App Done
+### 10. Mark App Done
 
 - [ ] Verify scripts compile.
 - [ ] Verify per-app CSV/JSON is valid.
