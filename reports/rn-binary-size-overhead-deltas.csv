@@ -1,0 +1,19 @@
+app,from_version,to_version,evidence,source_delta,main_app_delta,direct_delta,direct_compressed_delta,js_delta,native_delta,carrier_delta
+Artsy: Buy & Sell Fine Art,7.3.5 (2022.04.22.16),7.3.6 (2022.05.11.16),native_rn_marker_without_version -> native_rn_marker_without_version,154907,191749,0,0,0,0,84896
+Artsy: Buy & Sell Fine Art,7.3.6 (2022.05.11.16),7.3.7 (2022.05.25.17),native_rn_marker_without_version -> native_rn_marker_without_version,312795,484092,0,0,0,0,34192
+Artsy: Buy & Sell Fine Art,7.3.7 (2022.05.25.17),7.3.8 (2022.05.29.23),native_rn_marker_without_version -> native_rn_marker_without_version,-16604,-16700,0,0,0,0,-16800
+Artsy: Buy & Sell Fine Art,7.3.8 (2022.05.29.23),7.3.9 (2022.06.03.16),native_rn_marker_without_version -> native_rn_marker_without_version,-2087120,-2585411,0,0,0,0,-193600
+Artsy: Buy & Sell Fine Art,7.3.9 (2022.06.03.16),9.9.0 (2026.05.20.12.45),native_rn_marker_without_version -> 0.81.x,40930747,53618356,17325032,6702722,12486648,4838384,33012544
+Coinbase,13.44.24 (13440024),13.45.27 (13450027),0.79.x -> 0.60.x,348218,930132,711914,261137,711914,0,16
+Coinbase,13.45.27 (13450027),14.19.22 (14190022),0.60.x -> 0.60.x,-6176507,-8600262,11514905,4939073,11514905,0,-19530064
+Instagram,114.0 (176133011),430.0.0 (972915403),0.61.x -> native_rn_marker_without_version,381283554,338471165,1412732,201203,1412732,0,325818688
+Shopify,10.2606.0 (222553),10.2621.0 (282789),0.82.x or newer -> 0.82.x or newer,7402951,12384291,5346059,1088721,5346059,0,2355744
+Skype,8.79.92 (8.79.0.92),8.97.3203 (8.97.0.203),0.63.x -> 0.71.x,-2543170,-26819735,2316054,522223,2316054,0,-21605984
+Skype,8.97.3203 (8.97.0.203),8.150.3125 (8.150.0.125),0.71.x -> 0.71.x,60543303,74734305,14683390,8730251,10161230,4522160,20333168
+SoundCloud: The Music You Love,7.16.0 (1243764),7.44.0 (1248257),no_rn_detected -> no_rn_detected,97831105,71538192,0,0,0,0,0
+SoundCloud: The Music You Love,7.44.0 (1248257),8.5.0 (1251600),no_rn_detected -> no_rn_detected,-21955801,-89037110,0,0,0,0,0
+SoundCloud: The Music You Love,8.5.0 (1251600),8.32.0 (1254310),no_rn_detected -> no_rn_detected,7523919,10198466,0,0,0,0,0
+SoundCloud: The Music You Love,8.32.0 (1254310),8.62.0 (1259079),no_rn_detected -> no_rn_detected,6095746,28293096,0,0,0,0,0
+Threads,373.0.0 (711845629),387.0.0 (755202338),native_rn_marker_without_version -> native_rn_marker_without_version,12703269,15388363,0,0,0,0,14334240
+Threads,387.0.0 (755202338),400.0.0 (797742903),native_rn_marker_without_version -> native_rn_marker_without_version,31409178,12641361,0,0,0,0,9282544
+Threads,400.0.0 (797742903),431.0.0 (979167741),native_rn_marker_without_version -> native_rn_marker_without_version,52000480,43058623,0,0,0,0,41732064
