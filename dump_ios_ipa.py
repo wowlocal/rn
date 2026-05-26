@@ -322,6 +322,8 @@ def frida_ipa_extract_dump_command(args: argparse.Namespace, metadata: dict[str,
     command.extend(["-U", "-f", str(bundle_id), "-o", str(output_ipa)])
     if args.no_resume:
         command.append("--no-resume")
+    if args.all_binaries:
+        command.append("--all-binaries")
     for extra in args.extractor_arg:
         command.append(extra)
     return command
@@ -419,6 +421,11 @@ def parse_args() -> argparse.Namespace:
         help="Do not pass --no-resume to frida-ipa-extract",
     )
     parser.set_defaults(no_resume=True)
+    parser.add_argument(
+        "--all-binaries",
+        action="store_true",
+        help="Pass --all-binaries to a patched frida-ipa-extract dumper",
+    )
     parser.add_argument("--bundle-id", help="Override bundle identifier")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Directory for dumped IPA")
     parser.add_argument("--output", type=Path, help="Exact dumped IPA output path")
