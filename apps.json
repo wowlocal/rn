@@ -807,9 +807,9 @@
       "bundle_id": "com.mattermost.rn",
       "android_package": "com.mattermost.rn",
       "android_history_source": "APKPure versions page for package com.mattermost.rn",
-      "status": "initial_sampling",
+      "status": "done",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1257222717 and bundle ID com.mattermost.rn; Google Play and APKPure identify Android package com.mattermost.rn.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "done",
       "reports_path": "reports/mattermost",
       "version_list_path": "reports/mattermost/version-list.json",
       "android_version_list_path": "reports/mattermost/android-version-list.json",
@@ -820,7 +820,8 @@
       "android_version_count": 10,
       "oldest_android_version_code": "6000627",
       "newest_android_version_code": "6000743",
-      "sampled_ipa_count": 12,
+      "sampled_ipa_count": 101,
+      "unique_builds_analyzed": 100,
       "sampled_android_package_count": 10,
       "rn_detected": true,
       "notes": [
@@ -834,7 +835,9 @@
         "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 6000627 through 6000743; source page appears to expose a limited history.",
         "Initial Android sampling downloaded and analyzed all 10 visible APKPure rows. React Native markers were detected through JS bundle paths and native libraries, but every catalog row resolved to the same embedded manifest versionName 2.39.0/versionCode 8000743 and package hash.",
         "Initial iOS sampling downloaded and analyzed 12 evenly spaced IPAs across external version IDs 822837610 through 885697976.",
-        "The broad iOS sample reports source-limited bands from <=0.59.x through 0.77.x, with the latest sampled app 2.40.0 build 749 inferred as RN 0.77.x."
+        "The broad iOS sample reports source-limited bands from <=0.59.x through 0.77.x, with the latest sampled app 2.40.0 build 749 inferred as RN 0.77.x.",
+        "iOS boundary refinement expanded analysis to 101 IPAs / 100 unique app builds and resolved exact adjacent App Store list transitions: 1.25.1 -> 1.26.0, 1.31.2 -> 1.32.0, 1.34.1 -> 1.35.0, 1.41.1 -> 1.42.0, 1.46.0 -> 1.47.0, 1.47.2 -> 1.48.0, 1.48.2 -> 1.49.0, 1.55.1 -> 2.0.0, 2.0.0 -> 2.0.1, 2.18.1 -> 2.19.0, and 2.36.4 -> 2.37.0.",
+        "Marked done because the iOS App Store version list yielded exact adjacent RN boundaries. Android APKPure downloads are retained only as current RN confirmation because they duplicated the latest payload for historical rows."
       ]
     }
   ]

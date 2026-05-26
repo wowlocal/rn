@@ -6,7 +6,7 @@
 - App Store ID: 1257222717
 - iOS bundle ID: com.mattermost.rn
 - Android package: com.mattermost.rn
-- Status: initial_sampling
+- Status: done
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -48,4 +48,24 @@
 
 ## Next Step
 
-Refine iOS RN transition boundaries using adjacent App Store external version IDs.
+## Boundary Refinement
+
+- iOS boundary refinement completed on 2026-05-26 by downloading the full App Store-list gaps between broad sample transitions.
+- Refined coverage: 101 IPAs and 100 unique app builds from app `1.0` build `39` through app `2.40.0` build `749`.
+- Exact adjacent iOS transition: `1.25.1` build `247` RN `<=0.59.x` -> `1.26.0` build `253` RN `0.61.x`.
+- Exact adjacent iOS transition: `1.31.2` build `296` RN `0.61.x` -> `1.32.0` build `302` RN `0.62.x`.
+- Exact adjacent iOS transition: `1.34.1` build `320` RN `0.62.x` -> `1.35.0` build `325` RN `0.63.x`.
+- Exact adjacent iOS transition: `1.41.1` build `349` RN `0.63.x` -> `1.42.0` build `353` RN `0.64.x`.
+- Exact adjacent iOS transition: `1.46.0` build `368` RN `0.64.x` -> `1.47.0` build `374` RN `0.65.x`.
+- Exact adjacent iOS transition: `1.47.2` build `377` RN `0.65.x` -> `1.48.0` build `380` RN `0.66.x`.
+- Exact adjacent iOS transition: `1.48.2` build `382` RN `0.66.x` -> `1.49.0` build `385` RN `0.67.x-0.68.x`.
+- Exact adjacent iOS transition: `1.55.1` build `423` RN `0.67.x-0.68.x` -> `2.0.0` build `452` RN `0.69.x-0.70.x`.
+- Exact adjacent iOS transition: `2.0.0` build `452` RN `0.69.x-0.70.x` -> `2.0.1` build `455` RN `0.71.x`.
+- Exact adjacent iOS transition: `2.18.1` build `536` RN `0.71.x` -> `2.19.0` build `544` RN `0.74.x-0.76.x`.
+- Exact adjacent iOS transition: `2.36.4` build `712` RN `0.74.x-0.76.x` -> `2.37.0` build `717` RN `0.77.x`.
+- Disk cleanup reviewed on 2026-05-26; no Mattermost IPAs or APKs deleted because 184 GiB remained free.
+- Final status: done.
+
+## Next Step
+
+Move to the next candidate.

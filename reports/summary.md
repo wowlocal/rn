@@ -6,9 +6,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## App Status
 
-- Analyzed successfully: 5
+- Analyzed successfully: 6
 - Queued: 0
-- In progress: 1
+- In progress: 0
 - Needs manual review: 14
 - No RN detected: 2
 - Skipped: 3
@@ -20,10 +20,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
-
-## In Progress Apps
-
-- Mattermost: status `initial_sampling`; last completed `initial_sampling`; reports in `reports/mattermost`
+- Mattermost: 175 iOS external versions; reports in `reports/mattermost`
 
 ## Manual Review Apps
 
@@ -122,12 +119,17 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | NerdWallet: Smart Money App | android | unknown |  | low | source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode | 11.29.0 (123845) | 12.6.0 (131162) | 4 |
 | NerdWallet: Smart Money App | android | 0.77.x |  | medium | source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode | 12.10.1 (140458) | 14.3.0 (162034) | 6 |
 | Mattermost | ios | <=0.59.x |  | medium |  | 1.0 (39) | 1.25.1 (247) | 4 |
-| Mattermost | ios | 0.62.x |  | medium |  | 1.32.2 (307) | 1.32.2 (307) | 1 |
-| Mattermost | ios | 0.64.x |  | medium |  | 1.42.1 (354) | 1.42.1 (354) | 1 |
-| Mattermost | ios | 0.67.x-0.68.x |  | medium |  | 1.50.1 (388) | 1.50.1 (388) | 1 |
-| Mattermost | ios | 0.71.x |  | medium |  | 2.5.1 (476) | 2.15.0 (512) | 2 |
-| Mattermost | ios | 0.74.x-0.76.x |  | medium |  | 2.24.1 (593) | 2.33.1 (680) | 2 |
-| Mattermost | ios | 0.77.x |  | medium |  | 2.40.0 (749) | 2.40.0 (749) | 1 |
+| Mattermost | ios | 0.61.x |  | medium |  | 1.26.0 (253) | 1.31.2 (296) | 12 |
+| Mattermost | ios | 0.62.x |  | medium |  | 1.32.0 (302) | 1.34.1 (320) | 7 |
+| Mattermost | ios | 0.63.x |  | medium |  | 1.35.0 (325) | 1.41.1 (349) | 10 |
+| Mattermost | ios | 0.64.x |  | medium |  | 1.42.0 (353) | 1.46.0 (368) | 8 |
+| Mattermost | ios | 0.65.x |  | medium |  | 1.47.0 (374) | 1.47.2 (377) | 3 |
+| Mattermost | ios | 0.66.x |  | medium |  | 1.48.0 (380) | 1.48.2 (382) | 3 |
+| Mattermost | ios | 0.67.x-0.68.x |  | medium |  | 1.49.0 (385) | 1.55.1 (423) | 12 |
+| Mattermost | ios | 0.69.x-0.70.x |  | medium |  | 2.0.0 (452) | 2.0.0 (452) | 1 |
+| Mattermost | ios | 0.71.x |  | medium |  | 2.0.1 (455) | 2.18.1 (536) | 12 |
+| Mattermost | ios | 0.74.x-0.76.x |  | medium |  | 2.19.0 (544) | 2.36.4 (712) | 19 |
+| Mattermost | ios | 0.77.x |  | medium |  | 2.37.0 (717) | 2.40.0 (749) | 9 |
 | Mattermost | android | unknown |  | low | duplicate package hashes (1/10) | 2.39.0 (8000743) | 2.39.0 (8000743) | 10 |
 
 ## RN Transitions
@@ -173,15 +175,20 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Artsy: Buy & Sell Fine Art | ios | 0.77.x | 0.79.x | 8.83.0 (2025.09.17.12) | 8.84.0 (2025.09.30.18) | 0 | true |
 | Artsy: Buy & Sell Fine Art | ios | 0.79.x | 0.81.x | 8.88.0 (2025.11.12.13) | 8.89.0 (2025.11.26.02) | 0 | true |
 | NerdWallet: Smart Money App | android | unknown | 0.77.x | 12.6.0 (131162) | 12.10.1 (140458) | 1 | false |
-| Mattermost | ios | <=0.59.x | 0.62.x | 1.25.1 (247) | 1.32.2 (307) | 15 | false |
-| Mattermost | ios | 0.62.x | 0.64.x | 1.32.2 (307) | 1.42.1 (354) | 15 | false |
-| Mattermost | ios | 0.64.x | 0.67.x-0.68.x | 1.42.1 (354) | 1.50.1 (388) | 15 | false |
-| Mattermost | ios | 0.67.x-0.68.x | 0.71.x | 1.50.1 (388) | 2.5.1 (476) | 15 | false |
-| Mattermost | ios | 0.71.x | 0.74.x-0.76.x | 2.15.0 (512) | 2.24.1 (593) | 14 | false |
-| Mattermost | ios | 0.74.x-0.76.x | 0.77.x | 2.33.1 (680) | 2.40.0 (749) | 15 | false |
+| Mattermost | ios | <=0.59.x | 0.61.x | 1.25.1 (247) | 1.26.0 (253) | 0 | true |
+| Mattermost | ios | 0.61.x | 0.62.x | 1.31.2 (296) | 1.32.0 (302) | 0 | true |
+| Mattermost | ios | 0.62.x | 0.63.x | 1.34.1 (320) | 1.35.0 (325) | 0 | true |
+| Mattermost | ios | 0.63.x | 0.64.x | 1.41.1 (349) | 1.42.0 (353) | 0 | true |
+| Mattermost | ios | 0.64.x | 0.65.x | 1.46.0 (368) | 1.47.0 (374) | 0 | true |
+| Mattermost | ios | 0.65.x | 0.66.x | 1.47.2 (377) | 1.48.0 (380) | 0 | true |
+| Mattermost | ios | 0.66.x | 0.67.x-0.68.x | 1.48.2 (382) | 1.49.0 (385) | 0 | true |
+| Mattermost | ios | 0.67.x-0.68.x | 0.69.x-0.70.x | 1.55.1 (423) | 2.0.0 (452) | 0 | true |
+| Mattermost | ios | 0.69.x-0.70.x | 0.71.x | 2.0.0 (452) | 2.0.1 (455) | 0 | true |
+| Mattermost | ios | 0.71.x | 0.74.x-0.76.x | 2.18.1 (536) | 2.19.0 (544) | 0 | true |
+| Mattermost | ios | 0.74.x-0.76.x | 0.77.x | 2.36.4 (712) | 2.37.0 (717) | 0 | true |
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 28
-- Approximate by transition IDs: 17
+- Exact by transition IDs: 39
+- Approximate by transition IDs: 11
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.
