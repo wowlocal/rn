@@ -33,7 +33,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Skype: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
-- SoundCloud: The Music You Love: last completed `ios_decrypted_latest_sampling`; reports in `reports/soundcloud`
+- SoundCloud: The Music You Love: last completed `ios_decrypted_native_marker_sampling`; reports in `reports/soundcloud`
 - Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`
 - Salesforce: last completed `source_limited_android_sampling`; reports in `reports/salesforce`
 - Wix - Website Builder: last completed `source_limited_android_sampling`; reports in `reports/wix`
