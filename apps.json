@@ -526,12 +526,16 @@
       "bundle_id": "com.ubercab.UberEats",
       "android_package": "com.ubercab.eats",
       "android_history_source": "APKPure current page for package com.ubercab.eats; APKMirror history page exists but automated access returns HTTP 403",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search resolved App Store ID 1058959277 and bundle ID com.ubercab.UberEats; Apple iTunes lookup confirmed current US listing; APKPure and APKMirror pages identify Android package com.ubercab.eats.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/uber-eats",
       "version_list_path": "reports/uber-eats/version-list.json",
       "android_version_list_path": "reports/uber-eats/android-version-list.json",
+      "android_version_list_error_path": "reports/uber-eats/android-version-list-error.json",
+      "external_version_count": 624,
+      "oldest_external_version_id": "814482031",
+      "newest_external_version_id": "885646390",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Uber Eats --format json returned App Store ID 1058959277, bundle ID com.ubercab.UberEats, localized app name Uber Eats: Доставка еды, and current listed version 6.323.10001.",
@@ -540,7 +544,9 @@
         "Android package source: APKPure current page and APKMirror search results identify package com.ubercab.eats.",
         "APKPure Android versions URL checked: https://apkpure.net/uber-eats-food-and-grocery/com.ubercab.eats/versions returned HTTP 410 Gone.",
         "AndroidAPKsFree guessed old versions URL for package com.ubercab.eats returned HTTP 404.",
-        "APKMirror history URL checked: https://www.apkmirror.com/apk/uber-technologies-inc/uber-eats-food-delivery/ returned HTTP 403 for automated fetches."
+        "APKMirror history URL checked: https://www.apkmirror.com/apk/uber-technologies-inc/uber-eats-food-delivery/ returned HTTP 403 for automated fetches.",
+        "iOS version list fetched on 2026-05-26: 624 external version IDs from 814482031 through 885646390.",
+        "Android APKPure version-list fetch failed on 2026-05-26 with HTTP 410 Gone, matching the registration-time URL check."
       ]
     }
   ]

@@ -6,7 +6,7 @@
 - App Store ID: 1058959277
 - iOS bundle ID: com.ubercab.UberEats
 - Android package: com.ubercab.eats
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -23,4 +23,17 @@
 
 ## Next Step
 
-Fetch the iOS App Store version list first. If iOS is blocked, revisit Android sources or direct APK source pages for sampled versions.
+## Version Lists
+
+- iOS version list fetched on 2026-05-26 with `ipatool list-versions --app-id 1058959277`.
+- iOS external version IDs available: 624
+- Oldest iOS external version ID: `814482031`
+- Newest iOS external version ID: `885646390`
+- Raw iOS version list: `reports/uber-eats/version-list.json`
+- Android APKPure version-list fetch attempted on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android APKPure version-list result: failed with HTTP `410 Gone`, matching the registration-time URL check.
+- Raw Android version-list error: `reports/uber-eats/android-version-list-error.json`
+
+## Next Step
+
+Sample the iOS App Store version list first. Revisit Android sources only if iOS sampling is blocked or fails to expose useful RN markers.

@@ -1,0 +1,9 @@
+{
+  "app_slug": "uber-eats",
+  "attempted_at": "2026-05-26",
+  "command": "python3 fetch_apkpure_versions.py --url https://apkpure.net/uber-eats-food-and-grocery/com.ubercab.eats/versions --package-name com.ubercab.eats --out reports/uber-eats/android-version-list.json",
+  "error": "HTTP Error 410: Gone",
+  "package_name": "com.ubercab.eats",
+  "source": "APKPure",
+  "source_url": "https://apkpure.net/uber-eats-food-and-grocery/com.ubercab.eats/versions"
+}
