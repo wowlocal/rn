@@ -24,7 +24,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## Manual Review Apps
 
-- Threads: last completed `source_limited_boundary_refinement`; reports in `reports/threads`
+- Threads: last completed `ios_decrypted_boundary_sampling`; reports in `reports/threads`
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
 - Shopify: last completed `source_limited_boundary_refinement`; reports in `reports/shopify`
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
