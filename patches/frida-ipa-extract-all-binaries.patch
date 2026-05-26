@@ -1,0 +1,285 @@
+diff --git a/frida_ipa_extract/cli.py b/frida_ipa_extract/cli.py
+index ceac370..ef51ac3 100644
+--- a/frida_ipa_extract/cli.py
++++ b/frida_ipa_extract/cli.py
+@@ -38,6 +38,11 @@ def build_parser():
+         action="store_true",
+         help="Do not resume a spawned process (useful for crashy apps)",
+     )
++    parser.add_argument(
++        "--all-binaries",
++        action="store_true",
++        help="Also dump every loaded encrypted Mach-O under the app bundle",
++    )
+     parser.add_argument("-U", dest="usb", action="store_true", help="Use USB device")
+     parser.add_argument("-H", dest="host", help="SSH host for the device")
+     parser.add_argument("-P", dest="port", type=int, help="SSH port (default 22)")
+@@ -288,6 +293,7 @@ def main():
+         if not sandbox_path:
+             raise SystemExit("Unable to resolve sandbox path.")
+         remote_dump_path = f"{sandbox_path}/tmp/{dump_dir}/{executable_name}.decrypted"
++        remote_loaded_dir = f"{sandbox_path}/tmp/{dump_dir}/loaded-binaries"
+ 
+         print(f"Bundle ID: {bundle_id or 'unknown'}")
+         print(f"Bundle path: {bundle_path}")
+@@ -296,6 +302,11 @@ def main():
+ 
+         print("Dumping decrypted binary via Frida...")
+         dumper.dump_executable(remote_dump_path)
++        loaded_binaries = []
++        if args.all_binaries:
++            print("Dumping loaded encrypted bundle binaries via Frida...")
++            loaded_binaries = dumper.dump_loaded_executables(remote_loaded_dir)
++            print(f"Dumped loaded binaries: {len(loaded_binaries)}")
+ 
+         sandbox_path = None
+         sandbox_out_dir = None
+@@ -326,6 +337,13 @@ def main():
+                     progress=progress,
+                 )
+                 ctx.ssh.download_file(remote_dump_path, local_decrypted, progress=progress)
++                for dumped in loaded_binaries:
++                    rel_path = dumped.get("relPath")
++                    out_path = dumped.get("outPath")
++                    if rel_path and out_path:
++                        local_path = os.path.join(local_bundle_dir, rel_path)
++                        os.makedirs(os.path.dirname(local_path), exist_ok=True)
++                        ctx.ssh.download_file(out_path, local_path)
+                 progress.finish()
+             else:
+                 print("Scanning bundle via Frida...")
+@@ -377,6 +395,19 @@ def main():
+ 
+             local_bin_path = os.path.join(local_bundle_dir, executable_name)
+             shutil.copy2(local_decrypted, local_bin_path)
++            for dumped in loaded_binaries:
++                rel_path = dumped.get("relPath")
++                out_path = dumped.get("outPath")
++                if rel_path and out_path:
++                    local_path = os.path.join(local_bundle_dir, rel_path)
++                    os.makedirs(os.path.dirname(local_path), exist_ok=True)
++                    stat = dumper.stat_path(out_path)
++                    pull_file_via_frida(
++                        dumper,
++                        out_path,
++                        local_path,
++                        size=int(stat.get("size", 0)),
++                    )
+ 
+             print(f"Building IPA at {output_path}...")
+             build_ipa(local_bundle_dir, output_path)
+@@ -438,6 +469,11 @@ def main():
+             dumper.remove_path(remote_dump_path)
+         except Exception:
+             pass
++        try:
++            if args.all_binaries:
++                dumper.remove_path(remote_loaded_dir)
++        except Exception:
++            pass
+ 
+         print("Done.")
+     finally:
+diff --git a/frida_ipa_extract/frida_agent.js b/frida_ipa_extract/frida_agent.js
+index 64558f0..1a3c2a8 100644
+--- a/frida_ipa_extract/frida_agent.js
++++ b/frida_ipa_extract/frida_agent.js
+@@ -390,6 +390,9 @@ function parseMachO(base) {
+   var cmdOffset = headerSize;
+   var segments = [];
+   var cryptidOffset = null;
++  var cryptOff = null;
++  var cryptSize = null;
++  var cryptId = null;
+   var textVmaddr = null;
+   var fallbackVmaddr = null;
+ 
+@@ -422,6 +425,9 @@ function parseMachO(base) {
+ 
+     if (cmd === LC_ENCRYPTION_INFO || cmd === LC_ENCRYPTION_INFO_64) {
+       cryptidOffset = cmdOffset + 16;
++      cryptOff = base.add(cmdOffset + 8).readU32();
++      cryptSize = base.add(cmdOffset + 12).readU32();
++      cryptId = base.add(cmdOffset + 16).readU32();
+     }
+ 
+     cmdOffset += cmdsize;
+@@ -431,11 +437,37 @@ function parseMachO(base) {
+     is64: is64,
+     segments: segments,
+     cryptidOffset: cryptidOffset,
++    cryptOff: cryptOff,
++    cryptSize: cryptSize,
++    cryptId: cryptId,
+     textVmaddr: textVmaddr,
+     fallbackVmaddr: fallbackVmaddr
+   };
+ }
+ 
++function baseVmaddrForParsed(parsed) {
++  var baseVmaddr = parsed.textVmaddr !== null ? parsed.textVmaddr : parsed.fallbackVmaddr;
++  if (baseVmaddr === null) {
++    throw new Error('Unable to find a base segment for slide calculation.');
++  }
++  return baseVmaddr;
++}
++
++function memoryAddressForFileOffset(base, parsed, fileOffset) {
++  var baseVmaddr = baseVmaddrForParsed(parsed);
++  for (var i = 0; i < parsed.segments.length; i++) {
++    var seg = parsed.segments[i];
++    if (seg.filesize === 0) {
++      continue;
++    }
++    if (fileOffset >= seg.fileoff && fileOffset < seg.fileoff + seg.filesize) {
++      var memoryOffset = (seg.vmaddr - baseVmaddr) + (fileOffset - seg.fileoff);
++      return base.add(memoryOffset);
++    }
++  }
++  return base.add(fileOffset);
++}
++
+ function ensureDir(path) {
+   if (tryLoadObjC()) {
+     var fm = ObjC.classes.NSFileManager.defaultManager();
+@@ -453,6 +485,71 @@ function ensureDir(path) {
+   ensureDirPosix(path);
+ }
+ 
++function copyFile(sourcePath, outPath) {
++  var dir = outPath.split('/').slice(0, -1).join('/');
++  if (dir.length > 0) {
++    ensureDir(dir);
++  }
++
++  var input = new File(sourcePath, 'rb');
++  var output = new File(outPath, 'wb');
++  var chunkSize = 1024 * 1024;
++  try {
++    while (true) {
++      var data = input.readBytes(chunkSize);
++      if (data.byteLength === 0) {
++        break;
++      }
++      output.write(data);
++      if (data.byteLength < chunkSize) {
++        break;
++      }
++    }
++  } finally {
++    input.close();
++    output.flush();
++    output.close();
++  }
++}
++
++function dumpModule(module, outPath) {
++  var parsed = parseMachO(module.base);
++  copyFile(module.path, outPath);
++
++  var out = new File(outPath, 'r+b');
++  try {
++    if (parsed.cryptidOffset !== null) {
++      out.seek(parsed.cryptidOffset, File.SEEK_SET);
++      out.write(new Uint8Array([0, 0, 0, 0]).buffer);
++    }
++
++    if (parsed.cryptOff !== null && parsed.cryptSize !== null && parsed.cryptSize > 0) {
++      var remaining = parsed.cryptSize;
++      var offset = parsed.cryptOff;
++      var chunkSize = 1024 * 1024;
++      while (remaining > 0) {
++        var size = Math.min(chunkSize, remaining);
++        var addr = memoryAddressForFileOffset(module.base, parsed, offset);
++        out.seek(offset, File.SEEK_SET);
++        out.write(addr.readByteArray(size));
++        offset += size;
++        remaining -= size;
++      }
++    }
++  } finally {
++    out.flush();
++    out.close();
++  }
++
++  return {
++    outPath: outPath,
++    path: module.path,
++    name: module.name,
++    cryptid: parsed.cryptId,
++    cryptSize: parsed.cryptSize
++  };
++}
++
+ function dumpExecutable(outPath) {
+   var info = getBundleInfo();
+   var module = null;
+@@ -519,6 +616,46 @@ function dumpExecutable(outPath) {
+   };
+ }
+ 
++function dumpLoadedExecutables(outRoot) {
++  var info = getBundleInfo();
++  if (!info.bundlePath) {
++    throw new Error('Unable to resolve bundle path.');
++  }
++
++  ensureDir(outRoot);
++  var root = info.bundlePath.replace(/\/$/, '');
++  var prefix = root + '/';
++  var modules = enumerateModules();
++  var dumped = [];
++  var seen = {};
++
++  for (var i = 0; i < modules.length; i++) {
++    var mod = modules[i];
++    if (mod.path.indexOf(prefix) !== 0 || seen[mod.path]) {
++      continue;
++    }
++    seen[mod.path] = true;
++
++    var parsed;
++    try {
++      parsed = parseMachO(mod.base);
++    } catch (e) {
++      continue;
++    }
++    if (parsed.cryptidOffset === null) {
++      continue;
++    }
++
++    var relPath = mod.path.substring(prefix.length);
++    var outPath = outRoot.replace(/\/$/, '') + '/' + relPath;
++    var result = dumpModule(mod, outPath);
++    result.relPath = relPath;
++    dumped.push(result);
++  }
++
++  return dumped;
++}
++
+ function statPath(path) {
+   if (tryLoadObjC()) {
+     var fm = ObjC.classes.NSFileManager.defaultManager();
+@@ -648,6 +785,7 @@ rpc.exports = {
+   getbundleinfo: getBundleInfo,
+   getsandboxpath: getSandboxPath,
+   dumpexecutable: dumpExecutable,
++  dumploadedexecutables: dumpLoadedExecutables,
+   listfiles: listFiles,
+   statpath: statPath,
+   readfile: readFile,
+diff --git a/frida_ipa_extract/frida_client.py b/frida_ipa_extract/frida_client.py
+index 83ebab3..76f0231 100644
+--- a/frida_ipa_extract/frida_client.py
++++ b/frida_ipa_extract/frida_client.py
+@@ -92,6 +92,9 @@ class FridaDumper:
+     def dump_executable(self, out_path: str):
+         return self._script.exports.dumpexecutable(out_path)
+ 
++    def dump_loaded_executables(self, out_dir: str):
++        return self._script.exports.dumploadedexecutables(out_dir)
++
+     def get_sandbox_path(self):
+         return self._script.exports.getsandboxpath()
+ 
