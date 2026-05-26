@@ -839,6 +839,26 @@
         "iOS boundary refinement expanded analysis to 101 IPAs / 100 unique app builds and resolved exact adjacent App Store list transitions: 1.25.1 -> 1.26.0, 1.31.2 -> 1.32.0, 1.34.1 -> 1.35.0, 1.41.1 -> 1.42.0, 1.46.0 -> 1.47.0, 1.47.2 -> 1.48.0, 1.48.2 -> 1.49.0, 1.55.1 -> 2.0.0, 2.0.0 -> 2.0.1, 2.18.1 -> 2.19.0, and 2.36.4 -> 2.37.0.",
         "Marked done because the iOS App Store version list yielded exact adjacent RN boundaries. Android APKPure downloads are retained only as current RN confirmation because they duplicated the latest payload for historical rows."
       ]
+    },
+    {
+      "app_slug": "bluesky",
+      "app_name": "Bluesky Social",
+      "app_id": "6444370199",
+      "bundle_id": "xyz.blueskyweb.app",
+      "android_package": "xyz.blueskyweb.app",
+      "android_history_source": "APKPure versions page for package xyz.blueskyweb.app",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 6444370199 and bundle ID xyz.blueskyweb.app; Google Play and APKPure identify Android package xyz.blueskyweb.app.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/bluesky",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Bluesky --format json returned App Store ID 6444370199, bundle ID xyz.blueskyweb.app, app name Bluesky Social, and current listed version 1.121.0.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 6444370199 returned bundle ID xyz.blueskyweb.app, app name Bluesky Social, seller Bluesky PBLLC, current US listed version 1.121.0, and release date 2026-04-22T22:32:35Z.",
+        "App Store URL: https://apps.apple.com/us/app/bluesky-social/id6444370199.",
+        "Android package source: Google Play identifies package xyz.blueskyweb.app and returned HTTP 200.",
+        "APKPure Android history URL identified: https://apkpure.net/bluesky/xyz.blueskyweb.app/versions returned HTTP 200."
+      ]
     }
   ]
 }

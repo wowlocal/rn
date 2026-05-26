@@ -7,7 +7,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 6
-- Queued: 0
+- Queued: 1
 - In progress: 0
 - Needs manual review: 14
 - No RN detected: 2
@@ -21,6 +21,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
 - Mattermost: 175 iOS external versions; reports in `reports/mattermost`
+
+## Queued Apps
+
+- Bluesky Social: App Store ID 6444370199; bundle ID xyz.blueskyweb.app
 
 ## Manual Review Apps
 
