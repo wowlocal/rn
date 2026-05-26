@@ -416,9 +416,9 @@
       "bundle_id": "pinterest",
       "android_package": "com.pinterest",
       "android_history_source": "AndroidAPKsFree old versions page for package com.pinterest; APKCombo/APKPure current pages; APKMirror blocked by Cloudflare",
-      "status": "initial_sampling",
+      "status": "done",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 429047995 and bundle ID pinterest; Google Play, APKPure, APKCombo, AndroidAPKsFree, and APKMirror identify Android package com.pinterest.",
-      "last_completed_step": "initial_sampling",
+      "last_completed_step": "done",
       "reports_path": "reports/pinterest",
       "version_list_path": "reports/pinterest/version-list.json",
       "android_version_list_path": "reports/pinterest/android-version-list.json",
@@ -428,8 +428,8 @@
       "android_version_count": 50,
       "oldest_android_version_code": "12188010",
       "newest_android_version_code": "14088010",
-      "sampled_ipa_count": 11,
-      "unique_builds_analyzed": 11,
+      "sampled_ipa_count": 50,
+      "unique_builds_analyzed": 50,
       "sampled_android_package_count": 12,
       "rn_detected": true,
       "notes": [
@@ -443,8 +443,10 @@
         "iOS version list fetched on 2026-05-26: 645 external version IDs from 3572654 through 885829462.",
         "AndroidAPKsFree catalog fetched on 2026-05-26: 50 direct APK entries from versionCode 12188010 through 14088010; source page appears to expose a limited history.",
         "Initial Android sampling downloaded and analyzed 12 AndroidAPKsFree APKs from versionCode 12188010 through 14088010. No sampled Android package exposed React Native JS bundle or native-library markers.",
-        "Initial iOS sampling downloaded and analyzed 11 targeted IPAs. React Native bundles were detected in iOS app versions 6.43 and 8.3.1 as <=0.59.x, and in version 9.42 as 0.63.x.",
-        "The sampled iOS timeline currently shows no JS bundle through 6.22, RN present from 6.43 through 9.42, and no JS bundle again by 12.8 and 14.19."
+        "iOS sampling and boundary refinement downloaded and analyzed 50 targeted IPAs, resolving five exact App Store-adjacent iOS RN transitions.",
+        "Final iOS ranges: unknown through 6.36.1, <=0.59.x from 6.37 through 8.12.1, 0.60.x from 8.13 through 8.17, 0.61.x from 8.18 through 8.26, 0.63.x from 8.27 through 10.40, and unknown again from 10.41 through 14.19.",
+        "Final exact iOS transition boundaries: 6.36.1 -> 6.37, 8.12.1 -> 8.13, 8.17 -> 8.18, 8.26 -> 8.27, and 10.40 -> 10.41.",
+        "Marked done because the iOS App Store list yielded exact adjacent RN boundaries; Android remains a late-window cross-check with no RN markers in sampled 2024-2026 APKs."
       ]
     }
   ]

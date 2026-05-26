@@ -1,38 +1,62 @@
 [
   {
     "from_rn_guess": "unknown",
-    "from_app_version": "6.22",
-    "from_app_build": "3",
-    "from_external_version_id": "821390341",
-    "from_build_timestamp": "2017-03-24T12:56:48",
+    "from_app_version": "6.36.1",
+    "from_app_build": "1",
+    "from_external_version_id": "823969700",
+    "from_build_timestamp": "2017-10-10T14:13:02",
     "to_rn_guess": "<=0.59.x",
-    "to_app_version": "6.43",
-    "to_app_build": "3",
-    "to_external_version_id": "825777860",
-    "to_build_timestamp": "2018-01-26T11:48:20"
+    "to_app_version": "6.37",
+    "to_app_build": "4",
+    "to_external_version_id": "824087289",
+    "to_build_timestamp": "2017-10-20T16:18:08"
   },
   {
     "from_rn_guess": "<=0.59.x",
-    "from_app_version": "8.3.1",
-    "from_app_build": "6",
-    "from_external_version_id": "834596156",
-    "from_build_timestamp": "2020-02-04T17:36:44",
-    "to_rn_guess": "0.63.x",
-    "to_app_version": "9.42",
+    "from_app_version": "8.12.1",
+    "from_app_build": "4",
+    "from_external_version_id": "835482395",
+    "from_build_timestamp": "2020-04-09T18:34:12",
+    "to_rn_guess": "0.60.x",
+    "to_app_version": "8.13",
+    "to_app_build": "4",
+    "to_external_version_id": "835496563",
+    "to_build_timestamp": "2020-04-10T21:07:24"
+  },
+  {
+    "from_rn_guess": "0.60.x",
+    "from_app_version": "8.17",
+    "from_app_build": "3",
+    "from_external_version_id": "835859903",
+    "from_build_timestamp": "2020-05-08T15:52:18",
+    "to_rn_guess": "0.61.x",
+    "to_app_version": "8.18",
     "to_app_build": "3",
-    "to_external_version_id": "845855528",
-    "to_build_timestamp": "2021-12-10T12:37:04"
+    "to_external_version_id": "836059322",
+    "to_build_timestamp": "2020-05-22T14:01:58"
+  },
+  {
+    "from_rn_guess": "0.61.x",
+    "from_app_version": "8.26",
+    "from_app_build": "4",
+    "from_external_version_id": "836781122",
+    "from_build_timestamp": "2020-07-24T18:54:40",
+    "to_rn_guess": "0.63.x",
+    "to_app_version": "8.27",
+    "to_app_build": "4",
+    "to_external_version_id": "837241595",
+    "to_build_timestamp": "2020-08-04T17:15:10"
   },
   {
     "from_rn_guess": "0.63.x",
-    "from_app_version": "9.42",
-    "from_app_build": "3",
-    "from_external_version_id": "845855528",
-    "from_build_timestamp": "2021-12-10T12:37:04",
+    "from_app_version": "10.40",
+    "from_app_build": "2",
+    "from_external_version_id": "853081184",
+    "from_build_timestamp": "2022-11-01T16:41:56",
     "to_rn_guess": "unknown",
-    "to_app_version": "12.8",
-    "to_app_build": "4",
-    "to_external_version_id": "864203388",
-    "to_build_timestamp": "2024-03-05T23:09:36"
+    "to_app_version": "10.41",
+    "to_app_build": "2",
+    "to_external_version_id": "853214823",
+    "to_build_timestamp": "2022-11-09T11:03:56"
   }
 ]

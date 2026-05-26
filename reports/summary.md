@@ -6,9 +6,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## App Status
 
-- Analyzed successfully: 3
+- Analyzed successfully: 4
 - Queued: 0
-- In progress: 1
+- In progress: 0
 - Needs manual review: 8
 - Skipped: 3
 
@@ -17,10 +17,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Discord: 475 iOS external versions; reports in `reports/discord`
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
-
-## In Progress Apps
-
-- Pinterest: status `initial_sampling`; last completed `initial_sampling`; reports in `reports/pinterest`
+- Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 
 ## Manual Review Apps
 
@@ -76,10 +73,12 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Microsoft Outlook | android | unknown |  | low | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
 | Microsoft Teams | android | 0.60.x |  | medium | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
 | Skype | android | 0.74.x-0.76.x |  | medium | 8.132.0.201 (1250181076) | 8.150.0.125 (1250186747) | 10 |
-| Pinterest | ios | unknown |  | low |  (1) | 6.22 (3) | 6 |
-| Pinterest | ios | <=0.59.x |  | medium | 6.43 (3) | 8.3.1 (6) | 2 |
-| Pinterest | ios | 0.63.x |  | medium | 9.42 (3) | 9.42 (3) | 1 |
-| Pinterest | ios | unknown |  | low | 12.8 (4) | 14.19 (2) | 2 |
+| Pinterest | ios | unknown |  | low |  (1) | 6.36.1 (1) | 10 |
+| Pinterest | ios | <=0.59.x |  | medium | 6.37 (4) | 8.12.1 (4) | 10 |
+| Pinterest | ios | 0.60.x |  | medium | 8.13 (4) | 8.17 (3) | 5 |
+| Pinterest | ios | 0.61.x |  | medium | 8.18 (3) | 8.26 (4) | 5 |
+| Pinterest | ios | 0.63.x |  | medium | 8.27 (4) | 10.40 (2) | 16 |
+| Pinterest | ios | unknown |  | low | 10.41 (2) | 14.19 (2) | 4 |
 | Pinterest | android | unknown |  | unknown | 12.18.0 (12188010) | 14.8.0 (14088010) | 12 |
 
 ## RN Transitions
@@ -107,12 +106,14 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Meta Horizon | android | 0.60.x | <=0.59.x | 349.2.0.46.104 (844730700) | 360.0.0.23.322 (892081967) | 0 | false |
 | Shopify | android | 0.79.x | 0.60.x | 10.2605.0 (220449) | 10.2606.1 (223088) | 0 | false |
 | Shop | android | 0.79.x | 0.81.x | 2.239.0 (3372633) | 2.240.0 (3376891) | 0 | false |
-| Pinterest | ios | unknown | <=0.59.x | 6.22 (3) | 6.43 (3) | 29 | false |
-| Pinterest | ios | <=0.59.x | 0.63.x | 8.3.1 (6) | 9.42 (3) | 99 | false |
-| Pinterest | ios | 0.63.x | unknown | 9.42 (3) | 12.8 (4) | 121 | false |
+| Pinterest | ios | unknown | <=0.59.x | 6.36.1 (1) | 6.37 (4) | 0 | true |
+| Pinterest | ios | <=0.59.x | 0.60.x | 8.12.1 (4) | 8.13 (4) | 0 | true |
+| Pinterest | ios | 0.60.x | 0.61.x | 8.17 (3) | 8.18 (3) | 0 | true |
+| Pinterest | ios | 0.61.x | 0.63.x | 8.26 (4) | 8.27 (4) | 0 | true |
+| Pinterest | ios | 0.63.x | unknown | 10.40 (2) | 10.41 (2) | 0 | true |
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 15
-- Approximate by transition IDs: 9
+- Exact by transition IDs: 20
+- Approximate by transition IDs: 6
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.
