@@ -6,7 +6,7 @@
 - App Store ID: 338137227
 - iOS bundle ID: com.walmart.electronics
 - Android package: com.walmart.android
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -20,6 +20,19 @@
 - APKPure history page identified: `https://apkpure.net/walmart-shopping-savings/com.walmart.android/versions`.
 - AndroidAPKsFree old versions page identified: `https://androidapks.com/walmart/com-walmart-android/old/`.
 
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 338137227`.
+- iOS version list result: failed because App Store license is required.
+- iOS bundle-ID retry and license attempt for `com.walmart.electronics` returned app not found.
+- Raw iOS version-list error: `reports/walmart/version-list-error.json`
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the APKPure catalog: `26120216` (`26.12.2`)
+- Newest Android versionCode in the APKPure catalog: `26180118` (`26.18.1`)
+- Raw Android version catalog: `reports/walmart/android-version-list.json`
+- APKPure currently exposes a limited visible history on the fetched page.
+
 ## Next Step
 
-Fetch iOS and Android version catalogs, preferring APKPure for the first Android sampling pass if it exposes direct version rows.
+Sample the visible Android APKPure catalog first because iOS version-list access is blocked.

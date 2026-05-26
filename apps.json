@@ -456,19 +456,25 @@
       "bundle_id": "com.walmart.electronics",
       "android_package": "com.walmart.android",
       "android_history_source": "APKPure history page for package com.walmart.android; AndroidAPKsFree old versions page also available",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 338137227 and bundle ID com.walmart.electronics; Google Play, APKPure, and AndroidAPKsFree identify Android package com.walmart.android.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/walmart",
       "version_list_path": "reports/walmart/version-list.json",
+      "version_list_error_path": "reports/walmart/version-list-error.json",
       "android_version_list_path": "reports/walmart/android-version-list.json",
+      "android_version_count": 10,
+      "oldest_android_version_code": "26120216",
+      "newest_android_version_code": "26180118",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Walmart --format json did not return the consumer Walmart shopping app in the current localized results.",
         "iOS identifier source: public App Store URL and Apple iTunes lookup for App Store ID 338137227 returned bundle ID com.walmart.electronics, app name Walmart: Shopping & Savings, seller Walmart, and current listed version 26.19.2.",
         "Android package source: Google Play, APKPure, and AndroidAPKsFree identify package com.walmart.android.",
         "APKPure Android history URL identified: https://apkpure.net/walmart-shopping-savings/com.walmart.android/versions.",
-        "AndroidAPKsFree old versions URL identified: https://androidapks.com/walmart/com-walmart-android/old/."
+        "AndroidAPKsFree old versions URL identified: https://androidapks.com/walmart/com-walmart-android/old/.",
+        "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID requires an App Store license; bundle-ID list and purchase attempts returned app not found.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 26120216 through 26180118; source page appears to expose a limited history."
       ]
     }
   ]
