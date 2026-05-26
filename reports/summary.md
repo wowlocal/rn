@@ -30,7 +30,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Coinbase: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
-- Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
+- Skype: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
 - SoundCloud: The Music You Love: last completed `ios_decrypted_latest_sampling`; reports in `reports/soundcloud`
@@ -107,6 +107,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Coinbase | android | unknown |  | low |  | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
 | Microsoft Outlook | android | unknown |  | low |  | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
 | Microsoft Teams | android | 0.60.x |  | medium |  | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
+| Skype | ios | <=0.59.x |  | medium |  | 8.1.46715 (8.1.0.46715) | 8.1.46715 (8.1.0.46715) | 1 |
+| Skype | ios | 0.63.x | 16.13.0 | medium |  | 8.79.92 (8.79.0.92) | 8.82.403 (8.82.0.403) | 7 |
+| Skype | ios | 0.66.x |  | medium |  | 8.83.408 (8.83.0.408) | 8.96.3409 (8.96.0.409) | 7 |
+| Skype | ios | 0.71.x |  | medium |  | 8.97.3203 (8.97.0.203) | 8.150.3125 (8.150.0.125) | 4 |
 | Skype | android | 0.74.x-0.76.x |  | medium |  | 8.132.0.201 (1250181076) | 8.150.0.125 (1250186747) | 10 |
 | Pinterest | ios | unknown |  | low |  |  (1) | 6.36.1 (1) | 10 |
 | Pinterest | ios | <=0.59.x |  | medium |  | 6.37 (4) | 8.12.1 (4) | 10 |
@@ -197,6 +201,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Coinbase | ios | 0.74.x-0.76.x | 0.77.x | 13.21.10 (13210010) | 13.26.10 (13260010) | 4 | false |
 | Coinbase | ios | 0.77.x | 0.79.x | 13.31.19 (13310019) | 13.41.21 (13410021) | 9 | false |
 | Coinbase | ios | 0.79.x | 0.60.x | 13.44.24 (13440024) | 13.45.27 (13450027) | 0 | true |
+| Skype | ios | <=0.59.x | 0.63.x | 8.1.46715 (8.1.0.46715) | 8.79.92 (8.79.0.92) | 91 | false |
+| Skype | ios | 0.63.x | 0.66.x | 8.82.403 (8.82.0.403) | 8.83.408 (8.83.0.408) | 0 | true |
+| Skype | ios | 0.66.x | 0.71.x | 8.96.3409 (8.96.0.409) | 8.97.3203 (8.97.0.203) | 0 | true |
 | Pinterest | ios | unknown | <=0.59.x | 6.36.1 (1) | 6.37 (4) | 0 | true |
 | Pinterest | ios | <=0.59.x | 0.60.x | 8.12.1 (4) | 8.13 (4) | 0 | true |
 | Pinterest | ios | 0.60.x | 0.61.x | 8.17 (3) | 8.18 (3) | 0 | true |
@@ -229,6 +236,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 43
-- Approximate by transition IDs: 25
+- Exact by transition IDs: 45
+- Approximate by transition IDs: 26
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.
