@@ -81,20 +81,34 @@ FIELDS = [
     "dump_size_bytes",
     "source_ipa_size_bytes",
     "main_app_uncompressed_bytes",
+    "main_app_compressed_member_bytes",
     "total_uncompressed_bytes",
+    "total_compressed_member_bytes",
     "macho_total_bytes",
     "main_executable_bytes",
+    "main_executable_pct_main_app",
     "js_bundle_bytes",
     "js_bundle_compressed_bytes",
+    "rn_js_file_count",
     "rn_named_native_bytes",
     "rn_named_native_compressed_bytes",
+    "rn_named_native_file_count",
     "direct_rn_payload_bytes",
+    "direct_rn_payload_compressed_bytes",
     "direct_rn_payload_pct_main_app",
+    "direct_rn_payload_pct_source_ipa",
+    "direct_rn_payload_compressed_pct_dump_ipa",
+    "js_bundle_pct_direct_rn_payload",
+    "rn_named_native_pct_direct_rn_payload",
     "rn_carrier_macho_bytes",
     "rn_carrier_macho_pct_macho",
+    "rn_carrier_macho_pct_main_app",
+    "rn_carrier_macho_count",
     "rn_carrier_macho_members",
     "rn_evidence_class",
     "static_linked_rn_likely",
+    "remaining_encrypted_appex_count",
+    "remaining_encrypted_non_extension_count",
     "rn_js_members",
     "rn_named_native_members",
     "notes",
@@ -300,7 +314,9 @@ def inspect_dump(
     dump_ipa = Path(str(output.get("path", "")))
 
     total_uncompressed = 0
+    total_compressed = 0
     main_app_uncompressed = 0
+    main_app_compressed = 0
     js_bytes = 0
     js_compressed = 0
     native_bytes = 0
@@ -313,8 +329,10 @@ def inspect_dump(
             if info.is_dir():
                 continue
             total_uncompressed += info.file_size
+            total_compressed += info.compress_size
             if in_primary_app_scope(info.filename):
                 main_app_uncompressed += info.file_size
+                main_app_compressed += info.compress_size
             if RN_JS_RE.search(info.filename) and in_primary_app_scope(info.filename):
                 js_bytes += info.file_size
                 js_compressed += info.compress_size
@@ -365,7 +383,12 @@ def inspect_dump(
                     carrier_macho_bytes += int(entry.get("size") or len(data))
 
     direct_rn_payload = js_bytes + native_bytes
+    direct_rn_payload_compressed = js_compressed + native_compressed
     carrier_bytes = max(native_bytes, carrier_macho_bytes)
+    source_ipa_size = int(source.get("size") or 0)
+    dump_size = int(output.get("size") or 0)
+    remaining_appex = coverage.get("remaining_encrypted_appex_members") or []
+    remaining_non_extension = coverage.get("remaining_encrypted_non_extension_members") or []
 
     def pct(numerator: int, denominator: int) -> str:
         if not denominator:
@@ -399,20 +422,32 @@ def inspect_dump(
         "dump_size_bytes": str(output.get("size", "")),
         "source_ipa_size_bytes": str(source.get("size", "")),
         "main_app_uncompressed_bytes": str(main_app_uncompressed),
+        "main_app_compressed_member_bytes": str(main_app_compressed),
         "total_uncompressed_bytes": str(total_uncompressed),
+        "total_compressed_member_bytes": str(total_compressed),
         "macho_total_bytes": str(macho_total) if macho_total else "",
         "main_executable_bytes": str(main_executable_bytes) if main_executable_bytes else "",
+        "main_executable_pct_main_app": pct(main_executable_bytes, main_app_uncompressed),
         "js_bundle_bytes": str(js_bytes),
         "js_bundle_compressed_bytes": str(js_compressed),
+        "rn_js_file_count": str(len(js_members)),
         "rn_named_native_bytes": str(native_bytes),
         "rn_named_native_compressed_bytes": str(native_compressed),
+        "rn_named_native_file_count": str(len(native_members)),
         "direct_rn_payload_bytes": str(direct_rn_payload),
+        "direct_rn_payload_compressed_bytes": str(direct_rn_payload_compressed),
         "direct_rn_payload_pct_main_app": pct(direct_rn_payload, main_app_uncompressed),
+        "direct_rn_payload_pct_source_ipa": pct(direct_rn_payload, source_ipa_size),
+        "direct_rn_payload_compressed_pct_dump_ipa": pct(direct_rn_payload_compressed, dump_size),
         "rn_carrier_macho_bytes": str(carrier_bytes) if carrier_bytes else "",
         "rn_carrier_macho_pct_macho": pct(carrier_bytes, macho_total),
+        "rn_carrier_macho_pct_main_app": pct(carrier_bytes, main_app_uncompressed),
+        "rn_carrier_macho_count": str(len(carrier_macho_members)),
         "rn_carrier_macho_members": member_list(carrier_macho_members),
         "rn_evidence_class": rn_evidence_class,
         "static_linked_rn_likely": str(static_linked_likely).lower(),
+        "remaining_encrypted_appex_count": str(len(remaining_appex)),
+        "remaining_encrypted_non_extension_count": str(len(remaining_non_extension)),
         "rn_js_members": member_list(js_members),
         "rn_named_native_members": member_list(native_members),
         "notes": " ".join(notes),
@@ -442,9 +477,31 @@ def mib(value: Any) -> str:
     return f"{number / 1024 / 1024:.1f}"
 
 
+def int_field(row: dict[str, Any], field: str) -> int:
+    try:
+        return int(str(row.get(field, "") or "0"))
+    except ValueError:
+        return 0
+
+
+def pct_field(row: dict[str, Any], field: str) -> str:
+    value = str(row.get(field, ""))
+    return value if value else "0.00"
+
+
+def split_summary(row: dict[str, Any]) -> str:
+    return f"{mib(row['js_bundle_bytes'])} MiB JS / {mib(row['rn_named_native_bytes'])} MiB native"
+
+
 def markdown(rows: list[dict[str, Any]]) -> str:
     app_count = len({row["bundle_id"] for row in rows})
     rn_rows = [row for row in rows if row["rn_evidence_class"] != "no_rn_detected"]
+    control_rows = [row for row in rows if row["rn_evidence_class"] == "no_rn_detected"]
+    static_rows = [
+        row
+        for row in rn_rows
+        if row["static_linked_rn_likely"] == "true" and int_field(row, "direct_rn_payload_bytes") == 0
+    ]
     lines = [
         "# React Native Binary Size Overhead From Decrypted iOS Dumps",
         "",
@@ -453,49 +510,70 @@ def markdown(rows: list[dict[str, Any]]) -> str:
         f"- Accepted decrypted dump rows analyzed: {len(rows)}",
         f"- Apps represented: {app_count}",
         "- Dump IPAs are local evidence under `tmp/ios-dumps`; they are not committed.",
-        "- `direct_rn_payload_bytes` is a conservative floor: JS/Hermes bundle files plus separately named React Native/Hermes/JSI/Yoga native artifacts in the primary app bundle.",
+        "- `direct_rn_payload_bytes` is an RN-associated packaging floor: JS/Hermes bundle files plus separately named React Native/Hermes/JSI/Yoga native artifacts in the primary app bundle.",
+        "- JS/Hermes bundle bytes include app/product JavaScript as well as framework/runtime glue, so they are not pure React Native framework overhead.",
+        "- `rn_named_native_bytes` is the closer framework/runtime signal when RN/Hermes/JSI/Yoga ship as separately named binaries.",
         "- Many iOS apps statically link React Native into the main executable. For those, exact RN-only native bytes cannot be separated from app code without link maps or symbol-level attribution, so `rn_carrier_macho_bytes` reports the containing Mach-O size as context, not as direct overhead.",
         "- Rows with no current RN evidence are retained as controls and should not be interpreted as RN overhead.",
         "",
         "## Observations",
         "",
+        f"- RN-positive rows: {len(rn_rows)}; static-linked rows with no separable RN artifacts: {len(static_rows)}; negative/control rows: {len(control_rows)}.",
     ]
 
-    top_direct = sorted(rn_rows, key=lambda row: int(row["direct_rn_payload_bytes"] or 0), reverse=True)[:5]
+    top_direct = sorted(rn_rows, key=lambda row: int_field(row, "direct_rn_payload_bytes"), reverse=True)[:5]
     if top_direct:
-        lines.append("- Largest direct RN payload floors:")
+        lines.append("- Largest RN-associated packaging floors:")
         for row in top_direct:
             app = row["app_name"] or row["bundle_id"]
             lines.append(
                 f"  - {app} `{row['app_version']} ({row['app_build']})`: "
                 f"{mib(row['direct_rn_payload_bytes'])} MiB "
-                f"({row['direct_rn_payload_pct_main_app']}% of primary app uncompressed bytes)."
+                f"({pct_field(row, 'direct_rn_payload_pct_main_app')}% of primary app uncompressed bytes; "
+                f"{split_summary(row)})."
             )
 
-    static_rows = [
-        row
-        for row in rn_rows
-        if row["static_linked_rn_likely"] == "true" and int(row["direct_rn_payload_bytes"] or 0) == 0
-    ]
     if static_rows:
-        max_static = max(static_rows, key=lambda row: int(row["rn_carrier_macho_bytes"] or 0))
+        max_static = max(static_rows, key=lambda row: int_field(row, "rn_carrier_macho_bytes"))
         lines.append(
             f"- Static-linked RN rows can have a zero direct-artifact floor; the largest carrier context is "
             f"{mib(max_static['rn_carrier_macho_bytes'])} MiB in "
             f"{max_static['app_name'] or max_static['bundle_id']} `{max_static['app_version']} ({max_static['app_build']})`."
         )
 
-    control_apps = sorted({row["app_name"] or row["bundle_id"] for row in rows if row["rn_evidence_class"] == "no_rn_detected"})
+    top_native = sorted(rn_rows, key=lambda row: int_field(row, "rn_named_native_bytes"), reverse=True)[:5]
+    if top_native:
+        lines.append("- Largest separately named native RN/Hermes/JSI/Yoga runtime payloads:")
+        for row in top_native:
+            app = row["app_name"] or row["bundle_id"]
+            lines.append(
+                f"  - {app} `{row['app_version']} ({row['app_build']})`: "
+                f"{mib(row['rn_named_native_bytes'])} MiB native runtime bytes "
+                f"across {row['rn_named_native_file_count']} file(s)."
+            )
+
+    top_js = sorted(rn_rows, key=lambda row: int_field(row, "js_bundle_bytes"), reverse=True)[:5]
+    if top_js:
+        lines.append("- Largest JS/Hermes bundle payloads:")
+        for row in top_js:
+            app = row["app_name"] or row["bundle_id"]
+            lines.append(
+                f"  - {app} `{row['app_version']} ({row['app_build']})`: "
+                f"{mib(row['js_bundle_bytes'])} MiB uncompressed "
+                f"({mib(row['js_bundle_compressed_bytes'])} MiB compressed)."
+            )
+
+    control_apps = sorted({row["app_name"] or row["bundle_id"] for row in control_rows})
     if control_apps:
         lines.append("- No RN overhead is attributed to current negative/control rows: " + ", ".join(control_apps) + ".")
 
     lines.extend(
         [
             "",
-        "## Per-Dump Results",
-        "",
-        "| App | Version | RN evidence | Direct RN payload | Direct % of app | RN carrier Mach-O | Coverage | Notes |",
-        "| --- | --- | --- | ---: | ---: | ---: | --- | --- |",
+            "## Per-Dump Results",
+            "",
+            "| App | Version | RN evidence | RN-associated payload | Split | Direct % of app | RN carrier Mach-O | Coverage | Notes |",
+            "| --- | --- | --- | ---: | --- | ---: | ---: | --- | --- |",
         ]
     )
     for row in rows:
@@ -504,11 +582,34 @@ def markdown(rows: list[dict[str, Any]]) -> str:
         evidence = row["rn_guess"] if row["rn_guess"] and row["rn_guess"] != "unknown" else row["rn_evidence_class"]
         direct = mib(row["direct_rn_payload_bytes"])
         carrier = mib(row["rn_carrier_macho_bytes"])
-        pct = row["direct_rn_payload_pct_main_app"]
+        pct = pct_field(row, "direct_rn_payload_pct_main_app")
         notes = row["notes"].replace("|", "/")[:130]
         lines.append(
-            f"| {app} | `{version}` | {evidence} | {direct} MiB | {pct}% | {carrier} MiB | "
+            f"| {app} | `{version}` | {evidence} | {direct} MiB | {split_summary(row)} | {pct}% | {carrier} MiB | "
             f"{row['decrypted_coverage']} | {notes} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Component Breakdown",
+            "",
+            "| App | Version | Source IPA | Primary App Uncompressed | Main Executable | JS/Hermes Bundle | Named Native Runtime | Direct Compressed | Files |",
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for row in rows:
+        app = row["app_name"] or row["bundle_id"]
+        version = f"{row['app_version']} ({row['app_build']})"
+        files = f"{row['rn_js_file_count']} JS, {row['rn_named_native_file_count']} native, {row['rn_carrier_macho_count']} carrier"
+        lines.append(
+            f"| {app} | `{version}` | {mib(row['source_ipa_size_bytes'])} MiB | "
+            f"{mib(row['main_app_uncompressed_bytes'])} MiB | "
+            f"{mib(row['main_executable_bytes'])} MiB ({pct_field(row, 'main_executable_pct_main_app')}%) | "
+            f"{mib(row['js_bundle_bytes'])} MiB | "
+            f"{mib(row['rn_named_native_bytes'])} MiB | "
+            f"{mib(row['direct_rn_payload_compressed_bytes'])} MiB "
+            f"({pct_field(row, 'direct_rn_payload_compressed_pct_dump_ipa')}% of dump IPA) | {files} |"
         )
 
     if rn_rows:
@@ -517,14 +618,36 @@ def markdown(rows: list[dict[str, Any]]) -> str:
             by_app[row["app_name"] or row["bundle_id"]].append(row)
         lines.extend(["", "## App-Level Takeaways", ""])
         for app, app_rows in sorted(by_app.items()):
-            latest = max(app_rows, key=lambda row: (row.get("build_timestamp", ""), row.get("app_version", "")))
-            max_direct = max(int(row["direct_rn_payload_bytes"] or 0) for row in app_rows)
-            max_carrier = max(int(row["rn_carrier_macho_bytes"] or 0) for row in app_rows)
-            lines.append(
-                f"- {app}: direct RN payload floor up to {mib(max_direct)} MiB; "
-                f"largest RN carrier Mach-O context {mib(max_carrier)} MiB; "
-                f"latest analyzed row `{latest['app_version']} ({latest['app_build']})`."
+            ordered = sorted(
+                app_rows,
+                key=lambda row: (row.get("build_timestamp", ""), row.get("external_version_id", ""), row.get("app_version", "")),
             )
+            first = ordered[0]
+            latest = ordered[-1]
+            max_direct = max(int_field(row, "direct_rn_payload_bytes") for row in app_rows)
+            max_native = max(int_field(row, "rn_named_native_bytes") for row in app_rows)
+            max_js = max(int_field(row, "js_bundle_bytes") for row in app_rows)
+            max_carrier = max(int_field(row, "rn_carrier_macho_bytes") for row in app_rows)
+            delta = int_field(latest, "direct_rn_payload_bytes") - int_field(first, "direct_rn_payload_bytes")
+            delta_text = f"; sampled direct delta {mib(delta)} MiB" if len(ordered) > 1 else ""
+            lines.append(
+                f"- {app}: RN-associated payload up to {mib(max_direct)} MiB "
+                f"(JS/Hermes up to {mib(max_js)} MiB, named native runtime up to {mib(max_native)} MiB); "
+                f"largest RN carrier Mach-O context {mib(max_carrier)} MiB; "
+                f"latest analyzed row `{latest['app_version']} ({latest['app_build']})`{delta_text}."
+            )
+
+    lines.extend(
+        [
+            "",
+            "## Interpretation Limits",
+            "",
+            "- Treat `direct_rn_payload_bytes` as an RN-associated packaging floor, not a pure framework tax. It includes the app's JavaScript bundle because that bundle is required by the RN architecture, but app logic would exist in some form in a native implementation too.",
+            "- Treat `rn_carrier_macho_bytes` as context. When RN is statically linked into a large main executable, this field can be much larger than the actual RN symbols inside it.",
+            "- Rows with `remaining_encrypted_non_extension_count > 0` may hide additional native bytes outside the main app process that the current dump did not decrypt.",
+            "- Negative/control rows are important: they keep native or web-hybrid apps from being charged RN overhead just because generic React, JSI, or Yoga-like strings appear elsewhere.",
+        ]
+    )
 
     return "\n".join(lines) + "\n"
 
