@@ -799,6 +799,26 @@
       "android_transitions_report": "reports/nerdwallet/android-transitions.json",
       "oldest_android_manifest_version_code": "123845",
       "newest_android_manifest_version_code": "162034"
+    },
+    {
+      "app_slug": "mattermost",
+      "app_name": "Mattermost",
+      "app_id": "1257222717",
+      "bundle_id": "com.mattermost.rn",
+      "android_package": "com.mattermost.rn",
+      "android_history_source": "APKPure versions page for package com.mattermost.rn",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1257222717 and bundle ID com.mattermost.rn; Google Play and APKPure identify Android package com.mattermost.rn.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/mattermost",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Mattermost --format json returned App Store ID 1257222717, bundle ID com.mattermost.rn, app name Mattermost, and current listed version 2.40.0.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 1257222717 returned bundle ID com.mattermost.rn, app name Mattermost, seller Mattermost, Inc., current US listed version 2.40.0, and release date 2026-05-15T18:24:59Z.",
+        "App Store URL: https://apps.apple.com/us/app/mattermost/id1257222717.",
+        "Android package source: Google Play identifies package com.mattermost.rn and returned HTTP 200.",
+        "APKPure Android history URL identified: https://apkpure.net/mattermost/com.mattermost.rn/versions returned HTTP 200."
+      ]
     }
   ]
 }
