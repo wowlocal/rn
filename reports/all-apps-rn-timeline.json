@@ -826,5 +826,41 @@
     "start_app_version": "1.9.2",
     "start_build_timestamp": "2015-12-05T14:41:14",
     "start_external_version_id": "814482031"
+  },
+  {
+    "app_name": "SoundCloud: The Music You Love",
+    "app_slug": "soundcloud",
+    "app_status": "not_react_native_detected",
+    "build_count": 12,
+    "confidence": "low",
+    "end_app_build": "1259079",
+    "end_app_version": "8.62.0",
+    "end_build_timestamp": "2026-05-22T09:42:08",
+    "end_external_version_id": "885918024",
+    "platform": "ios",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "1.0",
+    "start_app_version": "",
+    "start_build_timestamp": "2009-10-14T07:39:00",
+    "start_external_version_id": "2053200"
+  },
+  {
+    "app_name": "SoundCloud: The Music You Love",
+    "app_slug": "soundcloud",
+    "app_status": "not_react_native_detected",
+    "build_count": 10,
+    "confidence": "unknown",
+    "end_app_build": "355060",
+    "end_app_version": "2026.05.15-release",
+    "end_build_timestamp": "2026-05-20",
+    "end_external_version_id": "355060",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "348060",
+    "start_app_version": "2026.03.27-release",
+    "start_build_timestamp": "2026-03-31",
+    "start_external_version_id": "348060"
   }
 ]

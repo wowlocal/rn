@@ -563,9 +563,9 @@
       "bundle_id": "com.soundcloud.TouchApp",
       "android_package": "com.soundcloud.android",
       "android_history_source": "APKPure versions page for package com.soundcloud.android",
-      "status": "version_list_fetched",
+      "status": "not_react_native_detected",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search resolved App Store ID 336353151 and bundle ID com.soundcloud.TouchApp; Apple iTunes lookup confirmed current US listing; Google Play and APKPure identify Android package com.soundcloud.android.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "initial_sampling",
       "reports_path": "reports/soundcloud",
       "version_list_path": "reports/soundcloud/version-list.json",
       "android_version_list_path": "reports/soundcloud/android-version-list.json",
@@ -575,6 +575,10 @@
       "android_version_count": 10,
       "oldest_android_version_code": "348060",
       "newest_android_version_code": "355060",
+      "sampled_ipa_count": 12,
+      "unique_builds_analyzed": 12,
+      "sampled_android_package_count": 10,
+      "rn_detected": false,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search SoundCloud --format json returned App Store ID 336353151, bundle ID com.soundcloud.TouchApp, localized app name SoundCloud - музыка и звук, and current listed version 8.61.0.",
@@ -585,7 +589,13 @@
         "APKPure .com versions URL returned HTTP 403, but the APKPure .net versions URL returned HTTP 200.",
         "AndroidAPKsFree guessed old versions URL for package com.soundcloud.android returned HTTP 404.",
         "iOS version list fetched on 2026-05-26: 645 external version IDs from 2053200 through 885918024.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 348060 through 355060; source page appears to expose a limited history."
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 348060 through 355060; source page appears to expose a limited history.",
+        "Android sampling downloaded and analyzed all 10 visible APKPure rows. No sampled Android package exposed React Native JS bundle or native-library markers.",
+        "Android package hash validation found one unique payload hash across all 10 downloaded XAPK rows, so APKPure appears to be returning duplicated current-package payloads for historical rows.",
+        "iOS sampling downloaded and analyzed 12 evenly spaced App Store versions from external version ID 2053200 through 885918024.",
+        "No sampled iOS IPA contained a JS bundle, Hermes bytecode, or React Native-related filenames such as ReactNative, react-native, Hermes, JSI, Yoga, .jsbundle, or .hbc.",
+        "All sampled IPA main executables are FairPlay encrypted, so native constants are not inspectable.",
+        "Marked not_react_native_detected because no React Native markers were found in the broad iOS sample or the visible Android sample."
       ]
     }
   ]

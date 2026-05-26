@@ -1,0 +1,16 @@
+[
+  {
+    "rn_guess": "unknown",
+    "react_renderer": "",
+    "confidence": "low",
+    "start_app_version": "",
+    "start_app_build": "1.0",
+    "start_external_version_id": "2053200",
+    "start_build_timestamp": "2009-10-14T07:39:00",
+    "end_app_version": "8.62.0",
+    "end_app_build": "1259079",
+    "end_external_version_id": "885918024",
+    "end_build_timestamp": "2026-05-22T09:42:08",
+    "build_count": 12
+  }
+]

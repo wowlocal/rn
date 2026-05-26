@@ -6,7 +6,7 @@
 - App Store ID: 336353151
 - iOS bundle ID: com.soundcloud.TouchApp
 - Android package: com.soundcloud.android
-- Status: version_list_fetched
+- Status: not_react_native_detected
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -19,8 +19,6 @@
 - APKPure Android history URL identified: `https://apkpure.net/sound-cloud-android-app/com.soundcloud.android/versions`.
 - APKPure `.com` versions URL returned HTTP `403`, but the APKPure `.net` versions URL returned HTTP `200`.
 - AndroidAPKsFree guessed old versions URL for package `com.soundcloud.android` returned HTTP `404`.
-
-## Next Step
 
 ## Version Lists
 
@@ -36,6 +34,28 @@
 - Raw Android version catalog: `reports/soundcloud/android-version-list.json`
 - APKPure currently exposes a limited visible history on the fetched page.
 
-## Next Step
+## Android Sampling
 
-Sample the visible Android APKPure catalog first because Android packages should expose RN markers more directly if present.
+- Android sampling date: 2026-05-26
+- Android packages downloaded and analyzed: 10
+- Unique package SHA-256 hashes: 1
+- Android package source: APKPure visible catalog.
+- Android RN markers detected: no.
+- Package hash validation found all 10 downloaded XAPK rows share the same SHA-256 (`1d93f3f92ae6...`), so APKPure appears to be returning duplicated current-package payloads for historical rows.
+- Android reports: `reports/soundcloud/android-versions.csv`, `reports/soundcloud/android-ranges.csv`, and `reports/soundcloud/android-transitions.json`.
+
+## Initial iOS Sampling
+
+- iOS sampling date: 2026-05-26
+- iOS IPAs downloaded and analyzed: 12
+- Unique app builds analyzed: 12
+- Sample strategy: 12 evenly spaced external version IDs from the 645-entry App Store version list, including oldest and newest available IDs.
+- Sampled external version IDs: `2053200`, `646142647`, `821175753`, `830033295`, `836339520`, `844786541`, `854554263`, `860769428`, `867031169`, `873297043`, `878206270`, `885918024`.
+- Sampled app versions: `1.0`, `3.1.0`, `5.1.0`, `5.47.0`, `5.97.0`, `5.149.0`, `6.15.1`, `7.16.0`, `7.44.0`, `8.5.0`, `8.32.0`, `8.62.0`.
+- No sampled IPA contained a JS bundle, Hermes bytecode, or React Native-related filenames such as `ReactNative`, `react-native`, `Hermes`, `JSI`, `Yoga`, `.jsbundle`, or `.hbc`.
+- All sampled IPA main executables are FairPlay encrypted, so native constants are not inspectable.
+- iOS reports: `reports/soundcloud/versions.csv`, `reports/soundcloud/versions.json`, `reports/soundcloud/ranges.csv`, and `reports/soundcloud/timeline.json`.
+
+## Result
+
+Marked `not_react_native_detected` because no React Native markers were found in the broad iOS sample or the visible Android sample.
