@@ -64,7 +64,7 @@
         "Fourth midpoint refinement found 93.0 RN-marked and 149.0 unknown.",
         "Boundary refinement reached exact adjacency: 91.0 unknown -> 92.0 RN, and 147.0 RN -> 148.0 unknown.",
         "Analyzer support added on 2026-05-26 detected renderer inspector markers in 146.0, 147.0, and 148.0 plus main.hbcbundle Hermes bytecode in 562.0.0.",
-        "iOS decrypted dump attempts for exact boundary rows 91.0 (40546824) and 148.0 (86952252) installed matching metadata but failed because the apps did not stay running for attach on the iOS 16.7.7 device.",
+        "iOS decrypted dump attempts for exact boundary rows 91.0 (40546824) and 148.0 (86952252), plus post-boundary 149.0 (87964402), installed matching metadata but failed because the apps did not stay running for attach on the iOS 16.7.7 device.",
         "Accepted iOS decrypted dump for 562.0.0 (975021560, external ID 885556428). The dump has main executable cryptid 0 and main_only_decrypted coverage; analysis finds main.hbcbundle Hermes bytecode version 98 and native React Native markers, but no version-specific RN marker.",
         "Disk cleanup reviewed on 2026-05-25; no Messenger IPAs deleted because 240 GiB remained free.",
         "Final validation passed: scripts compile, CSV/JSON reports parse, transition rows are backed by versions.csv, exact boundaries are adjacent in version-list.json, and all remaining unknown rows carry unknown_reason plus next_action.",
