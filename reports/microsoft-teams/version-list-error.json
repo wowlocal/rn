@@ -1,0 +1,21 @@
+{
+  "attempted_at": "2026-05-26T03:19:39+03:00",
+  "attempts": [
+    {
+      "command": "ipatool list-versions --app-id 1113153706 --format json",
+      "error": "received error: An unknown error has occurred",
+      "success": false
+    },
+    {
+      "command": "ipatool list-versions --bundle-identifier com.microsoft.skype.teams --format json",
+      "error": "received error: An unknown error has occurred",
+      "success": false
+    },
+    {
+      "command": "ipatool purchase --bundle-identifier com.microsoft.skype.teams --format json",
+      "error": "request failed: failed to unmarshal json: invalid character '<' looking for beginning of value",
+      "success": false
+    }
+  ],
+  "schema_version": 1
+}
