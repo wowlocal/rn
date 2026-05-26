@@ -13,14 +13,50 @@
   },
   {
     "from_rn_guess": "<=0.59.x",
+    "from_app_version": "145.0",
+    "from_app_build": "82143310",
+    "from_external_version_id": "824651339",
+    "from_build_timestamp": "2017-11-28T17:09:26",
+    "to_rn_guess": "<=0.59.x",
+    "to_app_version": "146.0",
+    "to_app_build": "83068889",
+    "to_external_version_id": "825195544",
+    "to_build_timestamp": "2017-12-04T15:09:24"
+  },
+  {
+    "from_rn_guess": "<=0.59.x",
+    "from_app_version": "146.0",
+    "from_app_build": "83068889",
+    "from_external_version_id": "825195544",
+    "from_build_timestamp": "2017-12-04T15:09:24",
+    "to_rn_guess": "<=0.59.x",
+    "to_app_version": "147.0",
+    "to_app_build": "84235609",
+    "to_external_version_id": "825227473",
+    "to_build_timestamp": "2017-12-12T09:16:54"
+  },
+  {
+    "from_rn_guess": "<=0.59.x",
     "from_app_version": "147.0",
     "from_app_build": "84235609",
     "from_external_version_id": "825227473",
     "from_build_timestamp": "2017-12-12T09:16:54",
-    "to_rn_guess": "unknown",
+    "to_rn_guess": "unknown (react-native-renderer 16.2.0)",
     "to_app_version": "148.0",
     "to_app_build": "86952252",
     "to_external_version_id": "825310109",
     "to_build_timestamp": "2018-01-08T17:01:12"
+  },
+  {
+    "from_rn_guess": "unknown (react-native-renderer 16.2.0)",
+    "from_app_version": "148.0",
+    "from_app_build": "86952252",
+    "from_external_version_id": "825310109",
+    "from_build_timestamp": "2018-01-08T17:01:12",
+    "to_rn_guess": "unknown",
+    "to_app_version": "149.0",
+    "to_app_build": "87964402",
+    "to_external_version_id": "825599677",
+    "to_build_timestamp": "2018-01-16T14:39:26"
   }
 ]

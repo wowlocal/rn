@@ -23,25 +23,67 @@
       "start_app_build": "41023043",
       "start_external_version_id": "819183439",
       "start_build_timestamp": "2016-10-08T09:13:24",
+      "end_app_version": "145.0",
+      "end_app_build": "82143310",
+      "end_external_version_id": "824651339",
+      "end_build_timestamp": "2017-11-28T17:09:26",
+      "build_count": 5
+    },
+    {
+      "rn_guess": "<=0.59.x",
+      "react_renderer": "16.1.1",
+      "confidence": "medium",
+      "start_app_version": "146.0",
+      "start_app_build": "83068889",
+      "start_external_version_id": "825195544",
+      "start_build_timestamp": "2017-12-04T15:09:24",
+      "end_app_version": "146.0",
+      "end_app_build": "83068889",
+      "end_external_version_id": "825195544",
+      "end_build_timestamp": "2017-12-04T15:09:24",
+      "build_count": 1
+    },
+    {
+      "rn_guess": "<=0.59.x",
+      "react_renderer": "16.2.0",
+      "confidence": "medium",
+      "start_app_version": "147.0",
+      "start_app_build": "84235609",
+      "start_external_version_id": "825227473",
+      "start_build_timestamp": "2017-12-12T09:16:54",
       "end_app_version": "147.0",
       "end_app_build": "84235609",
       "end_external_version_id": "825227473",
       "end_build_timestamp": "2017-12-12T09:16:54",
-      "build_count": 7
+      "build_count": 1
     },
     {
-      "rn_guess": "unknown",
-      "react_renderer": "",
+      "rn_guess": "unknown (react-native-renderer 16.2.0)",
+      "react_renderer": "16.2.0",
       "confidence": "low",
       "start_app_version": "148.0",
       "start_app_build": "86952252",
       "start_external_version_id": "825310109",
       "start_build_timestamp": "2018-01-08T17:01:12",
+      "end_app_version": "148.0",
+      "end_app_build": "86952252",
+      "end_external_version_id": "825310109",
+      "end_build_timestamp": "2018-01-08T17:01:12",
+      "build_count": 1
+    },
+    {
+      "rn_guess": "unknown",
+      "react_renderer": "",
+      "confidence": "low",
+      "start_app_version": "149.0",
+      "start_app_build": "87964402",
+      "start_external_version_id": "825599677",
+      "start_build_timestamp": "2018-01-16T14:39:26",
       "end_app_version": "562.0.0",
       "end_app_build": "975021560",
       "end_external_version_id": "885556428",
       "end_build_timestamp": "2026-05-19T17:01:04",
-      "build_count": 12
+      "build_count": 11
     }
   ],
   "transitions": [
@@ -59,15 +101,51 @@
     },
     {
       "from_rn_guess": "<=0.59.x",
+      "from_app_version": "145.0",
+      "from_app_build": "82143310",
+      "from_external_version_id": "824651339",
+      "from_build_timestamp": "2017-11-28T17:09:26",
+      "to_rn_guess": "<=0.59.x",
+      "to_app_version": "146.0",
+      "to_app_build": "83068889",
+      "to_external_version_id": "825195544",
+      "to_build_timestamp": "2017-12-04T15:09:24"
+    },
+    {
+      "from_rn_guess": "<=0.59.x",
+      "from_app_version": "146.0",
+      "from_app_build": "83068889",
+      "from_external_version_id": "825195544",
+      "from_build_timestamp": "2017-12-04T15:09:24",
+      "to_rn_guess": "<=0.59.x",
+      "to_app_version": "147.0",
+      "to_app_build": "84235609",
+      "to_external_version_id": "825227473",
+      "to_build_timestamp": "2017-12-12T09:16:54"
+    },
+    {
+      "from_rn_guess": "<=0.59.x",
       "from_app_version": "147.0",
       "from_app_build": "84235609",
       "from_external_version_id": "825227473",
       "from_build_timestamp": "2017-12-12T09:16:54",
-      "to_rn_guess": "unknown",
+      "to_rn_guess": "unknown (react-native-renderer 16.2.0)",
       "to_app_version": "148.0",
       "to_app_build": "86952252",
       "to_external_version_id": "825310109",
       "to_build_timestamp": "2018-01-08T17:01:12"
+    },
+    {
+      "from_rn_guess": "unknown (react-native-renderer 16.2.0)",
+      "from_app_version": "148.0",
+      "from_app_build": "86952252",
+      "from_external_version_id": "825310109",
+      "from_build_timestamp": "2018-01-08T17:01:12",
+      "to_rn_guess": "unknown",
+      "to_app_version": "149.0",
+      "to_app_build": "87964402",
+      "to_external_version_id": "825599677",
+      "to_build_timestamp": "2018-01-16T14:39:26"
     }
   ]
 }

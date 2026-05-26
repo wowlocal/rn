@@ -67,8 +67,11 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Discord | ios | 0.78.x | 19.0.0 | high |  | 280.0 (77565) | 306.1 (89123) | 31 |
 | Discord | ios | 0.81.x | 19.1.0 | high |  | 307.0 (89215) | 329.0 (100971) | 33 |
 | Facebook Messenger | ios | unknown |  | low |  |  (1000) | 91.0 (40546824) | 7 |
-| Facebook Messenger | ios | <=0.59.x |  | medium |  | 92.0 (41023043) | 147.0 (84235609) | 7 |
-| Facebook Messenger | ios | unknown |  | low |  | 148.0 (86952252) | 562.0.0 (975021560) | 12 |
+| Facebook Messenger | ios | <=0.59.x |  | medium |  | 92.0 (41023043) | 145.0 (82143310) | 5 |
+| Facebook Messenger | ios | <=0.59.x | 16.1.1 | medium |  | 146.0 (83068889) | 146.0 (83068889) | 1 |
+| Facebook Messenger | ios | <=0.59.x | 16.2.0 | medium |  | 147.0 (84235609) | 147.0 (84235609) | 1 |
+| Facebook Messenger | ios | unknown (react-native-renderer 16.2.0) | 16.2.0 | low |  | 148.0 (86952252) | 148.0 (86952252) | 1 |
+| Facebook Messenger | ios | unknown |  | low |  | 149.0 (87964402) | 562.0.0 (975021560) | 11 |
 | Instagram | ios | unknown |  | low |  |  (1.8.7) | 9.7.0 (43028597) | 9 |
 | Instagram | ios | <=0.59.x |  | medium |  | 10.0.0 (44114773) | 10.10.0 (50667367) | 3 |
 | Instagram | ios | <=0.59.x | 16.4.1 | medium |  | 58.0 (120248682) | 58.0 (120248682) | 1 |
@@ -158,7 +161,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Discord | ios | 0.74.x-0.76.x | 0.78.x | 279.0 (77189) | 280.0 (77565) | 0 | true |
 | Discord | ios | 0.78.x | 0.81.x | 306.1 (89123) | 307.0 (89215) | 0 | true |
 | Facebook Messenger | ios | unknown | <=0.59.x | 91.0 (40546824) | 92.0 (41023043) | 0 | true |
-| Facebook Messenger | ios | <=0.59.x | unknown | 147.0 (84235609) | 148.0 (86952252) | 0 | true |
+| Facebook Messenger | ios | <=0.59.x | <=0.59.x | 145.0 (82143310) | 146.0 (83068889) | 0 | true |
+| Facebook Messenger | ios | <=0.59.x | <=0.59.x | 146.0 (83068889) | 147.0 (84235609) | 0 | true |
+| Facebook Messenger | ios | <=0.59.x | unknown (react-native-renderer 16.2.0) | 147.0 (84235609) | 148.0 (86952252) | 0 | true |
+| Facebook Messenger | ios | unknown (react-native-renderer 16.2.0) | unknown | 148.0 (86952252) | 149.0 (87964402) | 0 | true |
 | Instagram | ios | unknown | <=0.59.x | 9.7.0 (43028597) | 10.0.0 (44114773) | 0 | true |
 | Instagram | ios | <=0.59.x | <=0.59.x | 10.10.0 (50667367) | 58.0 (120248682) | 71 | false |
 | Instagram | ios | <=0.59.x | <=0.59.x | 58.0 (120248682) | 89.0 (149781277) | 35 | false |
@@ -209,6 +215,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 38
+- Exact by transition IDs: 41
 - Approximate by transition IDs: 21
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.
