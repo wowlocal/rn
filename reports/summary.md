@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 3
 - Queued: 0
-- In progress: 1
-- Needs manual review: 4
+- In progress: 0
+- Needs manual review: 5
 - Skipped: 1
 
 ## Analyzed Apps
@@ -18,16 +18,13 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 
-## In Progress Apps
-
-- Coinbase: status `version_list_fetched`; last completed `version_lists_fetched`; reports in `reports/coinbase`
-
 ## Manual Review Apps
 
 - Threads: last completed `source_limited_boundary_refinement`; reports in `reports/threads`
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
 - Shopify: last completed `source_limited_boundary_refinement`; reports in `reports/shopify`
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
+- Coinbase: last completed `source_limited_android_sampling`; reports in `reports/coinbase`
 
 ## Skipped Apps
 
@@ -66,6 +63,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Shopify | android | 0.60.x |  | medium | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
 | Shop | android | 0.79.x | 19.0.0 | medium | 2.231.0 (3319531) | 2.239.0 (3372633) | 11 |
 | Shop | android | 0.81.x | 19.1.0 | high | 2.240.0 (3376891) | 2.253.0 (3451748) | 16 |
+| Coinbase | android | 0.82.x or newer |  | low | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
 
 ## RN Transitions
 

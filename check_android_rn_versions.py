@@ -173,30 +173,30 @@ def inspect_bundle(data: bytes) -> dict[str, Any]:
     hbc_version = ""
     if data[:4] in {b"\xc6\x1f\xbc\x03", b"HBC\x00"}:
         hbc_version = "present"
-    has_virtual = b"get VirtualViewMode" in data
-    has_rnv_export = b"get ReactNativeVersion" in data
+    has_virtual = b"VirtualViewMode" in data
+    has_rnv_export = b"ReactNativeVersion" in data
     has_logbox = b"unstable_enableLogBox" in data
     has_layout_conformance = b"experimental_LayoutConformance" in data
-    has_register_callable = b"get registerCallableModule" in data
-    has_dev_menu = b"get DevMenu" in data
+    has_register_callable = b"registerCallableModule" in data
+    has_dev_menu = b"DevMenu" in data
     has_set_up_dom = b"setUpDOM" in data
-    has_use_animated_value = b"get useAnimatedValue" in data
-    has_segmented_control_ios = b"get SegmentedControlIOS" in data
-    has_date_picker_android = b"get DatePickerAndroid" in data
-    has_picker_ios = b"get PickerIOS" in data
-    has_status_bar_ios = b"get StatusBarIOS" in data
-    has_root_tag_context = b"get RootTagContext" in data
-    has_unstable_root_tag_context = b"get unstable_RootTagContext" in data
-    has_platform_color = b"get PlatformColor" in data
-    has_dynamic_color_ios = b"get DynamicColorIOS" in data
-    has_pressable = b"get Pressable" in data
-    has_color_android = b"get ColorAndroid" in data
-    has_check_box = b"get CheckBox" in data
-    has_tv_event_handler = b"get TVEventHandler" in data
-    has_use_window_dimensions = b"get useWindowDimensions" in data
-    has_native_dialog_manager_android = b"get NativeDialogManagerAndroid" in data
-    has_turbo_module_registry = b"get TurboModuleRegistry" in data
-    has_virtualized_section_list = b"get VirtualizedSectionList" in data
+    has_use_animated_value = b"useAnimatedValue" in data
+    has_segmented_control_ios = b"SegmentedControlIOS" in data
+    has_date_picker_android = b"DatePickerAndroid" in data
+    has_picker_ios = b"PickerIOS" in data
+    has_status_bar_ios = b"StatusBarIOS" in data
+    has_root_tag_context = b"RootTagContext" in data
+    has_unstable_root_tag_context = b"unstable_RootTagContext" in data
+    has_platform_color = b"PlatformColor" in data
+    has_dynamic_color_ios = b"DynamicColorIOS" in data
+    has_pressable = b"Pressable" in data
+    has_color_android = b"ColorAndroid" in data
+    has_check_box = b"CheckBox" in data
+    has_tv_event_handler = b"TVEventHandler" in data
+    has_use_window_dimensions = b"useWindowDimensions" in data
+    has_native_dialog_manager_android = b"NativeDialogManagerAndroid" in data
+    has_turbo_module_registry = b"TurboModuleRegistry" in data
+    has_virtualized_section_list = b"VirtualizedSectionList" in data
     has_app_registry = b"AppRegistry" in data
     has_batched_bridge = b"BatchedBridge" in data
     has_native_modules = b"NativeModules" in data
@@ -288,7 +288,8 @@ def inspect_apk_bytes(apk_data: bytes, label: str) -> dict[str, Any]:
         for bundle_path in bundle_paths[:10]:
             info = zf.getinfo(bundle_path)
             if info.file_size > 50 * 1024 * 1024:
-                continue
+                if Path(bundle_path).name not in {"index.android.bundle", "index.android.bundle.hbc"}:
+                    continue
             bundle_findings.append(inspect_bundle(zf.read(bundle_path)))
 
         return {

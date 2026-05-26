@@ -392,6 +392,12 @@ def infer_react_native(
             "medium",
             "Renderer is 19.0.0 and RN index marker unstable_enableLogBox is absent.",
         )
+    if not renderer and has_react_native_version_export:
+        return (
+            "0.82.x or newer",
+            "low",
+            "RN index marker ReactNativeVersion is present, but no renderer version marker was found.",
+        )
     if not renderer and has_unstable_enable_logbox_export:
         if not has_experimental_layout_conformance_export:
             if has_dev_menu_export:
