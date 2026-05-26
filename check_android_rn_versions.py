@@ -567,7 +567,7 @@ def analyze_package(path: Path) -> dict[str, Any]:
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=ANDROID_FIELDS)
+        writer = csv.DictWriter(f, fieldnames=ANDROID_FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
