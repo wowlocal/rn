@@ -114,6 +114,14 @@ def load_catalog(path: Path) -> list[dict[str, Any]]:
     return [row for row in versions if isinstance(row, dict)]
 
 
+def catalog_sort_key(entry: dict[str, Any]) -> tuple[str, int]:
+    version_code = str(entry.get("version_code", ""))
+    return (
+        str(entry.get("source_publish_date", "")),
+        int(version_code) if version_code.isdigit() else -1,
+    )
+
+
 def direct_download_url(entry: dict[str, Any], timeout: int) -> str:
     page_url = str(entry.get("download_url", ""))
     version_code = str(entry.get("version_code", ""))
@@ -400,7 +408,7 @@ def main() -> int:
     if args.version_code:
         wanted = set(args.version_code)
         entries = [entry for entry in entries if str(entry.get("version_code", "")) in wanted]
-    entries = sorted(entries, key=lambda entry: int(str(entry.get("version_code", "0"))), reverse=True)
+    entries = sorted(entries, key=catalog_sort_key, reverse=True)
     if args.limit:
         entries = entries[: args.limit]
 
@@ -424,7 +432,7 @@ def main() -> int:
             packages.setdefault(match.group(1), path)
 
     rows: list[dict[str, Any]] = []
-    for version_code, path in sorted(packages.items(), key=lambda item: int(item[0])):
+    for version_code, path in sorted(packages.items(), key=lambda item: catalog_sort_key(by_code[item[0]])):
         entry = by_code[version_code]
         print(f"analyzing {path}")
         analysis = analyze_package(path)

@@ -317,17 +317,24 @@
       "bundle_id": "com.microsoft.Office.Outlook",
       "android_package": "com.microsoft.office.outlook",
       "android_history_source": "APKPure history page for package com.microsoft.office.outlook",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 951937596 and bundle ID com.microsoft.Office.Outlook; Google Play and APKPure identify Android package com.microsoft.office.outlook.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_lists_fetched",
       "reports_path": "reports/microsoft-outlook",
       "version_list_path": "reports/microsoft-outlook/version-list.json",
+      "version_list_error_path": "reports/microsoft-outlook/version-list-error.json",
       "android_version_list_path": "reports/microsoft-outlook/android-version-list.json",
+      "android_version_count": 10,
+      "oldest_android_version_code": "82504829",
+      "newest_android_version_code": "72619117",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "iOS identifier source: ipatool search Microsoft Outlook --format json and Apple iTunes lookup for App Store ID 951937596 returned bundle ID com.microsoft.Office.Outlook, app name Microsoft Outlook, seller Microsoft Corporation, and current listed version 5.2619.0.",
         "Android package source: Google Play and APKPure identify package com.microsoft.office.outlook.",
-        "APKPure Android history URL identified: https://apkpure.net/microsoft-outlook/com.microsoft.office.outlook/versions."
+        "APKPure Android history URL identified: https://apkpure.net/microsoft-outlook/com.microsoft.office.outlook/versions.",
+        "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID and bundle ID returned Apple's generic unknown error; ipatool purchase failed with unsupported protocol scheme.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from source dates 2025-02-24 through 2026-05-23; source page appears to expose a limited history.",
+        "Android versionCode values are not monotonic with APKPure source dates in the fetched Outlook catalog, so date ordering must be reviewed when summarizing Android ranges."
       ]
     }
   ]

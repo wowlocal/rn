@@ -83,14 +83,16 @@ def version_position_info(report_dir: Path, platform: str) -> tuple[dict[str, in
         versions = data.get("versions", [])
         if not isinstance(versions, list):
             return {}, False
-        codes = sorted(
-            {
-                str(row.get("version_code", ""))
-                for row in versions
-                if isinstance(row, dict) and str(row.get("version_code", "")).isdigit()
-            },
-            key=int,
-        )
+        rows = [
+            (
+                str(row.get("source_publish_date", "")),
+                int(str(row.get("version_code", "0"))),
+                str(row.get("version_code", "")),
+            )
+            for row in versions
+            if isinstance(row, dict) and str(row.get("version_code", "")).isdigit()
+        ]
+        codes = [version_code for _, _, version_code in sorted(rows)]
         notes = " ".join(str(note).lower() for note in data.get("notes", []))
         source_limited = "limited" in notes or bool(data.get("extra_source_urls"))
         return {version_code: index for index, version_code in enumerate(codes)}, source_limited

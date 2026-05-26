@@ -1,0 +1,21 @@
+{
+  "attempted_at": "2026-05-26T03:11:02+03:00",
+  "attempts": [
+    {
+      "command": "ipatool list-versions --app-id 951937596 --format json",
+      "error": "received error: An unknown error has occurred",
+      "success": false
+    },
+    {
+      "command": "ipatool list-versions --bundle-identifier com.microsoft.Office.Outlook --format json",
+      "error": "received error: An unknown error has occurred",
+      "success": false
+    },
+    {
+      "command": "ipatool purchase --bundle-identifier com.microsoft.Office.Outlook --format json",
+      "error": "request failed: request failed: Post \"\": failed to make round trip: unsupported protocol scheme \"\"",
+      "success": false
+    }
+  ],
+  "schema_version": 1
+}

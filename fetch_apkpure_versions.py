@@ -152,6 +152,14 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def version_sort_key(row: dict[str, str]) -> tuple[str, int]:
+    version_code = str(row.get("version_code", ""))
+    return (
+        str(row.get("source_publish_date", "")),
+        int(version_code) if version_code.isdigit() else -1,
+    )
+
+
 def main() -> int:
     args = parse_args()
     source_html = fetch_html(args.url, args.timeout)
@@ -163,7 +171,7 @@ def main() -> int:
     if not versions:
         raise RuntimeError(f"no APKPure version entries found for {args.package_name}")
     deduped = {str(row.get("version_code", "")): row for row in versions if row.get("version_code")}
-    versions = sorted(deduped.values(), key=lambda row: int(str(row.get("version_code", "0"))), reverse=True)
+    versions = sorted(deduped.values(), key=version_sort_key, reverse=True)
     for index, row in enumerate(versions):
         row["source_order"] = str(index)
 
