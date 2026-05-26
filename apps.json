@@ -720,9 +720,9 @@
       "bundle_id": "net.artsy.artsy",
       "android_package": "net.artsy.app",
       "android_history_source": "APKPure versions page for package net.artsy.app; APKCombo and Uptodown pages also reachable",
-      "status": "version_list_fetched",
+      "status": "initial_sampling",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 703796080 and bundle ID net.artsy.artsy; Google Play/APKPure/APKCombo/Uptodown identify Android package net.artsy.app.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "initial_sampling",
       "reports_path": "reports/artsy",
       "version_list_path": "reports/artsy/version-list.json",
       "android_version_list_path": "reports/artsy/android-version-list.json",
@@ -734,6 +734,10 @@
       "android_version_count": 10,
       "oldest_android_version_code": "2026022618",
       "newest_android_version_code": "2026052012",
+      "sampled_ipa_count": 12,
+      "unique_builds_analyzed": 12,
+      "sampled_android_package_count": 10,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Artsy --format json returned App Store ID 703796080, bundle ID net.artsy.artsy, app name Artsy: Buy & Sell Fine Art, and current listed version 9.9.0.",
@@ -746,7 +750,10 @@
         "AndroidAPKsFree guessed old versions URL for package net.artsy.app returned HTTP 404.",
         "iOS version list fetched on 2026-05-26: 292 external version identifiers from 23362671 through 885363722.",
         "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 2026022618 through 2026052012; source page appears to expose a limited history.",
-        "Android APKCombo catalog fetch did not produce usable direct download URLs after rejecting decoded variant payloads that were not HTTP(S) URLs."
+        "Android APKCombo catalog fetch did not produce usable direct download URLs after rejecting decoded variant payloads that were not HTTP(S) URLs.",
+        "Initial Android sampling downloaded and analyzed all 10 visible APKPure XAPK rows. React Native markers were detected in every row through Hermes/JSI/native-library metadata, but package hash validation found one unique XAPK payload and embedded manifest versionName 9.9.0/versionCode 2026052012 for every row.",
+        "Initial iOS sampling downloaded and analyzed 12 evenly spaced IPAs across external version IDs 23362671 through 885363722.",
+        "The broad iOS sample reports unknown RN markers through app 7.2.0 (2022-02-03), then source-limited iOS bands: 8.5.0 as 0.66.x, 8.25.0 as 0.69.x-0.70.x, 8.51.0 as 0.71.x, 8.78.0 as 0.74.x-0.76.x, and 9.9.0 as 0.81.x with react-native-renderer 19.1.0."
       ]
     }
   ]

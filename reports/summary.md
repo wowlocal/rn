@@ -22,7 +22,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Artsy: Buy & Sell Fine Art: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/artsy`
+- Artsy: Buy & Sell Fine Art: status `initial_sampling`; last completed `initial_sampling`; reports in `reports/artsy`
 
 ## Manual Review Apps
 
@@ -107,6 +107,13 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Bloomberg: Business News Daily | android | 0.74.x-0.76.x |  | medium | 5.98.0.3930355.fd19b588e (3930355) | 6.19.0.4315110.19bd92161 (4315110) | 4 |
 | Salesforce | android | unknown |  | low | 250.030.0 (250030032) | 260.050.0 (260050025) | 10 |
 | Wix - Website Builder | android | unknown |  | low | 2.115937.0 (130467) | 2.122966.0 (137496) | 10 |
+| Artsy: Buy & Sell Fine Art | ios | unknown |  | low | 1.0 (140) | 7.2.0 (2022.02.03.14) | 7 |
+| Artsy: Buy & Sell Fine Art | ios | 0.66.x |  | medium | 8.5.0 (2023.01.04.16) | 8.5.0 (2023.01.04.16) | 1 |
+| Artsy: Buy & Sell Fine Art | ios | 0.69.x-0.70.x |  | medium | 8.25.0 (2023.11.01.10) | 8.25.0 (2023.11.01.10) | 1 |
+| Artsy: Buy & Sell Fine Art | ios | 0.71.x |  | medium | 8.51.0 (2024.09.18.19) | 8.51.0 (2024.09.18.19) | 1 |
+| Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x |  | medium | 8.78.0 (2025.07.10.14) | 8.78.0 (2025.07.10.14) | 1 |
+| Artsy: Buy & Sell Fine Art | ios | 0.81.x | 19.1.0 | high | 9.9.0 (2026.05.20.12.45) | 9.9.0 (2026.05.20.12.45) | 1 |
+| Artsy: Buy & Sell Fine Art | android | 0.82.x or newer | 19.1.0 | low | 9.0.1 (2026022618) | 9.9.0 (2026052012) | 10 |
 
 ## RN Transitions
 
@@ -142,9 +149,14 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Tesla | android | 0.79.x | 0.82.x or newer | 4.54.0-4094 (4094) | 4.54.3-4107 (4107) | 0 | false |
 | Tesla | android | 0.82.x or newer | 0.79.x | 4.54.3-4107 (4107) | 4.54.5-4133 (4133) | 0 | false |
 | Bloomberg: Business News Daily | android | 0.61.x | 0.74.x-0.76.x | 5.58.0.3042781.7b196c06c (3042781) | 5.98.0.3930355.fd19b588e (3930355) | 0 | false |
+| Artsy: Buy & Sell Fine Art | ios | unknown | 0.66.x | 7.2.0 (2022.02.03.14) | 8.5.0 (2023.01.04.16) | 25 | false |
+| Artsy: Buy & Sell Fine Art | ios | 0.66.x | 0.69.x-0.70.x | 8.5.0 (2023.01.04.16) | 8.25.0 (2023.11.01.10) | 26 | false |
+| Artsy: Buy & Sell Fine Art | ios | 0.69.x-0.70.x | 0.71.x | 8.25.0 (2023.11.01.10) | 8.51.0 (2024.09.18.19) | 25 | false |
+| Artsy: Buy & Sell Fine Art | ios | 0.71.x | 0.74.x-0.76.x | 8.51.0 (2024.09.18.19) | 8.78.0 (2025.07.10.14) | 26 | false |
+| Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x | 0.81.x | 8.78.0 (2025.07.10.14) | 9.9.0 (2026.05.20.12.45) | 25 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 20
-- Approximate by transition IDs: 10
+- Approximate by transition IDs: 15
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

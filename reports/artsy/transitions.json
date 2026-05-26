@@ -1,0 +1,62 @@
+[
+  {
+    "from_rn_guess": "unknown",
+    "from_app_version": "7.2.0",
+    "from_app_build": "2022.02.03.14",
+    "from_external_version_id": "846750580",
+    "from_build_timestamp": "2022-02-03T06:26:20",
+    "to_rn_guess": "0.66.x",
+    "to_app_version": "8.5.0",
+    "to_app_build": "2023.01.04.16",
+    "to_external_version_id": "853926190",
+    "to_build_timestamp": "2023-01-04T08:41:22"
+  },
+  {
+    "from_rn_guess": "0.66.x",
+    "from_app_version": "8.5.0",
+    "from_app_build": "2023.01.04.16",
+    "from_external_version_id": "853926190",
+    "from_build_timestamp": "2023-01-04T08:41:22",
+    "to_rn_guess": "0.69.x-0.70.x",
+    "to_app_version": "8.25.0",
+    "to_app_build": "2023.11.01.10",
+    "to_external_version_id": "860773949",
+    "to_build_timestamp": "2023-11-01T03:49:42"
+  },
+  {
+    "from_rn_guess": "0.69.x-0.70.x",
+    "from_app_version": "8.25.0",
+    "from_app_build": "2023.11.01.10",
+    "from_external_version_id": "860773949",
+    "from_build_timestamp": "2023-11-01T03:49:42",
+    "to_rn_guess": "0.71.x",
+    "to_app_version": "8.51.0",
+    "to_app_build": "2024.09.18.19",
+    "to_external_version_id": "868791215",
+    "to_build_timestamp": "2024-09-18T20:15:58"
+  },
+  {
+    "from_rn_guess": "0.71.x",
+    "from_app_version": "8.51.0",
+    "from_app_build": "2024.09.18.19",
+    "from_external_version_id": "868791215",
+    "from_build_timestamp": "2024-09-18T20:15:58",
+    "to_rn_guess": "0.74.x-0.76.x",
+    "to_app_version": "8.78.0",
+    "to_app_build": "2025.07.10.14",
+    "to_external_version_id": "875931219",
+    "to_build_timestamp": "2025-07-10T14:39:06"
+  },
+  {
+    "from_rn_guess": "0.74.x-0.76.x",
+    "from_app_version": "8.78.0",
+    "from_app_build": "2025.07.10.14",
+    "from_external_version_id": "875931219",
+    "from_build_timestamp": "2025-07-10T14:39:06",
+    "to_rn_guess": "0.81.x",
+    "to_app_version": "9.9.0",
+    "to_app_build": "2026.05.20.12.45",
+    "to_external_version_id": "885363722",
+    "to_build_timestamp": "2026-05-20T12:59:44"
+  }
+]

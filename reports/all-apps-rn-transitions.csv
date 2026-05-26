@@ -29,3 +29,8 @@ walmart,Walmart: Shopping & Savings,needs_manual_review,android,0.74.x-0.76.x,21
 tesla,Tesla,needs_manual_review,android,0.79.x,4.54.0-4094,4094,4094,2026-03-06,0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02,0,false
 tesla,Tesla,needs_manual_review,android,0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02,0.79.x,4.54.5-4133,4133,4133,2026-03-11,0,false
 bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.61.x,5.58.0.3042781.7b196c06c,3042781,3042781,,0.74.x-0.76.x,5.98.0.3930355.fd19b588e,3930355,3930355,,0,false
+artsy,Artsy: Buy & Sell Fine Art,initial_sampling,ios,unknown,7.2.0,2022.02.03.14,846750580,2022-02-03T06:26:20,0.66.x,8.5.0,2023.01.04.16,853926190,2023-01-04T08:41:22,25,false
+artsy,Artsy: Buy & Sell Fine Art,initial_sampling,ios,0.66.x,8.5.0,2023.01.04.16,853926190,2023-01-04T08:41:22,0.69.x-0.70.x,8.25.0,2023.11.01.10,860773949,2023-11-01T03:49:42,26,false
+artsy,Artsy: Buy & Sell Fine Art,initial_sampling,ios,0.69.x-0.70.x,8.25.0,2023.11.01.10,860773949,2023-11-01T03:49:42,0.71.x,8.51.0,2024.09.18.19,868791215,2024-09-18T20:15:58,25,false
+artsy,Artsy: Buy & Sell Fine Art,initial_sampling,ios,0.71.x,8.51.0,2024.09.18.19,868791215,2024-09-18T20:15:58,0.74.x-0.76.x,8.78.0,2025.07.10.14,875931219,2025-07-10T14:39:06,26,false
+artsy,Artsy: Buy & Sell Fine Art,initial_sampling,ios,0.74.x-0.76.x,8.78.0,2025.07.10.14,875931219,2025-07-10T14:39:06,0.81.x,9.9.0,2026.05.20.12.45,885363722,2026-05-20T12:59:44,25,false
