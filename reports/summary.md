@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 4
 - Queued: 0
-- In progress: 1
-- Needs manual review: 12
+- In progress: 0
+- Needs manual review: 13
 - No RN detected: 2
 - Skipped: 3
 
@@ -19,10 +19,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-
-## In Progress Apps
-
-- Wix - Website Builder: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/wix`
 
 ## Manual Review Apps
 
@@ -38,6 +34,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
 - Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`
 - Salesforce: last completed `source_limited_android_sampling`; reports in `reports/salesforce`
+- Wix - Website Builder: last completed `source_limited_android_sampling`; reports in `reports/wix`
 
 ## No RN Detected Apps
 
@@ -105,6 +102,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Bloomberg: Business News Daily | android | 0.61.x |  | medium | 5.58.0.3042781.7b196c06c (3042781) | 5.58.0.3042781.7b196c06c (3042781) | 1 |
 | Bloomberg: Business News Daily | android | 0.74.x-0.76.x |  | medium | 5.98.0.3930355.fd19b588e (3930355) | 6.19.0.4315110.19bd92161 (4315110) | 4 |
 | Salesforce | android | unknown |  | low | 250.030.0 (250030032) | 260.050.0 (260050025) | 10 |
+| Wix - Website Builder | android | unknown |  | low | 2.115937.0 (130467) | 2.122966.0 (137496) | 10 |
 
 ## RN Transitions
 

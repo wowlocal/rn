@@ -916,5 +916,23 @@
     "start_app_version": "250.030.0",
     "start_build_timestamp": "2024-08-19",
     "start_external_version_id": "250030032"
+  },
+  {
+    "app_name": "Wix - Website Builder",
+    "app_slug": "wix",
+    "app_status": "needs_manual_review",
+    "build_count": 10,
+    "confidence": "low",
+    "end_app_build": "137496",
+    "end_app_version": "2.122966.0",
+    "end_build_timestamp": "2026-05-19",
+    "end_external_version_id": "137496",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "130467",
+    "start_app_version": "2.115937.0",
+    "start_build_timestamp": "2026-02-02",
+    "start_external_version_id": "130467"
   }
 ]

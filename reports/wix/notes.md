@@ -6,7 +6,7 @@
 - App Store ID: 1545924344
 - iOS bundle ID: com.wix.admin
 - Android package: com.wix.admin
-- Status: version_list_fetched
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -35,6 +35,16 @@
 - APKPure currently exposes a limited visible history on the fetched page.
 - Android APKCombo fetch rejected decoded variant payloads that were not HTTP(S) URLs; error log: `reports/wix/android-version-list-apkcombo-error.txt`
 
-## Next Step
+## Android Sampling
 
-Sample the visible Android APKPure catalog first because iOS version-list access is blocked.
+- Downloaded and analyzed all 10 visible APKPure XAPK rows from versionCode `130467` (`2.115937.0`) through `137496` (`2.122966.0`).
+- React Native markers were detected in every sampled row through Hermes bundle assets and native-library metadata including `libreactnative.so`, `libjsi.so`, `libhermes.so`, and `libreact_codegen_reactnativekeyboardcontroller.so`.
+- No `react-native-renderer` marker was found, so the current analyzer reports RN present but the exact RN band remains `unknown` with low confidence.
+- Package hash validation found one unique XAPK payload across all 10 sampled rows.
+- Embedded XAPK manifest metadata reported versionName `2.122966.0` and versionCode `137496` for every sampled row, including rows cataloged as older versions.
+- Treat the APKPure downloads as duplicated current-payload evidence, not historical builds.
+
+## Result
+
+- Status: `needs_manual_review`
+- Reason: iOS version-list access is blocked, and the available Android downloads confirm current React Native usage but do not provide a trustworthy historical package timeline.
