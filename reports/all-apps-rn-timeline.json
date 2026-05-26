@@ -1841,5 +1841,24 @@
     "start_app_version": "1.121.0",
     "start_build_timestamp": "2026-01-15",
     "start_external_version_id": "795"
+  },
+  {
+    "app_name": "Agoda: Cheap Flights & Hotels",
+    "app_slug": "agoda",
+    "app_status": "needs_manual_review",
+    "build_count": 12,
+    "confidence": "unknown",
+    "end_app_build": "288069",
+    "end_app_version": "12.18.0",
+    "end_build_timestamp": "",
+    "end_external_version_id": "288069",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "source_quality": "",
+    "start_app_build": "82521",
+    "start_app_version": "9.27.0",
+    "start_build_timestamp": "",
+    "start_external_version_id": "82521"
   }
 ]

@@ -101,3 +101,4 @@ mattermost,Mattermost,done,ios,0.74.x-0.76.x,,medium,,2.19.0,544,868261170,2024-
 mattermost,Mattermost,done,ios,0.77.x,,medium,,2.37.0,717,882499357,2026-02-02T12:47:32,2.40.0,749,885697976,2026-05-05T16:18:52,9
 mattermost,Mattermost,done,android,unknown,,low,duplicate package hashes (1/10),2.39.0,8000743,6000627,2025-04-18,2.39.0,8000743,6000743,2026-04-16,10
 bluesky,Bluesky Social,needs_manual_review,android,0.82.x or newer,19.1.0,low,duplicate package hashes (1/10),1.121.0,980,795,2026-01-15,1.121.0,980,980,2026-04-23,10
+agoda,Agoda: Cheap Flights & Hotels,needs_manual_review,android,unknown,,unknown,,9.27.0,82521,82521,,12.18.0,288069,288069,,12

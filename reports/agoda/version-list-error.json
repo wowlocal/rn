@@ -1,0 +1,11 @@
+{
+  "attempted_at": "2026-05-26",
+  "app_id": "440676901",
+  "bundle_id": "com.agoda.consumer",
+  "commands": [
+    "env GODEBUG=http2client=0 ./check_rn_versions.py --app-slug agoda --app-name 'Agoda: Cheap Flights & Hotels' --app-id 440676901 --bundle-id com.agoda.consumer --version-list-out reports/agoda/version-list.json --list-versions-only --retries 4 --retry-delay 10",
+    "env GODEBUG=http2client=0 ./check_rn_versions.py --app-slug agoda --app-name 'Agoda: Cheap Flights & Hotels' --app-id 440676901 --bundle-id com.agoda.consumer --use-bundle-identifier --version-list-out reports/agoda/version-list.json --list-versions-only --retries 2 --retry-delay 10"
+  ],
+  "error": "ipatool list-versions failed for both app ID 440676901 and bundle identifier com.agoda.consumer. The final Apple response was: failed to send http request: request failed: Post \"https://p22-buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/volumeStoreDownloadProduct?guid=BE4501832D68\": failed to make round trip: net/http: TLS handshake timeout",
+  "schema_version": 1
+}

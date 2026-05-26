@@ -9,7 +9,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Analyzed successfully: 5
 - Queued: 0
 - In progress: 0
-- Needs manual review: 17
+- Needs manual review: 18
 - No RN detected: 1
 - Skipped: 3
 
@@ -40,6 +40,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Artsy: Buy & Sell Fine Art: last completed `ios_decrypted_pre_boundary_sampling`; reports in `reports/artsy`
 - NerdWallet: Smart Money App: last completed `source_limited_android_sampling`; reports in `reports/nerdwallet`
 - Bluesky Social: last completed `source_limited_android_sampling`; reports in `reports/bluesky`
+- Agoda: Cheap Flights & Hotels: last completed `source_limited_android_sampling`; reports in `reports/agoda`
 
 ## No RN Detected Apps
 
@@ -157,6 +158,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Mattermost | ios | 0.77.x |  | medium |  | 2.37.0 (717) | 2.40.0 (749) | 9 |
 | Mattermost | android | unknown |  | low | duplicate package hashes (1/10) | 2.39.0 (8000743) | 2.39.0 (8000743) | 10 |
 | Bluesky Social | android | 0.82.x or newer | 19.1.0 | low | duplicate package hashes (1/10) | 1.121.0 (980) | 1.121.0 (980) | 10 |
+| Agoda: Cheap Flights & Hotels | android | unknown |  | unknown |  | 9.27.0 (82521) | 12.18.0 (288069) | 12 |
 
 ## RN Transitions
 

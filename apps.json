@@ -892,6 +892,36 @@
         "Initial Android sampling downloaded and analyzed all 10 visible APKPure XAPK rows. React Native markers were detected in every row through Hermes bytecode, react-native-renderer 19.1.0, and native libraries, but package hash validation found one unique XAPK payload and embedded manifest versionName 1.121.0/versionCode 980 for every row.",
         "The duplicated current Android payload infers RN 0.82.x or newer with low confidence. Marked needs_manual_review because iOS version-list access is blocked and APKPure returned duplicated current payloads for historical Android rows."
       ]
+    },
+    {
+      "app_slug": "agoda",
+      "app_name": "Agoda: Cheap Flights & Hotels",
+      "app_id": "440676901",
+      "bundle_id": "com.agoda.consumer",
+      "android_package": "com.agoda.mobile.consumer",
+      "android_history_source": "AndroidAPKsFree old versions page for package com.agoda.mobile.consumer; APKPure/APKCombo pages identified but automated fetch/download was blocked by bot/Cloudflare challenges",
+      "status": "needs_manual_review",
+      "evidence": "User-provided App Store URL https://apps.apple.com/ru/app/agoda-%D0%BE%D1%82%D0%B5%D0%BB%D0%B8-%D0%B8-%D0%B0%D0%B2%D0%B8%D0%B0%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D1%8B/id440676901; Apple iTunes lookup resolved App Store ID 440676901 and bundle ID com.agoda.consumer; Google Play/APKPure/AndroidAPKsFree identify Android package com.agoda.mobile.consumer.",
+      "last_completed_step": "source_limited_android_sampling",
+      "reports_path": "reports/agoda",
+      "version_list_path": "reports/agoda/version-list.json",
+      "version_list_error_path": "reports/agoda/version-list-error.json",
+      "android_version_list_path": "reports/agoda/android-version-list.json",
+      "android_version_count": 35,
+      "oldest_android_version_code": "82521",
+      "newest_android_version_code": "288069",
+      "sampled_android_package_count": 12,
+      "rn_detected": false,
+      "notes": [
+        "Registered for analysis on 2026-05-26 from the user-provided App Store URL.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 440676901 returned bundle ID com.agoda.consumer, seller Agoda Company Pte. Ltd., and current listed version 14.19.0.",
+        "Android package source: Google Play, APKPure, and AndroidAPKsFree identify package com.agoda.mobile.consumer.",
+        "iOS version list fetch failed on 2026-05-26 for both app ID 440676901 and bundle ID com.agoda.consumer because ipatool repeatedly hit Apple's TLS handshake timeout endpoint.",
+        "APKPure and APKCombo current/history sources were identified, but automated catalog/package fetches were blocked by bot/Cloudflare challenges or HTTP 403; web-visible APKPure metadata currently exposes newer versions than AndroidAPKsFree but could not be downloaded for package inspection.",
+        "AndroidAPKsFree catalog fetched on 2026-05-26: 35 direct APK entries from versionCode 82521 through 288069; source page appears to expose a limited/stale history ending at Android 12.18.0 from May 2024.",
+        "Android sampling downloaded and analyzed 12 AndroidAPKsFree APKs across the available source range, from 9.27.0 (82521) through 12.18.0 (288069). No sampled package exposed React Native JS bundle paths, Hermes bytecode, React Native native libraries, or RN native metadata markers.",
+        "Marked needs_manual_review because Android evidence is source-limited/stale and iOS App Store version-list access is currently blocked; current 2025-2026 APKs still need package-level inspection before this can be marked not_react_native_detected."
+      ]
     }
   ]
 }
