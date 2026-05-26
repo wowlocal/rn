@@ -505,8 +505,8 @@ def infer_react_native(
     return "unknown", "low", "No react-native-renderer marker was found."
 
 
-def analyze_ipa(path: Path) -> dict[str, str]:
-    row: dict[str, str] = {
+def default_row(path: Path) -> dict[str, str]:
+    return {
         "ipa": str(path),
         "external_version_id": "",
         "bundle_id": "",
@@ -548,9 +548,43 @@ def analyze_ipa(path: Path) -> dict[str, str]:
         "has_batched_bridge_marker": "false",
         "has_native_modules_marker": "false",
         "has_style_sheet_marker": "false",
+        "has_native_react_native_marker": "false",
+        "has_native_hermes_marker": "false",
+        "has_native_jsi_marker": "false",
+        "has_native_yoga_marker": "false",
         "cryptid": "",
+        "unknown_reason": "",
+        "next_action": "",
         "notes": "",
     }
+
+
+def fill_unknown_resolution(row: dict[str, str], notes: list[str]) -> None:
+    if row.get("rn_guess") != "unknown":
+        row["unknown_reason"] = ""
+        row["next_action"] = ""
+        return
+    if row.get("has_native_react_native_marker") == "true":
+        row["unknown_reason"] = "native_rn_marker_without_version"
+        row["next_action"] = (
+            "Look for a stronger decrypted native RN version marker, trigger the RN surface if it loads code lazily, "
+            "or compare adjacent decrypted boundary builds."
+        )
+        return
+    if not row.get("bundle_member") and row.get("cryptid") == "1":
+        row["unknown_reason"] = "encrypted_native_only"
+        row["next_action"] = "Dump this IPA with frida-ipa-extract --all-binaries if it becomes boundary-priority evidence."
+        return
+    if not row.get("bundle_member"):
+        row["unknown_reason"] = "no_js_or_native_rn_markers"
+        row["next_action"] = "Sample adjacent rows or trigger app extensions only if other evidence suggests RN lives outside the main app."
+        return
+    row["unknown_reason"] = "ambiguous_marker_band"
+    row["next_action"] = "Add a more specific JS/Hermes/native signature before assigning an RN version."
+
+
+def analyze_ipa(path: Path) -> dict[str, str]:
+    row: dict[str, str] = default_row(path)
 
     notes: list[str] = []
     with tempfile.TemporaryDirectory(prefix="rn-ipa-") as tmp_name:
@@ -677,15 +711,38 @@ def analyze_ipa(path: Path) -> dict[str, str]:
             exe_member = executable_member(zf, info)
             if exe_member:
                 exe_path = tmp / "app_executable"
-                exe_path.write_bytes(zf.read(exe_member))
+                exe_data = zf.read(exe_member)
+                exe_path.write_bytes(exe_data)
                 row["cryptid"] = executable_cryptid(exe_path)
                 if row["cryptid"] == "1":
                     notes.append("Native executable is FairPlay encrypted; exact native RN constants are not inspectable.")
                 elif row["cryptid"] == "0":
+                    native_react = any(
+                        marker in exe_data
+                        for marker in (
+                            b"ReactNative",
+                            b"React Native",
+                            b"react-native",
+                            b"react_native",
+                            b"reactnative",
+                        )
+                    )
+                    native_hermes = b"Hermes" in exe_data or b"hermes" in exe_data
+                    native_jsi = b"JSI" in exe_data or b"jsi" in exe_data
+                    native_yoga = b"Yoga" in exe_data or b"yoga" in exe_data
+                    row["has_native_react_native_marker"] = str(native_react).lower()
+                    row["has_native_hermes_marker"] = str(native_hermes).lower()
+                    row["has_native_jsi_marker"] = str(native_jsi).lower()
+                    row["has_native_yoga_marker"] = str(native_yoga).lower()
                     notes.append("Native executable is not encrypted; native constant scanning may be possible.")
+                    if native_react and row["rn_guess"] == "unknown":
+                        notes.append(
+                            "Decrypted native executable contains React Native markers, but no RN version marker was found."
+                        )
             else:
                 notes.append("No app executable was found in the IPA.")
 
+    fill_unknown_resolution(row, notes)
     row["notes"] = " ".join(note for note in notes if note)
     return row
 
@@ -698,7 +755,7 @@ def write_reports(rows: list[dict[str, str]], report_base: Path) -> None:
     csv_path = report_base.with_suffix(".csv")
     json_path.write_text(json.dumps(rows, indent=2, sort_keys=True) + "\n")
     with csv_path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     print(f"wrote {csv_path}")
@@ -915,53 +972,12 @@ def main(
         try:
             rows.append(analyze_ipa(ipa))
         except Exception as exc:
-            rows.append(
-                {
-                    "ipa": str(ipa),
-                    "external_version_id": "",
-                    "bundle_id": "",
-                    "app_version": "",
-                    "app_build": "",
-                    "build_timestamp": "",
-                    "release_channel": "",
-                    "sentry_release": "",
-                    "bundle_member": "",
-                    "hbc_version": "",
-                    "react_renderer": "",
-                    "rn_guess": "error",
-                    "confidence": "low",
-                    "has_virtual_view_mode_export": "false",
-                    "has_react_native_version_export": "false",
-                    "has_unstable_enable_logbox_export": "false",
-                    "has_experimental_layout_conformance_export": "false",
-                    "has_register_callable_module_export": "false",
-                    "has_dev_menu_export": "false",
-                    "has_set_up_dom": "false",
-                    "has_use_animated_value_export": "false",
-                    "has_segmented_control_ios_export": "false",
-                    "has_date_picker_android_export": "false",
-                    "has_picker_ios_export": "false",
-                    "has_status_bar_ios_export": "false",
-                    "has_root_tag_context_export": "false",
-                    "has_unstable_root_tag_context_export": "false",
-                    "has_platform_color_export": "false",
-                    "has_dynamic_color_ios_export": "false",
-                    "has_pressable_export": "false",
-                    "has_color_android_export": "false",
-                    "has_check_box_export": "false",
-                    "has_tv_event_handler_export": "false",
-                    "has_use_window_dimensions_export": "false",
-                    "has_native_dialog_manager_android_export": "false",
-                    "has_turbo_module_registry_export": "false",
-                    "has_virtualized_section_list_export": "false",
-                    "has_app_registry_marker": "false",
-                    "has_batched_bridge_marker": "false",
-                    "has_native_modules_marker": "false",
-                    "has_style_sheet_marker": "false",
-                    "cryptid": "",
-                    "notes": str(exc),
-                }
-            )
+            row = default_row(ipa)
+            row["rn_guess"] = "error"
+            row["unknown_reason"] = "tool_failure"
+            row["next_action"] = "Fix the analyzer failure and rerun package analysis."
+            row["notes"] = str(exc)
+            rows.append(row)
 
     write_reports(rows, args.report)
     for row in rows:

@@ -195,6 +195,8 @@ Use this track when encrypted iOS IPAs block native inspection and a jailbroken 
 - [ ] Launch the app once if the dump tool requires a running process.
 - [ ] If using `frida-ipa-extract`, apply `patches/frida-ipa-extract-all-binaries.patch` to the local tool checkout when the checkout does not already support `--all-binaries`.
 - [ ] Dump the installed app with `./dump_ios_ipa.py <ipa> --method frida-ipa-extract --all-binaries` when possible. Add `--skip-install --no-kill-before-dump` only when the exact intended build is already installed and metadata can still be matched.
+- [ ] If SSH password auth is unavailable but libimobiledevice can see the phone, use the wrapper's `ideviceinstaller` install path and `ideviceinfo` device context rather than moving install verification outside the report.
+- [ ] If a build crashes or destroys the Frida script when spawned, verify the exact installed build with `ideviceinstaller list --xml`, launch it once with a lightweight Frida command, then retry with `--skip-install --no-kill-before-dump --attach-running`.
 - [ ] Fall back to main-executable-only Frida dumps or iDump only when the all-binaries path fails, and record the failure and fallback reason.
 - [ ] Verify the dumped `Info.plist` bundle ID, `CFBundleShortVersionString`, and `CFBundleVersion` match the intended row.
 - [ ] Run a Mach-O encryption inventory over the dumped IPA and record `cryptid` for the main executable, loaded frameworks, dylibs, embedded app extensions, and other executable files.
@@ -233,6 +235,7 @@ For every encrypted/downloaded or decrypted/dumped iOS package, capture at least
 - [ ] `react-native-renderer` marker, if present.
 - [ ] React version marker, if present.
 - [ ] RN JS API markers used for inference.
+- [ ] Native RN markers from decrypted main/framework binaries, especially when no JS bundle or renderer marker is present.
 - [ ] RN guess or band.
 - [ ] Confidence: `high`, `medium`, `low`, or `unknown`.
 - [ ] Unknown reason code, if confidence is `unknown`.

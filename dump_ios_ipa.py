@@ -184,19 +184,31 @@ def scp_to_device(args: argparse.Namespace, password: str | None, local_path: Pa
     run(scp_prefix(args, password) + [str(local_path), target], env=ssh_env(password))
 
 
-def ensure_tools(args: argparse.Namespace, password: str | None) -> None:
+def resolve_install_method(args: argparse.Namespace, password: str | None) -> str:
+    if args.skip_install:
+        return "none"
+    if args.install_method != "auto":
+        return args.install_method
+    if shutil.which("ideviceinstaller"):
+        return "ideviceinstaller"
+    return "appinst"
+
+
+def ensure_tools(args: argparse.Namespace, password: str | None, install_method: str) -> None:
     if password and not shutil.which("sshpass"):
         raise RuntimeError("sshpass is required when using password authentication")
-    for tool in ("ssh", "scp"):
-        if not shutil.which(tool):
-            raise RuntimeError(f"missing host tool: {tool}")
-    if not args.skip_install:
+    if install_method == "appinst":
+        for tool in ("ssh", "scp"):
+            if not shutil.which(tool):
+                raise RuntimeError(f"missing host tool: {tool}")
         ssh(
             args,
             password,
             f"export PATH={REMOTE_PATH}; command -v appinst >/dev/null || "
             "(echo 'missing device tool: appinst' >&2; exit 127)",
         )
+    elif install_method == "ideviceinstaller" and not shutil.which("ideviceinstaller"):
+        raise RuntimeError("missing host tool: ideviceinstaller")
 
 
 def idump_path(args: argparse.Namespace) -> Path:
@@ -260,8 +272,16 @@ def download_idump(destination: Path) -> None:
     destination.chmod(0o755)
 
 
-def install_ipa(args: argparse.Namespace, password: str | None, ipa: Path) -> str | None:
+def install_ipa(
+    args: argparse.Namespace,
+    password: str | None,
+    ipa: Path,
+    install_method: str,
+) -> str | None:
     if args.skip_install:
+        return None
+    if install_method == "ideviceinstaller":
+        run(["ideviceinstaller", "install", str(ipa)])
         return None
     remote_dir = ssh(args, password, "mktemp -d /tmp/iosdump.XXXXXX").stdout.strip().splitlines()[-1]
     remote_ipa = f"{remote_dir}/input.ipa"
@@ -319,13 +339,20 @@ def frida_ipa_extract_dump_command(args: argparse.Namespace, metadata: dict[str,
     if not bundle_id:
         raise RuntimeError("cannot determine bundle id; pass --bundle-id")
     command = frida_ipa_extract_command(args)
-    command.extend(["-U", "-f", str(bundle_id), "-o", str(output_ipa)])
-    if args.no_resume:
+    command.append("-U")
+    if args.attach_pid is not None:
+        command.extend(["--pid", str(args.attach_pid)])
+    elif not args.attach_running:
+        command.extend(["-f", str(bundle_id)])
+    command.extend(["-o", str(output_ipa)])
+    if args.no_resume and not args.attach_running and args.attach_pid is None:
         command.append("--no-resume")
     if args.all_binaries:
         command.append("--all-binaries")
     for extra in args.extractor_arg:
         command.append(extra)
+    if args.attach_running and args.attach_pid is None:
+        command.append(str(bundle_id))
     return command
 
 
@@ -367,6 +394,182 @@ def main_executable_cryptid(ipa: Path, metadata: dict[str, Any]) -> dict[str, An
         return result
     result["cryptid"] = int(match.group(1))
     return result
+
+
+MACHO_MAGICS = {
+    b"\xca\xfe\xba\xbe",  # fat, big-endian
+    b"\xca\xfe\xba\xbf",  # fat64, big-endian
+    b"\xbe\xba\xfe\xca",  # fat, little-endian
+    b"\xbf\xba\xfe\xca",  # fat64, little-endian
+    b"\xfe\xed\xfa\xce",  # 32-bit, big-endian
+    b"\xce\xfa\xed\xfe",  # 32-bit, little-endian
+    b"\xfe\xed\xfa\xcf",  # 64-bit, big-endian
+    b"\xcf\xfa\xed\xfe",  # 64-bit, little-endian
+}
+
+
+def is_macho_member(zipf: zipfile.ZipFile, member: str) -> bool:
+    try:
+        with zipf.open(member) as handle:
+            return handle.read(4) in MACHO_MAGICS
+    except (KeyError, OSError, zipfile.BadZipFile):
+        return False
+
+
+def macho_category(member: str, metadata: dict[str, Any]) -> str:
+    app_dir = str(metadata.get("payload_app_dir") or "")
+    executable = str(metadata.get("executable") or "")
+    if app_dir and executable and member == f"{app_dir}/{executable}":
+        return "main_executable"
+    if ".appex/" in member:
+        return "app_extension"
+    if "/Frameworks/" in member:
+        return "framework_or_dylib"
+    if member.endswith(".dylib"):
+        return "framework_or_dylib"
+    return "other_macho"
+
+
+def macho_encryption_info(path: Path) -> dict[str, Any]:
+    result: dict[str, Any] = {
+        "checked": False,
+        "tool": "otool",
+        "cryptids": [],
+        "error": None,
+    }
+    otool = shutil.which("otool")
+    if not otool:
+        result["error"] = "otool not found"
+        return result
+    completed = run([otool, "-l", str(path)], check=False, quiet=True)
+    result["checked"] = True
+    if completed.returncode != 0:
+        result["error"] = completed.stderr.strip() or f"otool exited {completed.returncode}"
+        return result
+    result["cryptids"] = [int(value) for value in re.findall(r"\bcryptid\s+(\d+)", completed.stdout)]
+    if not result["cryptids"]:
+        result["error"] = "LC_ENCRYPTION_INFO cryptid not found"
+    return result
+
+
+def macho_cryptid_inventory(ipa: Path, metadata: dict[str, Any]) -> dict[str, Any]:
+    entries: list[dict[str, Any]] = []
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_path = Path(temp_dir)
+        with zipfile.ZipFile(ipa) as zipf:
+            for index, member in enumerate(sorted(zipf.namelist())):
+                info = zipf.getinfo(member)
+                if info.is_dir() or not is_macho_member(zipf, member):
+                    continue
+                extracted = temp_path / f"macho-{index}"
+                with zipf.open(member) as src, extracted.open("wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                encryption = macho_encryption_info(extracted)
+                cryptids = encryption.get("cryptids") or []
+                entries.append(
+                    {
+                        "member": member,
+                        "category": macho_category(member, metadata),
+                        "size": info.file_size,
+                        "checked": encryption["checked"],
+                        "cryptids": cryptids,
+                        "cryptid": max(cryptids) if cryptids else None,
+                        "encrypted": any(value != 0 for value in cryptids) if cryptids else None,
+                        "error": encryption["error"],
+                    }
+                )
+
+    encrypted = [entry for entry in entries if entry.get("encrypted") is True]
+    unknown = [entry for entry in entries if not entry.get("cryptids")]
+    by_category: dict[str, int] = {}
+    for entry in entries:
+        category = str(entry["category"])
+        by_category[category] = by_category.get(category, 0) + 1
+    return {
+        "tool": "otool",
+        "mach_o_count": len(entries),
+        "encrypted_count": len(encrypted),
+        "unknown_cryptid_count": len(unknown),
+        "counts_by_category": by_category,
+        "entries": entries,
+    }
+
+
+def classify_decrypted_coverage(
+    accepted: bool,
+    inventory: dict[str, Any],
+) -> dict[str, Any]:
+    entries = inventory.get("entries") or []
+    encrypted = [entry for entry in entries if entry.get("encrypted") is True]
+    unknown = [entry for entry in entries if not entry.get("cryptids")]
+    encrypted_non_extension = [
+        entry for entry in encrypted if entry.get("category") != "app_extension"
+    ]
+    unknown_non_extension = [
+        entry for entry in unknown if entry.get("category") != "app_extension"
+    ]
+    encrypted_extensions = [
+        entry for entry in encrypted if entry.get("category") == "app_extension"
+    ]
+    unknown_extensions = [
+        entry for entry in unknown if entry.get("category") == "app_extension"
+    ]
+
+    if not accepted:
+        coverage_class = "rejected"
+    elif not encrypted and not unknown:
+        coverage_class = "full_bundle_decrypted"
+    elif not encrypted_non_extension and not unknown_non_extension and (
+        encrypted_extensions or unknown_extensions
+    ):
+        coverage_class = "loaded_app_decrypted"
+    else:
+        coverage_class = "main_only_decrypted"
+
+    return {
+        "coverage_class": coverage_class,
+        "encrypted_members": [entry["member"] for entry in encrypted],
+        "unknown_cryptid_members": [entry["member"] for entry in unknown],
+        "remaining_encrypted_appex_members": [
+            entry["member"] for entry in encrypted_extensions
+        ],
+        "remaining_encrypted_non_extension_members": [
+            entry["member"] for entry in encrypted_non_extension
+        ],
+    }
+
+
+def device_context(args: argparse.Namespace, password: str | None) -> dict[str, str]:
+    if shutil.which("ideviceinfo"):
+        key_map = {
+            "product_version": "ProductVersion",
+            "product_build": "BuildVersion",
+            "hardware_model": "HardwareModel",
+            "device_name": "DeviceName",
+        }
+        context: dict[str, str] = {}
+        for output_key, info_key in key_map.items():
+            result = run(["ideviceinfo", "-k", info_key], check=False, quiet=True)
+            if result.returncode == 0:
+                context[output_key] = result.stdout.strip()
+            else:
+                context[f"{output_key}_error"] = result.stderr.strip() or f"exit {result.returncode}"
+        return context
+
+    commands = {
+        "product_version": "/usr/bin/plutil -extract ProductVersion raw /System/Library/CoreServices/SystemVersion.plist",
+        "product_build": "/usr/bin/plutil -extract ProductBuildVersion raw /System/Library/CoreServices/SystemVersion.plist",
+        "hardware_model": "sysctl -n hw.model",
+        "kernel": "uname -a",
+    }
+    context: dict[str, str] = {}
+    for key, command in commands.items():
+        result = ssh(args, password, f"export PATH={REMOTE_PATH}; {command}", check=False)
+        if result.returncode == 0:
+            context[key] = result.stdout.strip()
+        else:
+            context[f"{key}_error"] = result.stderr.strip() or f"exit {result.returncode}"
+    return context
 
 
 def metadata_matches(source: dict[str, Any], dumped: dict[str, Any]) -> dict[str, bool]:
@@ -422,6 +625,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.set_defaults(no_resume=True)
     parser.add_argument(
+        "--attach-running",
+        action="store_true",
+        help="Attach frida-ipa-extract to a running app by bundle id instead of spawning it",
+    )
+    parser.add_argument("--attach-pid", type=int, help="Attach frida-ipa-extract to a specific running process id")
+    parser.add_argument(
         "--all-binaries",
         action="store_true",
         help="Pass --all-binaries to a patched frida-ipa-extract dumper",
@@ -431,6 +640,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, help="Exact dumped IPA output path")
     parser.add_argument("--report", type=Path, help="JSON verification report path; defaults next to output IPA")
     parser.add_argument("--skip-install", action="store_true", help="Dump currently installed app without installing IPA")
+    parser.add_argument(
+        "--install-method",
+        choices=("auto", "appinst", "ideviceinstaller"),
+        default="auto",
+        help="IPA install backend; auto prefers ideviceinstaller when available",
+    )
     parser.add_argument(
         "--no-kill-before-dump",
         dest="kill_before_dump",
@@ -450,7 +665,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--keep-remote-temp", action="store_true", help="Do not delete remote temp dir after install")
     parser.add_argument("--allow-encrypted-output", action="store_true", help="Exit 0 even if cryptid is not 0")
     parser.add_argument("--dry-run", action="store_true", help="Print metadata and planned output without installing or dumping")
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.attach_running and args.attach_pid is not None:
+        parser.error("--attach-running and --attach-pid are mutually exclusive")
+    return args
 
 
 def main() -> int:
@@ -468,6 +686,7 @@ def main() -> int:
     if args.bundle_id:
         source_metadata["bundle_id"] = args.bundle_id
     method = resolve_dump_method(args)
+    install_method = resolve_install_method(args, password)
     source = {
         **source_metadata,
         "path": str(ipa),
@@ -478,7 +697,19 @@ def main() -> int:
     report_path = (args.report or output_ipa.with_suffix(output_ipa.suffix + ".json")).resolve()
     idump = idump_path(args).resolve() if method == "idump" else None
 
-    print(json.dumps({"source": source, "method": method, "output_ipa": str(output_ipa), "report": str(report_path)}, indent=2), flush=True)
+    print(
+        json.dumps(
+            {
+                "source": source,
+                "method": method,
+                "install_method": install_method,
+                "output_ipa": str(output_ipa),
+                "report": str(report_path),
+            },
+            indent=2,
+        ),
+        flush=True,
+    )
     if args.dry_run:
         return 0
 
@@ -487,14 +718,16 @@ def main() -> int:
     report: dict[str, Any] = {
         "source": source,
         "device": {"host": args.host, "port": args.port, "user": args.user},
-        "dumper": {"method": method},
+        "installer": {"method": install_method},
+        "dumper": {"method": method, "all_binaries": bool(args.all_binaries)},
         "output": {"path": str(output_ipa)},
         "verification": {},
     }
     try:
         try:
-            ensure_tools(args, password)
-            remote_dir = install_ipa(args, password, ipa)
+            ensure_tools(args, password, install_method)
+            report["device"]["context"] = device_context(args, password)
+            remote_dir = install_ipa(args, password, ipa, install_method)
             maybe_prepare_app(args, password, source_metadata)
             if method == "frida-ipa-extract":
                 report["dumper"]["command"] = frida_ipa_extract_dump_command(args, source_metadata, output_ipa)
@@ -543,6 +776,8 @@ def main() -> int:
     matches = metadata_matches(source_metadata, dumped_metadata)
     crypt = main_executable_cryptid(output_ipa, dumped_metadata)
     accepted = all(matches.values()) and crypt.get("cryptid") == 0
+    inventory = macho_cryptid_inventory(output_ipa, dumped_metadata)
+    coverage = classify_decrypted_coverage(accepted, inventory)
     report["output"].update(
         {
             "size": output_ipa.stat().st_size,
@@ -554,6 +789,8 @@ def main() -> int:
         {
             "metadata_matches": matches,
             "main_executable_encryption": crypt,
+            "mach_o_cryptid_inventory": inventory,
+            "decrypted_coverage": coverage,
             "accepted_decrypted_evidence": accepted,
         }
     )
@@ -564,6 +801,7 @@ def main() -> int:
     print(f"Report: {report_path}")
     print(f"Metadata matches: {matches}")
     print(f"Main executable cryptid: {crypt.get('cryptid')}")
+    print(f"Decrypted coverage: {coverage['coverage_class']}")
     if not accepted:
         print("Rejected as decrypted evidence: metadata mismatch or cryptid is not 0.", file=sys.stderr)
         return 0 if args.allow_encrypted_output else 1
