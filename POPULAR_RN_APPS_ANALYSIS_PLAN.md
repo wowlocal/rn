@@ -207,7 +207,7 @@ Use this track when encrypted iOS IPAs block native inspection and a jailbroken 
   - `rejected`: metadata mismatch, missing output, or main executable is still encrypted.
 - [ ] For encrypted `.appex` executables that matter to the RN question, trigger the extension manually, attach to the extension host/process, and dump that process separately. If the extension cannot be triggered, record `extension_not_dumped` rather than treating the whole app dump as failed.
 - [ ] Record dump tool name/version, host timestamp, device model class if useful, iOS version, dumped IPA hash, dump output size, decrypted coverage class, and visible encryption status such as `cryptid` where available.
-- [ ] Analyze the decrypted dump for RN markers in native frameworks, main executable strings/symbols, JS bundles, Hermes bytecode, resources, and package metadata.
+- [ ] Analyze the decrypted dump for RN markers in native frameworks, main executable strings/symbols, JS bundles, compressed JS bundles such as `main.jsbundle.zst`, Hermes bytecode and `main.hbcbundle`, resources, and package metadata.
 - [ ] If dump metadata does not match the intended catalog row, reject it as historical evidence and record the mismatch in notes.
 - [ ] Delete or retain the dump according to disk policy after compact CSV/JSON evidence is written.
 
@@ -230,7 +230,7 @@ For every encrypted/downloaded or decrypted/dumped iOS package, capture at least
 - [ ] Decrypted binary coverage class: `full_bundle_decrypted`, `loaded_app_decrypted`, `main_only_decrypted`, `rejected`, or blank for encrypted source IPAs.
 - [ ] Remaining encrypted executable paths, if any.
 - [ ] Hermes markers.
-- [ ] JS bundle paths.
+- [ ] JS bundle paths, including compressed `*.jsbundle.zst` and Hermes `*.hbcbundle` bundle files.
 - [ ] React Native framework or library names.
 - [ ] `react-native-renderer` marker, if present.
 - [ ] React version marker, if present.

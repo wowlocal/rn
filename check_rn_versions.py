@@ -284,7 +284,11 @@ def main_bundle_member(zf: zipfile.ZipFile) -> str:
         for name in names
         if name.startswith("Payload/")
         and ".app/" in name
-        and name.endswith("/main.jsbundle")
+        and (
+            name.endswith("/main.jsbundle")
+            or name.endswith("/main.jsbundle.zst")
+            or name.endswith("/main.hbcbundle")
+        )
     ]
     if preferred:
         return sorted(preferred, key=lambda item: (len(item), item))[0]
@@ -293,7 +297,13 @@ def main_bundle_member(zf: zipfile.ZipFile) -> str:
         for name in names
         if name.startswith("Payload/")
         and ".app/" in name
-        and (name.endswith(".jsbundle") or name.endswith(".hbc") or name.endswith(".bundle"))
+        and (
+            name.endswith(".jsbundle")
+            or name.endswith(".jsbundle.zst")
+            or name.endswith(".hbc")
+            or name.endswith(".hbcbundle")
+            or name.endswith(".bundle")
+        )
     ]
     return sorted(candidates, key=lambda item: (len(item), item))[0] if candidates else ""
 
@@ -333,6 +343,40 @@ def bytes_text_match(data: bytes, pattern: bytes) -> str:
     if not match:
         return ""
     return match.group(1).decode("ascii", errors="replace")
+
+
+def react_renderer_version(data: bytes) -> str:
+    return (
+        bytes_text_match(
+            data,
+            rb"react-native-renderer:?\s*([0-9]+\.[0-9]+\.[0-9]+)",
+        )
+        or bytes_text_match(
+            data,
+            rb'version:"([0-9]+\.[0-9]+\.[0-9]+)",rendererPackageName:"react-native-renderer"',
+        )
+        or bytes_text_match(
+            data,
+            rb'rendererPackageName:"react-native-renderer",version:"([0-9]+\.[0-9]+\.[0-9]+)"',
+        )
+    )
+
+
+def maybe_decompress_bundle(member: str, data: bytes, notes: list[str]) -> bytes:
+    if not member.endswith(".zst"):
+        return data
+    try:
+        import zstandard  # type: ignore[import-not-found]
+    except ImportError:
+        notes.append("Bundle is zstd-compressed, but Python zstandard is not installed.")
+        return data
+    try:
+        decompressed = zstandard.ZstdDecompressor().decompress(data)
+    except Exception as exc:
+        notes.append(f"Could not decompress zstd JS bundle: {exc}")
+        return data
+    notes.append("Decompressed zstd JS bundle for marker analysis.")
+    return decompressed
 
 
 def infer_react_native(
@@ -398,7 +442,7 @@ def infer_react_native(
             "low",
             "RN index marker ReactNativeVersion is present, but no renderer version marker was found.",
         )
-    if not renderer and has_unstable_enable_logbox_export:
+    if has_unstable_enable_logbox_export:
         if not has_experimental_layout_conformance_export:
             if has_dev_menu_export:
                 return (
@@ -477,25 +521,24 @@ def infer_react_native(
                 "medium",
                 "RN index marker unstable_enableLogBox is present, but newer JS-side markers from RN 0.72+ are absent.",
             )
-    if not renderer:
-        if has_unstable_root_tag_context_export and has_use_window_dimensions_export:
-            return (
-                "0.61.x",
-                "medium",
-                "RN 0.61 markers unstable_RootTagContext/useWindowDimensions are present and LogBox from 0.62 is absent.",
-            )
-        if has_turbo_module_registry_export or has_virtualized_section_list_export:
-            return (
-                "0.60.x",
-                "medium",
-                "RN 0.60 markers TurboModuleRegistry/VirtualizedSectionList are present and 0.61 markers are absent.",
-            )
-        if has_app_registry_marker and has_batched_bridge_marker and (has_native_modules_marker or has_style_sheet_marker):
-            return (
-                "<=0.59.x",
-                "medium",
-                "Core React Native bundle markers are present, but RN 0.60+ index markers are absent.",
-            )
+    if has_unstable_root_tag_context_export and has_use_window_dimensions_export:
+        return (
+            "0.61.x",
+            "medium",
+            "RN 0.61 markers unstable_RootTagContext/useWindowDimensions are present and LogBox from 0.62 is absent.",
+        )
+    if has_turbo_module_registry_export or has_virtualized_section_list_export:
+        return (
+            "0.60.x",
+            "medium",
+            "RN 0.60 markers TurboModuleRegistry/VirtualizedSectionList are present and 0.61 markers are absent.",
+        )
+    if has_app_registry_marker and has_batched_bridge_marker and (has_native_modules_marker or has_style_sheet_marker):
+        return (
+            "<=0.59.x",
+            "medium",
+            "Core React Native bundle markers are present, but RN 0.60+ index markers are absent.",
+        )
     if renderer:
         return (
             f"unknown (react-native-renderer {renderer})",
@@ -603,7 +646,7 @@ def analyze_ipa(path: Path) -> dict[str, str]:
             bundle_member = main_bundle_member(zf)
             row["bundle_member"] = bundle_member
             if bundle_member:
-                bundle_data = zf.read(bundle_member)
+                bundle_data = maybe_decompress_bundle(bundle_member, zf.read(bundle_member), notes)
                 bundle_path = tmp / "main.jsbundle"
                 bundle_path.write_bytes(bundle_data)
                 desc = file_description(bundle_path)
@@ -611,10 +654,7 @@ def analyze_ipa(path: Path) -> dict[str, str]:
                 if hbc_match:
                     row["hbc_version"] = hbc_match.group(1)
 
-                row["react_renderer"] = bytes_text_match(
-                    bundle_data,
-                    rb"react-native-renderer:?\s*([0-9]+\.[0-9]+\.[0-9]+)",
-                )
+                row["react_renderer"] = react_renderer_version(bundle_data)
                 has_virtual = b"get VirtualViewMode" in bundle_data
                 has_rnv_export = b"get ReactNativeVersion" in bundle_data
                 has_logbox = b"unstable_enableLogBox" in bundle_data
@@ -704,7 +744,14 @@ def analyze_ipa(path: Path) -> dict[str, str]:
                 )
                 row["rn_guess"] = guess
                 row["confidence"] = confidence
-                notes.append(reason)
+                if row["hbc_version"] and guess == "<=0.59.x" and not row["react_renderer"]:
+                    row["rn_guess"] = "unknown"
+                    row["confidence"] = "low"
+                    notes.append(
+                        "Hermes bytecode contains generic React Native bridge markers, but no version-specific RN marker was found."
+                    )
+                else:
+                    notes.append(reason)
             else:
                 notes.append("No JS bundle was found in the app bundle.")
 
