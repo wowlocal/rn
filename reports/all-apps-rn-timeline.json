@@ -808,5 +808,23 @@
     "start_app_version": "4.54.5-4133",
     "start_build_timestamp": "2026-03-11",
     "start_external_version_id": "4133"
+  },
+  {
+    "app_name": "Uber Eats: Food & Groceries",
+    "app_slug": "uber-eats",
+    "app_status": "not_react_native_detected",
+    "build_count": 12,
+    "confidence": "low",
+    "end_app_build": "6.323.10001",
+    "end_app_version": "6.323.10001",
+    "end_build_timestamp": "2026-05-13T23:18:38",
+    "end_external_version_id": "885646390",
+    "platform": "ios",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "1.9.2",
+    "start_app_version": "1.9.2",
+    "start_build_timestamp": "2015-12-05T14:41:14",
+    "start_external_version_id": "814482031"
   }
 ]

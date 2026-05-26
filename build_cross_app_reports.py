@@ -163,10 +163,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
     queued = [app for app in apps if app.get("status") == "queued"]
     skipped = [app for app in apps if app.get("status") == "skipped"]
     review = [app for app in apps if app.get("status") == "needs_manual_review"]
+    no_rn = [app for app in apps if app.get("status") == "not_react_native_detected"]
     in_progress = [
         app
         for app in apps
-        if app.get("status") not in {"done", "queued", "skipped", "needs_manual_review"}
+        if app.get("status") not in {"done", "queued", "skipped", "needs_manual_review", "not_react_native_detected"}
     ]
     exact = [row for row in transitions if row.get("version_list_boundary_exact") == "true"]
     approximate = [
@@ -188,6 +189,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         f"- Queued: {len(queued)}",
         f"- In progress: {len(in_progress)}",
         f"- Needs manual review: {len(review)}",
+        f"- No RN detected: {len(no_rn)}",
         f"- Skipped: {len(skipped)}",
         "",
     ]
@@ -221,6 +223,14 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         for app in review:
             lines.append(
                 f"- {app.get('app_name', app.get('app_slug'))}: last completed `{app.get('last_completed_step', '')}`; reports in `{app.get('reports_path', '')}`"
+            )
+        lines.append("")
+
+    if no_rn:
+        lines.extend(["## No RN Detected Apps", ""])
+        for app in no_rn:
+            lines.append(
+                f"- {app.get('app_name', app.get('app_slug'))}: sampled {app.get('sampled_ipa_count', '')} iOS IPAs; reports in `{app.get('reports_path', '')}`"
             )
         lines.append("")
 

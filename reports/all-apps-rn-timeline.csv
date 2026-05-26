@@ -44,3 +44,4 @@ walmart,Walmart: Shopping & Savings,needs_manual_review,android,unknown,,unknown
 tesla,Tesla,needs_manual_review,android,0.79.x,19.0.0,medium,4.54.0-4094,4094,4094,2026-03-06,4.54.0-4094,4094,4094,2026-03-06,1
 tesla,Tesla,needs_manual_review,android,0.82.x or newer,,low,4.54.3-4107,4107,4107,2026-03-02,4.54.3-4107,4107,4107,2026-03-02,1
 tesla,Tesla,needs_manual_review,android,0.79.x,19.0.0,medium,4.54.5-4133,4133,4133,2026-03-11,4.57.0-4306,4306,4306,2026-05-14,8
+uber-eats,Uber Eats: Food & Groceries,not_react_native_detected,ios,unknown,,low,1.9.2,1.9.2,814482031,2015-12-05T14:41:14,6.323.10001,6.323.10001,885646390,2026-05-13T23:18:38,12

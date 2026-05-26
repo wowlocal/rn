@@ -8,8 +8,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 4
 - Queued: 0
-- In progress: 1
+- In progress: 0
 - Needs manual review: 10
+- No RN detected: 1
 - Skipped: 3
 
 ## Analyzed Apps
@@ -18,10 +19,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-
-## In Progress Apps
-
-- Uber Eats: Food & Groceries: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/uber-eats`
 
 ## Manual Review Apps
 
@@ -35,6 +32,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
+
+## No RN Detected Apps
+
+- Uber Eats: Food & Groceries: sampled 12 iOS IPAs; reports in `reports/uber-eats`
 
 ## Skipped Apps
 
@@ -91,6 +92,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Tesla | android | 0.79.x | 19.0.0 | medium | 4.54.0-4094 (4094) | 4.54.0-4094 (4094) | 1 |
 | Tesla | android | 0.82.x or newer |  | low | 4.54.3-4107 (4107) | 4.54.3-4107 (4107) | 1 |
 | Tesla | android | 0.79.x | 19.0.0 | medium | 4.54.5-4133 (4133) | 4.57.0-4306 (4306) | 8 |
+| Uber Eats: Food & Groceries | ios | unknown |  | low | 1.9.2 (1.9.2) | 6.323.10001 (6.323.10001) | 12 |
 
 ## RN Transitions
 
