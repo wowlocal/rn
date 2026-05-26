@@ -66,8 +66,8 @@
 - Dump context: `frida-ipa-extract --all-binaries` on device `Meoi`, hardware model `D201AP`, iOS `16.7.7` build `20H330`; full command and compact cryptid inventory are recorded in `reports/agoda/versions.csv`.
 - Per-Mach-O inventory for `13.40.0`: 27 Mach-Os total; main executable and 24 bundled framework/dylib binaries decrypted; 2 app-extension executables remain encrypted; no non-extension Mach-Os remain encrypted.
 - Remaining encrypted app extensions: `Agoda_Consumer_PushExtension.appex` and `Agoda_Consumer_WidgetExtension.appex`. Extension triggering was not pursued because no app-extension file or current source-row evidence points to React Native.
-- Follow-up audit found the earlier native React Native/Hermes/JSI/Yoga result was a false positive from broad substring matching. Weak strings include `ios_react_native`/`ios_reactnative`, isolated `RCTView`, PayPal `hermes` paths, Google OMID `GADOMIDJSInvoker`/`jsInvoker`, and yoga amenity/icon labels.
-- Strong native marker audit found no `RCTBridge`, `RCTRootView`, `RCTCxxBridge`, `facebook::react`, `ReactCommon`, `React-Core`, React Native framework link, Hermes executor/runtime marker, JSI runtime marker, or Yoga `YGNode`/`YGConfig` marker. The only relevant dynamic links are `CXPRoomGrid`, `ReactiveObjC`, `Capacitor`, and `Cordova`.
+- Follow-up audit found the earlier native React Native/Hermes/JSI/Yoga result was a false positive from broad substring matching. Weak strings include `ios_react_native`/`ios_reactnative`, PayPal `hermes` paths, Google OMID `GADOMIDJSInvoker`/`jsInvoker`, and yoga amenity/icon labels; `RCTRootView`/`RCTView` strings are present only inside Facebook SDK codeless-event matching code.
+- Strong native marker audit found no app-owned or non-Facebook-SDK `RCTBridge`, `RCTCxxBridge`, `facebook::react`, `ReactCommon`, `React-Core`, React Native framework link, Hermes executor/runtime marker, JSI runtime marker, or Yoga `YGNode`/`YGConfig` marker. The only relevant dynamic links are `CXPRoomGrid`, `ReactiveObjC`, `Capacitor`, and `Cordova`.
 - Decrypted analysis for `13.40.0` finds no RN JS bundle, Hermes bytecode version, `react-native-renderer`, version-specific RN marker, strong native RN symbol, or linked RN/Hermes/Yoga framework. The row remains RN `unknown` with reason `no_js_or_native_rn_markers`.
 
 ## Web React / Capacitor Evidence
@@ -75,6 +75,7 @@
 - `CXPRoomGrid.framework` contains `com.agoda.cxp.room-grid.bundle.bundle`, `public/index.html` titled `Capybara Room Grid`, and `capacitor.config.json` with app ID `com.agoda.mobile.capybara`.
 - The embedded `CXPRoomGrid` web assets contain React/React DOM `18.3.1`, Ionic/Capacitor routing, and `createRoot` usage. This is web React inside a Capacitor/Cordova wrapper, not React Native.
 - The latest source IPAs `14.12.0` and `14.19.0` expose `Capacitor.framework`, `Cordova.framework`, `CXPRoomGrid.framework`, `public/index.html`, and large `public/assets/app-*.js` web bundles; no RN bundle filenames, Hermes bytecode files, or RN framework filenames were visible in the source archives.
+- Deep tech-stack notes: `reports/agoda/tech-stack.md`.
 
 ## Provisional Ranges
 
