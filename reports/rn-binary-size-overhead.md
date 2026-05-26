@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Accepted decrypted dump rows analyzed: 28
+- Accepted decrypted dump rows analyzed: 29
 - Apps represented: 11
 - Dump IPAs are local evidence under `tmp/ios-dumps`; they are not committed.
 - `direct_rn_payload_bytes` is an RN-associated packaging floor: JS/Hermes bundle files plus separately named React Native/Hermes/JSI/Yoga native artifacts in the primary app bundle.
@@ -13,26 +13,26 @@
 
 ## Observations
 
-- RN-positive rows: 21; static-linked rows with no separable RN artifacts: 9; negative/control rows: 7.
+- RN-positive rows: 22; static-linked rows with no separable RN artifacts: 9; negative/control rows: 7.
 - Largest RN-associated packaging floors:
   - Coinbase `14.19.22 (14190022)`: 104.7 MiB (41.25% of primary app uncompressed bytes; 100.1 MiB JS / 4.5 MiB native).
   - Coinbase `13.45.27 (13450027)`: 93.7 MiB (35.76% of primary app uncompressed bytes; 89.2 MiB JS / 4.5 MiB native).
+  - Coinbase `13.44.24 (13440024)`: 93.0 MiB (35.63% of primary app uncompressed bytes; 88.5 MiB JS / 4.5 MiB native).
   - Shopify `10.2621.0 (282789)`: 47.8 MiB (26.74% of primary app uncompressed bytes; 42.0 MiB JS / 5.8 MiB native).
   - Shopify `10.2606.0 (222553)`: 42.7 MiB (25.58% of primary app uncompressed bytes; 36.9 MiB JS / 5.8 MiB native).
-  - Skype `8.150.3125 (8.150.0.125)`: 34.5 MiB (20.61% of primary app uncompressed bytes; 30.1 MiB JS / 4.3 MiB native).
 - Static-linked RN rows can have a zero direct-artifact floor; the largest carrier context is 123.3 MiB in Threads `431.0.0 (979167741)`.
 - Largest separately named native RN/Hermes/JSI/Yoga runtime payloads:
   - Shopify `10.2606.0 (222553)`: 5.8 MiB native runtime bytes across 1 file(s).
   - Shopify `10.2621.0 (282789)`: 5.8 MiB native runtime bytes across 1 file(s).
   - Artsy: Buy & Sell Fine Art `9.9.0 (2026.05.20.12.45)`: 4.6 MiB native runtime bytes across 1 file(s).
+  - Coinbase `13.44.24 (13440024)`: 4.5 MiB native runtime bytes across 1 file(s).
   - Coinbase `13.45.27 (13450027)`: 4.5 MiB native runtime bytes across 1 file(s).
-  - Coinbase `14.19.22 (14190022)`: 4.5 MiB native runtime bytes across 1 file(s).
 - Largest JS/Hermes bundle payloads:
   - Coinbase `14.19.22 (14190022)`: 100.1 MiB uncompressed (35.9 MiB compressed).
   - Coinbase `13.45.27 (13450027)`: 89.2 MiB uncompressed (31.2 MiB compressed).
+  - Coinbase `13.44.24 (13440024)`: 88.5 MiB uncompressed (31.0 MiB compressed).
   - Shopify `10.2621.0 (282789)`: 42.0 MiB uncompressed (15.3 MiB compressed).
   - Shopify `10.2606.0 (222553)`: 36.9 MiB uncompressed (14.3 MiB compressed).
-  - Skype `8.150.3125 (8.150.0.125)`: 30.1 MiB uncompressed (11.4 MiB compressed).
 - No RN overhead is attributed to current negative/control rows: Agoda: Cheap Flights & Hotels, SoundCloud: The Music You Love, Uber Eats: Food & Groceries.
 
 ## Per-Dump Results
@@ -59,6 +59,7 @@
 | SoundCloud: The Music You Love | `8.5.0 (1251600)` | no_rn_detected | 0.0 MiB | 0.0 MiB JS / 0.0 MiB native | 0.00% | 0.0 MiB | main_only_decrypted | negative/control row: no React Native evidence in current analyzer output no_js_or_native_rn_markers remaining encrypted non-exten |
 | SoundCloud: The Music You Love | `8.62.0 (1259079)` | no_rn_detected | 0.0 MiB | 0.0 MiB JS / 0.0 MiB native | 0.00% | 0.0 MiB | main_only_decrypted | negative/control row: no React Native evidence in current analyzer output no_js_or_native_rn_markers remaining encrypted non-exten |
 | Uber Eats: Food & Groceries | `6.281.10000 (6.281.10000)` | no_rn_detected | 0.0 MiB | 0.0 MiB JS / 0.0 MiB native | 0.00% | 0.0 MiB | main_only_decrypted | negative/control row: no React Native evidence in current analyzer output no_js_or_native_rn_markers remaining encrypted non-exten |
+| Coinbase | `13.44.24 (13440024)` | 0.79.x | 93.0 MiB | 88.5 MiB JS / 4.5 MiB native | 35.63% | 75.1 MiB | loaded_app_decrypted |  |
 | Coinbase | `13.45.27 (13450027)` | 0.60.x | 93.7 MiB | 89.2 MiB JS / 4.5 MiB native | 35.76% | 75.1 MiB | loaded_app_decrypted |  |
 | Coinbase | `14.19.22 (14190022)` | 0.60.x | 104.7 MiB | 100.1 MiB JS / 4.5 MiB native | 41.25% | 56.4 MiB | loaded_app_decrypted |  |
 | Artsy: Buy & Sell Fine Art | `7.3.5 (2022.04.22.16)` | native_rn_marker_without_version | 0.0 MiB | 0.0 MiB JS / 0.0 MiB native | 0.00% | 12.7 MiB | loaded_app_decrypted | direct RN artifact floor is zero because RN appears statically linked into app-native Mach-O native_rn_marker_without_version |
@@ -92,6 +93,7 @@
 | SoundCloud: The Music You Love | `8.5.0 (1251600)` | 189.9 MiB | 183.2 MiB | 22.2 MiB (12.13%) | 0.0 MiB | 0.0 MiB | 0.0 MiB (0.00% of dump IPA) | 0 JS, 0 native, 0 carrier |
 | SoundCloud: The Music You Love | `8.62.0 (1259079)` | 202.9 MiB | 219.9 MiB | 19.4 MiB (8.81%) | 0.0 MiB | 0.0 MiB | 0.0 MiB (0.00% of dump IPA) | 0 JS, 0 native, 0 carrier |
 | Uber Eats: Food & Groceries | `6.281.10000 (6.281.10000)` | 266.6 MiB | 311.7 MiB | 210.5 MiB (67.53%) | 0.0 MiB | 0.0 MiB | 0.0 MiB (0.00% of dump IPA) | 0 JS, 0 native, 0 carrier |
+| Coinbase | `13.44.24 (13440024)` | 143.4 MiB | 261.1 MiB | 66.8 MiB (25.57%) | 88.5 MiB | 4.5 MiB | 32.2 MiB (32.49% of dump IPA) | 1 JS, 1 native, 3 carrier |
 | Coinbase | `13.45.27 (13450027)` | 143.7 MiB | 262.0 MiB | 66.8 MiB (25.48%) | 89.2 MiB | 4.5 MiB | 32.5 MiB (32.64% of dump IPA) | 1 JS, 1 native, 3 carrier |
 | Coinbase | `14.19.22 (14190022)` | 137.8 MiB | 253.8 MiB | 48.1 MiB (18.97%) | 100.1 MiB | 4.5 MiB | 37.2 MiB (36.95% of dump IPA) | 1 JS, 1 native, 3 carrier |
 | Artsy: Buy & Sell Fine Art | `7.3.5 (2022.04.22.16)` | 37.6 MiB | 51.0 MiB | 12.7 MiB (24.96%) | 0.0 MiB | 0.0 MiB | 0.0 MiB (0.00% of dump IPA) | 0 JS, 0 native, 1 carrier |
@@ -104,7 +106,7 @@
 ## App-Level Takeaways
 
 - Artsy: Buy & Sell Fine Art: RN-associated payload up to 16.5 MiB (JS/Hermes up to 11.9 MiB, named native runtime up to 4.6 MiB); largest RN carrier Mach-O context 44.1 MiB; latest analyzed row `9.9.0 (2026.05.20.12.45)`; sampled direct delta 16.5 MiB.
-- Coinbase: RN-associated payload up to 104.7 MiB (JS/Hermes up to 100.1 MiB, named native runtime up to 4.5 MiB); largest RN carrier Mach-O context 75.1 MiB; latest analyzed row `14.19.22 (14190022)`; sampled direct delta 11.0 MiB.
+- Coinbase: RN-associated payload up to 104.7 MiB (JS/Hermes up to 100.1 MiB, named native runtime up to 4.5 MiB); largest RN carrier Mach-O context 75.1 MiB; latest analyzed row `14.19.22 (14190022)`; sampled direct delta 11.7 MiB.
 - Facebook Messenger: RN-associated payload up to 1.6 MiB (JS/Hermes up to 1.6 MiB, named native runtime up to 0.0 MiB); largest RN carrier Mach-O context 96.6 MiB; latest analyzed row `562.0.0 (975021560)`.
 - Instagram: RN-associated payload up to 2.2 MiB (JS/Hermes up to 2.2 MiB, named native runtime up to 0.0 MiB); largest RN carrier Mach-O context 329.8 MiB; latest analyzed row `430.0.0 (972915403)`; sampled direct delta 1.3 MiB.
 - Mattermost: RN-associated payload up to 32.9 MiB (JS/Hermes up to 28.4 MiB, named native runtime up to 4.5 MiB); largest RN carrier Mach-O context 4.5 MiB; latest analyzed row `2.40.0 (749)`.

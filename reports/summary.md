@@ -27,7 +27,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
 - Shopify: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/shopify`
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
-- Coinbase: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/coinbase`
+- Coinbase: last completed `ios_pre_boundary_boundary_and_latest_decrypted_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
 - Skype: last completed `ios_early_endpoint_boundary_and_latest_decrypted_sampling`; reports in `reports/skype`

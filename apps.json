@@ -247,7 +247,7 @@
       "android_history_source": "APKPure history page for package com.coinbase.android",
       "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 886427730 and bundle ID com.vilcsak.bitcoin2; Google Play and APKPure identify Android package com.coinbase.android.",
-      "last_completed_step": "ios_boundary_and_latest_decrypted_sampling",
+      "last_completed_step": "ios_pre_boundary_boundary_and_latest_decrypted_sampling",
       "reports_path": "reports/coinbase",
       "version_list_path": "reports/coinbase/version-list.json",
       "android_version_list_path": "reports/coinbase/android-version-list.json",
@@ -270,8 +270,8 @@
         "Android sampling downloaded and analyzed all 19 APKPure entries. Every sampled XAPK exposes assets/index.android.bundle and React Native native-library metadata including libreactnative.so.",
         "The current analyzer reports one source-limited Android band from 14.1.27 through 14.19.22 as RN present but version unknown with low confidence, because ReactNativeVersion without a renderer marker is not specific enough to infer a 0.82.x-or-newer band.",
         "Targeted iOS sampling downloaded and analyzed 12 IPAs. iOS source package markers report 9.21.4 as RN 0.63.x, 12.23.13 as 0.71.x, 13.21.10 as 0.74.x-0.76.x, 13.26.10 through 13.31.19 as 0.77.x, 13.41.21 through 13.44.24 as 0.79.x, and 13.45.27 through 14.19.22 as 0.60.x.",
-        "Accepted iOS decrypted dumps for boundary 13.45.27 (13450027, external ID 880359975) and latest 14.19.22 (14190022, external ID 885921388). Both dumps have loaded_app_decrypted coverage and main executable cryptid 0; analysis reports Hermes bytecode version 96, RN 0.60.x with medium confidence, and native React Native/Hermes/JSI/Yoga markers.",
-        "Marked needs_manual_review because APKPure is sparse/source-limited before 14.1.27, a probed 14.0.4 direct page did not expose parseable package metadata, Android version inference remains unknown, and the exact iOS 13.44.24 -> 13.45.27 marker change from 0.79.x to 0.60.x is unusual enough to require manual interpretation."
+        "Accepted iOS decrypted dumps for pre-boundary 13.44.24 (13440024, external ID 880184267), boundary 13.45.27 (13450027, external ID 880359975), and latest 14.19.22 (14190022, external ID 885921388). All three dumps have loaded_app_decrypted coverage, main executable cryptid 0, and native React Native/Hermes/JSI/Yoga markers; analysis preserves RN 0.79.x with renderer 19.0.0 before the boundary and RN 0.60.x after it.",
+        "Marked needs_manual_review because APKPure is sparse/source-limited before 14.1.27, a probed 14.0.4 direct page did not expose parseable package metadata, Android version inference remains unknown, and the exact iOS 13.44.24 -> 13.45.27 marker change from 0.79.x to 0.60.x remains unusual despite decrypted main-app evidence on both sides."
       ]
     },
     {
