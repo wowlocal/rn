@@ -11,6 +11,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - APK analysis is first-class. Android packages are usually easier to inspect than App Store IPAs because they are not FairPlay-encrypted; they often expose clearer RN evidence through `assets/index.android.bundle`, Hermes bytecode, `libreactnativejni.so`, `libhermes.so`, SoLoader libraries, native symbols, and package resources.
 - Use Android-first sampling when APK/APKS/XAPK/APKM history is easier to obtain or inspect. Use iOS IPAs to validate and anchor iOS-specific timelines when needed.
 - Authorized jailbroken or Frida-capable iOS install-and-dump analysis is also first-class evidence when the dumped package is verified against the intended app identity and version. Encrypted App Store IPAs alone remain limited evidence, but an installed-and-dumped decrypted package can expose native RN constants, frameworks, symbols, JS bundles, Hermes bytecode, and resources directly.
+- Prefer `dump_ios_ipa.py --method frida-ipa-extract --all-binaries` for iOS dumps when the patched extractor is available. This decrypts the main executable and every loaded encrypted Mach-O under the app bundle. App extensions may still require a separate trigger-and-attach workflow because `.appex` bundles are not normal launchable apps.
 - Keep iOS and Android package timelines separate in the raw outputs. Merge them only in cross-app summary files with platform labels.
 - Keep all durable outputs before deleting any IPA, APK, APKS, XAPK, APKM, or extracted package directory.
 - Delete only generated app package/cache files inside this project when disk pressure requires it.
@@ -19,9 +20,10 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - For Android, prefer version ordering by `versionCode`; use APK source publish dates only when the source clearly provides them. ZIP entry timestamps inside APKs can be build artifacts and should be labeled as package timestamps, not store release dates.
 - Treat Android source catalogs as source-limited unless the source demonstrably provides a complete history for the package. Adjacent rows in a sparse APKPure/APKMirror-derived catalog are not exact transition boundaries by themselves.
 - Record Android package hashes, embedded manifest metadata, and package identity when available. If a source returns duplicated package hashes, installer/wrapper APKs, or embedded version metadata that conflicts with the catalog row, treat the row as a source-quality finding, not an exact historical build.
-- For iOS install-and-dump evidence, record the source IPA/external version ID when known, installed bundle ID, `CFBundleShortVersionString`, `CFBundleVersion`, dumped package hash, dump tool/version, device/iOS context, and visible encryption status such as `cryptid` where available. If the installed or dumped metadata does not match the intended catalog row, treat the dump as a source-quality finding rather than historical evidence.
+- For iOS install-and-dump evidence, record the source IPA/external version ID when known, installed bundle ID, `CFBundleShortVersionString`, `CFBundleVersion`, dumped package hash, dump tool/version, device/iOS context, decrypted binary coverage, and visible encryption status such as `cryptid` for every Mach-O where available. If the installed or dumped metadata does not match the intended catalog row, treat the dump as a source-quality finding rather than historical evidence.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
 - Android APKs may provide primary evidence for RN version inference. Keep platform-specific timestamps and version identifiers labeled clearly.
+- Every `unknown` RN result must have a reason code and next action, such as `encrypted_native_only`, `no_js_bundle`, `ambiguous_marker_band`, `source_catalog_sparse`, `metadata_mismatch`, `extension_not_dumped`, or `tool_failure`.
 - Only install, run, dump, or analyze apps and accounts we are authorized to use for this research. Do not expose account credentials, device secrets, or personally identifying device data in logs or reports.
 - Commit after every completed checklist step so the task is resumable and each app's progress has a clear checkpoint.
 
@@ -82,6 +84,8 @@ apks/
 logs/
   run.log
   deleted-packages.log
+patches/
+  frida-ipa-extract-all-binaries.patch
 ```
 
 ## Candidate App Queue
@@ -175,6 +179,8 @@ Do not download all versions first. Sample enough to determine whether the app a
 - [ ] Download oldest available iOS version if iOS timeline is in scope.
 - [ ] Download 6 to 12 evenly spaced iOS historical versions if iOS timeline is in scope.
 - [ ] Analyze each downloaded IPA.
+- [ ] For iOS-only or iOS-primary apps, run all-binaries dumps for the newest sample, oldest sample, and any sample whose encrypted static analysis is `unknown` or low confidence.
+- [ ] Keep a small queue of "dump next" iOS rows near suspected RN transitions instead of dumping every historical IPA immediately.
 - [ ] Write provisional platform-specific `*-versions.csv` and `*-versions.json`.
 - [ ] Decide whether RN is detected.
 - [ ] If no RN markers are detected in any sample, mark `not_react_native_detected` unless the app deserves deeper sampling.
@@ -187,9 +193,18 @@ Use this track when encrypted iOS IPAs block native inspection and a jailbroken 
 - [ ] Verify the target app/build is licensed and authorized for installation and analysis.
 - [ ] Install the selected IPA on the device and record the external version ID, app version, build number, and bundle ID expected from the catalog.
 - [ ] Launch the app once if the dump tool requires a running process.
-- [ ] Dump the installed app with the chosen Frida/iOS dumping tool, such as iDump, into a non-committed local package directory.
+- [ ] If using `frida-ipa-extract`, apply `patches/frida-ipa-extract-all-binaries.patch` to the local tool checkout when the checkout does not already support `--all-binaries`.
+- [ ] Dump the installed app with `./dump_ios_ipa.py <ipa> --method frida-ipa-extract --all-binaries` when possible. Add `--skip-install --no-kill-before-dump` only when the exact intended build is already installed and metadata can still be matched.
+- [ ] Fall back to main-executable-only Frida dumps or iDump only when the all-binaries path fails, and record the failure and fallback reason.
 - [ ] Verify the dumped `Info.plist` bundle ID, `CFBundleShortVersionString`, and `CFBundleVersion` match the intended row.
-- [ ] Record dump tool name/version, host timestamp, device model class if useful, iOS version, dumped IPA hash, dump output size, and visible encryption status such as `cryptid` where available.
+- [ ] Run a Mach-O encryption inventory over the dumped IPA and record `cryptid` for the main executable, loaded frameworks, dylibs, embedded app extensions, and other executable files.
+- [ ] Classify decrypted binary coverage:
+  - `full_bundle_decrypted`: every bundled Mach-O reports `cryptid 0`.
+  - `loaded_app_decrypted`: main executable and loaded app/framework Mach-Os report `cryptid 0`, but non-loaded extensions or helper executables remain encrypted.
+  - `main_only_decrypted`: only the main app executable reports `cryptid 0`.
+  - `rejected`: metadata mismatch, missing output, or main executable is still encrypted.
+- [ ] For encrypted `.appex` executables that matter to the RN question, trigger the extension manually, attach to the extension host/process, and dump that process separately. If the extension cannot be triggered, record `extension_not_dumped` rather than treating the whole app dump as failed.
+- [ ] Record dump tool name/version, host timestamp, device model class if useful, iOS version, dumped IPA hash, dump output size, decrypted coverage class, and visible encryption status such as `cryptid` where available.
 - [ ] Analyze the decrypted dump for RN markers in native frameworks, main executable strings/symbols, JS bundles, Hermes bytecode, resources, and package metadata.
 - [ ] If dump metadata does not match the intended catalog row, reject it as historical evidence and record the mismatch in notes.
 - [ ] Delete or retain the dump according to disk policy after compact CSV/JSON evidence is written.
@@ -209,7 +224,9 @@ For every encrypted/downloaded or decrypted/dumped iOS package, capture at least
 - [ ] Package SHA-256 hash.
 - [ ] Dump tool/version and device/iOS context, if dumped from an installed app.
 - [ ] Main executable path.
-- [ ] Encryption status when visible.
+- [ ] Encryption status when visible, including a per-Mach-O `cryptid` inventory for decrypted dumps.
+- [ ] Decrypted binary coverage class: `full_bundle_decrypted`, `loaded_app_decrypted`, `main_only_decrypted`, `rejected`, or blank for encrypted source IPAs.
+- [ ] Remaining encrypted executable paths, if any.
 - [ ] Hermes markers.
 - [ ] JS bundle paths.
 - [ ] React Native framework or library names.
@@ -218,6 +235,8 @@ For every encrypted/downloaded or decrypted/dumped iOS package, capture at least
 - [ ] RN JS API markers used for inference.
 - [ ] RN guess or band.
 - [ ] Confidence: `high`, `medium`, `low`, or `unknown`.
+- [ ] Unknown reason code, if confidence is `unknown`.
+- [ ] Next action for unknown or low-confidence rows.
 - [ ] Evidence notes explaining the inference.
 
 For every Android package, capture at least:
@@ -240,11 +259,40 @@ For every Android package, capture at least:
 - [ ] RN JS API markers used for inference.
 - [ ] RN guess or band.
 - [ ] Confidence: `high`, `medium`, `low`, or `unknown`.
+- [ ] Unknown reason code, if confidence is `unknown`.
+- [ ] Next action for unknown or low-confidence rows.
 - [ ] Evidence notes explaining the inference.
 
 Android analysis tools may include `unzip`, `aapt`/`aapt2`, `apkanalyzer`, `jadx`, `apktool`, `readelf`, `nm`, `strings`, Hermes bytecode tooling, and structured ZIP/APK parsers. Prefer structured metadata extraction over ad hoc string scraping when available.
 
-### 6. Build Initial Ranges
+### 6. Evidence Ladder And Confidence
+
+Use the strongest available evidence for each package row, and keep weaker evidence as supporting context instead of replacing platform-specific findings.
+
+| Evidence type | Typical confidence impact | Required validation |
+| --- | --- | --- |
+| Exact RN version string or renderer marker from decrypted native code, JS bundle, Hermes metadata, or Android native libraries | Can support `high` for the row | Package identity matches, marker is directly extracted, and analyzer records the exact file/member |
+| Decrypted iOS main executable plus loaded frameworks with compatible JS/Hermes markers | Can support `high` for RN family or `medium` to `high` for exact version depending on marker specificity | Dump metadata matches source IPA, main executable `cryptid 0`, loaded RN/Hermes-related frameworks `cryptid 0` |
+| Android APK/APKS with RN native libraries and JS/Hermes markers | Can support `medium` or `high` depending on exact marker availability | Manifest package/version metadata matches catalog, source catalog is not known duplicated/wrapper-only |
+| Encrypted IPA with JS bundle markers only | Usually `medium` for version band, rarely exact | IPA metadata matches catalog and markers are unambiguous for the band |
+| Generic RN strings only, sparse source catalog, or conflicting platform evidence | `low` or `unknown` | Record reason code and next action |
+
+Confidence rules:
+
+- [ ] Use `high` only when exact RN version or narrow version family is backed by direct package evidence and metadata validation.
+- [ ] Use `medium` when markers identify a constrained RN band but exact patch/minor cannot be proven.
+- [ ] Use `low` when only generic RN presence or broad-era markers are visible.
+- [ ] Use `unknown` when RN cannot be inferred, and always fill `unknown_reason` plus `next_action`.
+- [ ] Do not promote confidence only because Android and iOS are near the same calendar date. Cross-platform agreement can strengthen a compatible platform-specific inference, but it is not a substitute for platform evidence.
+
+Unknown triage rules:
+
+- [ ] If native iOS code is encrypted, try the install-and-dump track on the latest row and on rows near suspected transitions.
+- [ ] If all loaded app/framework binaries are decrypted but app extensions remain encrypted, continue unless RN evidence is expected to live only in the extension.
+- [ ] If Android source catalogs are sparse, mark transition windows as source-limited and prefer iOS external-version adjacency for iOS boundaries.
+- [ ] If JS/Hermes markers conflict with native markers, keep the row `needs_manual_review` and preserve both marker sets in notes.
+
+### 7. Build Initial Ranges
 
 - [ ] Sort iOS rows by App Store external version order.
 - [ ] Sort Android rows by version code, then source publish date if available.
@@ -254,7 +302,7 @@ Android analysis tools may include `unzip`, `aapt`/`aapt2`, `apkanalyzer`, `jadx
 - [ ] Write provisional platform-specific `*-transitions.csv` and `*-transitions.json`.
 - [ ] Mark status `sampled`.
 
-### 7. Refine Upgrade Boundaries
+### 8. Refine Upgrade Boundaries
 
 For each detected RN transition on each platform:
 
@@ -280,6 +328,7 @@ Boundary output must include:
 - [ ] RN old guess.
 - [ ] RN new guess.
 - [ ] Confidence.
+- [ ] Confidence basis: exact marker, decrypted-native marker, Android native marker, JS/Hermes band, cross-platform compatible support, or source-limited estimate.
 - [ ] Whether boundary is exact.
 - [ ] Gap size in external version IDs.
 - [ ] Platform: `ios` or `android`.
@@ -290,8 +339,9 @@ Cross-platform refinement:
 - [ ] Use Android transitions to prioritize iOS sampling near the same calendar window or release train when iOS analysis is expensive.
 - [ ] Do not copy an Android RN version onto iOS without evidence. Mark it as Android evidence that increases confidence only when iOS markers are compatible.
 - [ ] If Android and iOS upgrade on different app versions or dates, report separate timelines.
+- [ ] For each suspected transition, decrypt at least the first row after the boundary and the last row before the boundary when encrypted iOS native evidence is the limiting factor.
 
-### 8. Disk Cleanup Per App
+### 9. Disk Cleanup Per App
 
 After durable CSV/JSON files are written:
 
@@ -311,7 +361,7 @@ Deletion log format:
 timestamp=<iso8601> app=<slug> platform=<ios|android> version_id=<id> app_version=<version> app_build_or_version_code=<build_or_code> path=<path> reason=<reason>
 ```
 
-### 9. Per-App Notes
+### 10. Per-App Notes
 
 Write `reports/<app-slug>/notes.md` with:
 
@@ -328,11 +378,13 @@ Write `reports/<app-slug>/notes.md` with:
 - [ ] Cross-platform comparison table if both platforms were analyzed.
 - [ ] Unresolved gaps or missing versions.
 - [ ] Encryption limitations.
+- [ ] Decrypted binary coverage class for each iOS dump: `full_bundle_decrypted`, `loaded_app_decrypted`, `main_only_decrypted`, or `rejected`.
+- [ ] Remaining encrypted bundled executables, especially `.appex` binaries, and whether they affect the RN conclusion.
 - [ ] Any app-specific marker quirks.
 - [ ] Android APK evidence, if used, including package version/code, APK source, extracted RN markers, and how it affects confidence.
 - [ ] iOS dump evidence, if used, including dump tool/version, package hash, installed bundle metadata, decrypted native markers, and how it affects confidence.
 
-### 10. Mark App Done
+### 11. Mark App Done
 
 - [ ] Verify scripts compile.
 - [ ] Verify per-app CSV/JSON is valid.
