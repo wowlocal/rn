@@ -597,6 +597,32 @@
         "All sampled IPA main executables are FairPlay encrypted, so native constants are not inspectable.",
         "Marked not_react_native_detected because no React Native markers were found in the broad iOS sample or the visible Android sample."
       ]
+    },
+    {
+      "app_slug": "bloomberg",
+      "app_name": "Bloomberg: Business News Daily",
+      "app_id": "281941097",
+      "bundle_id": "com.bloomberg.Bloomberg",
+      "android_package": "com.bloomberg.android.plus",
+      "android_history_source": "Aiting versions page for package com.bloomberg.android.plus; APKPure gone/blocked and APKMirror blocked",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 281941097 and bundle ID com.bloomberg.Bloomberg; Google Play/APKPure/Aiting identify Android package com.bloomberg.android.plus.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/bloomberg",
+      "version_list_path": "reports/bloomberg/version-list.json",
+      "android_version_list_path": "reports/bloomberg/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Bloomberg --format json did not return the official Bloomberg consumer news app in the current localized results.",
+        "iOS identifier source: public App Store URL and Apple iTunes lookup for App Store ID 281941097 returned bundle ID com.bloomberg.Bloomberg, app name Bloomberg: Business News Daily, seller Bloomberg Finance LP, and current US listed version 6.58.1.",
+        "App Store URL: https://apps.apple.com/us/app/bloomberg-business-news-daily/id281941097.",
+        "Android package source: Google Play, APKPure, and Aiting identify package com.bloomberg.android.plus.",
+        "Aiting Android history URL identified: https://www.aiting.com/bloomberg/com.bloomberg.android.plus/versions returned HTTP 200.",
+        "APKPure .net versions URL for package com.bloomberg.android.plus returned HTTP 410 Gone.",
+        "APKPure .com versions URL returned HTTP 403.",
+        "AndroidAPKsFree guessed old versions URL for package com.bloomberg.android.plus returned HTTP 404.",
+        "APKMirror history URL returned HTTP 403 for automated fetches."
+      ]
     }
   ]
 }
