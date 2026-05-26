@@ -23,7 +23,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Mattermost: status `version_lists_fetched`; last completed `version_list_fetch`; reports in `reports/mattermost`
+- Mattermost: status `initial_sampling`; last completed `initial_sampling`; reports in `reports/mattermost`
 
 ## Manual Review Apps
 
@@ -121,6 +121,14 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Artsy: Buy & Sell Fine Art | android | 0.82.x or newer | 19.1.0 | low | duplicate package hashes (1/10) | 9.0.1 (2026022618) | 9.9.0 (2026052012) | 10 |
 | NerdWallet: Smart Money App | android | unknown |  | low | source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode | 11.29.0 (123845) | 12.6.0 (131162) | 4 |
 | NerdWallet: Smart Money App | android | 0.77.x |  | medium | source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode | 12.10.1 (140458) | 14.3.0 (162034) | 6 |
+| Mattermost | ios | <=0.59.x |  | medium |  | 1.0 (39) | 1.25.1 (247) | 4 |
+| Mattermost | ios | 0.62.x |  | medium |  | 1.32.2 (307) | 1.32.2 (307) | 1 |
+| Mattermost | ios | 0.64.x |  | medium |  | 1.42.1 (354) | 1.42.1 (354) | 1 |
+| Mattermost | ios | 0.67.x-0.68.x |  | medium |  | 1.50.1 (388) | 1.50.1 (388) | 1 |
+| Mattermost | ios | 0.71.x |  | medium |  | 2.5.1 (476) | 2.15.0 (512) | 2 |
+| Mattermost | ios | 0.74.x-0.76.x |  | medium |  | 2.24.1 (593) | 2.33.1 (680) | 2 |
+| Mattermost | ios | 0.77.x |  | medium |  | 2.40.0 (749) | 2.40.0 (749) | 1 |
+| Mattermost | android | unknown |  | low | duplicate package hashes (1/10) | 2.39.0 (8000743) | 2.39.0 (8000743) | 10 |
 
 ## RN Transitions
 
@@ -165,9 +173,15 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Artsy: Buy & Sell Fine Art | ios | 0.77.x | 0.79.x | 8.83.0 (2025.09.17.12) | 8.84.0 (2025.09.30.18) | 0 | true |
 | Artsy: Buy & Sell Fine Art | ios | 0.79.x | 0.81.x | 8.88.0 (2025.11.12.13) | 8.89.0 (2025.11.26.02) | 0 | true |
 | NerdWallet: Smart Money App | android | unknown | 0.77.x | 12.6.0 (131162) | 12.10.1 (140458) | 1 | false |
+| Mattermost | ios | <=0.59.x | 0.62.x | 1.25.1 (247) | 1.32.2 (307) | 15 | false |
+| Mattermost | ios | 0.62.x | 0.64.x | 1.32.2 (307) | 1.42.1 (354) | 15 | false |
+| Mattermost | ios | 0.64.x | 0.67.x-0.68.x | 1.42.1 (354) | 1.50.1 (388) | 15 | false |
+| Mattermost | ios | 0.67.x-0.68.x | 0.71.x | 1.50.1 (388) | 2.5.1 (476) | 15 | false |
+| Mattermost | ios | 0.71.x | 0.74.x-0.76.x | 2.15.0 (512) | 2.24.1 (593) | 14 | false |
+| Mattermost | ios | 0.74.x-0.76.x | 0.77.x | 2.33.1 (680) | 2.40.0 (749) | 15 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 28
-- Approximate by transition IDs: 11
+- Approximate by transition IDs: 17
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

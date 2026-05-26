@@ -1,0 +1,2 @@
+rn_guess,react_renderer,confidence,source_quality,start_app_version,start_app_build,start_external_version_id,start_build_timestamp,end_app_version,end_app_build,end_external_version_id,end_build_timestamp,build_count
+unknown,,low,duplicate package hashes (1/10),2.39.0,8000743,6000627,2025-04-18,2.39.0,8000743,6000743,2026-04-16,10

@@ -6,7 +6,7 @@
 - App Store ID: 1257222717
 - iOS bundle ID: com.mattermost.rn
 - Android package: com.mattermost.rn
-- Status: version_lists_fetched
+- Status: initial_sampling
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -37,4 +37,15 @@
 
 ## Next Step
 
-Sample Android packages first, then use those markers to guide iOS sampling if needed.
+## Initial Sampling
+
+- Android sampling completed on 2026-05-26 from all 10 visible APKPure rows.
+- Android result: React Native markers are present through `assets/dist/bundle.js`, `assets/index.android.bundle`, Hermes bytecode, and native libraries including `libreactnative.so`, `libhermes.so`, `libjsi.so`, and `libwatermelondb-jsi.so`.
+- Android source-quality finding: every APKPure catalog row resolved to the same embedded manifest versionName `2.39.0`, manifest versionCode `8000743`, and package hash, so the Android catalog is current-payload evidence only.
+- iOS sampling completed on 2026-05-26 from 12 evenly spaced IPAs across external version IDs `822837610` through `885697976`.
+- Broad iOS sample ranges: `1.0` build `39` through `1.25.1` build `247` as RN `<=0.59.x`; `1.32.2` build `307` as RN `0.62.x`; `1.42.1` build `354` as RN `0.64.x`; `1.50.1` build `388` as RN `0.67.x-0.68.x`; `2.5.1` build `476` through `2.15.0` build `512` as RN `0.71.x`; `2.24.1` build `593` through `2.33.1` build `680` as RN `0.74.x-0.76.x`; `2.40.0` build `749` as RN `0.77.x`.
+- Reports: `reports/mattermost/versions.csv`, `reports/mattermost/versions.json`, `reports/mattermost/ranges.csv`, `reports/mattermost/ranges.json`, `reports/mattermost/transitions.csv`, `reports/mattermost/transitions.json`, `reports/mattermost/android-versions.csv`, and `reports/mattermost/android-ranges.json`.
+
+## Next Step
+
+Refine iOS RN transition boundaries using adjacent App Store external version IDs.

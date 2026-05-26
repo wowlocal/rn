@@ -807,9 +807,9 @@
       "bundle_id": "com.mattermost.rn",
       "android_package": "com.mattermost.rn",
       "android_history_source": "APKPure versions page for package com.mattermost.rn",
-      "status": "version_lists_fetched",
+      "status": "initial_sampling",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1257222717 and bundle ID com.mattermost.rn; Google Play and APKPure identify Android package com.mattermost.rn.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "initial_sampling",
       "reports_path": "reports/mattermost",
       "version_list_path": "reports/mattermost/version-list.json",
       "android_version_list_path": "reports/mattermost/android-version-list.json",
@@ -820,6 +820,9 @@
       "android_version_count": 10,
       "oldest_android_version_code": "6000627",
       "newest_android_version_code": "6000743",
+      "sampled_ipa_count": 12,
+      "sampled_android_package_count": 10,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Mattermost --format json returned App Store ID 1257222717, bundle ID com.mattermost.rn, app name Mattermost, and current listed version 2.40.0.",
@@ -828,7 +831,10 @@
         "Android package source: Google Play identifies package com.mattermost.rn and returned HTTP 200.",
         "APKPure Android history URL identified: https://apkpure.net/mattermost/com.mattermost.rn/versions returned HTTP 200.",
         "iOS version list fetched on 2026-05-26: 175 external version identifiers from 822837610 through 885697976.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 6000627 through 6000743; source page appears to expose a limited history."
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 6000627 through 6000743; source page appears to expose a limited history.",
+        "Initial Android sampling downloaded and analyzed all 10 visible APKPure rows. React Native markers were detected through JS bundle paths and native libraries, but every catalog row resolved to the same embedded manifest versionName 2.39.0/versionCode 8000743 and package hash.",
+        "Initial iOS sampling downloaded and analyzed 12 evenly spaced IPAs across external version IDs 822837610 through 885697976.",
+        "The broad iOS sample reports source-limited bands from <=0.59.x through 0.77.x, with the latest sampled app 2.40.0 build 749 inferred as RN 0.77.x."
       ]
     }
   ]

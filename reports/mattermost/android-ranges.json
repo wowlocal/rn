@@ -1,0 +1,17 @@
+[
+  {
+    "build_count": 10,
+    "confidence": "low",
+    "end_app_build": "8000743",
+    "end_app_version": "2.39.0",
+    "end_build_timestamp": "2026-04-16",
+    "end_external_version_id": "6000743",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "source_quality": "duplicate package hashes (1/10)",
+    "start_app_build": "8000743",
+    "start_app_version": "2.39.0",
+    "start_build_timestamp": "2025-04-18",
+    "start_external_version_id": "6000627"
+  }
+]
