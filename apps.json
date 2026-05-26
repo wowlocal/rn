@@ -261,6 +261,27 @@
         "The current analyzer reports one source-limited Android band from 14.1.27 through 14.19.22 as 0.82.x or newer with low confidence, based on ReactNativeVersion marker presence without a renderer version marker.",
         "Marked needs_manual_review because APKPure is sparse/source-limited before 14.1.27, a probed 14.0.4 direct page did not expose parseable package metadata, iOS has not been sampled, and no Android RN transition was observed in the accessible package window."
       ]
+    },
+    {
+      "app_slug": "coinbase-wallet",
+      "app_name": "Base: Formerly Coinbase Wallet",
+      "app_id": "1278383455",
+      "bundle_id": "org.toshi.distribution",
+      "android_package": "org.toshi",
+      "android_history_source": "Google Play/AppBrain metadata for package org.toshi; APKPure history URLs returned 410 Gone",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md as Coinbase Wallet; ipatool search and Apple iTunes lookup resolved App Store ID 1278383455 and bundle ID org.toshi.distribution; Google Play/AppBrain/WalletScrutiny identify Android package org.toshi.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/coinbase-wallet",
+      "version_list_path": "reports/coinbase-wallet/version-list.json",
+      "android_version_list_path": "reports/coinbase-wallet/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "Current iOS/App Store branding source: Apple iTunes lookup for App Store ID 1278383455 returned app name Base: Built to Trade & Earn, seller Coinbase Wallet, bundle ID org.toshi.distribution, and current listed version 29.96.",
+        "ipatool search Coinbase Wallet --format json returned App Store ID 1278383455, bundle ID org.toshi.distribution, and localized app name Base: Formerly Coinbase Wallet.",
+        "Android package source: Google Play, AppBrain, and WalletScrutiny identify package org.toshi for Base/formerly Coinbase Wallet.",
+        "APKPure history URLs for org.toshi returned HTTP 410 Gone, so no APKPure version catalog is available at registration time."
+      ]
     }
   ]
 }
