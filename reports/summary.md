@@ -30,7 +30,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Coinbase: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
-- Skype: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/skype`
+- Skype: last completed `ios_early_endpoint_boundary_and_latest_decrypted_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
 - Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`

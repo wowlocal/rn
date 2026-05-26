@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Accepted decrypted dump rows analyzed: 27
+- Accepted decrypted dump rows analyzed: 28
 - Apps represented: 11
 - Dump IPAs are local evidence under `tmp/ios-dumps`; they are not committed.
 - `direct_rn_payload_bytes` is a conservative floor: JS/Hermes bundle files plus separately named React Native/Hermes/JSI/Yoga native artifacts in the primary app bundle.
@@ -36,6 +36,7 @@
 | Shopify | `10.2621.0 (282789)` | 0.82.x or newer | 47.8 MiB | 26.74% | 39.0 MiB | main_only_decrypted | remaining encrypted non-extension Mach-O may hide additional bytes |
 | Mattermost | `2.40.0 (749)` | 0.77.x | 32.9 MiB | 42.71% | 4.5 MiB |  | accepted dump predates decrypted coverage classification |
 | Skype | `8.150.3125 (8.150.0.125)` | 0.71.x | 34.5 MiB | 20.61% | 64.9 MiB | loaded_app_decrypted |  |
+| Skype | `8.79.92 (8.79.0.92)` | 0.63.x | 18.2 MiB | 15.01% | 66.1 MiB | loaded_app_decrypted |  |
 | Skype | `8.97.3203 (8.97.0.203)` | 0.71.x | 20.5 MiB | 21.32% | 45.5 MiB | loaded_app_decrypted |  |
 | SoundCloud: The Music You Love | `7.16.0 (1243764)` | no_rn_detected | 0.0 MiB | 0.00% | 0.0 MiB | loaded_app_decrypted | negative/control row: no React Native evidence in current analyzer output no_js_or_native_rn_markers |
 | SoundCloud: The Music You Love | `7.44.0 (1248257)` | no_rn_detected | 0.0 MiB | 0.00% | 0.0 MiB | main_only_decrypted | negative/control row: no React Native evidence in current analyzer output no_js_or_native_rn_markers remaining encrypted non-exten |
@@ -60,5 +61,5 @@
 - Instagram: direct RN payload floor up to 2.2 MiB; largest RN carrier Mach-O context 329.8 MiB; latest analyzed row `430.0.0 (972915403)`.
 - Mattermost: direct RN payload floor up to 32.9 MiB; largest RN carrier Mach-O context 4.5 MiB; latest analyzed row `2.40.0 (749)`.
 - Shopify: direct RN payload floor up to 47.8 MiB; largest RN carrier Mach-O context 39.0 MiB; latest analyzed row `10.2621.0 (282789)`.
-- Skype: direct RN payload floor up to 34.5 MiB; largest RN carrier Mach-O context 64.9 MiB; latest analyzed row `8.150.3125 (8.150.0.125)`.
+- Skype: direct RN payload floor up to 34.5 MiB; largest RN carrier Mach-O context 66.1 MiB; latest analyzed row `8.150.3125 (8.150.0.125)`.
 - Threads: direct RN payload floor up to 0.0 MiB; largest RN carrier Mach-O context 123.3 MiB; latest analyzed row `431.0.0 (979167741)`.

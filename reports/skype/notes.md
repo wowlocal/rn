@@ -46,14 +46,18 @@
 
 ## iOS Decrypted Evidence
 
+- Accepted decrypted dump for first sampled RN `0.63.x` iOS build `8.79.92` (`8.79.0.92`, external ID `845553986`). The installed metadata matched the source IPA, the main executable has `cryptid 0`, and coverage is `loaded_app_decrypted`.
+- First `0.63.x` dump source SHA-256: `0e4c8811adf5822e13f510a9b8b48866b666bae8415dc759ed82d23dd234b8ab`
+- First `0.63.x` dump SHA-256: `26d6cd684fb0ac47f91689dd6957c8ca5aab40a2684433da0964e773247c324c`
 - Accepted decrypted dump for latest iOS build `8.150.3125` (`8.150.0.125`, external ID `874426597`). The installed metadata matched the source IPA, the main executable has `cryptid 0`, and coverage is `loaded_app_decrypted`.
 - Latest dump source SHA-256: `8050ae44b1169f4d7872697649042abef4849c074651e34407c0cef37bb8e639`
 - Latest dump SHA-256: `1801c56b93db02cfdea44818d05e74f35efc0813e1c29402d91abb0f96e70d59`
 - Accepted decrypted dump for first RN `0.71.x` iOS build `8.97.3203` (`8.97.0.203`, external ID `856630693`). The installed metadata matched the source IPA, the main executable has `cryptid 0`, and coverage is `loaded_app_decrypted`.
 - Boundary dump source SHA-256: `ef3d494e688aaaf39bfa5a6b8ac7aaa9e3b308707b00b9c8ae32c1f55f406e33`
 - Boundary dump SHA-256: `9817cb07cb5d4e6061c78126084c31ed1a43483829b22bd579d88bb816c7f7a8`
-- Decrypted dump analysis exposed native React Native, JSI, and Yoga markers in both accepted dumps. Hermes native markers are present in the latest dump and absent in the `8.97.3203` dump, while the JS marker band remains RN `0.71.x`.
-- Remaining encrypted Mach-O files are app extensions only; no encrypted non-extension binary remained in either accepted dump.
+- Decrypted dump analysis exposed native React Native, JSI, and Yoga markers in all three accepted dumps. Hermes native markers are present in the latest dump and absent in the `8.79.92` and `8.97.3203` dumps. The first `0.63.x` dump preserves renderer `16.13.0`, while the first `0.71.x` and latest dumps preserve the JS marker band RN `0.71.x`.
+- Remaining encrypted Mach-O files are app extensions only; no encrypted non-extension binary remained in any accepted dump.
+- Oldest sampled iOS build `8.1.46715` (`8.1.0.46715`, external ID `822306851`) was installed for decryption, but Frida spawn timed out while waiting for launch. A prelaunch plus attach-running retry found `com.skype.skype` was not running, so no accepted decrypted dump was produced for the `<=0.59.x` endpoint.
 - App-extension decryption was not pursued because the main app bundle already exposes the RN evidence needed for the timeline.
 
 ## Android Sampling
@@ -81,10 +85,10 @@
 
 - APKPure remains sparse/source-limited and exposes only 10 visible Android rows across the sampled window.
 - Current public Apple lookup and Google Play lookup no longer resolve the retired consumer Skype app.
-- The iOS `<=0.59.x` -> `0.63.x` upgrade is only bounded by sampled endpoints, with 91 known external version IDs between them.
+- The iOS `<=0.59.x` -> `0.63.x` upgrade is only bounded by sampled endpoints, with 91 known external version IDs between them. The first `0.63.x` endpoint now has accepted decrypted evidence; the `<=0.59.x` endpoint did not stay running for Frida on the available device.
 - Android latest source-limited inference (`0.74.x-0.76.x`) conflicts with iOS latest inference (`0.71.x`), so the platform timelines should remain separate.
 - No RN transition was observed in the accessible Android package window.
 - Disk cleanup was not performed after Skype sampling because `ipas/skype` used about 1.4 GiB, `apks/skype` used about 709 MiB, and the filesystem still had about 162 GiB available.
 
 ## Next Step
-Manual review should use a more complete Android package history or additional old iOS IPA samples between external IDs `822306851` and `845553986` if the early `<=0.59.x` -> `0.63.x` transition boundary is needed.
+Manual review should use a more complete Android package history or additional old iOS IPA samples between external IDs `822306851` and `845553986` if the early `<=0.59.x` -> `0.63.x` transition boundary is needed. If the oldest endpoint itself becomes priority, retry `8.1.46715` on a device or launch path where the app remains running long enough for Frida attach.

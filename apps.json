@@ -396,7 +396,7 @@
       "android_history_source": "APKPure history page for package com.skype.raider",
       "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; historical App Store sources identify App Store ID 304878510 and bundle ID com.skype.skype; APKPure identifies Android package com.skype.raider. Current Apple iTunes lookup and Google Play lookup no longer resolve the retired consumer Skype app.",
-      "last_completed_step": "ios_boundary_and_latest_decrypted_sampling",
+      "last_completed_step": "ios_early_endpoint_boundary_and_latest_decrypted_sampling",
       "reports_path": "reports/skype",
       "version_list_path": "reports/skype/version-list.json",
       "android_version_list_path": "reports/skype/android-version-list.json",
@@ -422,7 +422,8 @@
         "The current analyzer reports the accessible Android window from 8.132.0.201 through 8.150.0.125 as 0.74.x-0.76.x with medium confidence.",
         "Targeted iOS sampling downloaded and analyzed 20 IPAs, covering 19 unique app version/build pairs from 8.1.46715 through 8.150.3125. iOS reports RN <=0.59.x at 8.1.46715, RN 0.63.x from 8.79.92 through 8.82.403, RN 0.66.x from 8.83.408 through 8.96.3409, and RN 0.71.x from 8.97.3203 through 8.150.3125.",
         "Exact iOS RN transitions were found at 8.82.403 -> 8.83.408 (0.63.x -> 0.66.x) and 8.96.3409 -> 8.97.3203 (0.66.x -> 0.71.x). The older <=0.59.x -> 0.63.x transition remains approximate with a 91-ID known-list gap.",
-        "Accepted iOS decrypted dumps for boundary 8.97.3203 (8.97.0.203, external ID 856630693) and latest 8.150.3125 (8.150.0.125, external ID 874426597). Both dumps have loaded_app_decrypted coverage, main executable cryptid 0, matching installed metadata, and native React Native/JSI/Yoga markers; the latest dump also exposes native Hermes markers.",
+        "Accepted iOS decrypted dumps for first sampled 0.63.x build 8.79.92 (8.79.0.92, external ID 845553986), boundary 8.97.3203 (8.97.0.203, external ID 856630693), and latest 8.150.3125 (8.150.0.125, external ID 874426597). All three dumps have loaded_app_decrypted coverage, main executable cryptid 0, matching installed metadata, and native React Native/JSI/Yoga markers; the latest dump also exposes native Hermes markers.",
+        "Attempted to decrypt oldest sampled iOS build 8.1.46715 (8.1.0.46715, external ID 822306851), but Frida spawn timed out and prelaunch attach found the app was not running, so there is no accepted decrypted dump for the <=0.59.x endpoint.",
         "Marked needs_manual_review because APKPure is sparse/source-limited, current public store lookups are retired, Android latest inference remains source-limited and differs from iOS latest, and the early iOS <=0.59.x -> 0.63.x transition is not exact."
       ]
     },
