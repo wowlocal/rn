@@ -342,6 +342,27 @@
         "The current analyzer reports the accessible Android window from 4.2504.2 through 5.2619.0 as RN-present but unknown version, because bundle-like assets did not expose usable React Native version markers.",
         "Marked needs_manual_review because APKPure is sparse/source-limited, iOS version-list access is blocked, Android versionCode ordering is non-monotonic, and no RN version boundary can be inferred from the accessible packages."
       ]
+    },
+    {
+      "app_slug": "microsoft-teams",
+      "app_name": "Microsoft Teams",
+      "app_id": "1113153706",
+      "bundle_id": "com.microsoft.skype.teams",
+      "android_package": "com.microsoft.teams",
+      "android_history_source": "APKPure history page for package com.microsoft.teams",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1113153706 and bundle ID com.microsoft.skype.teams; Google Play and APKPure identify Android package com.microsoft.teams.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/microsoft-teams",
+      "version_list_path": "reports/microsoft-teams/version-list.json",
+      "android_version_list_path": "reports/microsoft-teams/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: ipatool search Microsoft Teams --format json returned App Store ID 1113153706, bundle ID com.microsoft.skype.teams, app name Microsoft Teams, and current listed version 8.9.1.",
+        "Apple iTunes lookup for App Store ID 1113153706 returned bundle ID com.microsoft.skype.teams, app name Microsoft Teams, seller Microsoft Corporation, and current US listed version 8.9.0.",
+        "Android package source: Google Play and APKPure identify package com.microsoft.teams.",
+        "APKPure Android history URL identified: https://apkpure.net/microsoft-teams/com.microsoft.teams/versions."
+      ]
     }
   ]
 }
