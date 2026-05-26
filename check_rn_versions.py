@@ -603,7 +603,7 @@ def default_row(path: Path) -> dict[str, str]:
 
 
 def fill_unknown_resolution(row: dict[str, str], notes: list[str]) -> None:
-    if row.get("rn_guess") != "unknown":
+    if not row.get("rn_guess", "").startswith("unknown"):
         row["unknown_reason"] = ""
         row["next_action"] = ""
         return
