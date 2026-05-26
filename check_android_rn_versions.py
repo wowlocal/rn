@@ -127,6 +127,9 @@ def direct_download_url(entry: dict[str, Any], timeout: int) -> str:
     version_code = str(entry.get("version_code", ""))
     if not page_url:
         return ""
+    path = urlparse(page_url).path.lower()
+    if path.endswith((".apk", ".apks", ".xapk", ".apkm")):
+        return page_url
     document = html.fromstring(fetch_text(page_url, timeout=timeout))
     hrefs = [href for href in document.xpath("//a[@href]/@href") if "d.apkpure.net/b/" in href]
     if version_code:
