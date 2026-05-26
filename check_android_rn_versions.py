@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import io
 import json
 import posixpath
@@ -30,6 +31,7 @@ ANDROID_FIELDS = [
     "package",
     "package_file_type",
     "package_size",
+    "package_sha256",
     "supported_abis",
     "split_metadata",
     "manifest_metadata",
@@ -115,11 +117,11 @@ def load_catalog(path: Path) -> list[dict[str, Any]]:
     return [row for row in versions if isinstance(row, dict)]
 
 
-def catalog_sort_key(entry: dict[str, Any]) -> tuple[str, int]:
+def catalog_sort_key(entry: dict[str, Any]) -> tuple[int, str]:
     version_code = str(entry.get("version_code", ""))
     return (
-        str(entry.get("source_publish_date", "")),
         int(version_code) if version_code.isdigit() else -1,
+        str(entry.get("source_publish_date", "")),
     )
 
 
@@ -378,6 +380,11 @@ def analyze_package(path: Path) -> dict[str, Any]:
         findings.append(inspect_apk_bytes(path.read_bytes(), path.name))
     else:
         with zipfile.ZipFile(path) as outer:
+            if "classes.dex" in outer.namelist() or "AndroidManifest.xml" in outer.namelist():
+                findings.append(inspect_apk_bytes(path.read_bytes(), path.name))
+                merged = merge_findings(findings)
+                merged["manifest_metadata"] = ""
+                return merged
             manifest_metadata = ""
             if "manifest.json" in outer.namelist():
                 manifest_metadata = outer.read("manifest.json").decode("utf-8", "replace")
@@ -403,6 +410,14 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 def write_json(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(rows, indent=2, sort_keys=True) + "\n")
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def parse_args() -> argparse.Namespace:
@@ -466,6 +481,7 @@ def main() -> int:
             "package": str(path),
             "package_file_type": path.suffix.lower().lstrip(".").upper(),
             "package_size": str(path.stat().st_size),
+            "package_sha256": file_sha256(path),
             "split_metadata": str(entry.get("split_metadata", "")),
             **analysis,
         }

@@ -8,11 +8,11 @@ from pathlib import Path
 from typing import Any
 
 
-def sort_key(row: dict[str, str]) -> tuple[str, int]:
+def sort_key(row: dict[str, str]) -> tuple[int, str]:
     value = row.get("version_code", "")
     return (
-        row.get("source_publish_date", ""),
         int(value) if value.isdigit() else -1,
+        row.get("source_publish_date", ""),
     )
 
 

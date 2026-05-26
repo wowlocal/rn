@@ -1,0 +1,4 @@
+rn_guess,react_renderer,confidence,start_app_version,start_app_build,start_external_version_id,start_build_timestamp,end_app_version,end_app_build,end_external_version_id,end_build_timestamp,build_count
+0.79.x,19.0.0,medium,4.54.0-4094,4094,4094,2026-03-06,4.54.0-4094,4094,4094,2026-03-06,1
+0.82.x or newer,,low,4.54.3-4107,4107,4107,2026-03-02,4.54.3-4107,4107,4107,2026-03-02,1
+0.79.x,19.0.0,medium,4.54.5-4133,4133,4133,2026-03-11,4.57.0-4306,4306,4306,2026-05-14,8

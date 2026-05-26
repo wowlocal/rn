@@ -85,8 +85,8 @@ def version_position_info(report_dir: Path, platform: str) -> tuple[dict[str, in
             return {}, False
         rows = [
             (
-                str(row.get("source_publish_date", "")),
                 int(str(row.get("version_code", "0"))),
+                str(row.get("source_publish_date", "")),
                 str(row.get("version_code", "")),
             )
             for row in versions
@@ -180,7 +180,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         "",
         "## Methodology",
         "",
-        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
+        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode first and source publish dates as secondary context when available. Android reports record package hashes and embedded manifest metadata when available; duplicated or catalog-mismatched payloads are treated as source-quality findings rather than exact historical builds. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
         "",
         "## App Status",
         "",

@@ -17,6 +17,7 @@ Purpose: guide a long-running agent through collecting React Native upgrade time
 - Use IPA internal zip timestamps for build timestamps unless App Store metadata is independently verified.
 - For Android, prefer version ordering by `versionCode`; use APK source publish dates only when the source clearly provides them. ZIP entry timestamps inside APKs can be build artifacts and should be labeled as package timestamps, not store release dates.
 - Treat Android source catalogs as source-limited unless the source demonstrably provides a complete history for the package. Adjacent rows in a sparse APKPure/APKMirror-derived catalog are not exact transition boundaries by themselves.
+- Record Android package hashes and embedded manifest metadata when available. If a source returns duplicated package hashes or embedded version metadata that conflicts with the catalog row, treat the row as a source-quality finding, not an exact historical build.
 - Report exact RN versions only when the IPA exposes strong markers. Otherwise report RN bands with confidence and evidence.
 - Android APKs may provide primary evidence for RN version inference. Keep platform-specific timestamps and version identifiers labeled clearly.
 - Do not expose account credentials in logs or reports.

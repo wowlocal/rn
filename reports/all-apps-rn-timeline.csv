@@ -41,3 +41,6 @@ pinterest,Pinterest,done,ios,unknown,,low,10.41,2,853214823,2022-11-09T11:03:56,
 pinterest,Pinterest,done,android,unknown,,unknown,12.18.0,12188010,12188010,,14.8.0,14088010,14088010,,12
 walmart,Walmart: Shopping & Savings,needs_manual_review,android,0.74.x-0.76.x,,medium,21.5.5,21055104,21055104,,21.5.5,21055104,21055104,,1
 walmart,Walmart: Shopping & Savings,needs_manual_review,android,unknown,,unknown,21.22,21220106,21220106,,26.18.1,26180118,26180118,2026-05-16,24
+tesla,Tesla,needs_manual_review,android,0.79.x,19.0.0,medium,4.54.0-4094,4094,4094,2026-03-06,4.54.0-4094,4094,4094,2026-03-06,1
+tesla,Tesla,needs_manual_review,android,0.82.x or newer,,low,4.54.3-4107,4107,4107,2026-03-02,4.54.3-4107,4107,4107,2026-03-02,1
+tesla,Tesla,needs_manual_review,android,0.79.x,19.0.0,medium,4.54.5-4133,4133,4133,2026-03-11,4.57.0-4306,4306,4306,2026-05-14,8

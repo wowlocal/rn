@@ -1,0 +1,44 @@
+[
+  {
+    "build_count": 1,
+    "confidence": "medium",
+    "end_app_build": "4094",
+    "end_app_version": "4.54.0-4094",
+    "end_build_timestamp": "2026-03-06",
+    "end_external_version_id": "4094",
+    "react_renderer": "19.0.0",
+    "rn_guess": "0.79.x",
+    "start_app_build": "4094",
+    "start_app_version": "4.54.0-4094",
+    "start_build_timestamp": "2026-03-06",
+    "start_external_version_id": "4094"
+  },
+  {
+    "build_count": 1,
+    "confidence": "low",
+    "end_app_build": "4107",
+    "end_app_version": "4.54.3-4107",
+    "end_build_timestamp": "2026-03-02",
+    "end_external_version_id": "4107",
+    "react_renderer": "",
+    "rn_guess": "0.82.x or newer",
+    "start_app_build": "4107",
+    "start_app_version": "4.54.3-4107",
+    "start_build_timestamp": "2026-03-02",
+    "start_external_version_id": "4107"
+  },
+  {
+    "build_count": 8,
+    "confidence": "medium",
+    "end_app_build": "4306",
+    "end_app_version": "4.57.0-4306",
+    "end_build_timestamp": "2026-05-14",
+    "end_external_version_id": "4306",
+    "react_renderer": "19.0.0",
+    "rn_guess": "0.79.x",
+    "start_app_build": "4133",
+    "start_app_version": "4.54.5-4133",
+    "start_build_timestamp": "2026-03-11",
+    "start_external_version_id": "4133"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "from_app_build": "4094",
+    "from_app_version": "4.54.0-4094",
+    "from_build_timestamp": "2026-03-06",
+    "from_external_version_id": "4094",
+    "from_rn_guess": "0.79.x",
+    "to_app_build": "4107",
+    "to_app_version": "4.54.3-4107",
+    "to_build_timestamp": "2026-03-02",
+    "to_external_version_id": "4107",
+    "to_rn_guess": "0.82.x or newer"
+  },
+  {
+    "from_app_build": "4107",
+    "from_app_version": "4.54.3-4107",
+    "from_build_timestamp": "2026-03-02",
+    "from_external_version_id": "4107",
+    "from_rn_guess": "0.82.x or newer",
+    "to_app_build": "4133",
+    "to_app_version": "4.54.5-4133",
+    "to_build_timestamp": "2026-03-11",
+    "to_external_version_id": "4133",
+    "to_rn_guess": "0.79.x"
+  }
+]

@@ -2,14 +2,14 @@
 
 ## Methodology
 
-Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode and source publish dates when available. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
+Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode first and source publish dates as secondary context when available. Android reports record package hashes and embedded manifest metadata when available; duplicated or catalog-mismatched payloads are treated as source-quality findings rather than exact historical builds. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
 
 ## App Status
 
 - Analyzed successfully: 4
 - Queued: 0
-- In progress: 1
-- Needs manual review: 9
+- In progress: 0
+- Needs manual review: 10
 - Skipped: 3
 
 ## Analyzed Apps
@@ -18,10 +18,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-
-## In Progress Apps
-
-- Tesla: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/tesla`
 
 ## Manual Review Apps
 
@@ -34,6 +30,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
 - Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
+- Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
 
 ## Skipped Apps
 
@@ -87,6 +84,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Pinterest | android | unknown |  | unknown | 12.18.0 (12188010) | 14.8.0 (14088010) | 12 |
 | Walmart: Shopping & Savings | android | 0.74.x-0.76.x |  | medium | 21.5.5 (21055104) | 21.5.5 (21055104) | 1 |
 | Walmart: Shopping & Savings | android | unknown |  | unknown | 21.22 (21220106) | 26.18.1 (26180118) | 24 |
+| Tesla | android | 0.79.x | 19.0.0 | medium | 4.54.0-4094 (4094) | 4.54.0-4094 (4094) | 1 |
+| Tesla | android | 0.82.x or newer |  | low | 4.54.3-4107 (4107) | 4.54.3-4107 (4107) | 1 |
+| Tesla | android | 0.79.x | 19.0.0 | medium | 4.54.5-4133 (4133) | 4.57.0-4306 (4306) | 8 |
 
 ## RN Transitions
 
@@ -119,9 +119,11 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Pinterest | ios | 0.61.x | 0.63.x | 8.26 (4) | 8.27 (4) | 0 | true |
 | Pinterest | ios | 0.63.x | unknown | 10.40 (2) | 10.41 (2) | 0 | true |
 | Walmart: Shopping & Savings | android | 0.74.x-0.76.x | unknown | 21.5.5 (21055104) | 21.22 (21220106) | 0 | false |
+| Tesla | android | 0.79.x | 0.82.x or newer | 4.54.0-4094 (4094) | 4.54.3-4107 (4107) | 0 | false |
+| Tesla | android | 0.82.x or newer | 0.79.x | 4.54.3-4107 (4107) | 4.54.5-4133 (4133) | 0 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 20
-- Approximate by transition IDs: 7
+- Approximate by transition IDs: 9
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

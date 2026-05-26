@@ -317,7 +317,7 @@
       "bundle_id": "com.microsoft.Office.Outlook",
       "android_package": "com.microsoft.office.outlook",
       "android_history_source": "APKPure history page for package com.microsoft.office.outlook",
-      "status": "version_list_fetched",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 951937596 and bundle ID com.microsoft.Office.Outlook; Google Play and APKPure identify Android package com.microsoft.office.outlook.",
       "last_completed_step": "source_limited_android_sampling",
       "reports_path": "reports/microsoft-outlook",
@@ -490,16 +490,18 @@
       "bundle_id": "com.teslamotors.TeslaApp",
       "android_package": "com.teslamotors.tesla",
       "android_history_source": "APKPure history page for package com.teslamotors.tesla",
-      "status": "version_list_fetched",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 582007913 and bundle ID com.teslamotors.TeslaApp; Google Play and APKPure identify Android package com.teslamotors.tesla.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "source_limited_android_sampling",
       "reports_path": "reports/tesla",
       "version_list_path": "reports/tesla/version-list.json",
       "version_list_error_path": "reports/tesla/version-list-error.json",
       "android_version_list_path": "reports/tesla/android-version-list.json",
       "android_version_count": 10,
-      "oldest_android_version_code": "4107",
+      "oldest_android_version_code": "4094",
       "newest_android_version_code": "4306",
+      "sampled_android_package_count": 10,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Tesla --format json did not return the official Tesla app in the current localized results.",
@@ -509,7 +511,12 @@
         "The guessed AndroidAPKsFree old versions URL for package com.teslamotors.tesla returned HTTP 404.",
         "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID requires an App Store license; bundle-ID purchase returned app not found.",
         "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from source dates 2026-03-02 through 2026-05-14; source page appears to expose a limited history.",
-        "Android versionCode values are not fully monotonic with APKPure source dates in the fetched Tesla catalog, so date ordering must be reviewed when summarizing Android ranges."
+        "Android versionCode values are not fully monotonic with APKPure source dates in the fetched Tesla catalog, so Android summaries order by versionCode first and keep source dates as context.",
+        "Android sampling downloaded and analyzed all 10 visible APKPure packages from versionCode 4094 through 4306.",
+        "React Native markers were detected in every sampled Android package. Nine catalog rows infer RN 0.79.x with medium confidence from react-native-renderer 19.0.0 and React Native native libraries.",
+        "Package hash validation found only three unique payload hashes across the 10 downloaded files; eight XAPK rows are byte-identical to the current 4.57.0-4306 package and their embedded XAPK manifest reports versionCode 4306.",
+        "Standalone APK 4.54.3-4107 inferred 0.82.x or newer with low confidence because it exposes ReactNativeVersion/native libraries but no renderer marker; this conflicts with adjacent versionCode rows and is treated as a package-format/source anomaly.",
+        "Marked needs_manual_review because iOS version-list access is blocked and the APKPure Android catalog is sparse/source-limited."
       ]
     }
   ]

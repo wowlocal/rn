@@ -1,0 +1,3 @@
+from_rn_guess,from_app_version,from_app_build,from_external_version_id,from_build_timestamp,to_rn_guess,to_app_version,to_app_build,to_external_version_id,to_build_timestamp
+0.79.x,4.54.0-4094,4094,4094,2026-03-06,0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02
+0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02,0.79.x,4.54.5-4133,4133,4133,2026-03-11
