@@ -6,7 +6,7 @@
 - App Store ID: 281941097
 - iOS bundle ID: com.bloomberg.Bloomberg
 - Android package: com.bloomberg.android.plus
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -24,4 +24,19 @@
 
 ## Next Step
 
-Fetch the iOS version list and inspect the Aiting Android history page for parseable package rows.
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 281941097`.
+- iOS version list result: failed because App Store license is required.
+- iOS license attempt for bundle ID `com.bloomberg.Bloomberg` returned app not found.
+- Raw iOS version-list error: `reports/bloomberg/version-list-error.json`
+- Android Aiting catalog fetched on 2026-05-26 with `fetch_aiting_versions.py`.
+- Android entries available from Aiting sources: 5
+- Oldest Android versionCode in the Aiting catalog: `3042781` (`5.58.0.3042781.7b196c06c`)
+- Newest Android versionCode in the Aiting catalog: `4315110` (`6.19.0.4315110.19bd92161`)
+- Raw Android version catalog: `reports/bloomberg/android-version-list.json`
+- Aiting currently exposes a limited visible old-version catalog and does not expose publish dates in the current parser.
+
+## Next Step
+
+Sample the visible Android Aiting catalog first because iOS version-list access is blocked.

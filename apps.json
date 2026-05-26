@@ -605,12 +605,16 @@
       "bundle_id": "com.bloomberg.Bloomberg",
       "android_package": "com.bloomberg.android.plus",
       "android_history_source": "Aiting versions page for package com.bloomberg.android.plus; APKPure gone/blocked and APKMirror blocked",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 281941097 and bundle ID com.bloomberg.Bloomberg; Google Play/APKPure/Aiting identify Android package com.bloomberg.android.plus.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/bloomberg",
       "version_list_path": "reports/bloomberg/version-list.json",
+      "version_list_error_path": "reports/bloomberg/version-list-error.json",
       "android_version_list_path": "reports/bloomberg/android-version-list.json",
+      "android_version_count": 5,
+      "oldest_android_version_code": "3042781",
+      "newest_android_version_code": "4315110",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Bloomberg --format json did not return the official Bloomberg consumer news app in the current localized results.",
@@ -621,7 +625,9 @@
         "APKPure .net versions URL for package com.bloomberg.android.plus returned HTTP 410 Gone.",
         "APKPure .com versions URL returned HTTP 403.",
         "AndroidAPKsFree guessed old versions URL for package com.bloomberg.android.plus returned HTTP 404.",
-        "APKMirror history URL returned HTTP 403 for automated fetches."
+        "APKMirror history URL returned HTTP 403 for automated fetches.",
+        "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID requires an App Store license; bundle-ID purchase returned app not found.",
+        "Android Aiting catalog fetched on 2026-05-26: 5 visible entries from versionCode 3042781 through 4315110; source page appears to expose a limited history and does not expose publish dates."
       ]
     }
   ]
