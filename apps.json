@@ -674,6 +674,28 @@
         "No sampled Android package exposed React Native JS bundle or native-library markers. Bundle-like files under assets/EclairNG/runtime-modules are Salesforce chart/runtime assets, not React Native evidence.",
         "Marked needs_manual_review because iOS version-list access is blocked and the available Android catalog is source-limited, despite no RN markers in the sampled APKCombo packages."
       ]
+    },
+    {
+      "app_slug": "wix",
+      "app_name": "Wix - Website Builder",
+      "app_id": "1545924344",
+      "bundle_id": "com.wix.admin",
+      "android_package": "com.wix.admin",
+      "android_history_source": "APKPure and APKCombo old versions pages for package com.wix.admin",
+      "status": "registered",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1545924344 and bundle ID com.wix.admin; Google Play, APKPure, and APKCombo identify Android package com.wix.admin.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/wix",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Wix --format json returned App Store ID 1545924344, bundle ID com.wix.admin, app name Wix - Website Builder, and current listed version 2.122966.0.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 1545924344 returned bundle ID com.wix.admin, app name Wix - Website Builder, seller WIX.COM, INC., current US listed version 2.122966.0, and release date 2026-05-19T12:40:37Z.",
+        "App Store URL: https://apps.apple.com/us/app/wix-website-builder/id1545924344.",
+        "Android package source: Google Play, APKPure, and APKCombo identify package com.wix.admin.",
+        "APKPure Android history URL identified: https://apkpure.net/wix-owner-website-builder/com.wix.admin/versions returned HTTP 200.",
+        "APKCombo old versions URL identified: https://apkcombo.com/wix-owner/com.wix.admin/old-versions/ returned HTTP 200.",
+        "AndroidAPKsFree guessed old versions URL for package com.wix.admin returned HTTP 404."
+      ]
     }
   ]
 }
