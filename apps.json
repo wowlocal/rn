@@ -269,18 +269,21 @@
       "bundle_id": "org.toshi.distribution",
       "android_package": "org.toshi",
       "android_history_source": "Google Play/AppBrain metadata for package org.toshi; APKPure history URLs returned 410 Gone",
-      "status": "queued",
+      "status": "skipped",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md as Coinbase Wallet; ipatool search and Apple iTunes lookup resolved App Store ID 1278383455 and bundle ID org.toshi.distribution; Google Play/AppBrain/WalletScrutiny identify Android package org.toshi.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_failed",
       "reports_path": "reports/coinbase-wallet",
       "version_list_path": "reports/coinbase-wallet/version-list.json",
+      "version_list_error_path": "reports/coinbase-wallet/version-list-error.json",
       "android_version_list_path": "reports/coinbase-wallet/android-version-list.json",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "Current iOS/App Store branding source: Apple iTunes lookup for App Store ID 1278383455 returned app name Base: Built to Trade & Earn, seller Coinbase Wallet, bundle ID org.toshi.distribution, and current listed version 29.96.",
         "ipatool search Coinbase Wallet --format json returned App Store ID 1278383455, bundle ID org.toshi.distribution, and localized app name Base: Formerly Coinbase Wallet.",
         "Android package source: Google Play, AppBrain, and WalletScrutiny identify package org.toshi for Base/formerly Coinbase Wallet.",
-        "APKPure history URLs for org.toshi returned HTTP 410 Gone, so no APKPure version catalog is available at registration time."
+        "APKPure history URLs for org.toshi returned HTTP 410 Gone, so no APKPure version catalog is available at registration time.",
+        "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID and bundle ID requires an App Store license; ipatool purchase failed with unsupported protocol scheme.",
+        "Skipped because neither iOS version history nor a usable Android package-history source is available through the current automated tools."
       ]
     }
   ]
