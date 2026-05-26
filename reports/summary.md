@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 3
 - Queued: 0
-- In progress: 1
-- Needs manual review: 6
+- In progress: 0
+- Needs manual review: 7
 - Skipped: 3
 
 ## Analyzed Apps
@@ -17,10 +17,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Discord: 475 iOS external versions; reports in `reports/discord`
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
-
-## In Progress Apps
-
-- Microsoft Teams: status `version_list_fetched`; last completed `version_lists_fetched`; reports in `reports/microsoft-teams`
 
 ## Manual Review Apps
 
@@ -30,6 +26,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
 - Coinbase: last completed `source_limited_android_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
+- Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
 
 ## Skipped Apps
 
@@ -72,6 +69,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Shop | android | 0.81.x | 19.1.0 | high | 2.240.0 (3376891) | 2.253.0 (3451748) | 16 |
 | Coinbase | android | 0.82.x or newer |  | low | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
 | Microsoft Outlook | android | unknown |  | low | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
+| Microsoft Teams | android | 0.60.x |  | medium | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
 
 ## RN Transitions
 

@@ -556,5 +556,23 @@
     "start_app_version": "4.2504.2",
     "start_build_timestamp": "2025-02-24",
     "start_external_version_id": "82504829"
+  },
+  {
+    "app_name": "Microsoft Teams",
+    "app_slug": "microsoft-teams",
+    "app_status": "needs_manual_review",
+    "build_count": 10,
+    "confidence": "medium",
+    "end_app_build": "2026082725",
+    "end_app_version": "1416/1.0.0.2026082702",
+    "end_build_timestamp": "2026-05-11",
+    "end_external_version_id": "2026082725",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "0.60.x",
+    "start_app_build": "2026015023",
+    "start_app_version": "1416/1.0.0.2026015002",
+    "start_build_timestamp": "2026-01-21",
+    "start_external_version_id": "2026015023"
   }
 ]
