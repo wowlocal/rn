@@ -27,7 +27,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Meta Horizon: last completed `source_limited_boundary_refinement`; reports in `reports/meta-horizon`
 - Shopify: last completed `ios_boundary_and_latest_decrypted_sampling`; reports in `reports/shopify`
 - Shop: last completed `source_limited_boundary_refinement`; reports in `reports/shop`
-- Coinbase: last completed `source_limited_android_sampling`; reports in `reports/coinbase`
+- Coinbase: last completed `ios_decrypted_latest_sampling`; reports in `reports/coinbase`
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
 - Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
@@ -98,7 +98,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Shopify | android | 0.60.x |  | medium |  | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
 | Shop | android | 0.79.x | 19.0.0 | medium |  | 2.231.0 (3319531) | 2.239.0 (3372633) | 11 |
 | Shop | android | 0.81.x | 19.1.0 | high |  | 2.240.0 (3376891) | 2.253.0 (3451748) | 16 |
-| Coinbase | android | 0.82.x or newer |  | low |  | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
+| Coinbase | ios | 0.60.x |  | medium |  | 14.19.22 (14190022) | 14.19.22 (14190022) | 1 |
+| Coinbase | android | unknown |  | low |  | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
 | Microsoft Outlook | android | unknown |  | low |  | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
 | Microsoft Teams | android | 0.60.x |  | medium |  | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
 | Skype | android | 0.74.x-0.76.x |  | medium |  | 8.132.0.201 (1250181076) | 8.150.0.125 (1250186747) | 10 |

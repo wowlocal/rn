@@ -1,0 +1,16 @@
+[
+  {
+    "rn_guess": "0.60.x",
+    "react_renderer": "",
+    "confidence": "medium",
+    "start_app_version": "14.19.22",
+    "start_app_build": "14190022",
+    "start_external_version_id": "885921388",
+    "start_build_timestamp": "2026-05-20T22:20:56",
+    "end_app_version": "14.19.22",
+    "end_app_build": "14190022",
+    "end_external_version_id": "885921388",
+    "end_build_timestamp": "2026-05-20T22:20:56",
+    "build_count": 1
+  }
+]
