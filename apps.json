@@ -374,6 +374,27 @@
         "The current analyzer reports the accessible Android window from 1416/1.0.0.2026015002 through 1416/1.0.0.2026082702 as 0.60.x with medium confidence.",
         "Marked needs_manual_review because APKPure is sparse/source-limited, iOS version-list access is blocked, and no RN transition was observed in the accessible package window."
       ]
+    },
+    {
+      "app_slug": "skype",
+      "app_name": "Skype",
+      "app_id": "304878510",
+      "bundle_id": "com.skype.skype",
+      "android_package": "com.skype.raider",
+      "android_history_source": "APKPure history page for package com.skype.raider",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; historical App Store sources identify App Store ID 304878510 and bundle ID com.skype.skype; APKPure identifies Android package com.skype.raider. Current Apple iTunes lookup and Google Play lookup no longer resolve the retired consumer Skype app.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/skype",
+      "version_list_path": "reports/skype/version-list.json",
+      "android_version_list_path": "reports/skype/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "Skype consumer service and apps are retired as of 2025-05-05, so current Apple iTunes lookup for App Store ID 304878510 returns no result and Google Play returns 404 for com.skype.raider.",
+        "Historical iOS identifier source: AppBrain/AppPure/Wikidata pages identify App Store ID 304878510 and bundle ID com.skype.skype for Skype for iPhone.",
+        "Android package source: APKPure identifies package com.skype.raider and exposes an Android package history page.",
+        "APKPure Android history URL identified: https://apkpure.net/skype/com.skype.raider/versions."
+      ]
     }
   ]
 }
