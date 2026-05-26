@@ -6,7 +6,7 @@
 - App Store ID: 1545924344
 - iOS bundle ID: com.wix.admin
 - Android package: com.wix.admin
-- Status: registered
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -20,6 +20,21 @@
 - APKCombo old versions URL identified: `https://apkcombo.com/wix-owner/com.wix.admin/old-versions/` returned HTTP `200`.
 - AndroidAPKsFree guessed old versions URL for package `com.wix.admin` returned HTTP `404`.
 
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 1545924344`.
+- iOS version list result: failed because App Store license is required.
+- Bundle-ID iOS version list fetch for `com.wix.admin` also failed because App Store license is required.
+- Raw iOS version-list errors: `reports/wix/version-list-error.json` and `reports/wix/version-list-bundle-error.json`
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the APKPure catalog: `130467` (`2.115937.0`)
+- Newest Android versionCode in the APKPure catalog: `137496` (`2.122966.0`)
+- Raw Android version catalog: `reports/wix/android-version-list.json`
+- Source-specific APKPure catalog: `reports/wix/android-version-list-apkpure.json`
+- APKPure currently exposes a limited visible history on the fetched page.
+- Android APKCombo fetch rejected decoded variant payloads that were not HTTP(S) URLs; error log: `reports/wix/android-version-list-apkcombo-error.txt`
+
 ## Next Step
 
-Fetch iOS and Android version lists, preferring Android package sampling if the iOS list is blocked or the Android catalog exposes clearer RN evidence.
+Sample the visible Android APKPure catalog first because iOS version-list access is blocked.

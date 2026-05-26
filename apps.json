@@ -681,11 +681,19 @@
       "app_id": "1545924344",
       "bundle_id": "com.wix.admin",
       "android_package": "com.wix.admin",
-      "android_history_source": "APKPure and APKCombo old versions pages for package com.wix.admin",
-      "status": "registered",
+      "android_history_source": "APKPure versions page for package com.wix.admin; APKCombo old versions page rejected because decoded variant payloads were not direct URLs",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1545924344 and bundle ID com.wix.admin; Google Play, APKPure, and APKCombo identify Android package com.wix.admin.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/wix",
+      "version_list_error_path": "reports/wix/version-list-error.json",
+      "version_list_bundle_error_path": "reports/wix/version-list-bundle-error.json",
+      "android_version_list_path": "reports/wix/android-version-list.json",
+      "android_version_list_apkpure_path": "reports/wix/android-version-list-apkpure.json",
+      "android_version_list_apkcombo_error_path": "reports/wix/android-version-list-apkcombo-error.txt",
+      "android_version_count": 10,
+      "oldest_android_version_code": "130467",
+      "newest_android_version_code": "137496",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Wix --format json returned App Store ID 1545924344, bundle ID com.wix.admin, app name Wix - Website Builder, and current listed version 2.122966.0.",
@@ -694,7 +702,10 @@
         "Android package source: Google Play, APKPure, and APKCombo identify package com.wix.admin.",
         "APKPure Android history URL identified: https://apkpure.net/wix-owner-website-builder/com.wix.admin/versions returned HTTP 200.",
         "APKCombo old versions URL identified: https://apkcombo.com/wix-owner/com.wix.admin/old-versions/ returned HTTP 200.",
-        "AndroidAPKsFree guessed old versions URL for package com.wix.admin returned HTTP 404."
+        "AndroidAPKsFree guessed old versions URL for package com.wix.admin returned HTTP 404.",
+        "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID and bundle ID requires an App Store license.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 130467 through 137496; source page appears to expose a limited history.",
+        "Android APKCombo catalog fetch did not produce usable direct download URLs after rejecting decoded variant payloads that were not HTTP(S) URLs."
       ]
     }
   ]

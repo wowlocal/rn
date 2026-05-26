@@ -22,7 +22,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Wix - Website Builder: status `registered`; last completed `registration`; reports in `reports/wix`
+- Wix - Website Builder: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/wix`
 
 ## Manual Review Apps
 

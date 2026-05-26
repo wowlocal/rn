@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/mike/src/tries/2026-05-25-rn/fetch_apkcombo_versions.py", line 177, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/mike/src/tries/2026-05-25-rn/fetch_apkcombo_versions.py", line 155, in main
+    raise RuntimeError(f"no APKCombo version entries found for {args.package_name}")
+RuntimeError: no APKCombo version entries found for com.wix.admin

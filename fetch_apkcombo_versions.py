@@ -52,7 +52,10 @@ def decode_variant_url(href: str) -> str:
     if not encoded:
         return ""
     padding = "=" * (-len(encoded) % 4)
-    return base64.urlsafe_b64decode(encoded + padding).decode("utf-8", "replace")
+    decoded = base64.urlsafe_b64decode(encoded + padding).decode("utf-8", "replace")
+    if urlparse(decoded).scheme not in {"http", "https"}:
+        return ""
+    return decoded
 
 
 def parse_download_page(url: str, timeout: int) -> dict[str, str]:
