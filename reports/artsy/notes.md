@@ -6,7 +6,7 @@
 - App Store ID: 703796080
 - iOS bundle ID: net.artsy.artsy
 - Android package: net.artsy.app
-- Status: registered
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -21,6 +21,22 @@
 - Uptodown versions URL identified: `https://artsy.en.uptodown.com/android/versions?utm_source=main` returned HTTP `200`.
 - AndroidAPKsFree guessed old versions URL for package `net.artsy.app` returned HTTP `404`.
 
+## Version Lists
+
+- iOS version list fetched on 2026-05-26 with `ipatool list-versions --app-id 703796080`.
+- iOS external versions available: 292
+- Oldest iOS external version ID: `23362671`
+- Newest iOS external version ID: `885363722`
+- Raw iOS version list: `reports/artsy/version-list.json`
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the APKPure catalog: `2026022618` (`9.0.1`)
+- Newest Android versionCode in the APKPure catalog: `2026052012` (`9.9.0`)
+- Raw Android version catalog: `reports/artsy/android-version-list.json`
+- Source-specific APKPure catalog: `reports/artsy/android-version-list-apkpure.json`
+- APKPure currently exposes a limited visible history on the fetched page.
+- Android APKCombo fetch rejected decoded variant payloads that were not HTTP(S) URLs; error log: `reports/artsy/android-version-list-apkcombo-error.txt`
+
 ## Next Step
 
-Fetch iOS and Android version lists, preferring Android package sampling if Android exposes clearer React Native evidence.
+Sample the visible Android APKPure catalog first, then use the iOS version list to cross-check if Android exposes a usable RN timeline.

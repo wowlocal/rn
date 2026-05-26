@@ -22,7 +22,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- Artsy: Buy & Sell Fine Art: status `registered`; last completed `registration`; reports in `reports/artsy`
+- Artsy: Buy & Sell Fine Art: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/artsy`
 
 ## Manual Review Apps
 
