@@ -56,7 +56,8 @@
 - Source-analyzed `14.19.0` build `383953.2`, external ID `886000512`: bundle ID `com.agoda.consumer`, minimum iOS `17.0`, source IPA SHA-256 `faeeeb44dfd29a380d3942bf354e92d9422ff6160d1087eb5819fdeb85bef71b`, size `349688413`; install failed on the iOS `16.7.7` device with `DeviceOSVersionTooLow`.
 - Source-analyzed `14.12.0` build `366004.2`, external ID `884096070`: bundle ID `com.agoda.consumer`, minimum iOS `17.0`, source IPA SHA-256 `ba0a3b297dda54d0c0f8483cab4b10d83b11ee85d582768a84be862a8f5c43e0`, size `346676437`; not dumped because it also requires iOS `17.0`.
 - Source-analyzed `13.40.0` build `310516.2`, external ID `879020412`: bundle ID `com.agoda.consumer`, minimum iOS `16.0`, source IPA SHA-256 `f5593f5d8d86149600fa4fc30470bb5695d0ae71bf18b148c5de165753f20c53`, size `325667569`; this was the newest sampled build installable on the iOS `16.7.7` device.
-- All three source-analysis rows have no JS bundle and remain RN `unknown`; the two iOS `17.0` rows are `encrypted_native_only`.
+- All three source-analysis rows have no RN JS bundle and remain RN `unknown`; the two iOS `17.0` rows are `encrypted_native_only`.
+- Source IPAs for `14.12.0` and `14.19.0` expose the same `CXPRoomGrid`/Capacitor/Cordova web bundle pattern as the decrypted `13.40.0` app, including React/React DOM `18.3.1` assets, but their native executables remain encrypted.
 - iOS reports: `reports/agoda/versions.csv`, `reports/agoda/ranges.csv`, `reports/agoda/transitions.json`, and `reports/agoda/timeline.json`.
 
 ## Decrypted iOS Evidence
@@ -64,8 +65,16 @@
 - Accepted decrypted dump for `13.40.0` build `310516.2`, external ID `879020412`: dumped IPA SHA-256 `18a1fcb71453017c66a5ae1a7b40f35e8875212050bd735e7e58577b1fbbba6a`, dumped size `205265996`, metadata matched source bundle/version/build, main executable `cryptid 0`, coverage `loaded_app_decrypted`.
 - Dump context: `frida-ipa-extract --all-binaries` on device `Meoi`, hardware model `D201AP`, iOS `16.7.7` build `20H330`; full command and compact cryptid inventory are recorded in `reports/agoda/versions.csv`.
 - Per-Mach-O inventory for `13.40.0`: 27 Mach-Os total; main executable and 24 bundled framework/dylib binaries decrypted; 2 app-extension executables remain encrypted; no non-extension Mach-Os remain encrypted.
-- Remaining encrypted app extensions: `Agoda_Consumer_PushExtension.appex` and `Agoda_Consumer_WidgetExtension.appex`. Extension triggering was not pursued because the accepted main-app dump already exposes the RN-related native markers.
-- Decrypted analysis for `13.40.0` finds no JS bundle, Hermes bytecode version, `react-native-renderer`, or version-specific RN marker. The decrypted native code does contain React Native, Hermes, JSI, and Yoga markers, so the row remains RN `unknown` with reason `native_rn_marker_without_version`.
+- Remaining encrypted app extensions: `Agoda_Consumer_PushExtension.appex` and `Agoda_Consumer_WidgetExtension.appex`. Extension triggering was not pursued because no app-extension file or current source-row evidence points to React Native.
+- Follow-up audit found the earlier native React Native/Hermes/JSI/Yoga result was a false positive from broad substring matching. Weak strings include `ios_react_native`/`ios_reactnative`, isolated `RCTView`, PayPal `hermes` paths, Google OMID `GADOMIDJSInvoker`/`jsInvoker`, and yoga amenity/icon labels.
+- Strong native marker audit found no `RCTBridge`, `RCTRootView`, `RCTCxxBridge`, `facebook::react`, `ReactCommon`, `React-Core`, React Native framework link, Hermes executor/runtime marker, JSI runtime marker, or Yoga `YGNode`/`YGConfig` marker. The only relevant dynamic links are `CXPRoomGrid`, `ReactiveObjC`, `Capacitor`, and `Cordova`.
+- Decrypted analysis for `13.40.0` finds no RN JS bundle, Hermes bytecode version, `react-native-renderer`, version-specific RN marker, strong native RN symbol, or linked RN/Hermes/Yoga framework. The row remains RN `unknown` with reason `no_js_or_native_rn_markers`.
+
+## Web React / Capacitor Evidence
+
+- `CXPRoomGrid.framework` contains `com.agoda.cxp.room-grid.bundle.bundle`, `public/index.html` titled `Capybara Room Grid`, and `capacitor.config.json` with app ID `com.agoda.mobile.capybara`.
+- The embedded `CXPRoomGrid` web assets contain React/React DOM `18.3.1`, Ionic/Capacitor routing, and `createRoot` usage. This is web React inside a Capacitor/Cordova wrapper, not React Native.
+- The latest source IPAs `14.12.0` and `14.19.0` expose `Capacitor.framework`, `Cordova.framework`, `CXPRoomGrid.framework`, `public/index.html`, and large `public/assets/app-*.js` web bundles; no RN bundle filenames, Hermes bytecode files, or RN framework filenames were visible in the source archives.
 
 ## Provisional Ranges
 
@@ -79,8 +88,8 @@
 - AndroidAPKsFree is source-limited and stale for this app; it stops at May 2024, while Google Play/App Store show newer 2026 releases.
 - APKPure web metadata exposes newer packages, but direct automated package downloads were blocked by Cloudflare during this run.
 - Current App Store IPAs `14.12.0` and `14.19.0` require iOS `17.0`, so they could not be decrypted on the available iOS `16.7.7` jailbroken device.
-- The newest installable decrypted iOS build confirms native React Native markers, but exact RN version and transition boundaries remain unknown because no version marker was found.
+- The newest installable decrypted iOS build does not provide reliable React Native evidence after the false-positive audit. Current iOS `17.0` native executables remain encrypted, so the latest native-only path cannot be fully ruled out on this device.
 
 ## Next Step
 
-Revisit with an iOS `17.x` jailbroken device for current Agoda IPAs, or inspect a downloadable current Android source, before deciding whether Agoda is RN-only, hybrid, or no longer React Native in the newest releases.
+Do not count Agoda as React Native evidence from the current dataset. Revisit with an iOS `17.x` jailbroken device for current Agoda IPAs, or inspect a downloadable current Android source, only if encrypted current-native evidence becomes boundary-priority.

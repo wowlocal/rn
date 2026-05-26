@@ -40,7 +40,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Artsy: Buy & Sell Fine Art: last completed `ios_decrypted_pre_boundary_and_latest_sampling`; reports in `reports/artsy`
 - NerdWallet: Smart Money App: last completed `source_limited_android_sampling`; reports in `reports/nerdwallet`
 - Bluesky Social: last completed `source_limited_android_sampling`; reports in `reports/bluesky`
-- Agoda: Cheap Flights & Hotels: last completed `ios_decrypted_newest_installable_sampling`; reports in `reports/agoda`
+- Agoda: Cheap Flights & Hotels: last completed `ios_decrypted_false_positive_audit`; reports in `reports/agoda`
 
 ## No RN Detected Apps
 

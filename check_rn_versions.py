@@ -626,6 +626,62 @@ def fill_unknown_resolution(row: dict[str, str], notes: list[str]) -> None:
     row["next_action"] = "Add a more specific JS/Hermes/native signature before assigning an RN version."
 
 
+# Native executable scans use specific symbols/paths; product copy often contains
+# words like "hermes", "jsi", "yoga", or "react_native" without implying RN.
+NATIVE_REACT_MARKERS = (
+    b"ReactNativeVersion",
+    b"ReactNativeFeatureFlags",
+    b"ReactCommon",
+    b"React-Core",
+    b"React-RCT",
+    b"facebook::react",
+    b"__fbBatchedBridge",
+    b"RCTBridge",
+    b"RCTRootView",
+    b"RCTCxxBridge",
+    b"RCTEventEmitter",
+    b"RCTModuleData",
+    b"RCTAppDelegate",
+    b"RCTFabricSurface",
+    b"RCTSurfacePresenter",
+    b"RCTTurboModule",
+    b"RCTViewManager",
+    b"RCTUIManager",
+)
+NATIVE_RCT_OBJC_SYMBOL = re.compile(rb"_OBJC_(?:CLASS|METACLASS)_\$_RCT[A-Za-z0-9_]+")
+NATIVE_HERMES_MARKERS = (
+    b"HermesExecutor",
+    b"HermesRuntime",
+    b"facebook::hermes",
+    b"hermes::",
+    b"libhermes",
+    b"makeHermesRuntime",
+)
+NATIVE_JSI_MARKERS = (
+    b"facebook::jsi",
+    b"jsi::Runtime",
+    b"JSIExecutor",
+    b"jsi/jsi.h",
+)
+NATIVE_YOGA_MARKERS = (
+    b"YGNode",
+    b"YGConfig",
+    b"YGBaselineFunc",
+    b"YogaKit",
+    b"facebook::yoga",
+)
+
+
+def has_native_react_marker(exe_data: bytes) -> bool:
+    return any(marker in exe_data for marker in NATIVE_REACT_MARKERS) or bool(
+        NATIVE_RCT_OBJC_SYMBOL.search(exe_data)
+    )
+
+
+def has_native_marker(exe_data: bytes, markers: tuple[bytes, ...]) -> bool:
+    return any(marker in exe_data for marker in markers)
+
+
 def analyze_ipa(path: Path) -> dict[str, str]:
     row: dict[str, str] = default_row(path)
 
@@ -764,19 +820,10 @@ def analyze_ipa(path: Path) -> dict[str, str]:
                 if row["cryptid"] == "1":
                     notes.append("Native executable is FairPlay encrypted; exact native RN constants are not inspectable.")
                 elif row["cryptid"] == "0":
-                    native_react = any(
-                        marker in exe_data
-                        for marker in (
-                            b"ReactNative",
-                            b"React Native",
-                            b"react-native",
-                            b"react_native",
-                            b"reactnative",
-                        )
-                    )
-                    native_hermes = b"Hermes" in exe_data or b"hermes" in exe_data
-                    native_jsi = b"JSI" in exe_data or b"jsi" in exe_data
-                    native_yoga = b"Yoga" in exe_data or b"yoga" in exe_data
+                    native_react = has_native_react_marker(exe_data)
+                    native_hermes = has_native_marker(exe_data, NATIVE_HERMES_MARKERS)
+                    native_jsi = has_native_marker(exe_data, NATIVE_JSI_MARKERS)
+                    native_yoga = has_native_marker(exe_data, NATIVE_YOGA_MARKERS)
                     row["has_native_react_native_marker"] = str(native_react).lower()
                     row["has_native_hermes_marker"] = str(native_hermes).lower()
                     row["has_native_jsi_marker"] = str(native_jsi).lower()
