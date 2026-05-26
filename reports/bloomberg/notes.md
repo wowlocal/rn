@@ -6,7 +6,7 @@
 - App Store ID: 281941097
 - iOS bundle ID: com.bloomberg.Bloomberg
 - Android package: com.bloomberg.android.plus
-- Status: version_list_fetched
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -39,4 +39,24 @@
 
 ## Next Step
 
-Sample the visible Android Aiting catalog first because iOS version-list access is blocked.
+## Android Sampling
+
+- Android sampling date: 2026-05-26
+- Android packages downloaded and analyzed: 5
+- Unique package SHA-256 hashes: 5
+- Android package source: Aiting visible catalog.
+- Android RN markers detected: yes, in every sampled APK.
+- Exposed Android JS bundle path: `assets/index.android.bundle`
+- Android reports: `reports/bloomberg/android-versions.csv`, `reports/bloomberg/android-ranges.csv`, and `reports/bloomberg/android-transitions.csv`.
+
+## Provisional Ranges
+
+| Platform | RN inference | Confidence | First sampled version | Last sampled version | Catalog rows |
+| --- | --- | --- | --- | --- | --- |
+| Android | 0.61.x | medium | 5.58.0.3042781.7b196c06c (`3042781`) | 5.58.0.3042781.7b196c06c (`3042781`) | 1 |
+| Android | 0.74.x-0.76.x | medium | 5.98.0.3930355.fd19b588e (`3930355`) | 6.19.0.4315110.19bd92161 (`4315110`) | 4 |
+
+## Open Gaps
+
+- iOS version-list access is blocked by license requirements, so the Android evidence has not been reconciled against iOS builds.
+- Aiting exposes only 5 visible Bloomberg entries and does not expose publish dates in the current parser; the `0.61.x` to `0.74.x-0.76.x` transition is source-limited, not an exact boundary.

@@ -520,5 +520,23 @@
     "to_rn_guess": "0.79.x",
     "version_list_boundary_exact": "false",
     "version_list_gap_size": "0"
+  },
+  {
+    "app_name": "Bloomberg: Business News Daily",
+    "app_slug": "bloomberg",
+    "app_status": "needs_manual_review",
+    "from_app_build": "3042781",
+    "from_app_version": "5.58.0.3042781.7b196c06c",
+    "from_build_timestamp": "",
+    "from_external_version_id": "3042781",
+    "from_rn_guess": "0.61.x",
+    "platform": "android",
+    "to_app_build": "3930355",
+    "to_app_version": "5.98.0.3930355.fd19b588e",
+    "to_build_timestamp": "",
+    "to_external_version_id": "3930355",
+    "to_rn_guess": "0.74.x-0.76.x",
+    "version_list_boundary_exact": "false",
+    "version_list_gap_size": "0"
   }
 ]

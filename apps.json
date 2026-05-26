@@ -605,9 +605,9 @@
       "bundle_id": "com.bloomberg.Bloomberg",
       "android_package": "com.bloomberg.android.plus",
       "android_history_source": "Aiting versions page for package com.bloomberg.android.plus; APKPure gone/blocked and APKMirror blocked",
-      "status": "version_list_fetched",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 281941097 and bundle ID com.bloomberg.Bloomberg; Google Play/APKPure/Aiting identify Android package com.bloomberg.android.plus.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "source_limited_android_sampling",
       "reports_path": "reports/bloomberg",
       "version_list_path": "reports/bloomberg/version-list.json",
       "version_list_error_path": "reports/bloomberg/version-list-error.json",
@@ -615,6 +615,8 @@
       "android_version_count": 5,
       "oldest_android_version_code": "3042781",
       "newest_android_version_code": "4315110",
+      "sampled_android_package_count": 5,
+      "rn_detected": true,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Bloomberg --format json did not return the official Bloomberg consumer news app in the current localized results.",
@@ -627,7 +629,11 @@
         "AndroidAPKsFree guessed old versions URL for package com.bloomberg.android.plus returned HTTP 404.",
         "APKMirror history URL returned HTTP 403 for automated fetches.",
         "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID requires an App Store license; bundle-ID purchase returned app not found.",
-        "Android Aiting catalog fetched on 2026-05-26: 5 visible entries from versionCode 3042781 through 4315110; source page appears to expose a limited history and does not expose publish dates."
+        "Android Aiting catalog fetched on 2026-05-26: 5 visible entries from versionCode 3042781 through 4315110; source page appears to expose a limited history and does not expose publish dates.",
+        "Android sampling downloaded and analyzed all 5 visible Aiting APK rows.",
+        "React Native markers were detected in every sampled Android package. Android 5.58.0.3042781 inferred RN 0.61.x with medium confidence; Android 5.98.0.3930355 through 6.19.0.4315110 inferred RN 0.74.x-0.76.x with medium confidence.",
+        "Package hash validation found 5 unique APK payloads across the 5 sampled rows.",
+        "Marked needs_manual_review because the Android catalog is sparse/source-limited and iOS version-list access is blocked."
       ]
     }
   ]

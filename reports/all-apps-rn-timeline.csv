@@ -47,3 +47,5 @@ tesla,Tesla,needs_manual_review,android,0.79.x,19.0.0,medium,4.54.5-4133,4133,41
 uber-eats,Uber Eats: Food & Groceries,not_react_native_detected,ios,unknown,,low,1.9.2,1.9.2,814482031,2015-12-05T14:41:14,6.323.10001,6.323.10001,885646390,2026-05-13T23:18:38,12
 soundcloud,SoundCloud: The Music You Love,not_react_native_detected,ios,unknown,,low,,1.0,2053200,2009-10-14T07:39:00,8.62.0,1259079,885918024,2026-05-22T09:42:08,12
 soundcloud,SoundCloud: The Music You Love,not_react_native_detected,android,unknown,,unknown,2026.03.27-release,348060,348060,2026-03-31,2026.05.15-release,355060,355060,2026-05-20,10
+bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.61.x,,medium,5.58.0.3042781.7b196c06c,3042781,3042781,,5.58.0.3042781.7b196c06c,3042781,3042781,,1
+bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.74.x-0.76.x,,medium,5.98.0.3930355.fd19b588e,3930355,3930355,,6.19.0.4315110.19bd92161,4315110,4315110,,4

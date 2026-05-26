@@ -1,0 +1,3 @@
+rn_guess,react_renderer,confidence,start_app_version,start_app_build,start_external_version_id,start_build_timestamp,end_app_version,end_app_build,end_external_version_id,end_build_timestamp,build_count
+0.61.x,,medium,5.58.0.3042781.7b196c06c,3042781,3042781,,5.58.0.3042781.7b196c06c,3042781,3042781,,1
+0.74.x-0.76.x,,medium,5.98.0.3930355.fd19b588e,3930355,3930355,,6.19.0.4315110.19bd92161,4315110,4315110,,4

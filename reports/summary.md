@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 4
 - Queued: 0
-- In progress: 1
-- Needs manual review: 10
+- In progress: 0
+- Needs manual review: 11
 - No RN detected: 2
 - Skipped: 3
 
@@ -19,10 +19,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-
-## In Progress Apps
-
-- Bloomberg: Business News Daily: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/bloomberg`
 
 ## Manual Review Apps
 
@@ -36,6 +32,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
 - Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 - Tesla: last completed `source_limited_android_sampling`; reports in `reports/tesla`
+- Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`
 
 ## No RN Detected Apps
 
@@ -100,6 +97,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Uber Eats: Food & Groceries | ios | unknown |  | low | 1.9.2 (1.9.2) | 6.323.10001 (6.323.10001) | 12 |
 | SoundCloud: The Music You Love | ios | unknown |  | low |  (1.0) | 8.62.0 (1259079) | 12 |
 | SoundCloud: The Music You Love | android | unknown |  | unknown | 2026.03.27-release (348060) | 2026.05.15-release (355060) | 10 |
+| Bloomberg: Business News Daily | android | 0.61.x |  | medium | 5.58.0.3042781.7b196c06c (3042781) | 5.58.0.3042781.7b196c06c (3042781) | 1 |
+| Bloomberg: Business News Daily | android | 0.74.x-0.76.x |  | medium | 5.98.0.3930355.fd19b588e (3930355) | 6.19.0.4315110.19bd92161 (4315110) | 4 |
 
 ## RN Transitions
 
@@ -134,9 +133,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Walmart: Shopping & Savings | android | 0.74.x-0.76.x | unknown | 21.5.5 (21055104) | 21.22 (21220106) | 0 | false |
 | Tesla | android | 0.79.x | 0.82.x or newer | 4.54.0-4094 (4094) | 4.54.3-4107 (4107) | 0 | false |
 | Tesla | android | 0.82.x or newer | 0.79.x | 4.54.3-4107 (4107) | 4.54.5-4133 (4133) | 0 | false |
+| Bloomberg: Business News Daily | android | 0.61.x | 0.74.x-0.76.x | 5.58.0.3042781.7b196c06c (3042781) | 5.98.0.3930355.fd19b588e (3930355) | 0 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 20
-- Approximate by transition IDs: 9
+- Approximate by transition IDs: 10
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

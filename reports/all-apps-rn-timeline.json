@@ -862,5 +862,41 @@
     "start_app_version": "2026.03.27-release",
     "start_build_timestamp": "2026-03-31",
     "start_external_version_id": "348060"
+  },
+  {
+    "app_name": "Bloomberg: Business News Daily",
+    "app_slug": "bloomberg",
+    "app_status": "needs_manual_review",
+    "build_count": 1,
+    "confidence": "medium",
+    "end_app_build": "3042781",
+    "end_app_version": "5.58.0.3042781.7b196c06c",
+    "end_build_timestamp": "",
+    "end_external_version_id": "3042781",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "0.61.x",
+    "start_app_build": "3042781",
+    "start_app_version": "5.58.0.3042781.7b196c06c",
+    "start_build_timestamp": "",
+    "start_external_version_id": "3042781"
+  },
+  {
+    "app_name": "Bloomberg: Business News Daily",
+    "app_slug": "bloomberg",
+    "app_status": "needs_manual_review",
+    "build_count": 4,
+    "confidence": "medium",
+    "end_app_build": "4315110",
+    "end_app_version": "6.19.0.4315110.19bd92161",
+    "end_build_timestamp": "",
+    "end_external_version_id": "4315110",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "0.74.x-0.76.x",
+    "start_app_build": "3930355",
+    "start_app_version": "5.98.0.3930355.fd19b588e",
+    "start_build_timestamp": "",
+    "start_external_version_id": "3930355"
   }
 ]

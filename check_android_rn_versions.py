@@ -92,14 +92,15 @@ def fetch_text(url: str, timeout: int = 30) -> str:
         return response.read().decode("utf-8", "replace")
 
 
-def download_binary(url: str, out: Path, timeout: int = 120) -> None:
+def download_binary(url: str, out: Path, timeout: int = 120, referer: str = "") -> None:
     request = Request(
         url,
         headers={
             "User-Agent": (
                 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
-            )
+            ),
+            **({"Referer": referer} if referer else {}),
         },
     )
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -171,7 +172,7 @@ def download_package(
     if not url:
         raise RuntimeError(f"no direct download URL found for {version_name} ({version_code})")
     print(f"downloading {version_name} ({version_code}) -> {out}")
-    download_binary(url, out, timeout=timeout)
+    download_binary(url, out, timeout=timeout, referer=str(entry.get("stable_source_identifier", "")))
     return out
 
 
