@@ -285,6 +285,27 @@
         "iOS version list fetch failed on 2026-05-26: ipatool list-versions by app ID and bundle ID requires an App Store license; ipatool purchase failed with unsupported protocol scheme.",
         "Skipped because neither iOS version history nor a usable Android package-history source is available through the current automated tools."
       ]
+    },
+    {
+      "app_slug": "kraken",
+      "app_name": "Kraken",
+      "app_id": "1481947260",
+      "bundle_id": "com.kraken.invest.app",
+      "android_package": "com.kraken.invest.app",
+      "android_history_source": "Google Play/AppBrain/AppRecs metadata for package com.kraken.invest.app; APKPure history URLs returned 410 Gone",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1481947260 and bundle ID com.kraken.invest.app; Google Play/AppBrain/AppRecs identify Android package com.kraken.invest.app.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/kraken",
+      "version_list_path": "reports/kraken/version-list.json",
+      "android_version_list_path": "reports/kraken/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 1481947260 returned bundle ID com.kraken.invest.app, app name Kraken: Buy Crypto & Stocks, seller Payward, Inc., and current listed version 3.65.0.",
+        "Android package source: Google Play, AppBrain, and AppRecs identify package com.kraken.invest.app.",
+        "APKPure history URLs for com.kraken.invest.app returned HTTP 410 Gone, so no APKPure Android version catalog is available at registration time.",
+        "ipatool search Kraken did not surface the finance app in the current localized search results; App Store ID was resolved from the public App Store URL and Apple iTunes lookup."
+      ]
     }
   ]
 }
