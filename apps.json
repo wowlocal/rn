@@ -138,7 +138,7 @@
         "Initial iOS sampling downloaded and analyzed 12 evenly spaced App Store external version IDs from 855897532 through 885819877. No iOS sample exposed JS bundle markers, so iOS rows remain unknown from encrypted IPA inspection.",
         "Initial sampling validation passed: Android/iOS CSV and JSON reports parse, Android reports include RN native-library evidence for versionCode 504412928, and cross-app reports include platform-labeled Threads rows.",
         "Android boundary refinement added APKPure page versions 382.0.0.51.85 (versionCode 505205644) and 400.0.0.38.68 (versionCode 507007017); 382.0.0 still exposes RN native metadata, while 400.0.0 does not. The source-limited Android marker-disappearance window is now 382.0.0.51.85 -> 400.0.0.38.68.",
-        "iOS decrypted sampling accepted frida-ipa-extract --all-binaries dumps for 373.0.0 (711845629), 387.0.0 (755202338), 400.0.0 (797742903), and 431.0.0 (979167741); all have loaded_app_decrypted coverage and native ReactNative/react_native plus JSI/Yoga markers in the decrypted main executable, but no RN version marker.",
+        "iOS decrypted sampling accepted frida-ipa-extract --all-binaries dumps for 373.0.0 (711845629), 387.0.0 (755202338), 400.0.0 (797742903), and 431.0.0 (979167741); all have loaded_app_decrypted coverage and strong RCT class markers plus Yoga markers in the decrypted main executable, but no RN version marker or strong Hermes/JSI marker.",
         "Marked needs_manual_review because APKMirror appears to have more Android boundary versions but automated fetches return Cloudflare challenges, APKPure exposes only sparse historical pages, and accepted iOS decrypted dumps still lack exact RN version markers."
       ]
     },
