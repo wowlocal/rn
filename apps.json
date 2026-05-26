@@ -635,6 +635,31 @@
         "Package hash validation found 5 unique APK payloads across the 5 sampled rows.",
         "Marked needs_manual_review because the Android catalog is sparse/source-limited and iOS version-list access is blocked."
       ]
+    },
+    {
+      "app_slug": "salesforce",
+      "app_name": "Salesforce",
+      "app_id": "404249815",
+      "bundle_id": "com.salesforce.chatter",
+      "android_package": "com.salesforce.chatter",
+      "android_history_source": "APKPure versions page for package com.salesforce.chatter; APKCombo old versions page also reachable",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 404249815 and bundle ID com.salesforce.chatter; Google Play, APKPure, and APKCombo identify Android package com.salesforce.chatter.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/salesforce",
+      "version_list_path": "reports/salesforce/version-list.json",
+      "android_version_list_path": "reports/salesforce/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Salesforce --format json returned App Store ID 404249815, bundle ID com.salesforce.chatter, app name Salesforce, and current listed version 260.051.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 404249815 returned bundle ID com.salesforce.chatter, app name Salesforce, seller salesforce.com, and current US listed version 260.051.",
+        "App Store URL: https://apps.apple.com/us/app/salesforce/id404249815.",
+        "Android package source: Google Play, APKPure, and APKCombo identify package com.salesforce.chatter.",
+        "APKPure Android history URL identified: https://apkpure.net/salesforce/com.salesforce.chatter/versions.",
+        "APKCombo old versions URL identified: https://apkcombo.com/salesforce/com.salesforce.chatter/old-versions/.",
+        "APKPure .com versions URL returned HTTP 403, but the APKPure .net versions URL returned HTTP 200.",
+        "AndroidAPKsFree guessed old versions URL for package com.salesforce.chatter returned HTTP 404."
+      ]
     }
   ]
 }

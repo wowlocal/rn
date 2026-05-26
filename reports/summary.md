@@ -7,7 +7,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 4
-- Queued: 0
+- Queued: 1
 - In progress: 0
 - Needs manual review: 11
 - No RN detected: 2
@@ -19,6 +19,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
+
+## Queued Apps
+
+- Salesforce: App Store ID 404249815; bundle ID com.salesforce.chatter
 
 ## Manual Review Apps
 
