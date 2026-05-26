@@ -765,10 +765,15 @@
       "bundle_id": "org.reactjs.native.example.MobileCreditCards",
       "android_package": "com.mobilecreditcards",
       "android_history_source": "Uptodown versions page for package com.mobilecreditcards; APKPure/APKCombo gone",
-      "status": "registered",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1174471607 and bundle ID org.reactjs.native.example.MobileCreditCards; Google Play and Uptodown identify Android package com.mobilecreditcards.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/nerdwallet",
+      "version_list_error_path": "reports/nerdwallet/version-list-error.json",
+      "version_list_bundle_error_path": "reports/nerdwallet/version-list-bundle-error.json",
+      "android_version_list_path": "reports/nerdwallet/android-version-list.json",
+      "android_version_list_uptodown_path": "reports/nerdwallet/android-version-list-uptodown.json",
+      "android_version_count": 20,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search NerdWallet --format json did not return the official NerdWallet finance app in the current localized results.",
@@ -779,7 +784,10 @@
         "Uptodown versions URL identified: https://nerdwallet.en.uptodown.com/android/versions?utm_source=main returned HTTP 200.",
         "APKPure Android history URL checked: https://apkpure.net/nerdwallet-personal-finance/com.mobilecreditcards/versions returned HTTP 410.",
         "APKCombo old versions URL checked: https://apkcombo.com/nerdwallet/com.mobilecreditcards/old-versions/ returned HTTP 410.",
-        "AndroidAPKsFree guessed old versions URL for package com.mobilecreditcards returned HTTP 404."
+        "AndroidAPKsFree guessed old versions URL for package com.mobilecreditcards returned HTTP 404.",
+        "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID requires an App Store license; bundle-ID version list returned app not found.",
+        "Android Uptodown catalog fetched on 2026-05-26: 20 visible entries from source dates 2024-10-10 through 2026-02-13. Uptodown rows expose page-specific version IDs, not verified Android manifest versionCodes.",
+        "Uptodown rows point at download pages; direct package download support may require decoding page-specific download tokens."
       ]
     }
   ]

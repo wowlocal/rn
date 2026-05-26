@@ -23,7 +23,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## In Progress Apps
 
-- NerdWallet: Smart Money App: status `registered`; last completed `registration`; reports in `reports/nerdwallet`
+- NerdWallet: Smart Money App: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/nerdwallet`
 
 ## Manual Review Apps
 

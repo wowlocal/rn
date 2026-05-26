@@ -6,7 +6,7 @@
 - App Store ID: 1174471607
 - iOS bundle ID: org.reactjs.native.example.MobileCreditCards
 - Android package: com.mobilecreditcards
-- Status: registered
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -21,6 +21,21 @@
 - APKCombo old versions URL checked: `https://apkcombo.com/nerdwallet/com.mobilecreditcards/old-versions/` returned HTTP `410`.
 - AndroidAPKsFree guessed old versions URL for package `com.mobilecreditcards` returned HTTP `404`.
 
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 1174471607`.
+- iOS version list result: failed because App Store license is required.
+- Bundle-ID iOS version list fetch for `org.reactjs.native.example.MobileCreditCards` returned app not found.
+- Raw iOS version-list errors: `reports/nerdwallet/version-list-error.json` and `reports/nerdwallet/version-list-bundle-error.json`
+- Android Uptodown catalog fetched on 2026-05-26 with `fetch_uptodown_versions.py`.
+- Android entries available from Uptodown sources: 20
+- Oldest Uptodown source date in the catalog: `2024-10-10` (`12.1.0`)
+- Newest Uptodown source date in the catalog: `2026-02-13` (`12.10.1`)
+- Raw Android version catalog: `reports/nerdwallet/android-version-list.json`
+- Source-specific Uptodown catalog: `reports/nerdwallet/android-version-list-uptodown.json`
+- Uptodown exposes page-specific version IDs, not verified Android manifest versionCodes.
+- Uptodown rows point at download pages; direct package download support may require decoding page-specific download tokens.
+
 ## Next Step
 
-Fetch the iOS version list. If available, prefer iOS sampling because the App Store bundle ID itself indicates a React Native-origin app and the Android package-history sources are limited.
+Try to resolve a direct Uptodown package download for one visible Android row, or move to the next candidate if direct downloads remain blocked.
