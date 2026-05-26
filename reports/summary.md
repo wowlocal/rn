@@ -8,8 +8,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 4
 - Queued: 0
-- In progress: 1
-- Needs manual review: 8
+- In progress: 0
+- Needs manual review: 9
 - Skipped: 3
 
 ## Analyzed Apps
@@ -18,10 +18,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-
-## In Progress Apps
-
-- Walmart: Shopping & Savings: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/walmart`
 
 ## Manual Review Apps
 
@@ -33,6 +29,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Microsoft Outlook: last completed `source_limited_android_sampling`; reports in `reports/microsoft-outlook`
 - Microsoft Teams: last completed `source_limited_android_sampling`; reports in `reports/microsoft-teams`
 - Skype: last completed `source_limited_android_sampling`; reports in `reports/skype`
+- Walmart: Shopping & Savings: last completed `source_limited_android_sampling`; reports in `reports/walmart`
 
 ## Skipped Apps
 
@@ -84,6 +81,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Pinterest | ios | 0.63.x |  | medium | 8.27 (4) | 10.40 (2) | 16 |
 | Pinterest | ios | unknown |  | low | 10.41 (2) | 14.19 (2) | 4 |
 | Pinterest | android | unknown |  | unknown | 12.18.0 (12188010) | 14.8.0 (14088010) | 12 |
+| Walmart: Shopping & Savings | android | 0.74.x-0.76.x |  | medium | 21.5.5 (21055104) | 21.5.5 (21055104) | 1 |
+| Walmart: Shopping & Savings | android | unknown |  | unknown | 21.22 (21220106) | 26.18.1 (26180118) | 24 |
 
 ## RN Transitions
 
@@ -115,9 +114,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Pinterest | ios | 0.60.x | 0.61.x | 8.17 (3) | 8.18 (3) | 0 | true |
 | Pinterest | ios | 0.61.x | 0.63.x | 8.26 (4) | 8.27 (4) | 0 | true |
 | Pinterest | ios | 0.63.x | unknown | 10.40 (2) | 10.41 (2) | 0 | true |
+| Walmart: Shopping & Savings | android | 0.74.x-0.76.x | unknown | 21.5.5 (21055104) | 21.22 (21220106) | 0 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 20
-- Approximate by transition IDs: 6
+- Approximate by transition IDs: 7
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

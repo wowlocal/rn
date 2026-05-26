@@ -466,5 +466,23 @@
     "to_rn_guess": "unknown",
     "version_list_boundary_exact": "true",
     "version_list_gap_size": "0"
+  },
+  {
+    "app_name": "Walmart: Shopping & Savings",
+    "app_slug": "walmart",
+    "app_status": "needs_manual_review",
+    "from_app_build": "21055104",
+    "from_app_version": "21.5.5",
+    "from_build_timestamp": "",
+    "from_external_version_id": "21055104",
+    "from_rn_guess": "0.74.x-0.76.x",
+    "platform": "android",
+    "to_app_build": "21220106",
+    "to_app_version": "21.22",
+    "to_build_timestamp": "",
+    "to_external_version_id": "21220106",
+    "to_rn_guess": "unknown",
+    "version_list_boundary_exact": "false",
+    "version_list_gap_size": "0"
   }
 ]

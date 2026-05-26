@@ -718,5 +718,41 @@
     "start_app_version": "12.18.0",
     "start_build_timestamp": "",
     "start_external_version_id": "12188010"
+  },
+  {
+    "app_name": "Walmart: Shopping & Savings",
+    "app_slug": "walmart",
+    "app_status": "needs_manual_review",
+    "build_count": 1,
+    "confidence": "medium",
+    "end_app_build": "21055104",
+    "end_app_version": "21.5.5",
+    "end_build_timestamp": "",
+    "end_external_version_id": "21055104",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "0.74.x-0.76.x",
+    "start_app_build": "21055104",
+    "start_app_version": "21.5.5",
+    "start_build_timestamp": "",
+    "start_external_version_id": "21055104"
+  },
+  {
+    "app_name": "Walmart: Shopping & Savings",
+    "app_slug": "walmart",
+    "app_status": "needs_manual_review",
+    "build_count": 24,
+    "confidence": "unknown",
+    "end_app_build": "26180118",
+    "end_app_version": "26.18.1",
+    "end_build_timestamp": "2026-05-16",
+    "end_external_version_id": "26180118",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "21220106",
+    "start_app_version": "21.22",
+    "start_build_timestamp": "",
+    "start_external_version_id": "21220106"
   }
 ]

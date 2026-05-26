@@ -25,3 +25,4 @@ pinterest,Pinterest,done,ios,<=0.59.x,8.12.1,4,835482395,2020-04-09T18:34:12,0.6
 pinterest,Pinterest,done,ios,0.60.x,8.17,3,835859903,2020-05-08T15:52:18,0.61.x,8.18,3,836059322,2020-05-22T14:01:58,0,true
 pinterest,Pinterest,done,ios,0.61.x,8.26,4,836781122,2020-07-24T18:54:40,0.63.x,8.27,4,837241595,2020-08-04T17:15:10,0,true
 pinterest,Pinterest,done,ios,0.63.x,10.40,2,853081184,2022-11-01T16:41:56,unknown,10.41,2,853214823,2022-11-09T11:03:56,0,true
+walmart,Walmart: Shopping & Savings,needs_manual_review,android,0.74.x-0.76.x,21.5.5,21055104,21055104,,unknown,21.22,21220106,21220106,,0,false
