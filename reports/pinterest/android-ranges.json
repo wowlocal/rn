@@ -1,0 +1,16 @@
+[
+  {
+    "build_count": 12,
+    "confidence": "unknown",
+    "end_app_build": "14088010",
+    "end_app_version": "14.8.0",
+    "end_build_timestamp": "",
+    "end_external_version_id": "14088010",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "start_app_build": "12188010",
+    "start_app_version": "12.18.0",
+    "start_build_timestamp": "",
+    "start_external_version_id": "12188010"
+  }
+]

@@ -1,0 +1,4 @@
+from_rn_guess,from_app_version,from_app_build,from_external_version_id,from_build_timestamp,to_rn_guess,to_app_version,to_app_build,to_external_version_id,to_build_timestamp
+unknown,6.22,3,821390341,2017-03-24T12:56:48,<=0.59.x,6.43,3,825777860,2018-01-26T11:48:20
+<=0.59.x,8.3.1,6,834596156,2020-02-04T17:36:44,0.63.x,9.42,3,845855528,2021-12-10T12:37:04
+0.63.x,9.42,3,845855528,2021-12-10T12:37:04,unknown,12.8,4,864203388,2024-03-05T23:09:36

@@ -11,6 +11,9 @@ from typing import Any
 
 
 def build_sort_key(row: dict[str, str]) -> tuple[int, str]:
+    external_id = row.get("external_version_id", "")
+    if external_id.isdigit():
+        return (int(external_id), row.get("ipa", ""))
     build = row.get("app_build", "")
     return (int(build) if build.isdigit() else -1, row.get("ipa", ""))
 
@@ -51,14 +54,16 @@ def normalized_row(row: dict[str, str]) -> dict[str, str]:
 
 
 def dedupe_builds(rows: list[dict[str, str]]) -> list[dict[str, str]]:
-    deduped: dict[str, dict[str, str]] = {}
+    deduped: dict[tuple[str, str], dict[str, str]] = {}
     for row in rows:
+        version = row.get("app_version", "")
         build = row.get("app_build", "")
-        if not build:
+        if not version and not build:
             continue
-        current = deduped.get(build)
+        key = (version, build)
+        current = deduped.get(key)
         if current is None:
-            deduped[build] = {**row, "range_end_external_version_id": row.get("external_version_id", "")}
+            deduped[key] = {**row, "range_end_external_version_id": row.get("external_version_id", "")}
             continue
         current_id = current.get("external_version_id", "")
         current_end_id = current.get("range_end_external_version_id", current_id)

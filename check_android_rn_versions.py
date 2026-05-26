@@ -5,6 +5,7 @@ import argparse
 import csv
 import io
 import json
+import posixpath
 import re
 import shutil
 import zipfile
@@ -176,7 +177,22 @@ def is_js_bundle(name: str) -> bool:
     lower = name.lower()
     if lower.endswith((".jsbundle", ".hbc")):
         return True
-    return lower.startswith("assets/") and "bundle" in lower and not lower.endswith(".json")
+    basename = posixpath.basename(lower)
+    if not lower.startswith("assets/") or "bundle" not in basename:
+        return False
+    ignored_suffixes = (
+        ".json",
+        ".bin",
+        ".dat",
+        ".param",
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp",
+        ".timestamp",
+        ".filesize",
+    )
+    return not basename.endswith(ignored_suffixes)
 
 
 def inspect_bundle(data: bytes) -> dict[str, Any]:
