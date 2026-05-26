@@ -807,17 +807,28 @@
       "bundle_id": "com.mattermost.rn",
       "android_package": "com.mattermost.rn",
       "android_history_source": "APKPure versions page for package com.mattermost.rn",
-      "status": "queued",
+      "status": "version_lists_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 1257222717 and bundle ID com.mattermost.rn; Google Play and APKPure identify Android package com.mattermost.rn.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/mattermost",
+      "version_list_path": "reports/mattermost/version-list.json",
+      "android_version_list_path": "reports/mattermost/android-version-list.json",
+      "android_version_list_apkpure_path": "reports/mattermost/android-version-list-apkpure.json",
+      "external_version_count": 175,
+      "oldest_external_version_id": "822837610",
+      "newest_external_version_id": "885697976",
+      "android_version_count": 10,
+      "oldest_android_version_code": "6000627",
+      "newest_android_version_code": "6000743",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Mattermost --format json returned App Store ID 1257222717, bundle ID com.mattermost.rn, app name Mattermost, and current listed version 2.40.0.",
         "iOS identifier source: Apple iTunes lookup for App Store ID 1257222717 returned bundle ID com.mattermost.rn, app name Mattermost, seller Mattermost, Inc., current US listed version 2.40.0, and release date 2026-05-15T18:24:59Z.",
         "App Store URL: https://apps.apple.com/us/app/mattermost/id1257222717.",
         "Android package source: Google Play identifies package com.mattermost.rn and returned HTTP 200.",
-        "APKPure Android history URL identified: https://apkpure.net/mattermost/com.mattermost.rn/versions returned HTTP 200."
+        "APKPure Android history URL identified: https://apkpure.net/mattermost/com.mattermost.rn/versions returned HTTP 200.",
+        "iOS version list fetched on 2026-05-26: 175 external version identifiers from 822837610 through 885697976.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 6000627 through 6000743; source page appears to expose a limited history."
       ]
     }
   ]

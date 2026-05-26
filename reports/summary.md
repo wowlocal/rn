@@ -7,8 +7,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 5
-- Queued: 1
-- In progress: 0
+- Queued: 0
+- In progress: 1
 - Needs manual review: 14
 - No RN detected: 2
 - Skipped: 3
@@ -21,9 +21,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
 
-## Queued Apps
+## In Progress Apps
 
-- Mattermost: App Store ID 1257222717; bundle ID com.mattermost.rn
+- Mattermost: status `version_lists_fetched`; last completed `version_list_fetch`; reports in `reports/mattermost`
 
 ## Manual Review Apps
 
