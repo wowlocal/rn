@@ -27,7 +27,7 @@ pinterest,Pinterest,done,ios,0.61.x,8.26,4,836781122,2020-07-24T18:54:40,0.63.x,
 pinterest,Pinterest,done,ios,0.63.x,10.40,2,853081184,2022-11-01T16:41:56,unknown,10.41,2,853214823,2022-11-09T11:03:56,0,true
 walmart,Walmart: Shopping & Savings,needs_manual_review,android,0.74.x-0.76.x,21.5.5,21055104,21055104,,unknown,21.22,21220106,21220106,,0,false
 tesla,Tesla,needs_manual_review,android,0.79.x,4.54.0-4094,4094,4094,2026-03-06,0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02,0,false
-tesla,Tesla,needs_manual_review,android,0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02,0.79.x,4.54.5-4133,4133,4133,2026-03-11,0,false
+tesla,Tesla,needs_manual_review,android,0.82.x or newer,4.54.3-4107,4107,4107,2026-03-02,0.79.x,4.54.5-4133,4133,4133,2026-03-11,1,false
 bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.61.x,5.58.0.3042781.7b196c06c,3042781,3042781,,0.74.x-0.76.x,5.98.0.3930355.fd19b588e,3930355,3930355,,0,false
 artsy,Artsy: Buy & Sell Fine Art,done,ios,unknown,7.3.9,2022.06.03.16,849701554,2022-06-03T10:17:00,0.66.x,8.0.0,2022.06.24.16,850009836,2022-06-24T09:34:06,0,true
 artsy,Artsy: Buy & Sell Fine Art,done,ios,0.66.x,8.9.0,2023.03.09.08,855250847,2023-03-09T01:18:52,0.67.x-0.68.x,8.10.0,2023.03.23.14,855453254,2023-03-23T08:06:06,0,true
@@ -37,3 +37,4 @@ artsy,Artsy: Buy & Sell Fine Art,done,ios,0.71.x,8.56.0,2024.11.14.13,870200865,
 artsy,Artsy: Buy & Sell Fine Art,done,ios,0.74.x-0.76.x,8.79.0,2025.07.24.14,876309616,2025-07-24T14:25:58,0.77.x,8.80.0,2025.08.07.10,876709591,2025-08-07T10:40:14,0,true
 artsy,Artsy: Buy & Sell Fine Art,done,ios,0.77.x,8.83.0,2025.09.17.12,877862925,2025-09-17T13:13:06,0.79.x,8.84.0,2025.09.30.18,878228231,2025-09-30T18:40:22,0,true
 artsy,Artsy: Buy & Sell Fine Art,done,ios,0.79.x,8.88.0,2025.11.12.13,879541714,2025-11-12T13:50:16,0.81.x,8.89.0,2025.11.26.02,879728163,2025-11-26T03:36:00,0,true
+nerdwallet,NerdWallet: Smart Money App,needs_manual_review,android,unknown,12.6.0,131162,1075800926,2025-04-14,0.77.x,12.10.1,140458,1146753195,2026-02-13,1,false

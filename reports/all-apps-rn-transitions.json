@@ -519,7 +519,7 @@
     "to_external_version_id": "4133",
     "to_rn_guess": "0.79.x",
     "version_list_boundary_exact": "false",
-    "version_list_gap_size": "0"
+    "version_list_gap_size": "1"
   },
   {
     "app_name": "Bloomberg: Business News Daily",
@@ -682,5 +682,23 @@
     "to_rn_guess": "0.81.x",
     "version_list_boundary_exact": "true",
     "version_list_gap_size": "0"
+  },
+  {
+    "app_name": "NerdWallet: Smart Money App",
+    "app_slug": "nerdwallet",
+    "app_status": "needs_manual_review",
+    "from_app_build": "131162",
+    "from_app_version": "12.6.0",
+    "from_build_timestamp": "2025-04-14",
+    "from_external_version_id": "1075800926",
+    "from_rn_guess": "unknown",
+    "platform": "android",
+    "to_app_build": "140458",
+    "to_app_version": "12.10.1",
+    "to_build_timestamp": "2026-02-13",
+    "to_external_version_id": "1146753195",
+    "to_rn_guess": "0.77.x",
+    "version_list_boundary_exact": "false",
+    "version_list_gap_size": "1"
   }
 ]

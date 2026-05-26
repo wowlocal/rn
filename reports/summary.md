@@ -2,14 +2,14 @@
 
 ## Methodology
 
-Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available because Android packages are usually not FairPlay-encrypted like App Store IPAs and often expose JS bundles, Hermes bytecode, RN native libraries, symbols, and resources directly. Android ordering is based on versionCode first, with source publish dates as secondary context when available. Android reports record package hashes, embedded manifest metadata, and package identity when available; duplicated, installer/wrapper, or catalog-mismatched payloads are treated as source-quality findings rather than exact historical builds. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
+Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available because Android packages are usually not FairPlay-encrypted like App Store IPAs and often expose JS bundles, Hermes bytecode, RN native libraries, symbols, and resources directly. Android ordering is based on manifest versionCode first, with source order or source publish dates as secondary context when manifest versionCode is unavailable. Android reports record package hashes, embedded manifest metadata, and package identity when available; duplicated, installer/wrapper, or catalog-mismatched payloads are treated as source-quality findings rather than exact historical builds. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.
 
 ## App Status
 
 - Analyzed successfully: 5
 - Queued: 0
-- In progress: 1
-- Needs manual review: 13
+- In progress: 0
+- Needs manual review: 14
 - No RN detected: 2
 - Skipped: 3
 
@@ -20,10 +20,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
 - Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
-
-## In Progress Apps
-
-- NerdWallet: Smart Money App: status `version_list_fetched`; last completed `version_list_fetch`; reports in `reports/nerdwallet`
 
 ## Manual Review Apps
 
@@ -40,6 +36,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`
 - Salesforce: last completed `source_limited_android_sampling`; reports in `reports/salesforce`
 - Wix - Website Builder: last completed `source_limited_android_sampling`; reports in `reports/wix`
+- NerdWallet: Smart Money App: last completed `source_limited_android_sampling`; reports in `reports/nerdwallet`
 
 ## No RN Detected Apps
 
@@ -118,6 +115,8 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Artsy: Buy & Sell Fine Art | ios | 0.79.x | 19.0.0 | medium |  | 8.84.0 (2025.09.30.18) | 8.88.0 (2025.11.12.13) | 5 |
 | Artsy: Buy & Sell Fine Art | ios | 0.81.x | 19.1.0 | high |  | 8.89.0 (2025.11.26.02) | 9.9.0 (2026.05.20.12.45) | 5 |
 | Artsy: Buy & Sell Fine Art | android | 0.82.x or newer | 19.1.0 | low | duplicate package hashes (1/10) | 9.0.1 (2026022618) | 9.9.0 (2026052012) | 10 |
+| NerdWallet: Smart Money App | android | unknown |  | low | source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode | 11.29.0 (123845) | 12.6.0 (131162) | 4 |
+| NerdWallet: Smart Money App | android | 0.77.x |  | medium | source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode | 12.10.1 (140458) | 14.3.0 (162034) | 6 |
 
 ## RN Transitions
 
@@ -151,7 +150,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Pinterest | ios | 0.63.x | unknown | 10.40 (2) | 10.41 (2) | 0 | true |
 | Walmart: Shopping & Savings | android | 0.74.x-0.76.x | unknown | 21.5.5 (21055104) | 21.22 (21220106) | 0 | false |
 | Tesla | android | 0.79.x | 0.82.x or newer | 4.54.0-4094 (4094) | 4.54.3-4107 (4107) | 0 | false |
-| Tesla | android | 0.82.x or newer | 0.79.x | 4.54.3-4107 (4107) | 4.54.5-4133 (4133) | 0 | false |
+| Tesla | android | 0.82.x or newer | 0.79.x | 4.54.3-4107 (4107) | 4.54.5-4133 (4133) | 1 | false |
 | Bloomberg: Business News Daily | android | 0.61.x | 0.74.x-0.76.x | 5.58.0.3042781.7b196c06c (3042781) | 5.98.0.3930355.fd19b588e (3930355) | 0 | false |
 | Artsy: Buy & Sell Fine Art | ios | unknown | 0.66.x | 7.3.9 (2022.06.03.16) | 8.0.0 (2022.06.24.16) | 0 | true |
 | Artsy: Buy & Sell Fine Art | ios | 0.66.x | 0.67.x-0.68.x | 8.9.0 (2023.03.09.08) | 8.10.0 (2023.03.23.14) | 0 | true |
@@ -161,9 +160,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x | 0.77.x | 8.79.0 (2025.07.24.14) | 8.80.0 (2025.08.07.10) | 0 | true |
 | Artsy: Buy & Sell Fine Art | ios | 0.77.x | 0.79.x | 8.83.0 (2025.09.17.12) | 8.84.0 (2025.09.30.18) | 0 | true |
 | Artsy: Buy & Sell Fine Art | ios | 0.79.x | 0.81.x | 8.88.0 (2025.11.12.13) | 8.89.0 (2025.11.26.02) | 0 | true |
+| NerdWallet: Smart Money App | android | unknown | 0.77.x | 12.6.0 (131162) | 12.10.1 (140458) | 1 | false |
 
 ## Boundary Confidence
 
 - Exact by transition IDs: 28
-- Approximate by transition IDs: 10
+- Approximate by transition IDs: 11
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

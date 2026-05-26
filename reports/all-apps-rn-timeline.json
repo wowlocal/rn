@@ -1116,5 +1116,43 @@
     "start_app_version": "9.0.1",
     "start_build_timestamp": "2026-02-27",
     "start_external_version_id": "2026022618"
+  },
+  {
+    "app_name": "NerdWallet: Smart Money App",
+    "app_slug": "nerdwallet",
+    "app_status": "needs_manual_review",
+    "build_count": 4,
+    "confidence": "low",
+    "end_app_build": "131162",
+    "end_app_version": "12.6.0",
+    "end_build_timestamp": "2025-04-14",
+    "end_external_version_id": "1075800926",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "unknown",
+    "source_quality": "source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode",
+    "start_app_build": "123845",
+    "start_app_version": "11.29.0",
+    "start_build_timestamp": "2025-01-24",
+    "start_external_version_id": "1046637925"
+  },
+  {
+    "app_name": "NerdWallet: Smart Money App",
+    "app_slug": "nerdwallet",
+    "app_status": "needs_manual_review",
+    "build_count": 6,
+    "confidence": "medium",
+    "end_app_build": "162034",
+    "end_app_version": "14.3.0",
+    "end_build_timestamp": "2025-09-11",
+    "end_external_version_id": "1107628573",
+    "platform": "android",
+    "react_renderer": "",
+    "rn_guess": "0.77.x",
+    "source_quality": "source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode",
+    "start_app_build": "140458",
+    "start_app_version": "12.10.1",
+    "start_build_timestamp": "2026-02-13",
+    "start_external_version_id": "1146753195"
   }
 ]

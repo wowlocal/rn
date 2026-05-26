@@ -9,10 +9,12 @@ import json
 import posixpath
 import re
 import shutil
+import subprocess
+import tempfile
 import zipfile
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
 from lxml import html
@@ -22,9 +24,13 @@ from check_rn_versions import bytes_text_match, infer_react_native
 
 ANDROID_FIELDS = [
     "android_package",
+    "manifest_package",
     "version_name",
+    "manifest_version_name",
     "version_code",
+    "manifest_version_code",
     "source",
+    "source_order",
     "source_publish_date",
     "source_publish_date_raw",
     "download_url",
@@ -119,11 +125,78 @@ def load_catalog(path: Path) -> list[dict[str, Any]]:
 
 
 def catalog_sort_key(entry: dict[str, Any]) -> tuple[int, str]:
+    source_order = str(entry.get("source_order", ""))
+    if source_order.isdigit():
+        return (-int(source_order), str(entry.get("source_publish_date", "")))
     version_code = str(entry.get("version_code", ""))
     return (
         int(version_code) if version_code.isdigit() else -1,
         str(entry.get("source_publish_date", "")),
     )
+
+
+def find_aapt() -> str:
+    found = shutil.which("aapt")
+    if found:
+        return found
+    sdk_dir = Path.home() / "Library" / "Android" / "sdk" / "build-tools"
+    if sdk_dir.exists():
+        candidates = sorted(sdk_dir.glob("*/aapt"), reverse=True)
+        if candidates:
+            return str(candidates[0])
+    return ""
+
+
+def parse_aapt_badging(apk_path: Path) -> dict[str, str]:
+    aapt = find_aapt()
+    if not aapt:
+        return {}
+    try:
+        result = subprocess.run(
+            [aapt, "dump", "badging", str(apk_path)],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=30,
+            check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return {}
+    if result.returncode != 0:
+        return {"aapt_error": result.stderr.strip()[:500]}
+    metadata: dict[str, str] = {}
+    package_match = re.search(
+        r"package: name='([^']*)' versionCode='([^']*)' versionName='([^']*)'",
+        result.stdout,
+    )
+    if package_match:
+        metadata["package_name"] = package_match.group(1)
+        metadata["version_code"] = package_match.group(2)
+        metadata["version_name"] = package_match.group(3)
+    for key, pattern in {
+        "min_sdk_version": r"sdkVersion:'([^']*)'",
+        "target_sdk_version": r"targetSdkVersion:'([^']*)'",
+    }.items():
+        match = re.search(pattern, result.stdout)
+        if match:
+            metadata[key] = match.group(1)
+    return metadata
+
+
+def is_base_apk_entry(name: str) -> bool:
+    basename = posixpath.basename(name)
+    return (
+        name.endswith(".apk")
+        and not basename.startswith("config.")
+        and not basename.startswith("split_config.")
+    )
+
+
+def parse_inner_apk_badging(data: bytes) -> dict[str, str]:
+    with tempfile.NamedTemporaryFile(suffix=".apk") as tmp:
+        tmp.write(data)
+        tmp.flush()
+        return parse_aapt_badging(Path(tmp.name))
 
 
 def direct_download_url(entry: dict[str, Any], timeout: int) -> str:
@@ -134,6 +207,8 @@ def direct_download_url(entry: dict[str, Any], timeout: int) -> str:
     parsed = urlparse(page_url)
     if parsed.netloc.endswith("pureapk.com"):
         return page_url
+    if parsed.netloc.endswith("uptodown.com") and "/download/" in parsed.path:
+        return uptodown_direct_download_url(page_url, timeout)
     path = parsed.path.lower()
     if path.endswith((".apk", ".apks", ".xapk", ".apkm")):
         return page_url
@@ -144,6 +219,33 @@ def direct_download_url(entry: dict[str, Any], timeout: int) -> str:
         if exact:
             return exact[0]
     return hrefs[0] if hrefs else ""
+
+
+def uptodown_direct_download_url(page_url: str, timeout: int) -> str:
+    parsed = urlparse(page_url)
+    source_document = html.fromstring(fetch_text(page_url, timeout=timeout))
+    variant_page_url = page_url
+    if not parsed.path.rstrip("/").endswith("-x"):
+        version_id = parsed.path.rstrip("/").split("/")[-1]
+        app_code = source_document.xpath('string(//*[@id="detail-app-name"]/@data-code)').strip()
+        variant_group = source_document.xpath(
+            'string(//*[contains(concat(" ", normalize-space(@class), " "), " variants ")]/@data-version)'
+        ).strip()
+        if not app_code or not variant_group:
+            return ""
+        files_url = urljoin(page_url, f"/app/{app_code}/version/{variant_group}/files")
+        files_payload = json.loads(fetch_text(files_url, timeout=timeout))
+        files_html = files_payload.get("content", "")
+        variant_links = re.findall(r"location\.href='([^']+)'", files_html)
+        preferred_links = [link for link in variant_links if f"/download/{version_id}-" in link]
+        if not preferred_links:
+            return ""
+        variant_page_url = preferred_links[0]
+    variant_document = html.fromstring(fetch_text(variant_page_url, timeout=timeout))
+    token = variant_document.xpath('string(//*[@id="detail-download-button"]/@data-url)').strip()
+    if not token:
+        return ""
+    return "https://dw.uptodown.com/dwn/" + token
 
 
 def package_extension(entry: dict[str, Any]) -> str:
@@ -266,6 +368,12 @@ def inspect_bundle(data: bytes) -> dict[str, Any]:
         has_native_modules,
         has_style_sheet,
     )
+    if not renderer and has_rnv_export and guess == "0.82.x or newer" and confidence == "low":
+        guess = "unknown"
+        reason = (
+            "ReactNativeVersion marker is present, but no renderer version marker was found; "
+            "this Android Hermes marker is not specific enough to infer a 0.82+ band."
+        )
     return {
         "renderer": renderer,
         "hbc_version": hbc_version,
@@ -381,26 +489,78 @@ def merge_findings(findings: list[dict[str, Any]]) -> dict[str, Any]:
 def analyze_package(path: Path) -> dict[str, Any]:
     findings: list[dict[str, Any]] = []
     suffix = path.suffix.lower()
+    manifest = {}
     if suffix == ".apk":
         findings.append(inspect_apk_bytes(path.read_bytes(), path.name))
+        manifest = parse_aapt_badging(path)
     else:
         with zipfile.ZipFile(path) as outer:
             if "classes.dex" in outer.namelist() or "AndroidManifest.xml" in outer.namelist():
                 findings.append(inspect_apk_bytes(path.read_bytes(), path.name))
+                manifest = parse_aapt_badging(path)
                 merged = merge_findings(findings)
-                merged["manifest_metadata"] = ""
+                merged["manifest_metadata"] = json.dumps(
+                    {
+                        "archive_type": "APK",
+                        "contains_android_manifest": "AndroidManifest.xml" in outer.namelist(),
+                        "aapt_badging": manifest,
+                    },
+                    sort_keys=True,
+                )
+                merged["manifest_package"] = manifest.get("package_name", "")
+                merged["manifest_version_name"] = manifest.get("version_name", "")
+                merged["manifest_version_code"] = manifest.get("version_code", "")
                 return merged
             manifest_metadata = ""
+            apk_names = [name for name in outer.namelist() if name.endswith(".apk")]
+            base_apks = [name for name in apk_names if is_base_apk_entry(name)]
+            if base_apks:
+                manifest = parse_inner_apk_badging(outer.read(sorted(base_apks)[0]))
             if "manifest.json" in outer.namelist():
                 manifest_metadata = outer.read("manifest.json").decode("utf-8", "replace")
-            for name in outer.namelist():
-                if name.endswith(".apk"):
-                    findings.append(inspect_apk_bytes(outer.read(name), name))
+            for name in apk_names:
+                findings.append(inspect_apk_bytes(outer.read(name), name))
         merged = merge_findings(findings)
-        merged["manifest_metadata"] = manifest_metadata[:2000]
+        if manifest_metadata:
+            try:
+                manifest_payload: Any = json.loads(manifest_metadata)
+            except json.JSONDecodeError:
+                manifest_payload = manifest_metadata[:2000]
+            merged["manifest_metadata"] = json.dumps(
+                {
+                    "archive_type": suffix.lstrip(".").upper(),
+                    "xapk_manifest": manifest_payload,
+                    "aapt_badging": manifest,
+                },
+                sort_keys=True,
+            )
+        else:
+            apk_entries = merged.get("apk_entries", "").split(";")
+            merged["manifest_metadata"] = json.dumps(
+                {
+                    "archive_type": suffix.lstrip(".").upper(),
+                    "apk_entries": [entry for entry in apk_entries if entry],
+                    "base_apk_candidates": [entry for entry in apk_entries if is_base_apk_entry(entry)],
+                    "aapt_badging": manifest,
+                },
+                sort_keys=True,
+            )
+        merged["manifest_package"] = manifest.get("package_name", "")
+        merged["manifest_version_name"] = manifest.get("version_name", "")
+        merged["manifest_version_code"] = manifest.get("version_code", "")
         return merged
     merged = merge_findings(findings)
-    merged["manifest_metadata"] = ""
+    merged["manifest_metadata"] = json.dumps(
+        {
+            "archive_type": "APK",
+            "contains_android_manifest": True,
+            "aapt_badging": manifest,
+        },
+        sort_keys=True,
+    )
+    merged["manifest_package"] = manifest.get("package_name", "")
+    merged["manifest_version_name"] = manifest.get("version_name", "")
+    merged["manifest_version_code"] = manifest.get("version_code", "")
     return merged
 
 
@@ -477,9 +637,13 @@ def main() -> int:
         analysis = analyze_package(path)
         row = {
             "android_package": args.android_package,
+            "manifest_package": str(analysis.get("manifest_package", "")),
             "version_name": str(entry.get("version_name", "")),
+            "manifest_version_name": str(analysis.get("manifest_version_name", "")),
             "version_code": version_code,
+            "manifest_version_code": str(analysis.get("manifest_version_code", "")),
             "source": str(entry.get("source", "")),
+            "source_order": str(entry.get("source_order", "")),
             "source_publish_date": str(entry.get("source_publish_date", "")),
             "source_publish_date_raw": str(entry.get("source_publish_date_raw", "")),
             "download_url": str(entry.get("download_url", "")),

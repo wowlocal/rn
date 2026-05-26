@@ -765,9 +765,9 @@
       "bundle_id": "org.reactjs.native.example.MobileCreditCards",
       "android_package": "com.mobilecreditcards",
       "android_history_source": "Uptodown versions page for package com.mobilecreditcards; APKPure/APKCombo gone",
-      "status": "version_list_fetched",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; Apple iTunes lookup resolved App Store ID 1174471607 and bundle ID org.reactjs.native.example.MobileCreditCards; Google Play and Uptodown identify Android package com.mobilecreditcards.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "source_limited_android_sampling",
       "reports_path": "reports/nerdwallet",
       "version_list_error_path": "reports/nerdwallet/version-list-error.json",
       "version_list_bundle_error_path": "reports/nerdwallet/version-list-bundle-error.json",
@@ -787,8 +787,18 @@
         "AndroidAPKsFree guessed old versions URL for package com.mobilecreditcards returned HTTP 404.",
         "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID requires an App Store license; bundle-ID version list returned app not found.",
         "Android Uptodown catalog fetched on 2026-05-26: 20 visible entries from source dates 2024-10-10 through 2026-02-13. Uptodown rows expose page-specific version IDs, not verified Android manifest versionCodes.",
-        "Uptodown rows point at download pages; direct package download support may require decoding page-specific download tokens."
-      ]
+        "Uptodown rows point at download pages; direct package download support may require decoding page-specific download tokens.",
+        "Android direct downloads resolved through Uptodown variant pages on 2026-05-26; default Uptodown download tokens point to an Uptodown App Store installer/wrapper and are not valid package evidence.",
+        "Sampled 10 Android APK/XAPK payloads from the source-limited Uptodown catalog; aapt manifest metadata confirmed package com.mobilecreditcards, manifest version names 11.29.0 through 14.3.0, and manifest versionCodes 123845 through 162034.",
+        "Android packages expose React Native evidence via assets/index.android.bundle, Hermes bytecode, and React Native native libraries. Rows 12.10.1 through 14.3.0 infer RN 0.77.x with medium confidence; earlier sampled rows remain unknown with low confidence because ReactNativeVersion without a renderer marker is ambiguous in Android Hermes bundles.",
+        "Uptodown source dates are non-monotonic against manifest versionCode and the catalog is source-limited, so NerdWallet Android transitions are not exact release-date boundaries."
+      ],
+      "sampled_android_package_count": 10,
+      "android_versions_report": "reports/nerdwallet/android-versions.csv",
+      "android_ranges_report": "reports/nerdwallet/android-ranges.csv",
+      "android_transitions_report": "reports/nerdwallet/android-transitions.json",
+      "oldest_android_manifest_version_code": "123845",
+      "newest_android_manifest_version_code": "162034"
     }
   ]
 }

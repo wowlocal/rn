@@ -6,7 +6,7 @@
 - App Store ID: 1174471607
 - iOS bundle ID: org.reactjs.native.example.MobileCreditCards
 - Android package: com.mobilecreditcards
-- Status: version_list_fetched
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -36,6 +36,18 @@
 - Uptodown exposes page-specific version IDs, not verified Android manifest versionCodes.
 - Uptodown rows point at download pages; direct package download support may require decoding page-specific download tokens.
 
+## Android Sampling
+
+- Android sampling completed on 2026-05-26 from 10 source-limited Uptodown rows.
+- The default Uptodown download button resolves to an Uptodown App Store installer/wrapper and is not valid NerdWallet package evidence.
+- The analyzer now resolves the page's variants endpoint and uses `.../download/<source-id>-x` variant pages to download the actual NerdWallet APK/XAPK payloads.
+- Embedded manifest metadata from `aapt dump badging` confirms sampled packages use package `com.mobilecreditcards` with manifest version names `11.29.0` through `14.3.0` and manifest versionCodes `123845` through `162034`.
+- Sampled packages expose React Native evidence through `assets/index.android.bundle`, Hermes bytecode, and React Native native libraries including `libreactnativejni.so`, `libreactnative.so`, `libhermes.so`, `libjsi.so`, Fabric, TurboModule, and Yoga libraries.
+- Rows `11.29.0` through `12.6.0` are RN `unknown` with low confidence because `ReactNativeVersion` appears without a renderer marker and is not specific enough for an Android Hermes RN band.
+- Rows `12.10.1` through `14.3.0` infer RN `0.77.x` with medium confidence from `unstable_enableLogBox`, `DevMenu`, and absence of the RN 0.78 `experimental_LayoutConformance` marker.
+- Uptodown source dates are non-monotonic against embedded manifest versionCode for the sampled rows, so Android boundaries are source-limited and not exact release-date transitions.
+- Android reports: `reports/nerdwallet/android-versions.csv`, `reports/nerdwallet/android-versions.json`, `reports/nerdwallet/android-ranges.csv`, `reports/nerdwallet/android-ranges.json`, and `reports/nerdwallet/android-transitions.json`.
+
 ## Next Step
 
-Try to resolve a direct Uptodown package download for one visible Android row, or move to the next candidate if direct downloads remain blocked.
+Move to the next candidate unless a better source for NerdWallet iOS history or a complete Android release catalog becomes available.

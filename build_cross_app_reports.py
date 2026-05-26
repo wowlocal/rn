@@ -84,15 +84,26 @@ def version_position_info(report_dir: Path, platform: str) -> tuple[dict[str, in
         versions = data.get("versions", [])
         if not isinstance(versions, list):
             return {}, False
-        rows = [
-            (
-                int(str(row.get("version_code", "0"))),
-                str(row.get("source_publish_date", "")),
-                str(row.get("version_code", "")),
-            )
-            for row in versions
-            if isinstance(row, dict) and str(row.get("version_code", "")).isdigit()
-        ]
+        if any(isinstance(row, dict) and str(row.get("source_order", "")).isdigit() for row in versions):
+            rows = [
+                (
+                    -int(str(row.get("source_order", "0"))),
+                    str(row.get("source_publish_date", "")),
+                    str(row.get("version_code", "")),
+                )
+                for row in versions
+                if isinstance(row, dict) and str(row.get("source_order", "")).isdigit()
+            ]
+        else:
+            rows = [
+                (
+                    int(str(row.get("version_code", "0"))),
+                    str(row.get("source_publish_date", "")),
+                    str(row.get("version_code", "")),
+                )
+                for row in versions
+                if isinstance(row, dict) and str(row.get("version_code", "")).isdigit()
+            ]
         codes = [version_code for _, _, version_code in sorted(rows)]
         notes = " ".join(str(note).lower() for note in data.get("notes", []))
         source_limited = "limited" in notes or bool(data.get("extra_source_urls"))
@@ -182,7 +193,7 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
         "",
         "## Methodology",
         "",
-        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available, with Android ordering based on versionCode first and source publish dates as secondary context when available. Android reports record package hashes and embedded manifest metadata when available; duplicated or catalog-mismatched payloads are treated as source-quality findings rather than exact historical builds. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
+        "Reports keep platform-specific package timelines separate, then merge them here with platform labels. iOS reports use IPA internal zip timestamps from app bundle `Info.plist` members unless an App Store date is independently verified. Android APK/APKS/XAPK/APKM analysis is first-class evidence when packages are available because Android packages are usually not FairPlay-encrypted like App Store IPAs and often expose JS bundles, Hermes bytecode, RN native libraries, symbols, and resources directly. Android ordering is based on manifest versionCode first, with source order or source publish dates as secondary context when manifest versionCode is unavailable. Android reports record package hashes, embedded manifest metadata, and package identity when available; duplicated, installer/wrapper, or catalog-mismatched payloads are treated as source-quality findings rather than exact historical builds. Source-limited Android catalogs can guide ranges but do not make transition boundaries exact merely because adjacent fetched rows have no known row between them. Exact RN patch versions are reported only when strong markers are exposed; encrypted native binaries generally limit results to RN version bands inferred from JS bundle markers.",
         "",
         "## App Status",
         "",
