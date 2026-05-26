@@ -7,7 +7,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 ## App Status
 
 - Analyzed successfully: 4
-- Queued: 0
+- Queued: 1
 - In progress: 0
 - Needs manual review: 8
 - Skipped: 3
@@ -18,6 +18,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
+
+## Queued Apps
+
+- Walmart: Shopping & Savings: App Store ID 338137227; bundle ID com.walmart.electronics
 
 ## Manual Review Apps
 

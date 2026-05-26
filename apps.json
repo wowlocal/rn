@@ -448,6 +448,28 @@
         "Final exact iOS transition boundaries: 6.36.1 -> 6.37, 8.12.1 -> 8.13, 8.17 -> 8.18, 8.26 -> 8.27, and 10.40 -> 10.41.",
         "Marked done because the iOS App Store list yielded exact adjacent RN boundaries; Android remains a late-window cross-check with no RN markers in sampled 2024-2026 APKs."
       ]
+    },
+    {
+      "app_slug": "walmart",
+      "app_name": "Walmart: Shopping & Savings",
+      "app_id": "338137227",
+      "bundle_id": "com.walmart.electronics",
+      "android_package": "com.walmart.android",
+      "android_history_source": "APKPure history page for package com.walmart.android; AndroidAPKsFree old versions page also available",
+      "status": "queued",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; public App Store URL and Apple iTunes lookup resolved App Store ID 338137227 and bundle ID com.walmart.electronics; Google Play, APKPure, and AndroidAPKsFree identify Android package com.walmart.android.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/walmart",
+      "version_list_path": "reports/walmart/version-list.json",
+      "android_version_list_path": "reports/walmart/android-version-list.json",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Walmart --format json did not return the consumer Walmart shopping app in the current localized results.",
+        "iOS identifier source: public App Store URL and Apple iTunes lookup for App Store ID 338137227 returned bundle ID com.walmart.electronics, app name Walmart: Shopping & Savings, seller Walmart, and current listed version 26.19.2.",
+        "Android package source: Google Play, APKPure, and AndroidAPKsFree identify package com.walmart.android.",
+        "APKPure Android history URL identified: https://apkpure.net/walmart-shopping-savings/com.walmart.android/versions.",
+        "AndroidAPKsFree old versions URL identified: https://androidapks.com/walmart/com-walmart-android/old/."
+      ]
     }
   ]
 }
