@@ -6,7 +6,7 @@
 - App Store ID: 703796080
 - iOS bundle ID: net.artsy.artsy
 - Android package: net.artsy.app
-- Status: initial_sampling
+- Status: done
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -50,6 +50,20 @@
 - Broad iOS sample result: `8.78.0` is RN `0.74.x-0.76.x` with medium confidence.
 - Broad iOS sample result: `9.9.0` is RN `0.81.x` with high confidence from `react-native-renderer` `19.1.0`.
 
-## Next Step
+## Boundary Refinement
 
-Refine iOS boundaries around the broad sampled transitions, starting with the unknown-to-`0.66.x` window between app `7.2.0` and `8.5.0`.
+- iOS boundary refinement expanded the sample to 65 analyzed IPAs.
+- The App Store version list confirms exact adjacent transitions with zero known-list gaps:
+- `7.3.9` -> `8.0.0`: unknown -> RN `0.66.x`
+- `8.9.0` -> `8.10.0`: RN `0.66.x` -> RN `0.67.x-0.68.x`
+- `8.12.4` -> `8.12.5`: RN `0.67.x-0.68.x` -> RN `0.69.x-0.70.x`
+- `8.27.0` -> `8.28.0`: RN `0.69.x-0.70.x` -> RN `0.71.x`
+- `8.56.0` -> `8.57.0`: RN `0.71.x` -> RN `0.74.x-0.76.x`
+- `8.79.0` -> `8.80.0`: RN `0.74.x-0.76.x` -> RN `0.77.x`
+- `8.83.0` -> `8.84.0`: RN `0.77.x` -> RN `0.79.x`
+- `8.88.0` -> `8.89.0`: RN `0.79.x` -> RN `0.81.x`
+
+## Result
+
+- Status: `done`
+- Reason: the iOS App Store version list yielded exact adjacent RN boundaries. Android APKPure downloads confirm current React Native usage but are not used for historical boundaries because they duplicated the latest payload for historical rows.

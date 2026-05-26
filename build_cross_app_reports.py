@@ -16,6 +16,7 @@ TIMELINE_FIELDS = [
     "rn_guess",
     "react_renderer",
     "confidence",
+    "source_quality",
     "start_app_version",
     "start_app_build",
     "start_external_version_id",
@@ -243,11 +244,11 @@ def summary_markdown(apps: list[dict[str, Any]], timeline: list[dict[str, Any]],
 
     if timeline:
         lines.extend(["## RN Ranges", ""])
-        lines.append("| App | Platform | RN guess | Renderer | Confidence | Start | End | Builds |")
-        lines.append("|---|---|---|---:|---|---|---|---:|")
+        lines.append("| App | Platform | RN guess | Renderer | Confidence | Source quality | Start | End | Builds |")
+        lines.append("|---|---|---|---:|---|---|---|---|---:|")
         for row in timeline:
             lines.append(
-                "| {app_name} | {platform} | {rn_guess} | {react_renderer} | {confidence} | {start_app_version} ({start_app_build}) | {end_app_version} ({end_app_build}) | {build_count} |".format(
+                "| {app_name} | {platform} | {rn_guess} | {react_renderer} | {confidence} | {source_quality} | {start_app_version} ({start_app_build}) | {end_app_version} ({end_app_build}) | {build_count} |".format(
                     **{key: row.get(key, "") for key in TIMELINE_FIELDS}
                 )
             )

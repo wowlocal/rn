@@ -6,9 +6,9 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## App Status
 
-- Analyzed successfully: 4
+- Analyzed successfully: 5
 - Queued: 0
-- In progress: 1
+- In progress: 0
 - Needs manual review: 13
 - No RN detected: 2
 - Skipped: 3
@@ -19,10 +19,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-
-## In Progress Apps
-
-- Artsy: Buy & Sell Fine Art: status `initial_sampling`; last completed `initial_sampling`; reports in `reports/artsy`
+- Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
 
 ## Manual Review Apps
 
@@ -53,67 +50,70 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## RN Ranges
 
-| App | Platform | RN guess | Renderer | Confidence | Start | End | Builds |
-|---|---|---|---:|---|---|---|---:|
-| Discord | ios | <=0.59.x |  | medium | 1.0 (4) | 3.1.10 (18953) | 8 |
-| Discord | ios | 0.61.x |  | medium | 3.2.0 (19099) | 20.0 (19811) | 8 |
-| Discord | ios | 0.62.x |  | medium | 21.0 (19965) | 87.0 (27320) | 8 |
-| Discord | ios | 0.64.x |  | medium | 88.2 (27527) | 106.0 (29538) | 16 |
-| Discord | ios | 0.66.x |  | medium | 109.0 (29659) | 132.0 (33253) | 4 |
-| Discord | ios | 0.67.x-0.68.x |  | medium | 133.0 (33358) | 162.0 (39121) | 7 |
-| Discord | ios | 0.69.x-0.70.x |  | medium | 163.0 (39243) | 190.0 (47418) | 7 |
-| Discord | ios | 0.71.x |  | medium | 191.0 (47806) | 245.0 (63641) | 9 |
-| Discord | ios | 0.74.x-0.76.x |  | medium | 246.0 (63933) | 279.0 (77189) | 42 |
-| Discord | ios | 0.78.x | 19.0.0 | high | 280.0 (77565) | 306.1 (89123) | 31 |
-| Discord | ios | 0.81.x | 19.1.0 | high | 307.0 (89215) | 329.0 (100971) | 33 |
-| Facebook Messenger | ios | unknown |  | low |  (1000) | 91.0 (40546824) | 7 |
-| Facebook Messenger | ios | <=0.59.x |  | medium | 92.0 (41023043) | 147.0 (84235609) | 7 |
-| Facebook Messenger | ios | unknown |  | low | 148.0 (86952252) | 562.0.0 (975021560) | 12 |
-| Instagram | ios | unknown |  | low |  (1.8.7) | 9.7.0 (43028597) | 9 |
-| Instagram | ios | <=0.59.x |  | medium | 10.0.0 (44114773) | 90.0 (150975176) | 6 |
-| Instagram | ios | 0.60.x |  | medium | 91.0 (151989260) | 105.0 (165586599) | 5 |
-| Instagram | ios | 0.61.x |  | medium | 106.0 (166752244) | 113.0 (174653610) | 5 |
-| Instagram | ios | unknown |  | low | 114.0 (176133011) | 430.0.0 (972915403) | 9 |
-| Threads | ios | unknown |  | low | 289.0 (489338310) | 431.0.0 (979167741) | 12 |
-| Threads | android | unknown |  | low | 374.0.0.43.110 (504412928) | 382.0.0.51.85 (505205644) | 2 |
-| Threads | android | unknown |  | unknown | 400.0.0.38.68 (507007017) | 430.0.0.46.79 (510007506) | 10 |
-| Meta Horizon | android | 0.78.x | 19.0.0 | high | 287.3.0.33.109 (651148422) | 287.3.0.33.109 (651148422) | 1 |
-| Meta Horizon | android | 0.60.x |  | medium | 341.0.0.17.107 (806319963) | 349.2.0.46.104 (844730700) | 11 |
-| Meta Horizon | android | <=0.59.x |  | medium | 360.0.0.23.322 (892081967) | 372.0.1.34.252 (975394013) | 18 |
-| Shopify | android | 0.79.x | 19.0.0 | medium | 10.2543.0 (193814) | 10.2605.0 (220449) | 8 |
-| Shopify | android | 0.60.x |  | medium | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
-| Shop | android | 0.79.x | 19.0.0 | medium | 2.231.0 (3319531) | 2.239.0 (3372633) | 11 |
-| Shop | android | 0.81.x | 19.1.0 | high | 2.240.0 (3376891) | 2.253.0 (3451748) | 16 |
-| Coinbase | android | 0.82.x or newer |  | low | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
-| Microsoft Outlook | android | unknown |  | low | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
-| Microsoft Teams | android | 0.60.x |  | medium | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
-| Skype | android | 0.74.x-0.76.x |  | medium | 8.132.0.201 (1250181076) | 8.150.0.125 (1250186747) | 10 |
-| Pinterest | ios | unknown |  | low |  (1) | 6.36.1 (1) | 10 |
-| Pinterest | ios | <=0.59.x |  | medium | 6.37 (4) | 8.12.1 (4) | 10 |
-| Pinterest | ios | 0.60.x |  | medium | 8.13 (4) | 8.17 (3) | 5 |
-| Pinterest | ios | 0.61.x |  | medium | 8.18 (3) | 8.26 (4) | 5 |
-| Pinterest | ios | 0.63.x |  | medium | 8.27 (4) | 10.40 (2) | 16 |
-| Pinterest | ios | unknown |  | low | 10.41 (2) | 14.19 (2) | 4 |
-| Pinterest | android | unknown |  | unknown | 12.18.0 (12188010) | 14.8.0 (14088010) | 12 |
-| Walmart: Shopping & Savings | android | 0.74.x-0.76.x |  | medium | 21.5.5 (21055104) | 21.5.5 (21055104) | 1 |
-| Walmart: Shopping & Savings | android | unknown |  | unknown | 21.22 (21220106) | 26.18.1 (26180118) | 24 |
-| Tesla | android | 0.79.x | 19.0.0 | medium | 4.54.0-4094 (4094) | 4.54.0-4094 (4094) | 1 |
-| Tesla | android | 0.82.x or newer |  | low | 4.54.3-4107 (4107) | 4.54.3-4107 (4107) | 1 |
-| Tesla | android | 0.79.x | 19.0.0 | medium | 4.54.5-4133 (4133) | 4.57.0-4306 (4306) | 8 |
-| Uber Eats: Food & Groceries | ios | unknown |  | low | 1.9.2 (1.9.2) | 6.323.10001 (6.323.10001) | 12 |
-| SoundCloud: The Music You Love | ios | unknown |  | low |  (1.0) | 8.62.0 (1259079) | 12 |
-| SoundCloud: The Music You Love | android | unknown |  | unknown | 2026.03.27-release (348060) | 2026.05.15-release (355060) | 10 |
-| Bloomberg: Business News Daily | android | 0.61.x |  | medium | 5.58.0.3042781.7b196c06c (3042781) | 5.58.0.3042781.7b196c06c (3042781) | 1 |
-| Bloomberg: Business News Daily | android | 0.74.x-0.76.x |  | medium | 5.98.0.3930355.fd19b588e (3930355) | 6.19.0.4315110.19bd92161 (4315110) | 4 |
-| Salesforce | android | unknown |  | low | 250.030.0 (250030032) | 260.050.0 (260050025) | 10 |
-| Wix - Website Builder | android | unknown |  | low | 2.115937.0 (130467) | 2.122966.0 (137496) | 10 |
-| Artsy: Buy & Sell Fine Art | ios | unknown |  | low | 1.0 (140) | 7.2.0 (2022.02.03.14) | 7 |
-| Artsy: Buy & Sell Fine Art | ios | 0.66.x |  | medium | 8.5.0 (2023.01.04.16) | 8.5.0 (2023.01.04.16) | 1 |
-| Artsy: Buy & Sell Fine Art | ios | 0.69.x-0.70.x |  | medium | 8.25.0 (2023.11.01.10) | 8.25.0 (2023.11.01.10) | 1 |
-| Artsy: Buy & Sell Fine Art | ios | 0.71.x |  | medium | 8.51.0 (2024.09.18.19) | 8.51.0 (2024.09.18.19) | 1 |
-| Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x |  | medium | 8.78.0 (2025.07.10.14) | 8.78.0 (2025.07.10.14) | 1 |
-| Artsy: Buy & Sell Fine Art | ios | 0.81.x | 19.1.0 | high | 9.9.0 (2026.05.20.12.45) | 9.9.0 (2026.05.20.12.45) | 1 |
-| Artsy: Buy & Sell Fine Art | android | 0.82.x or newer | 19.1.0 | low | 9.0.1 (2026022618) | 9.9.0 (2026052012) | 10 |
+| App | Platform | RN guess | Renderer | Confidence | Source quality | Start | End | Builds |
+|---|---|---|---:|---|---|---|---|---:|
+| Discord | ios | <=0.59.x |  | medium |  | 1.0 (4) | 3.1.10 (18953) | 8 |
+| Discord | ios | 0.61.x |  | medium |  | 3.2.0 (19099) | 20.0 (19811) | 8 |
+| Discord | ios | 0.62.x |  | medium |  | 21.0 (19965) | 87.0 (27320) | 8 |
+| Discord | ios | 0.64.x |  | medium |  | 88.2 (27527) | 106.0 (29538) | 16 |
+| Discord | ios | 0.66.x |  | medium |  | 109.0 (29659) | 132.0 (33253) | 4 |
+| Discord | ios | 0.67.x-0.68.x |  | medium |  | 133.0 (33358) | 162.0 (39121) | 7 |
+| Discord | ios | 0.69.x-0.70.x |  | medium |  | 163.0 (39243) | 190.0 (47418) | 7 |
+| Discord | ios | 0.71.x |  | medium |  | 191.0 (47806) | 245.0 (63641) | 9 |
+| Discord | ios | 0.74.x-0.76.x |  | medium |  | 246.0 (63933) | 279.0 (77189) | 42 |
+| Discord | ios | 0.78.x | 19.0.0 | high |  | 280.0 (77565) | 306.1 (89123) | 31 |
+| Discord | ios | 0.81.x | 19.1.0 | high |  | 307.0 (89215) | 329.0 (100971) | 33 |
+| Facebook Messenger | ios | unknown |  | low |  |  (1000) | 91.0 (40546824) | 7 |
+| Facebook Messenger | ios | <=0.59.x |  | medium |  | 92.0 (41023043) | 147.0 (84235609) | 7 |
+| Facebook Messenger | ios | unknown |  | low |  | 148.0 (86952252) | 562.0.0 (975021560) | 12 |
+| Instagram | ios | unknown |  | low |  |  (1.8.7) | 9.7.0 (43028597) | 9 |
+| Instagram | ios | <=0.59.x |  | medium |  | 10.0.0 (44114773) | 90.0 (150975176) | 6 |
+| Instagram | ios | 0.60.x |  | medium |  | 91.0 (151989260) | 105.0 (165586599) | 5 |
+| Instagram | ios | 0.61.x |  | medium |  | 106.0 (166752244) | 113.0 (174653610) | 5 |
+| Instagram | ios | unknown |  | low |  | 114.0 (176133011) | 430.0.0 (972915403) | 9 |
+| Threads | ios | unknown |  | low |  | 289.0 (489338310) | 431.0.0 (979167741) | 12 |
+| Threads | android | unknown |  | low |  | 374.0.0.43.110 (504412928) | 382.0.0.51.85 (505205644) | 2 |
+| Threads | android | unknown |  | unknown |  | 400.0.0.38.68 (507007017) | 430.0.0.46.79 (510007506) | 10 |
+| Meta Horizon | android | 0.78.x | 19.0.0 | high |  | 287.3.0.33.109 (651148422) | 287.3.0.33.109 (651148422) | 1 |
+| Meta Horizon | android | 0.60.x |  | medium |  | 341.0.0.17.107 (806319963) | 349.2.0.46.104 (844730700) | 11 |
+| Meta Horizon | android | <=0.59.x |  | medium |  | 360.0.0.23.322 (892081967) | 372.0.1.34.252 (975394013) | 18 |
+| Shopify | android | 0.79.x | 19.0.0 | medium |  | 10.2543.0 (193814) | 10.2605.0 (220449) | 8 |
+| Shopify | android | 0.60.x |  | medium |  | 10.2606.1 (223088) | 10.2620.0 (281050) | 16 |
+| Shop | android | 0.79.x | 19.0.0 | medium |  | 2.231.0 (3319531) | 2.239.0 (3372633) | 11 |
+| Shop | android | 0.81.x | 19.1.0 | high |  | 2.240.0 (3376891) | 2.253.0 (3451748) | 16 |
+| Coinbase | android | 0.82.x or newer |  | low |  | 14.1.27 (140100270) | 14.19.22 (141900220) | 19 |
+| Microsoft Outlook | android | unknown |  | low |  | 4.2504.2 (82504829) | 5.2619.0 (72619117) | 10 |
+| Microsoft Teams | android | 0.60.x |  | medium |  | 1416/1.0.0.2026015002 (2026015023) | 1416/1.0.0.2026082702 (2026082725) | 10 |
+| Skype | android | 0.74.x-0.76.x |  | medium |  | 8.132.0.201 (1250181076) | 8.150.0.125 (1250186747) | 10 |
+| Pinterest | ios | unknown |  | low |  |  (1) | 6.36.1 (1) | 10 |
+| Pinterest | ios | <=0.59.x |  | medium |  | 6.37 (4) | 8.12.1 (4) | 10 |
+| Pinterest | ios | 0.60.x |  | medium |  | 8.13 (4) | 8.17 (3) | 5 |
+| Pinterest | ios | 0.61.x |  | medium |  | 8.18 (3) | 8.26 (4) | 5 |
+| Pinterest | ios | 0.63.x |  | medium |  | 8.27 (4) | 10.40 (2) | 16 |
+| Pinterest | ios | unknown |  | low |  | 10.41 (2) | 14.19 (2) | 4 |
+| Pinterest | android | unknown |  | unknown |  | 12.18.0 (12188010) | 14.8.0 (14088010) | 12 |
+| Walmart: Shopping & Savings | android | 0.74.x-0.76.x |  | medium |  | 21.5.5 (21055104) | 21.5.5 (21055104) | 1 |
+| Walmart: Shopping & Savings | android | unknown |  | unknown |  | 21.22 (21220106) | 26.18.1 (26180118) | 24 |
+| Tesla | android | 0.79.x | 19.0.0 | medium |  | 4.54.0-4094 (4094) | 4.54.0-4094 (4094) | 1 |
+| Tesla | android | 0.82.x or newer |  | low |  | 4.54.3-4107 (4107) | 4.54.3-4107 (4107) | 1 |
+| Tesla | android | 0.79.x | 19.0.0 | medium |  | 4.54.5-4133 (4133) | 4.57.0-4306 (4306) | 8 |
+| Uber Eats: Food & Groceries | ios | unknown |  | low |  | 1.9.2 (1.9.2) | 6.323.10001 (6.323.10001) | 12 |
+| SoundCloud: The Music You Love | ios | unknown |  | low |  |  (1.0) | 8.62.0 (1259079) | 12 |
+| SoundCloud: The Music You Love | android | unknown |  | unknown |  | 2026.03.27-release (348060) | 2026.05.15-release (355060) | 10 |
+| Bloomberg: Business News Daily | android | 0.61.x |  | medium |  | 5.58.0.3042781.7b196c06c (3042781) | 5.58.0.3042781.7b196c06c (3042781) | 1 |
+| Bloomberg: Business News Daily | android | 0.74.x-0.76.x |  | medium |  | 5.98.0.3930355.fd19b588e (3930355) | 6.19.0.4315110.19bd92161 (4315110) | 4 |
+| Salesforce | android | unknown |  | low |  | 250.030.0 (250030032) | 260.050.0 (260050025) | 10 |
+| Wix - Website Builder | android | unknown |  | low | duplicate package hashes (1/10) | 2.115937.0 (130467) | 2.122966.0 (137496) | 10 |
+| Artsy: Buy & Sell Fine Art | ios | unknown |  | low |  | 1.0 (140) | 7.3.9 (2022.06.03.16) | 12 |
+| Artsy: Buy & Sell Fine Art | ios | 0.66.x |  | medium |  | 8.0.0 (2022.06.24.16) | 8.9.0 (2023.03.09.08) | 9 |
+| Artsy: Buy & Sell Fine Art | ios | 0.67.x-0.68.x |  | medium |  | 8.10.0 (2023.03.23.14) | 8.12.4 (2023.05.11.19) | 6 |
+| Artsy: Buy & Sell Fine Art | ios | 0.69.x-0.70.x |  | medium |  | 8.12.5 (2023.05.17.13) | 8.27.0 (2023.11.30.23) | 7 |
+| Artsy: Buy & Sell Fine Art | ios | 0.71.x |  | medium |  | 8.28.0 (2023.12.13.10) | 8.56.0 (2024.11.14.13) | 11 |
+| Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x |  | medium |  | 8.57.0 (2024.11.29.16) | 8.79.0 (2025.07.24.14) | 6 |
+| Artsy: Buy & Sell Fine Art | ios | 0.77.x |  | medium |  | 8.80.0 (2025.08.07.10) | 8.83.0 (2025.09.17.12) | 4 |
+| Artsy: Buy & Sell Fine Art | ios | 0.79.x | 19.0.0 | medium |  | 8.84.0 (2025.09.30.18) | 8.88.0 (2025.11.12.13) | 5 |
+| Artsy: Buy & Sell Fine Art | ios | 0.81.x | 19.1.0 | high |  | 8.89.0 (2025.11.26.02) | 9.9.0 (2026.05.20.12.45) | 5 |
+| Artsy: Buy & Sell Fine Art | android | 0.82.x or newer | 19.1.0 | low | duplicate package hashes (1/10) | 9.0.1 (2026022618) | 9.9.0 (2026052012) | 10 |
 
 ## RN Transitions
 
@@ -149,14 +149,17 @@ Reports keep platform-specific package timelines separate, then merge them here 
 | Tesla | android | 0.79.x | 0.82.x or newer | 4.54.0-4094 (4094) | 4.54.3-4107 (4107) | 0 | false |
 | Tesla | android | 0.82.x or newer | 0.79.x | 4.54.3-4107 (4107) | 4.54.5-4133 (4133) | 0 | false |
 | Bloomberg: Business News Daily | android | 0.61.x | 0.74.x-0.76.x | 5.58.0.3042781.7b196c06c (3042781) | 5.98.0.3930355.fd19b588e (3930355) | 0 | false |
-| Artsy: Buy & Sell Fine Art | ios | unknown | 0.66.x | 7.2.0 (2022.02.03.14) | 8.5.0 (2023.01.04.16) | 25 | false |
-| Artsy: Buy & Sell Fine Art | ios | 0.66.x | 0.69.x-0.70.x | 8.5.0 (2023.01.04.16) | 8.25.0 (2023.11.01.10) | 26 | false |
-| Artsy: Buy & Sell Fine Art | ios | 0.69.x-0.70.x | 0.71.x | 8.25.0 (2023.11.01.10) | 8.51.0 (2024.09.18.19) | 25 | false |
-| Artsy: Buy & Sell Fine Art | ios | 0.71.x | 0.74.x-0.76.x | 8.51.0 (2024.09.18.19) | 8.78.0 (2025.07.10.14) | 26 | false |
-| Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x | 0.81.x | 8.78.0 (2025.07.10.14) | 9.9.0 (2026.05.20.12.45) | 25 | false |
+| Artsy: Buy & Sell Fine Art | ios | unknown | 0.66.x | 7.3.9 (2022.06.03.16) | 8.0.0 (2022.06.24.16) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.66.x | 0.67.x-0.68.x | 8.9.0 (2023.03.09.08) | 8.10.0 (2023.03.23.14) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.67.x-0.68.x | 0.69.x-0.70.x | 8.12.4 (2023.05.11.19) | 8.12.5 (2023.05.17.13) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.69.x-0.70.x | 0.71.x | 8.27.0 (2023.11.30.23) | 8.28.0 (2023.12.13.10) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.71.x | 0.74.x-0.76.x | 8.56.0 (2024.11.14.13) | 8.57.0 (2024.11.29.16) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.74.x-0.76.x | 0.77.x | 8.79.0 (2025.07.24.14) | 8.80.0 (2025.08.07.10) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.77.x | 0.79.x | 8.83.0 (2025.09.17.12) | 8.84.0 (2025.09.30.18) | 0 | true |
+| Artsy: Buy & Sell Fine Art | ios | 0.79.x | 0.81.x | 8.88.0 (2025.11.12.13) | 8.89.0 (2025.11.26.02) | 0 | true |
 
 ## Boundary Confidence
 
-- Exact by transition IDs: 20
-- Approximate by transition IDs: 15
+- Exact by transition IDs: 28
+- Approximate by transition IDs: 10
 - Per-app notes may refine duplicate-build boundary cases where multiple external IDs map to the same app build.

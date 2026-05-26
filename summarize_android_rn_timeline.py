@@ -34,20 +34,28 @@ def make_ranges(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
     for row in rows:
         key = rn_key(row)
         if not ranges or ranges[-1]["key"] != key:
-            ranges.append({"key": key, "start": row, "end": row, "build_count": 1})
+            ranges.append({"key": key, "start": row, "end": row, "build_count": 1, "package_hashes": set()})
         else:
             ranges[-1]["end"] = row
             ranges[-1]["build_count"] += 1
+        package_hash = row.get("package_sha256", "")
+        if package_hash:
+            ranges[-1]["package_hashes"].add(package_hash)
 
     output: list[dict[str, Any]] = []
     for item in ranges:
         start = item["start"]
         end = item["end"]
+        package_hash_count = len(item["package_hashes"])
+        source_quality = ""
+        if package_hash_count and package_hash_count < item["build_count"]:
+            source_quality = f"duplicate package hashes ({package_hash_count}/{item['build_count']})"
         output.append(
             {
                 "rn_guess": item["key"][0],
                 "react_renderer": item["key"][1],
                 "confidence": item["key"][2],
+                "source_quality": source_quality,
                 "start_app_version": start.get("version_name", ""),
                 "start_app_build": start.get("version_code", ""),
                 "start_external_version_id": start.get("version_code", ""),

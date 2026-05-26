@@ -8,6 +8,7 @@
     "end_external_version_id": "2026052012",
     "react_renderer": "19.1.0",
     "rn_guess": "0.82.x or newer",
+    "source_quality": "duplicate package hashes (1/10)",
     "start_app_build": "2026022618",
     "start_app_version": "9.0.1",
     "start_build_timestamp": "2026-02-27",
