@@ -6,7 +6,7 @@
 - App Store ID: 404249815
 - iOS bundle ID: com.salesforce.chatter
 - Android package: com.salesforce.chatter
-- Status: queued
+- Status: version_list_fetched
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -21,6 +21,20 @@
 - APKPure `.com` versions URL returned HTTP `403`, but the APKPure `.net` versions URL returned HTTP `200`.
 - AndroidAPKsFree guessed old versions URL for package `com.salesforce.chatter` returned HTTP `404`.
 
+## Version Lists
+
+- iOS version list fetch attempted on 2026-05-26 with `ipatool list-versions --app-id 404249815`.
+- iOS version list result: failed because App Store license is required.
+- iOS license attempt for bundle ID `com.salesforce.chatter` failed with unsupported protocol scheme.
+- Bundle-ID iOS version list also failed because App Store license is required.
+- Raw iOS version-list error: `reports/salesforce/version-list-error.json`
+- Android APKPure catalog fetched on 2026-05-26 with `fetch_apkpure_versions.py`.
+- Android entries available from APKPure sources: 10
+- Oldest Android versionCode in the APKPure catalog: `256043000` (`256.043.0`)
+- Newest Android versionCode in the APKPure catalog: `260050025` (`260.050.0`)
+- Raw Android version catalog: `reports/salesforce/android-version-list.json`
+- APKPure currently exposes a limited visible history on the fetched page.
+
 ## Next Step
 
-Fetch iOS and Android version catalogs. Prefer Android sampling first if APKPure exposes downloadable historical packages.
+Sample the visible Android APKPure catalog first because iOS version-list access is blocked.

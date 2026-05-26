@@ -643,12 +643,16 @@
       "bundle_id": "com.salesforce.chatter",
       "android_package": "com.salesforce.chatter",
       "android_history_source": "APKPure versions page for package com.salesforce.chatter; APKCombo old versions page also reachable",
-      "status": "queued",
+      "status": "version_list_fetched",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 404249815 and bundle ID com.salesforce.chatter; Google Play, APKPure, and APKCombo identify Android package com.salesforce.chatter.",
-      "last_completed_step": "registration",
+      "last_completed_step": "version_list_fetch",
       "reports_path": "reports/salesforce",
       "version_list_path": "reports/salesforce/version-list.json",
+      "version_list_error_path": "reports/salesforce/version-list-error.json",
       "android_version_list_path": "reports/salesforce/android-version-list.json",
+      "android_version_count": 10,
+      "oldest_android_version_code": "256043000",
+      "newest_android_version_code": "260050025",
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Salesforce --format json returned App Store ID 404249815, bundle ID com.salesforce.chatter, app name Salesforce, and current listed version 260.051.",
@@ -658,7 +662,9 @@
         "APKPure Android history URL identified: https://apkpure.net/salesforce/com.salesforce.chatter/versions.",
         "APKCombo old versions URL identified: https://apkcombo.com/salesforce/com.salesforce.chatter/old-versions/.",
         "APKPure .com versions URL returned HTTP 403, but the APKPure .net versions URL returned HTTP 200.",
-        "AndroidAPKsFree guessed old versions URL for package com.salesforce.chatter returned HTTP 404."
+        "AndroidAPKsFree guessed old versions URL for package com.salesforce.chatter returned HTTP 404.",
+        "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID and bundle ID requires an App Store license; bundle-ID purchase failed with unsupported protocol scheme.",
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 256043000 through 260050025; source page appears to expose a limited history."
       ]
     }
   ]

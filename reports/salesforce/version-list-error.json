@@ -1,0 +1,20 @@
+{
+  "app_id": "404249815",
+  "app_slug": "salesforce",
+  "attempted_at": "2026-05-26",
+  "bundle_id": "com.salesforce.chatter",
+  "errors": [
+    {
+      "command": "ipatool list-versions --app-id 404249815 --format json",
+      "error": "license is required"
+    },
+    {
+      "command": "ipatool purchase --bundle-identifier com.salesforce.chatter --format json",
+      "error": "request failed: request failed: Post \"\": failed to make round trip: unsupported protocol scheme \"\""
+    },
+    {
+      "command": "ipatool list-versions --bundle-identifier com.salesforce.chatter --format json",
+      "error": "license is required"
+    }
+  ]
+}
