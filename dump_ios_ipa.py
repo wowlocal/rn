@@ -392,10 +392,22 @@ def main() -> int:
         "verification": {},
     }
     try:
-        ensure_tools(args, password)
-        remote_dir = install_ipa(args, password, ipa)
-        maybe_prepare_app(args, password, source_metadata)
-        idump_result = dump_with_idump(args, source_metadata, idump, output_ipa)
+        try:
+            ensure_tools(args, password)
+            remote_dir = install_ipa(args, password, ipa)
+            maybe_prepare_app(args, password, source_metadata)
+            idump_result = dump_with_idump(args, source_metadata, idump, output_ipa)
+        except CommandError as exc:
+            if exc.result:
+                report["idump"]["stdout"] = exc.result.stdout
+                report["idump"]["stderr"] = exc.result.stderr
+                report["idump"]["returncode"] = exc.result.returncode
+            report["verification"]["accepted_decrypted_evidence"] = False
+            report["verification"]["error"] = str(exc)
+            report_path.parent.mkdir(parents=True, exist_ok=True)
+            report_path.write_text(json.dumps(report, indent=2) + "\n")
+            print(f"Report: {report_path}", file=sys.stderr)
+            return 1
     finally:
         if remote_dir and not args.keep_remote_temp:
             ssh(args, password, f"rm -rf {shlex.quote(remote_dir)}", check=False)
