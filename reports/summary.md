@@ -8,7 +8,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 - Analyzed successfully: 4
 - Queued: 0
-- In progress: 0
+- In progress: 1
 - Needs manual review: 13
 - No RN detected: 2
 - Skipped: 3
@@ -19,6 +19,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
+
+## In Progress Apps
+
+- Artsy: Buy & Sell Fine Art: status `registered`; last completed `registration`; reports in `reports/artsy`
 
 ## Manual Review Apps
 

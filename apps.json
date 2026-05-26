@@ -712,6 +712,29 @@
         "Package hash validation found one unique XAPK payload across all 10 sampled rows, and embedded XAPK manifest metadata reported versionName 2.122966.0 and versionCode 137496 for every row. Treat the Android package rows as duplicated current-payload evidence, not historical builds.",
         "Marked needs_manual_review because iOS version-list access is blocked and the available Android downloads confirm current RN usage but do not provide a trustworthy historical package timeline."
       ]
+    },
+    {
+      "app_slug": "artsy",
+      "app_name": "Artsy: Buy & Sell Fine Art",
+      "app_id": "703796080",
+      "bundle_id": "net.artsy.artsy",
+      "android_package": "net.artsy.app",
+      "android_history_source": "APKPure, APKCombo, and Uptodown old versions pages for package net.artsy.app",
+      "status": "registered",
+      "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 703796080 and bundle ID net.artsy.artsy; Google Play/APKPure/APKCombo/Uptodown identify Android package net.artsy.app.",
+      "last_completed_step": "registration",
+      "reports_path": "reports/artsy",
+      "notes": [
+        "Registered for analysis on 2026-05-26.",
+        "ipatool search Artsy --format json returned App Store ID 703796080, bundle ID net.artsy.artsy, app name Artsy: Buy & Sell Fine Art, and current listed version 9.9.0.",
+        "iOS identifier source: Apple iTunes lookup for App Store ID 703796080 returned bundle ID net.artsy.artsy, app name Artsy: Buy & Sell Fine Art, seller Art.sy Inc., current US listed version 9.9.0, and release date 2026-05-20T17:57:36Z.",
+        "App Store URL: https://apps.apple.com/us/app/artsy-buy-sell-fine-art/id703796080.",
+        "Android package source: APKPure, APKCombo, and Uptodown identify package net.artsy.app.",
+        "APKPure Android history URL identified: https://apkpure.net/artsy-buy-resell-artworks/net.artsy.app/versions returned HTTP 200.",
+        "APKCombo old versions URL identified: https://apkcombo.com/artsy-buy-sell-fine-art/net.artsy.app/old-versions/ returned HTTP 200.",
+        "Uptodown versions URL identified: https://artsy.en.uptodown.com/android/versions?utm_source=main returned HTTP 200.",
+        "AndroidAPKsFree guessed old versions URL for package net.artsy.app returned HTTP 404."
+      ]
     }
   ]
 }
