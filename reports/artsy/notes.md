@@ -6,7 +6,7 @@
 - App Store ID: 703796080
 - iOS bundle ID: net.artsy.artsy
 - Android package: net.artsy.app
-- Status: done
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -54,7 +54,7 @@
 
 - iOS boundary refinement expanded the sample to 65 analyzed IPAs.
 - The App Store version list confirms exact adjacent transitions with zero known-list gaps:
-- `7.3.9` -> `8.0.0`: unknown -> RN `0.66.x`
+- `7.3.9` -> `8.0.0`: native RN marker without version -> RN `0.66.x`
 - `8.9.0` -> `8.10.0`: RN `0.66.x` -> RN `0.67.x-0.68.x`
 - `8.12.4` -> `8.12.5`: RN `0.67.x-0.68.x` -> RN `0.69.x-0.70.x`
 - `8.27.0` -> `8.28.0`: RN `0.69.x-0.70.x` -> RN `0.71.x`
@@ -63,7 +63,16 @@
 - `8.83.0` -> `8.84.0`: RN `0.77.x` -> RN `0.79.x`
 - `8.88.0` -> `8.89.0`: RN `0.79.x` -> RN `0.81.x`
 
+## Decrypted iOS Evidence
+
+- Decrypted iOS dump date: 2026-05-26.
+- Dump tooling: `./dump_ios_ipa.py <ipa> --method frida-ipa-extract --all-binaries`; the wrapper installed through `ideviceinstaller` and recorded device context from `ideviceinfo`.
+- Device context for accepted dump: iOS `16.7.7` (`20H330`), hardware model `D201AP`.
+- `7.3.9` build `2022.06.03.16`, external ID `849701554`: source IPA SHA-256 `ce50723e36748b9a3248437f89058be5265536e51aa26654a640c3e7596f11ce`, dumped IPA SHA-256 `b4e66b6ce0f99f9521a896b6f8dcaca388bb350d4e0c12a2f45a769b689c543d`, dumped size `28538122`, metadata matched source bundle/version/build, main executable `cryptid 0`, coverage `loaded_app_decrypted`.
+- `7.3.9` decrypted analysis finds no JS bundle or renderer marker, but the decrypted main executable contains native React Native, JSI, and Yoga markers with no version-specific RN marker. The row remains RN `unknown` with reason `native_rn_marker_without_version`.
+- Remaining encrypted code in `7.3.9` is limited to app extensions: `ArtsyWidgetExtension` and `BrazePushServiceExtension` remain encrypted, and `Artsy Stickers` has no `LC_ENCRYPTION_INFO` cryptid.
+
 ## Result
 
-- Status: `done`
-- Reason: the iOS App Store version list yielded exact adjacent RN boundaries. Android APKPure downloads confirm current React Native usage but are not used for historical boundaries because they duplicated the latest payload for historical rows.
+- Status: `needs_manual_review`
+- Reason: the iOS App Store version list yielded exact adjacent version-specific RN marker-band boundaries from `8.0.0` onward, but the accepted decrypted `7.3.9` boundary dump shows native RN/JSI/Yoga markers without a version marker. Android APKPure downloads confirm current React Native usage but are not used for historical boundaries because they duplicated the latest payload for historical rows.

@@ -726,9 +726,9 @@
       "bundle_id": "net.artsy.artsy",
       "android_package": "net.artsy.app",
       "android_history_source": "APKPure versions page for package net.artsy.app; APKCombo and Uptodown pages also reachable",
-      "status": "done",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 703796080 and bundle ID net.artsy.artsy; Google Play/APKPure/APKCombo/Uptodown identify Android package net.artsy.app.",
-      "last_completed_step": "done",
+      "last_completed_step": "ios_decrypted_pre_boundary_sampling",
       "reports_path": "reports/artsy",
       "version_list_path": "reports/artsy/version-list.json",
       "android_version_list_path": "reports/artsy/android-version-list.json",
@@ -761,7 +761,8 @@
         "Initial iOS sampling downloaded and analyzed 12 evenly spaced IPAs across external version IDs 23362671 through 885363722.",
         "The broad iOS sample reports unknown RN markers through app 7.2.0 (2022-02-03), then source-limited iOS bands: 8.5.0 as 0.66.x, 8.25.0 as 0.69.x-0.70.x, 8.51.0 as 0.71.x, 8.78.0 as 0.74.x-0.76.x, and 9.9.0 as 0.81.x with react-native-renderer 19.1.0.",
         "iOS boundary refinement expanded analysis to 65 IPAs and resolved exact adjacent App Store list transitions: 7.3.9 -> 8.0.0, 8.9.0 -> 8.10.0, 8.12.4 -> 8.12.5, 8.27.0 -> 8.28.0, 8.56.0 -> 8.57.0, 8.79.0 -> 8.80.0, 8.83.0 -> 8.84.0, and 8.88.0 -> 8.89.0.",
-        "Marked done because the iOS App Store version list yielded exact adjacent RN boundaries. Android APKPure downloads are retained only as current RN confirmation because they duplicated the latest payload for historical rows."
+        "Accepted iOS decrypted dump for 7.3.9 (2022.06.03.16, external ID 849701554). The dump has main executable cryptid 0 and loaded_app_decrypted coverage; analysis finds native React Native/JSI/Yoga markers but no JS bundle, renderer marker, or version-specific RN marker.",
+        "Marked needs_manual_review because 7.3.9 now has decrypted native RN markers without a version marker, so 7.3.9 -> 8.0.0 is the first exact transition to a version-specific 0.66.x marker rather than proof of RN introduction. Android APKPure downloads are retained only as current RN confirmation because they duplicated the latest payload for historical rows."
       ]
     },
     {

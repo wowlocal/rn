@@ -758,7 +758,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2022.06.03.16",
     "from_app_version": "7.3.9",
     "from_build_timestamp": "2022-06-03T10:17:00",
@@ -776,7 +776,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2023.03.09.08",
     "from_app_version": "8.9.0",
     "from_build_timestamp": "2023-03-09T01:18:52",
@@ -794,7 +794,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2023.05.11.19",
     "from_app_version": "8.12.4",
     "from_build_timestamp": "2023-05-11T12:29:32",
@@ -812,7 +812,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2023.11.30.23",
     "from_app_version": "8.27.0",
     "from_build_timestamp": "2023-11-30T15:46:44",
@@ -830,7 +830,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2024.11.14.13",
     "from_app_version": "8.56.0",
     "from_build_timestamp": "2024-11-14T13:35:46",
@@ -848,7 +848,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2025.07.24.14",
     "from_app_version": "8.79.0",
     "from_build_timestamp": "2025-07-24T14:25:58",
@@ -866,7 +866,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2025.09.17.12",
     "from_app_version": "8.83.0",
     "from_build_timestamp": "2025-09-17T13:13:06",
@@ -884,7 +884,7 @@
   {
     "app_name": "Artsy: Buy & Sell Fine Art",
     "app_slug": "artsy",
-    "app_status": "done",
+    "app_status": "needs_manual_review",
     "from_app_build": "2025.11.12.13",
     "from_app_version": "8.88.0",
     "from_build_timestamp": "2025-11-12T13:50:16",

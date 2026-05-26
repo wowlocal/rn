@@ -6,10 +6,10 @@ Reports keep platform-specific package timelines separate, then merge them here 
 
 ## App Status
 
-- Analyzed successfully: 6
+- Analyzed successfully: 5
 - Queued: 0
 - In progress: 0
-- Needs manual review: 15
+- Needs manual review: 16
 - No RN detected: 2
 - Skipped: 3
 
@@ -19,7 +19,6 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Facebook Messenger: 735 iOS external versions; reports in `reports/facebook-messenger`
 - Instagram: 795 iOS external versions; reports in `reports/instagram`
 - Pinterest: 645 iOS external versions; reports in `reports/pinterest`
-- Artsy: Buy & Sell Fine Art: 292 iOS external versions; reports in `reports/artsy`
 - Mattermost: 175 iOS external versions; reports in `reports/mattermost`
 
 ## Manual Review Apps
@@ -37,6 +36,7 @@ Reports keep platform-specific package timelines separate, then merge them here 
 - Bloomberg: Business News Daily: last completed `source_limited_android_sampling`; reports in `reports/bloomberg`
 - Salesforce: last completed `source_limited_android_sampling`; reports in `reports/salesforce`
 - Wix - Website Builder: last completed `source_limited_android_sampling`; reports in `reports/wix`
+- Artsy: Buy & Sell Fine Art: last completed `ios_decrypted_pre_boundary_sampling`; reports in `reports/artsy`
 - NerdWallet: Smart Money App: last completed `source_limited_android_sampling`; reports in `reports/nerdwallet`
 - Bluesky Social: last completed `source_limited_android_sampling`; reports in `reports/bluesky`
 

@@ -63,16 +63,16 @@ bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.61.x,,med
 bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.74.x-0.76.x,,medium,,5.98.0.3930355.fd19b588e,3930355,3930355,,6.19.0.4315110.19bd92161,4315110,4315110,,4
 salesforce,Salesforce,needs_manual_review,android,unknown,,low,,250.030.0,250030032,250030032,2024-08-19,260.050.0,260050025,260050025,2026-05-09,10
 wix,Wix - Website Builder,needs_manual_review,android,unknown,,low,duplicate package hashes (1/10),2.115937.0,130467,130467,2026-02-02,2.122966.0,137496,137496,2026-05-19,10
-artsy,Artsy: Buy & Sell Fine Art,done,ios,unknown,,low,,1.0,140,23362671,2013-09-11T08:08:16,7.3.9,2022.06.03.16,849701554,2022-06-03T10:17:00,12
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.66.x,,medium,,8.0.0,2022.06.24.16,850009836,2022-06-24T09:34:06,8.9.0,2023.03.09.08,855250847,2023-03-09T01:18:52,9
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.67.x-0.68.x,,medium,,8.10.0,2023.03.23.14,855453254,2023-03-23T08:06:06,8.12.4,2023.05.11.19,856978180,2023-05-11T12:29:32,6
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.69.x-0.70.x,,medium,,8.12.5,2023.05.17.13,857088967,2023-05-17T07:13:10,8.27.0,2023.11.30.23,861556565,2023-11-30T15:46:44,7
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.71.x,,medium,,8.28.0,2023.12.13.10,861901604,2023-12-13T02:32:34,8.56.0,2024.11.14.13,870200865,2024-11-14T13:35:46,11
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.74.x-0.76.x,,medium,,8.57.0,2024.11.29.16,870443178,2024-11-29T16:50:26,8.79.0,2025.07.24.14,876309616,2025-07-24T14:25:58,6
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.77.x,,medium,,8.80.0,2025.08.07.10,876709591,2025-08-07T10:40:14,8.83.0,2025.09.17.12,877862925,2025-09-17T13:13:06,4
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.79.x,19.0.0,medium,,8.84.0,2025.09.30.18,878228231,2025-09-30T18:40:22,8.88.0,2025.11.12.13,879541714,2025-11-12T13:50:16,5
-artsy,Artsy: Buy & Sell Fine Art,done,ios,0.81.x,19.1.0,high,,8.89.0,2025.11.26.02,879728163,2025-11-26T03:36:00,9.9.0,2026.05.20.12.45,885363722,2026-05-20T12:59:44,5
-artsy,Artsy: Buy & Sell Fine Art,done,android,0.82.x or newer,19.1.0,low,duplicate package hashes (1/10),9.0.1,2026022618,2026022618,2026-02-27,9.9.0,2026052012,2026052012,2026-05-23,10
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,unknown,,low,,1.0,140,23362671,2013-09-11T08:08:16,7.3.9,2022.06.03.16,849701554,2022-06-03T10:17:00,12
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.66.x,,medium,,8.0.0,2022.06.24.16,850009836,2022-06-24T09:34:06,8.9.0,2023.03.09.08,855250847,2023-03-09T01:18:52,9
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.67.x-0.68.x,,medium,,8.10.0,2023.03.23.14,855453254,2023-03-23T08:06:06,8.12.4,2023.05.11.19,856978180,2023-05-11T12:29:32,6
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.69.x-0.70.x,,medium,,8.12.5,2023.05.17.13,857088967,2023-05-17T07:13:10,8.27.0,2023.11.30.23,861556565,2023-11-30T15:46:44,7
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.71.x,,medium,,8.28.0,2023.12.13.10,861901604,2023-12-13T02:32:34,8.56.0,2024.11.14.13,870200865,2024-11-14T13:35:46,11
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.74.x-0.76.x,,medium,,8.57.0,2024.11.29.16,870443178,2024-11-29T16:50:26,8.79.0,2025.07.24.14,876309616,2025-07-24T14:25:58,6
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.77.x,,medium,,8.80.0,2025.08.07.10,876709591,2025-08-07T10:40:14,8.83.0,2025.09.17.12,877862925,2025-09-17T13:13:06,4
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.79.x,19.0.0,medium,,8.84.0,2025.09.30.18,878228231,2025-09-30T18:40:22,8.88.0,2025.11.12.13,879541714,2025-11-12T13:50:16,5
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,ios,0.81.x,19.1.0,high,,8.89.0,2025.11.26.02,879728163,2025-11-26T03:36:00,9.9.0,2026.05.20.12.45,885363722,2026-05-20T12:59:44,5
+artsy,Artsy: Buy & Sell Fine Art,needs_manual_review,android,0.82.x or newer,19.1.0,low,duplicate package hashes (1/10),9.0.1,2026022618,2026022618,2026-02-27,9.9.0,2026052012,2026052012,2026-05-23,10
 nerdwallet,NerdWallet: Smart Money App,needs_manual_review,android,unknown,,low,source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode,11.29.0,123845,1046637925,2025-01-24,12.6.0,131162,1075800926,2025-04-14,4
 nerdwallet,NerdWallet: Smart Money App,needs_manual_review,android,0.77.x,,medium,source-limited Uptodown catalog; source IDs are not manifest versionCodes; source dates are non-monotonic versus manifest versionCode,12.10.1,140458,1146753195,2026-02-13,14.3.0,162034,1107628573,2025-09-11,6
 mattermost,Mattermost,done,ios,<=0.59.x,,medium,,1.0,39,822837610,2017-07-07T12:59:34,1.25.1,247,833725635,2019-11-21T09:03:20,4
