@@ -642,17 +642,21 @@
       "app_id": "404249815",
       "bundle_id": "com.salesforce.chatter",
       "android_package": "com.salesforce.chatter",
-      "android_history_source": "APKPure versions page for package com.salesforce.chatter; APKCombo old versions page also reachable",
-      "status": "version_list_fetched",
+      "android_history_source": "APKCombo old versions page for package com.salesforce.chatter; APKPure versions page retained as source-quality check",
+      "status": "needs_manual_review",
       "evidence": "Candidate from POPULAR_RN_APPS_ANALYSIS_PLAN.md; ipatool search and Apple iTunes lookup resolved App Store ID 404249815 and bundle ID com.salesforce.chatter; Google Play, APKPure, and APKCombo identify Android package com.salesforce.chatter.",
-      "last_completed_step": "version_list_fetch",
+      "last_completed_step": "source_limited_android_sampling",
       "reports_path": "reports/salesforce",
       "version_list_path": "reports/salesforce/version-list.json",
       "version_list_error_path": "reports/salesforce/version-list-error.json",
       "android_version_list_path": "reports/salesforce/android-version-list.json",
-      "android_version_count": 10,
-      "oldest_android_version_code": "256043000",
+      "android_version_list_apkcombo_path": "reports/salesforce/android-version-list-apkcombo.json",
+      "android_version_list_apkpure_path": "reports/salesforce/android-version-list-apkpure.json",
+      "android_version_count": 30,
+      "oldest_android_version_code": "250030032",
       "newest_android_version_code": "260050025",
+      "sampled_android_package_count": 10,
+      "rn_detected": false,
       "notes": [
         "Registered for analysis on 2026-05-26.",
         "ipatool search Salesforce --format json returned App Store ID 404249815, bundle ID com.salesforce.chatter, app name Salesforce, and current listed version 260.051.",
@@ -664,7 +668,11 @@
         "APKPure .com versions URL returned HTTP 403, but the APKPure .net versions URL returned HTTP 200.",
         "AndroidAPKsFree guessed old versions URL for package com.salesforce.chatter returned HTTP 404.",
         "iOS version list fetch failed on 2026-05-26 because ipatool list-versions by app ID and bundle ID requires an App Store license; bundle-ID purchase failed with unsupported protocol scheme.",
-        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 256043000 through 260050025; source page appears to expose a limited history."
+        "Android APKPure catalog fetched on 2026-05-26: 10 visible entries from versionCode 256043000 through 260050025; sampled payload validation found one unique package hash and embedded manifest version 260.050.0 across all rows, so the APKPure catalog is retained only as a source-quality artifact.",
+        "Android APKCombo catalog fetched on 2026-05-26: 30 visible entries from versionCode 250030032 through 260050025; source page appears to expose a limited history.",
+        "Android sampling downloaded and analyzed 10 evenly spaced APKCombo XAPK rows from 250.030.0 through 260.050.0. Package hash validation found 10 unique payloads across the 10 sampled rows.",
+        "No sampled Android package exposed React Native JS bundle or native-library markers. Bundle-like files under assets/EclairNG/runtime-modules are Salesforce chart/runtime assets, not React Native evidence.",
+        "Marked needs_manual_review because iOS version-list access is blocked and the available Android catalog is source-limited, despite no RN markers in the sampled APKCombo packages."
       ]
     }
   ]

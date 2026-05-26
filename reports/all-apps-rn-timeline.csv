@@ -49,3 +49,4 @@ soundcloud,SoundCloud: The Music You Love,not_react_native_detected,ios,unknown,
 soundcloud,SoundCloud: The Music You Love,not_react_native_detected,android,unknown,,unknown,2026.03.27-release,348060,348060,2026-03-31,2026.05.15-release,355060,355060,2026-05-20,10
 bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.61.x,,medium,5.58.0.3042781.7b196c06c,3042781,3042781,,5.58.0.3042781.7b196c06c,3042781,3042781,,1
 bloomberg,Bloomberg: Business News Daily,needs_manual_review,android,0.74.x-0.76.x,,medium,5.98.0.3930355.fd19b588e,3930355,3930355,,6.19.0.4315110.19bd92161,4315110,4315110,,4
+salesforce,Salesforce,needs_manual_review,android,unknown,,low,250.030.0,250030032,250030032,2024-08-19,260.050.0,260050025,260050025,2026-05-09,10

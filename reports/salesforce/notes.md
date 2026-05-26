@@ -6,7 +6,7 @@
 - App Store ID: 404249815
 - iOS bundle ID: com.salesforce.chatter
 - Android package: com.salesforce.chatter
-- Status: version_list_fetched
+- Status: needs_manual_review
 - Registration date: 2026-05-26
 
 ## Evidence
@@ -32,9 +32,24 @@
 - Android entries available from APKPure sources: 10
 - Oldest Android versionCode in the APKPure catalog: `256043000` (`256.043.0`)
 - Newest Android versionCode in the APKPure catalog: `260050025` (`260.050.0`)
-- Raw Android version catalog: `reports/salesforce/android-version-list.json`
-- APKPure currently exposes a limited visible history on the fetched page.
+- APKPure package validation found one unique payload hash across all 10 fetched rows, and the embedded manifest metadata matched the current `260.050.0` package for every row. The APKPure catalog is retained as `reports/salesforce/android-version-list-apkpure.json` but is not used as the primary timeline source.
+- Android APKCombo catalog fetched on 2026-05-26 with `fetch_apkcombo_versions.py`.
+- Android entries available from APKCombo sources: 30
+- Oldest Android versionCode in the APKCombo catalog: `250030032` (`250.030.0`)
+- Newest Android versionCode in the APKCombo catalog: `260050025` (`260.050.0`)
+- Raw primary Android version catalog: `reports/salesforce/android-version-list.json`
+- Source-specific APKCombo catalog: `reports/salesforce/android-version-list-apkcombo.json`
+- APKCombo exposes a limited visible old-version catalog, so Android boundaries remain source-limited.
 
-## Next Step
+## Android Sampling
 
-Sample the visible Android APKPure catalog first because iOS version-list access is blocked.
+- Downloaded and analyzed 10 evenly spaced APKCombo XAPK rows from versionCode `250030032` (`250.030.0`, source date 2024-08-19) through `260050025` (`260.050.0`, source date 2026-05-09).
+- Package hash validation found 10 unique payload hashes across the 10 sampled APKCombo rows.
+- No sampled Android package exposed React Native JS bundle or native-library markers.
+- Bundle-like files under `assets/EclairNG/runtime-modules` and `assets/runtime-modules` are Salesforce chart/runtime assets, not React Native evidence.
+- Android range summary: `250.030.0` through `260.050.0` is `unknown` with low confidence because no `react-native-renderer`, Hermes, React Native native-library, or React Native symbol markers were found.
+
+## Result
+
+- Status: `needs_manual_review`
+- Reason: iOS version-list access is blocked and the available Android catalog is source-limited, despite no RN markers in the sampled APKCombo packages.

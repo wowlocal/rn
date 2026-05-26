@@ -131,7 +131,10 @@ def direct_download_url(entry: dict[str, Any], timeout: int) -> str:
     version_code = str(entry.get("version_code", ""))
     if not page_url:
         return ""
-    path = urlparse(page_url).path.lower()
+    parsed = urlparse(page_url)
+    if parsed.netloc.endswith("pureapk.com"):
+        return page_url
+    path = parsed.path.lower()
     if path.endswith((".apk", ".apks", ".xapk", ".apkm")):
         return page_url
     document = html.fromstring(fetch_text(page_url, timeout=timeout))
@@ -172,7 +175,8 @@ def download_package(
     if not url:
         raise RuntimeError(f"no direct download URL found for {version_name} ({version_code})")
     print(f"downloading {version_name} ({version_code}) -> {out}")
-    download_binary(url, out, timeout=timeout, referer=str(entry.get("stable_source_identifier", "")))
+    referer = "" if urlparse(url).netloc.endswith("pureapk.com") else str(entry.get("stable_source_identifier", ""))
+    download_binary(url, out, timeout=timeout, referer=referer)
     return out
 
 
